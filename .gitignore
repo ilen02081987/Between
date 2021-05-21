@@ -53,7 +53,27 @@ sysinfo.txt
 
 # Builds
 *.apk
-*.unitypackage
 
 # Crashlytics generated file
 crashlytics-build.properties
+
+**/Library/
+**/Temp/
+**/obj/
+
+**/.vscode/
+
+**/Assets/Plugins/*
+**/Assets/Plugins.meta
+
+*.idea
+*.app
+*.VC.*
+.DS_Store
+*~
+*.swp
+
+build/*
+*.rsp
+*.pyc
+/Logs
