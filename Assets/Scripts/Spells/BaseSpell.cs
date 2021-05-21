@@ -77,7 +77,7 @@ namespace Between.Spells
                 _prefab = Resources.Load<SpellPainter>(_painterName);
 
             var painter = MonoBehaviour.Instantiate<SpellPainter>(_prefab);
-            painter.Init(ButtonNumber, Input.mousePosition);
+            painter.Init(ButtonNumber);
         }
 
         protected void SetState(State state)

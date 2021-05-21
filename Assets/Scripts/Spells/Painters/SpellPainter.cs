@@ -12,16 +12,14 @@ public class SpellPainter : MonoBehaviour
     private int _mouseButton;
     private bool _isDraw = true;
 
-    public void Init(int mouseButton, Vector3 startPoint)
+    public void Init(int mouseButton)
     {
         _mouseButton = mouseButton;
         _lineRenderer = GetComponent<LineRenderer>();
 
         MouseInput.OnFinishDraw += MouseInput_OnFinishDraw;
 
-        //NOTE: ’ак, т.к. у LineRenderer по умолчанию существует 2 точки
-        SetLinePoint(0, startPoint);
-        SetLinePoint(1, startPoint);
+        _lineRenderer.positionCount = 0;
 
         StartCoroutine(Draw());
     }
