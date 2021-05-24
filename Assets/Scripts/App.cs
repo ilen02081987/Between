@@ -8,6 +8,7 @@ namespace Between
         private void Start()
         {
             new Player();
+            new SpellsCollection();
         }
     }
 }
