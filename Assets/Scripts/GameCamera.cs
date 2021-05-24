@@ -3,11 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Camera))]
 public class GameCamera : MonoBehaviourSingleton<GameCamera>
 {
-    public static Camera MainCamera => Instance._mainCamera;
+    public static Camera MainCamera
+    {
+        get
+        {
+            if (Instance._mainCamera == null)
+                Instance._mainCamera = Instance.GetComponent<Camera>();
 
-    [SerializeField] private Camera _mainCamera;
+            return Instance._mainCamera;
+        }
+    }
+
+    private Camera _mainCamera;
 
     public static Vector3 ScreenToWorldPoint(Vector3 screenPoint)
     {
