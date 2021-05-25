@@ -1,3 +1,4 @@
+using Between.SpellsEffects.Shield;
 using Between.UserInput.Trackers;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,22 +9,16 @@ namespace Between.Spells
     public class ShieldSpell : BaseSpell
     {
         protected override BaseInputTracker tracker => _tracker;
-
         private CurveTracker _tracker = new CurveTracker();
 
-        protected override void OnCanCompleteDraw()
-        {
-            Debug.Log("Can complete draw shield spell");
-        }
+        private ShieldSpawner _shieldSpawner = new ShieldSpawner();
 
-        protected override void OnCompleteDraw()
-        {
-            Debug.Log("Complete draw shield spell");
-        }
+        protected override void OnCanCompleteDraw() { }
 
-        protected override void OnDrawFailed()
-        {
-            Debug.Log("Draw shield spell failed");
-        }
+        protected override void OnCompleteDraw() => SpawnShields();
+
+        protected override void OnDrawFailed() { }
+
+        private void SpawnShields() => _shieldSpawner.Spawn(_tracker.DrawPoints);
     }
 }

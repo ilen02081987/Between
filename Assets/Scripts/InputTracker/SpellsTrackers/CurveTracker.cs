@@ -7,7 +7,8 @@ namespace Between.UserInput.Trackers
     {
         public override int MouseButton => 1;
 
-        private readonly float _lenght = 800;
+        public readonly float MaxLenght = 1000;
+        public readonly float MinLenght = 500;
 
         public List<Vector3> DrawPoints { get; private set; } = new List<Vector3>();
 
@@ -25,10 +26,10 @@ namespace Between.UserInput.Trackers
         {
             if (CompareState(DrawState.Draw))
             {
-                DrawPoints.Add(point.Position);
-
                 if (IsEnoughLong())
                     InvokeCanCompleteEvent();
+                else if (!IsTooLong())
+                    DrawPoints.Add(point.Position);
             }
         }
 
@@ -55,11 +56,15 @@ namespace Between.UserInput.Trackers
             }
         }
 
-        private bool IsEnoughLong()
+        private bool IsEnoughLong() => CalculateLenght() > MinLenght;
+        private bool IsTooLong() => CalculateLenght() > MaxLenght;
+
+        public float CalculateLenght()
         {
-            var distance = Vector3.Distance(DrawPoints[DrawPoints.Count - 1], DrawPoints[0]);
-            //Debug.Log("Distance = " + distance);
-            return distance > _lenght;
+            if (DrawPoints.Count > 2)
+                return Vector3.Distance(DrawPoints[DrawPoints.Count - 1], DrawPoints[0]);
+            else
+                return 0f;
         }
 
         private void ClearTracker() => DrawPoints.Clear();

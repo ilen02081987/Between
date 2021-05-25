@@ -16,24 +16,48 @@ namespace Between.UserInput.Trackers
 
         private void Init()
         {
-            InputHandler.StartDraw += OnDrawStarted;
-            InputHandler.DrawCall += OnDrawCalled;
-            InputHandler.EndDraw += OnDrawEnded;
-            InputHandler.ForceEndDraw += OnDrawForceEnded;
+            InputHandler.StartDraw += StartDraw;
+            InputHandler.DrawCall += DrawCall;
+            InputHandler.EndDraw += EndDraw;
+            InputHandler.ForceEndDraw += ForceEndDraw;
         }
 
         public void Dispose()
         {
-            InputHandler.StartDraw += OnDrawStarted;
-            InputHandler.DrawCall += OnDrawCalled;
-            InputHandler.EndDraw += OnDrawEnded;
-            InputHandler.ForceEndDraw += OnDrawForceEnded;
+            InputHandler.StartDraw += StartDraw;
+            InputHandler.DrawCall += DrawCall;
+            InputHandler.EndDraw += EndDraw;
+            InputHandler.ForceEndDraw += ForceEndDraw;
+        }
+
+        private void StartDraw(InputData point)
+        {
+            if (point.MouseButton == MouseButton)
+                OnDrawStarted(point);
+        }
+
+        private void DrawCall(InputData point)
+        {
+            if (point.MouseButton == MouseButton)
+                OnDrawCalled(point);
+        }
+
+        private void EndDraw(InputData point)
+        {
+            if (point.MouseButton == MouseButton)
+                OnDrawEnded(point);
+        }
+
+        private void ForceEndDraw(InputData point)
+        {
+            if (point.MouseButton == MouseButton)
+                OnDrawForceEnded(point);
         }
 
         protected abstract void OnDrawStarted(InputData obj);
-        protected abstract void OnDrawForceEnded(InputData obj);
-        protected abstract void OnDrawEnded(InputData obj);
         protected abstract void OnDrawCalled(InputData obj);
+        protected abstract void OnDrawEnded(InputData obj);
+        protected abstract void OnDrawForceEnded(InputData obj);
 
         #region STATE MACHINE
 
