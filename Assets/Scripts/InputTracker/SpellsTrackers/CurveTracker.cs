@@ -5,12 +5,15 @@ namespace Between.UserInput.Trackers
 {
     public class CurveTracker : BaseInputTracker
     {
-        public override int MouseButton => 1;
-
-        public readonly float MaxLenght = 1000;
-        public readonly float MinLenght = 500;
-
         public List<Vector3> DrawPoints { get; private set; } = new List<Vector3>();
+
+        protected override int MouseButton => 1;
+
+        private readonly float _maxLenght = 1000;
+        private readonly float _minLenght = 500;
+        private readonly float _forceEndAngle = 90f;
+
+        private float _startAngle;
 
         protected override void OnDrawStarted(InputData point)
         {
@@ -24,42 +27,44 @@ namespace Between.UserInput.Trackers
 
         protected override void OnDrawCalled(InputData point)
         {
-            if (CompareState(DrawState.Draw))
+            TrySetStartAngle(point);
+
+            if (IsTooCurve(point))
             {
-                if (IsEnoughLong())
-                    InvokeCanCompleteEvent();
-                else if (!IsTooLong())
-                    DrawPoints.Add(point.Position);
+                InvokeFailedEvent();
+                SetState(DrawState.None);
+                ClearTracker();
+
+                return;
             }
+
+            if (IsEnoughLong())
+                InvokeCanCompleteEvent();
+            else if (!IsTooLong())
+                DrawPoints.Add(point.Position);
         }
 
         protected override void OnDrawEnded(InputData point)
         {
-            if (CompareState(DrawState.Draw))
-            {
-                SetState(DrawState.None);
+            SetState(DrawState.None);
 
-                if (IsEnoughLong())
-                {
-                    InvokeCompleteEvent();
-                    ClearTracker();
-                }
-            }
+            if (IsEnoughLong())
+                InvokeCompleteEvent();
+
+            ClearTracker();
         }
 
         protected override void OnDrawForceEnded(InputData point)
         {
-            if (CompareState(DrawState.Draw))
-            {
-                SetState(DrawState.None);
-                ClearTracker();
-            }
+            SetState(DrawState.None);
+            ClearTracker();
         }
 
-        private bool IsEnoughLong() => CalculateLenght() > MinLenght;
-        private bool IsTooLong() => CalculateLenght() > MaxLenght;
+        private bool IsTooCurve(InputData point) => Mathf.Abs(point.Angle - _startAngle) > _forceEndAngle;
+        private bool IsEnoughLong() => CalculateLenght() > _minLenght;
+        private bool IsTooLong() => CalculateLenght() > _maxLenght;
 
-        public float CalculateLenght()
+        private float CalculateLenght()
         {
             if (DrawPoints.Count > 2)
                 return Vector3.Distance(DrawPoints[DrawPoints.Count - 1], DrawPoints[0]);
@@ -67,6 +72,16 @@ namespace Between.UserInput.Trackers
                 return 0f;
         }
 
-        private void ClearTracker() => DrawPoints.Clear();
+        private void TrySetStartAngle(InputData point)
+        {
+            if (Mathf.Approximately(_startAngle, 0f))
+                _startAngle = point.Angle;
+        }
+
+        private void ClearTracker()
+        {
+            DrawPoints.Clear();
+            _startAngle = default;
+        }
     }
 }

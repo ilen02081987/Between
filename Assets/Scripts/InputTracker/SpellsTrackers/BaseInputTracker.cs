@@ -8,13 +8,13 @@ namespace Between.UserInput.Trackers
         public event Action DrawFailed;
         public event Action CanCompleteDraw;
 
-        public abstract int MouseButton { get; }
+        protected abstract int MouseButton { get; }
 
         protected DrawState State { get; private set; }
 
         public BaseInputTracker() => Init();
 
-        private void Init()
+        public void Init()
         {
             InputHandler.StartDraw += StartDraw;
             InputHandler.DrawCall += DrawCall;
@@ -24,33 +24,33 @@ namespace Between.UserInput.Trackers
 
         public void Dispose()
         {
-            InputHandler.StartDraw += StartDraw;
-            InputHandler.DrawCall += DrawCall;
-            InputHandler.EndDraw += EndDraw;
-            InputHandler.ForceEndDraw += ForceEndDraw;
+            InputHandler.StartDraw -= StartDraw;
+            InputHandler.DrawCall -= DrawCall;
+            InputHandler.EndDraw -= EndDraw;
+            InputHandler.ForceEndDraw -= ForceEndDraw;
         }
 
         private void StartDraw(InputData point)
         {
-            if (point.MouseButton == MouseButton)
+            if (point.MouseButton == MouseButton && CompareState(DrawState.None))
                 OnDrawStarted(point);
         }
 
         private void DrawCall(InputData point)
         {
-            if (point.MouseButton == MouseButton)
+            if (point.MouseButton == MouseButton && CompareState(DrawState.Draw))
                 OnDrawCalled(point);
         }
 
         private void EndDraw(InputData point)
         {
-            if (point.MouseButton == MouseButton)
+            if (point.MouseButton == MouseButton && CompareState(DrawState.Draw))
                 OnDrawEnded(point);
         }
 
         private void ForceEndDraw(InputData point)
         {
-            if (point.MouseButton == MouseButton)
+            if (point.MouseButton == MouseButton && CompareState(DrawState.Draw))
                 OnDrawForceEnded(point);
         }
 

@@ -6,21 +6,19 @@ namespace Between.UserInput
     {
         public readonly int MouseButton;
         public readonly Vector3 Position;
-        public readonly float Derivative;
+        public readonly float Angle;
 
         public InputData(int mouseButton, Vector3 position, Vector3 previousPosition) : this(mouseButton, position)
         {
             var diff = position - previousPosition;
-            var derivative = diff.y / diff.x;
-
-            Derivative = derivative;
+            Angle = Vector3.Angle(Vector3.right, diff);
         }
 
-        public InputData(int mouseButton, Vector3 position, float derivative = 0f)
+        public InputData(int mouseButton, Vector3 position, float angle = 0f)
         {
             MouseButton = mouseButton;
             Position = position;
-            Derivative = derivative;
+            Angle = angle;
         }
     }
 }

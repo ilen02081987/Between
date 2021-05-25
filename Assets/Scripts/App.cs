@@ -1,5 +1,4 @@
-using RH.Utilities.Singleton;
-using UnityEngine;
+using Between.Utilities;
 
 namespace Between
 {

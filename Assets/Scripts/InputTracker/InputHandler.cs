@@ -71,7 +71,7 @@ namespace Between.UserInput
 
         private InputData CreateInputData(MouseInput input)
         {
-            if (input.State== InputState.Start || CompareInputData(_previousInput, input.MouseButton))
+            if (input.State == InputState.Start || !CompareInputData(_previousInput, input.MouseButton))
                 return new InputData(input.MouseButton, _mousePosition);
             else
                 return new InputData(input.MouseButton, _mousePosition, _previousInput.Position);

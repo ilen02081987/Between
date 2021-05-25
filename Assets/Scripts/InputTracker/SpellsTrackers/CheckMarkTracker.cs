@@ -8,7 +8,7 @@ namespace Between.UserInput.Trackers
 {
     public class CheckMarkTracker : BaseInputTracker
     {
-        public override int MouseButton => 0;
+        protected override int MouseButton => 0;
 
         protected override void OnDrawCalled(InputData obj)
         {
