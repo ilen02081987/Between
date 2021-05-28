@@ -1,68 +1,82 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Between.Extensions;
 
 namespace Between.UserInput.Trackers
 {
     public class CurveTracker : BaseInputTracker
     {
+        public Vector3 LastDrawPoint => DrawPoints[DrawPoints.Count - 1];
         public List<Vector3> DrawPoints { get; private set; } = new List<Vector3>();
 
-        protected override int MouseButton => 1;
+        public bool IsEnoughLong => CalculateLenght() > _minLenght;
+        public bool IsTooLong => CalculateLenght() > _maxLenght;
 
         private readonly float _maxLenght = 1000;
         private readonly float _minLenght = 500;
-        private readonly float _forceEndAngle = 90f;
+        private readonly float _minTrackingLenght = 50f;
 
-        private float _startAngle;
+        private float _forceEndAngle = 30f;
 
-        protected override void OnDrawStarted(InputData point)
+        private Vector3 _startPosition = GameExtensions.DefaultPosition;
+        private float _startAngle = GameExtensions.DefaultAngle;
+
+        private bool _isEnoughLongToTrack => CalculateLenght() > _minTrackingLenght;
+
+        public CurveTracker(int mouseButton) : base(mouseButton) { }
+
+        public CurveTracker SetForceEndAngle(float angle)
         {
-            if (CompareState(DrawState.Draw))
-                ThrowException($"Can't start draw. It's already started.");
-
-            SetState(DrawState.Draw);
-
-            DrawPoints.Add(point.Position);
+            _forceEndAngle = angle;
+            return this;
         }
+
+        public override void Clear()
+        {
+            DrawPoints.Clear();
+
+            _startPosition = GameExtensions.DefaultPosition;
+            _startAngle = GameExtensions.DefaultAngle;
+        }
+
+        protected override void OnDrawStarted(InputData point) => DrawPoints.Add(point.Position);
 
         protected override void OnDrawCalled(InputData point)
         {
+            TrySetStartPosition(point);
             TrySetStartAngle(point);
 
             if (IsTooCurve(point))
             {
                 InvokeFailedEvent();
-                SetState(DrawState.None);
-                ClearTracker();
+                Complete();
 
                 return;
             }
 
-            if (IsEnoughLong())
+            if (IsEnoughLong)
                 InvokeCanCompleteEvent();
-            else if (!IsTooLong())
+            
+            if (!IsTooLong)
                 DrawPoints.Add(point.Position);
         }
 
         protected override void OnDrawEnded(InputData point)
         {
-            SetState(DrawState.None);
-
-            if (IsEnoughLong())
+            if (IsEnoughLong)
                 InvokeCompleteEvent();
+            else
+                InvokeFailedEvent();
 
-            ClearTracker();
+            Complete();
         }
 
-        protected override void OnDrawForceEnded(InputData point)
-        {
-            SetState(DrawState.None);
-            ClearTracker();
-        }
+        protected override void OnDrawForceEnded(InputData point) => Complete();
 
-        private bool IsTooCurve(InputData point) => Mathf.Abs(point.Angle - _startAngle) > _forceEndAngle;
-        private bool IsEnoughLong() => CalculateLenght() > _minLenght;
-        private bool IsTooLong() => CalculateLenght() > _maxLenght;
+        #region PRIVATE METHODS
+
+        public bool IsTooCurve(InputData point) => 
+            _isEnoughLongToTrack ? Mathf.Abs(point.Angle - _startAngle) > _forceEndAngle : false;
 
         private float CalculateLenght()
         {
@@ -72,16 +86,27 @@ namespace Between.UserInput.Trackers
                 return 0f;
         }
 
-        private void TrySetStartAngle(InputData point)
+        private void TrySetStartPosition(InputData point)
         {
-            if (Mathf.Approximately(_startAngle, 0f))
-                _startAngle = point.Angle;
+            if (_startPosition.IsDefaultPosition())
+                _startPosition = point.Position;
         }
 
-        private void ClearTracker()
+        private void TrySetStartAngle(InputData point)
         {
-            DrawPoints.Clear();
-            _startAngle = default;
+            if (_isEnoughLongToTrack && _startAngle.IsDefaultAngle())
+            {
+                _startAngle = Vector3.Angle(Vector3.right, (point.Position - _startPosition).normalized);
+                Debug.Log("Start angle = " + _startAngle);
+            }
         }
+
+        private void Complete()
+        {
+            SetState(DrawState.None);
+            Clear();
+        }
+
+        #endregion
     }
 }

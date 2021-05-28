@@ -8,11 +8,13 @@ namespace Between.UserInput.Trackers
         public event Action DrawFailed;
         public event Action CanCompleteDraw;
 
-        protected abstract int MouseButton { get; }
-
         protected DrawState State { get; private set; }
+        protected int _mouseButton { get; private set; }
 
-        public BaseInputTracker() => Init();
+        public BaseInputTracker(int mouseButton)
+        {
+            _mouseButton = mouseButton;
+        }
 
         public void Init()
         {
@@ -30,34 +32,42 @@ namespace Between.UserInput.Trackers
             InputHandler.ForceEndDraw -= ForceEndDraw;
         }
 
+        public void ManualStartDraw(InputData point) => StartDraw(point);
+
+        public abstract void Clear();
+
         private void StartDraw(InputData point)
         {
-            if (point.MouseButton == MouseButton && CompareState(DrawState.None))
+            if (point.MouseButton == _mouseButton && CompareState(DrawState.None))
+            {
+                SetState(DrawState.Draw);
                 OnDrawStarted(point);
+            }
         }
 
         private void DrawCall(InputData point)
         {
-            if (point.MouseButton == MouseButton && CompareState(DrawState.Draw))
+            if (point.MouseButton == _mouseButton && CompareState(DrawState.Draw))
                 OnDrawCalled(point);
         }
 
         private void EndDraw(InputData point)
         {
-            if (point.MouseButton == MouseButton && CompareState(DrawState.Draw))
+            if (point.MouseButton == _mouseButton && CompareState(DrawState.Draw))
                 OnDrawEnded(point);
         }
 
         private void ForceEndDraw(InputData point)
         {
-            if (point.MouseButton == MouseButton && CompareState(DrawState.Draw))
+            if (point.MouseButton == _mouseButton && CompareState(DrawState.Draw))
                 OnDrawForceEnded(point);
         }
 
         protected abstract void OnDrawStarted(InputData obj);
-        protected abstract void OnDrawCalled(InputData obj);
-        protected abstract void OnDrawEnded(InputData obj);
-        protected abstract void OnDrawForceEnded(InputData obj);
+        protected virtual void OnDrawCalled(InputData obj) { }
+        protected virtual void OnDrawEnded(InputData obj) { }
+        protected virtual void OnDrawForceEnded(InputData obj) { }
+
 
         #region STATE MACHINE
 
@@ -69,9 +79,9 @@ namespace Between.UserInput.Trackers
             State = state;
         }
 
-        protected bool CompareState(DrawState state) => State == state;
+        public bool CompareState(DrawState state) => State == state;
 
-        protected enum DrawState
+        public enum DrawState
         {
             None = 0,
             Draw
@@ -79,7 +89,7 @@ namespace Between.UserInput.Trackers
 
         #endregion
 
-        #region INVOKE EVENTS METHODS
+        #region EVENTS METHODS
 
         protected void InvokeCompleteEvent() => CompleteDraw?.Invoke();
         protected void InvokeCanCompleteEvent() => CanCompleteDraw?.Invoke();

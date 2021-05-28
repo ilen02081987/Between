@@ -13,7 +13,7 @@ namespace Between.SpellsEffects.Shield
 
         public ShieldSpawner()
         {
-            _shield = Resources.Load<Shield>(Path.Combine(ResourcesFoldersNames.SPELLS, "ShieldPrefab"));
+            _shield = Resources.Load<Shield>(Path.Combine(ResourcesFoldersNames.SPELLS, "Shield"));
             _shieldsParent = new GameObject("ShieldsParent");
         }
 

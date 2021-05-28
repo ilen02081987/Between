@@ -11,7 +11,7 @@ namespace Between.UserInput
         public InputData(int mouseButton, Vector3 position, Vector3 previousPosition) : this(mouseButton, position)
         {
             var diff = position - previousPosition;
-            Angle = Vector3.Angle(Vector3.right, diff);
+            Angle = Vector3.Angle(Vector3.right, diff.normalized);
         }
 
         public InputData(int mouseButton, Vector3 position, float angle = 0f)
@@ -20,5 +20,7 @@ namespace Between.UserInput
             Position = position;
             Angle = angle;
         }
+
+        public bool IsDefault() => Position == Vector3.zero && Mathf.Approximately(Angle, 0f);
     }
 }
