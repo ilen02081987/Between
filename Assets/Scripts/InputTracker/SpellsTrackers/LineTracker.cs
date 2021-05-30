@@ -17,7 +17,6 @@ namespace Between.UserInput.Trackers
         private readonly float _minLenght = 500;
         private readonly float _minTrackingLenght = 300f;
 
-
         public LineTracker(int mouseButton) : base(mouseButton) { }
 
         public override void Clear()

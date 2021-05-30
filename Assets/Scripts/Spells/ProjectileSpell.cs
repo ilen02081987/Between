@@ -17,20 +17,21 @@ namespace Between.Spells
 
         protected override void OnCompleteSpell()
         {
-            var points = _tracker.Verticies;
-            var spawnPoint = points[1];
+            Debug.Log("Projectile complete");
+            //var points = _tracker.Verticies;
+            //var spawnPoint = points[1];
 
-            var firstDirectionPoint = (points[0] - spawnPoint).normalized + spawnPoint;
-            var secondDirectionPoint = (points[2] - spawnPoint).normalized + spawnPoint;
+            //var firstDirectionPoint = (points[0] - spawnPoint).normalized + spawnPoint;
+            //var secondDirectionPoint = (points[2] - spawnPoint).normalized + spawnPoint;
 
-            var direction = spawnPoint - Vector3.Lerp(firstDirectionPoint, secondDirectionPoint, .5f);
+            //var direction = spawnPoint - Vector3.Lerp(firstDirectionPoint, secondDirectionPoint, .5f);
 
-            _projectileSpawner.Spawn(ConvertVector(spawnPoint), ConvertVector(direction), 1f);
+            //_projectileSpawner.Spawn(ConvertVector(spawnPoint), ConvertVector(direction), 1f);
         }
 
         protected override void OnDrawFailed()
         {
-            
+            Debug.Log("Projectile failed");
         }
 
         private Vector3 ConvertVector(Vector3 input) => GameCamera.ScreenToWorldPoint(input);

@@ -19,7 +19,7 @@ namespace Between.SpellsEffects.Projectile
         public void Spawn(Vector3 position, Vector3 direction, float speed)
         {
             var projectile = MonoBehaviour.Instantiate(_prefab, position, Quaternion.identity, _projectilesParent.transform);
-            projectile.Launch(direction, speed);
+            projectile.Launch(direction * speed);
         }
     }
 }

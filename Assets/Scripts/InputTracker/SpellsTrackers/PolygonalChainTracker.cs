@@ -40,6 +40,8 @@ namespace Between.UserInput.Trackers
 
         protected override void OnDrawStarted(InputData point)
         {
+            Debug.Log("Init first curve");
+
             Verticies.Add(point.Position);
             InitLine(0);
         }
@@ -52,12 +54,15 @@ namespace Between.UserInput.Trackers
 
         private void CheckFailedLine()
         {
+            Debug.Log("Curve is failed");
+
             AddVertex();
 
             var index = GetLastTrackerIndex();
 
             if (_trackers.Count > index + 1 && _trackers[index].IsEnoughLong)
             {
+                Debug.Log("Init next curve");
                 InitLine(index + 1);
                 DisposeLine(index);
             }
@@ -73,6 +78,8 @@ namespace Between.UserInput.Trackers
 
         private void CheckFigure()
         {
+            Debug.Log("CheckFigure");
+
             if (IsFigureComplete())
                 InvokeCompleteEvent();
             else

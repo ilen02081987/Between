@@ -9,14 +9,21 @@ namespace Between.SpellsEffects.Projectile
     {
         private Rigidbody _rigidbody;
 
+        private Vector3 _velocity;
+
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
         }
 
-        public void Launch(Vector3 direction, float speed)
+        public void Launch(Vector3 velocity)
         {
-            _rigidbody.velocity = direction * speed;
+            _velocity = velocity;
+        }
+
+        private void Update()
+        {
+            _rigidbody.velocity = _velocity;
         }
     }
 }

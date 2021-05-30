@@ -48,6 +48,8 @@ namespace Between.UserInput.Trackers
 
             if (IsTooCurve(point))
             {
+                Debug.Log("Is too curve");
+
                 InvokeFailedEvent();
                 Complete();
 
