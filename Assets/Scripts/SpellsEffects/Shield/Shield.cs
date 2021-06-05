@@ -1,12 +1,15 @@
+using Between.Interfaces;
+using Between.Teams;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Between.SpellsEffects.Shield
 {
-    public class Shield : MonoBehaviour
+    public class Shield : MonoBehaviour, IDamagable
     {
         public float Size => transform.localScale.y;
+        public Team Team { get; set; } = Team.Player;
 
         [SerializeField] private float _lifeTime = 3f;
 
@@ -15,17 +18,20 @@ namespace Between.SpellsEffects.Shield
             StartCoroutine(WaitToDestroy());
         }
 
-        private void OnDestroy()
-        {
-            StopCoroutine(WaitToDestroy());
-        }
-
         private IEnumerator WaitToDestroy()
         {
             yield return new WaitForSeconds(_lifeTime);
 
-            if (this != null)
-                Destroy(gameObject);
+            if (this != null && gameObject != null)
+                DestroyShield();
+        }
+
+        public void ApplyDamage(float damage) => DestroyShield();
+
+        private void DestroyShield()
+        {
+            StopCoroutine(WaitToDestroy());
+            Destroy(gameObject);
         }
     }
 }

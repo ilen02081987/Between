@@ -1,4 +1,5 @@
 using Between.SpellsEffects.Projectile;
+using Between.Teams;
 using Between.UserInput.Trackers;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,27 +12,26 @@ namespace Between.Spells
         public override float CoolDownTime => 1f;
 
         protected override BaseInputTracker tracker => _tracker;
-        private PolygonalChainTracker _tracker = new PolygonalChainTracker(0).AddLine().AddLineAtAngle(45f);
+        //private PolygonalChainTracker _tracker = new PolygonalChainTracker(0).AddLine().AddLineAtAngle(45f);
+        private CurveTracker _tracker = new CurveTracker(0);
 
-        private ProjectileSpawner _projectileSpawner = new ProjectileSpawner();
+        private ProjectileSpawner _projectileSpawner;
+
+        private float _projectileSpeed = 10f;
+        private float _spellDamage = 1f;
+
+        public ProjectileSpell(Team team)
+        {
+            _projectileSpawner = new ProjectileSpawner(team);
+        }
 
         protected override void OnCompleteSpell()
         {
-            Debug.Log("Projectile complete");
-            //var points = _tracker.Verticies;
-            //var spawnPoint = points[1];
+            var points = _tracker.DrawPoints;
+            var startPoint = ConvertVector(points[0]);
+            var directionPoint = ConvertVector(points[points.Count - 1]);
 
-            //var firstDirectionPoint = (points[0] - spawnPoint).normalized + spawnPoint;
-            //var secondDirectionPoint = (points[2] - spawnPoint).normalized + spawnPoint;
-
-            //var direction = spawnPoint - Vector3.Lerp(firstDirectionPoint, secondDirectionPoint, .5f);
-
-            //_projectileSpawner.Spawn(ConvertVector(spawnPoint), ConvertVector(direction), 1f);
-        }
-
-        protected override void OnDrawFailed()
-        {
-            Debug.Log("Projectile failed");
+            _projectileSpawner.Spawn(startPoint, (directionPoint - startPoint).normalized, _projectileSpeed, _spellDamage);
         }
 
         private Vector3 ConvertVector(Vector3 input) => GameCamera.ScreenToWorldPoint(input);
