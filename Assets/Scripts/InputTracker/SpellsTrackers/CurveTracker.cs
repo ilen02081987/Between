@@ -12,8 +12,8 @@ namespace Between.UserInput.Trackers
         public bool IsEnoughLong => CalculateLenght() > _minLenght;
         public bool IsTooLong => CalculateLenght() > _maxLenght;
 
-        private readonly float _maxLenght = 1000;
-        private readonly float _minLenght = 500;
+        private float _maxLenght = 1000;
+        private float _minLenght = 500;
         private readonly float _minTrackingLenght = 50f;
 
         private float _forceEndAngle = 30f;
@@ -28,6 +28,14 @@ namespace Between.UserInput.Trackers
         public CurveTracker SetForceEndAngle(float angle)
         {
             _forceEndAngle = angle;
+            return this;
+        }
+
+        public CurveTracker SetLenght(float min, float max)
+        {
+            _minLenght = min;
+            _maxLenght = max;
+
             return this;
         }
 
