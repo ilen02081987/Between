@@ -13,7 +13,7 @@ namespace Between.Spells
 
         protected override BaseInputTracker tracker => _tracker;
         //private PolygonalChainTracker _tracker = new PolygonalChainTracker(0).AddLine().AddLineAtAngle(45f);
-        private CurveTracker _tracker = new CurveTracker(0);
+        private CurveTracker _tracker = new CurveTracker(0).SetLenght(500, 1000);
 
         private ProjectileSpawner _projectileSpawner;
 
