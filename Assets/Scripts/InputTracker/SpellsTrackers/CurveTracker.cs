@@ -105,10 +105,7 @@ namespace Between.UserInput.Trackers
         private void TrySetStartAngle(InputData point)
         {
             if (_isEnoughLongToTrack && _startAngle.IsDefaultAngle())
-            {
                 _startAngle = Vector3.Angle(Vector3.right, (point.Position - _startPosition).normalized);
-                Debug.Log("Start angle = " + _startAngle);
-            }
         }
 
         private void Complete()

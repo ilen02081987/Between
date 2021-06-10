@@ -9,11 +9,8 @@ namespace Between.SpellsEffects.Projectile
     {
         private Rigidbody _rigidbody;
 
-        private Vector3 _velocity;
-        private float _damage;
-        private Team _team;
-        
-        private float _blastRadius = 2f;
+        private ProjectileData _projectileData;
+        private Vector3 direction;
 
         #region BEHAVIOUR
 
@@ -22,16 +19,15 @@ namespace Between.SpellsEffects.Projectile
             _rigidbody = GetComponent<Rigidbody>();
         }
 
-        public void Launch(Vector3 velocity, float damage, Team team)
+        public void Launch(ProjectileData projectileData, Vector3 velocity)
         {
-            _velocity = velocity;
-            _damage = damage;
-            _team = team;
+            _projectileData = projectileData;
+            direction = velocity;
         }
 
         private void Update()
         {
-            _rigidbody.velocity = _velocity;
+            _rigidbody.velocity = direction * _projectileData.Speed;
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -48,7 +44,7 @@ namespace Between.SpellsEffects.Projectile
 
         private void Blast()
         {
-            var blastetColliders = Physics.OverlapSphere(transform.position, _blastRadius);
+            var blastetColliders = Physics.OverlapSphere(transform.position, _projectileData.BlastRadius);
 
             foreach (var collider in blastetColliders)
                 TryApplyDamage(collider.gameObject);
@@ -58,13 +54,21 @@ namespace Between.SpellsEffects.Projectile
         {
             if (gameObject.TryGetComponent<IDamagable>(out var damagable))
             {
-                if (damagable.Team != _team)
-                    damagable.ApplyDamage(_damage);
+                if (damagable.Team != _projectileData.Team)
+                    damagable.ApplyDamage(_projectileData.Damage);
             }
         }
 
         private void DestroyProjectile() => Destroy(gameObject);
 
         #endregion
+    }
+
+    public class ProjectileData
+    {
+        public Team Team;
+        public float BlastRadius;
+        public float Damage;
+        public float Speed;
     }
 }
