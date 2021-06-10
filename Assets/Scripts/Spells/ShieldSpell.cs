@@ -1,8 +1,5 @@
 using Between.SpellsEffects.Shield;
 using Between.UserInput.Trackers;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace Between.Spells
 {
@@ -11,8 +8,8 @@ namespace Between.Spells
         public override float CoolDownTime => 1f;
 
         protected override BaseInputTracker tracker => _tracker;
-        private CurveTracker _tracker = new CurveTracker(1).SetForceEndAngle(90f);
-
+        
+        private CurveTracker _tracker = new CurveTracker(1).SetForceEndAngle(90f).SetLenght(500, 1000);
         private ShieldSpawner _shieldSpawner = new ShieldSpawner();
 
         protected override void OnCompleteSpell() => SpawnShields();

@@ -10,20 +10,21 @@ namespace Between.SpellsEffects.Projectile
     {
         private Projectile _prefab;
         private GameObject _projectilesParent;
-        private Team _ownerTeam;
 
-        public ProjectileSpawner(Team ownerTeam)
+        private ProjectileData _projectileData;
+
+        public ProjectileSpawner(ProjectileData projectileData)
         {
-            _ownerTeam = ownerTeam;
+            _projectileData = projectileData;
 
             _prefab = Resources.Load<Projectile>(Path.Combine(ResourcesFoldersNames.SPELLS, "Projectile"));
             _projectilesParent = new GameObject("ProjectilesParent");
         }
 
-        public void Spawn(Vector3 position, Vector3 direction, float speed, float damage)
+        public void Spawn(Vector3 position, Vector3 direction)
         {
             var projectile = MonoBehaviour.Instantiate(_prefab, position, Quaternion.identity, _projectilesParent.transform);
-            projectile.Launch(direction * speed, damage, _ownerTeam);
+            projectile.Launch(_projectileData, direction);
         }
     }
 }
