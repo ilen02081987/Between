@@ -1,7 +1,6 @@
 using Between.Interfaces;
 using Between.Teams;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Between.SpellsEffects.Shield
@@ -12,6 +11,7 @@ namespace Between.SpellsEffects.Shield
         public Team Team { get; set; } = Team.Player;
 
         [SerializeField] private float _lifeTime = 3f;
+        [SerializeField] private float _health = 10;
 
         private void Start()
         {
@@ -26,7 +26,13 @@ namespace Between.SpellsEffects.Shield
                 DestroyShield();
         }
 
-        public void ApplyDamage(float damage) => DestroyShield();
+        public void ApplyDamage(float damage)
+        {
+            _health -= damage;
+
+            if (_health <= 0)
+                DestroyShield();
+        }
 
         private void DestroyShield()
         {

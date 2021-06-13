@@ -11,8 +11,8 @@ namespace Between.Spells
             new ShieldSpell(),
             new ProjectileSpell(new ProjectileData
             {
-                Team = Team.Player,
-                Damage = 1f,
+                Team = Team.Enemies,
+                Damage = 6f,
                 Speed = 10f,
                 BlastRadius = 2f
             })

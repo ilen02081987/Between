@@ -1,5 +1,6 @@
 using Between.Interfaces;
 using Between.Teams;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Between.SpellsEffects.Projectile
@@ -11,6 +12,10 @@ namespace Between.SpellsEffects.Projectile
 
         private ProjectileData _projectileData;
         private Vector3 direction;
+
+        private Transform _transform;
+
+        private bool _hasCollide = false;
 
         #region BEHAVIOUR
 
@@ -32,10 +37,13 @@ namespace Between.SpellsEffects.Projectile
 
         private void OnCollisionEnter(Collision collision)
         {
-            TryApplyDamage(collision.gameObject);
-            Blast();
+            if (!_hasCollide)
+            {
+                _hasCollide = true;
 
-            DestroyProjectile();
+                Blast();
+                DestroyProjectile();
+            }
         }
 
         #endregion

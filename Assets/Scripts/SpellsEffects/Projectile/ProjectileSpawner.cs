@@ -1,6 +1,3 @@
-using Between.Teams;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -13,6 +10,8 @@ namespace Between.SpellsEffects.Projectile
 
         private ProjectileData _projectileData;
 
+        private float _offset = 2f;
+
         public ProjectileSpawner(ProjectileData projectileData)
         {
             _projectileData = projectileData;
@@ -23,8 +22,16 @@ namespace Between.SpellsEffects.Projectile
 
         public void Spawn(Vector3 position, Vector3 direction)
         {
-            var projectile = MonoBehaviour.Instantiate(_prefab, position, Quaternion.identity, _projectilesParent.transform);
+            var spawnPosition = FindSpawnPoint(position, direction);
+            var projectile = MonoBehaviour.Instantiate(
+                _prefab, spawnPosition, Quaternion.identity, _projectilesParent.transform);
+
             projectile.Launch(_projectileData, direction);
+        }
+
+        private Vector3 FindSpawnPoint(Vector3 position, Vector3 direction)
+        {
+            return position - direction * _offset;
         }
     }
 }
