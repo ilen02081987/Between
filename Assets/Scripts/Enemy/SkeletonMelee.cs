@@ -100,7 +100,7 @@ public class SkeletonMelee: MonoBehaviour
 
         if (!isMovingRight)
         {
-            if (transform.position.z >= (_startPosition.z - patrolRange))
+            if (transform.position.x >= (_startPosition.x - patrolRange))
             {
                 return actionPatrolLeft;
             }

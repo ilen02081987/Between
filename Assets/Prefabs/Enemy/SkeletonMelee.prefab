@@ -117,7 +117,7 @@ MonoBehaviour:
   patrolSpeed: 5
   aggroSpeed: 7
   isMovingRight: 1
-  agroRange: 8
+  agroRange: 1
   minRangeToPlayer: 0
   minRangeToShield: 0
   player: {fileID: 8226507996596072160, guid: 7d60c822c3f1b408ea7a00ecdb5e047a, type: 3}
