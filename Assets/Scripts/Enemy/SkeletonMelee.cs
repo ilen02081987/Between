@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyTest : MonoBehaviour
+public class SkeletonMelee: MonoBehaviour
 {
     private Vector3 startPosition;
 
@@ -13,7 +13,7 @@ public class EnemyTest : MonoBehaviour
 
     private bool isAgred;
     public float agroRange;
-    public Transform target;
+    public GameObject target;
 
 
 
@@ -40,7 +40,7 @@ public class EnemyTest : MonoBehaviour
 
         if (Vector3.Distance(transform.position, target.transform.position) < agroRange)
         {
-            if (!Physics.Raycast(transform.position, (target.position - transform.position).normalized, Mathf.Infinity, 1 << 3))
+            if (!Physics.Raycast(transform.position, (target.transform.position - transform.position).normalized, Mathf.Infinity, 1 << 3))
             {
                 isAgred = true;
             }
@@ -84,7 +84,7 @@ public class EnemyTest : MonoBehaviour
         {
             if (isMovingRight)
             {
-                if (transform.position.z - target.position.z <= 0)
+                if (transform.position.z - target.transform.position.z <= 0)
                 {
                     transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + (speed * speedMod * Time.deltaTime));
 
@@ -99,7 +99,7 @@ public class EnemyTest : MonoBehaviour
             }
             else
             {
-                if (transform.position.z - target.position.z > 0)
+                if (transform.position.z - target.transform.position.z > 0)
                 {
                     transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - (speed * speedMod * Time.deltaTime));
 
