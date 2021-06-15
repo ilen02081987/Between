@@ -60,10 +60,10 @@ public class Player : MonoBehaviour
     {
         if (IsGrounded())
         {
-            _body.AddForce(Vector3.up * _jumpForce);
+            _body.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
         } else
         {
-            _body.AddForce(Vector3.up * _jumpForceInAir);
+            _body.AddForce(Vector3.up * _jumpForceInAir, ForceMode.Impulse);
         }
     }
 

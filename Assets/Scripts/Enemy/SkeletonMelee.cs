@@ -29,7 +29,7 @@ public class SkeletonMelee: MonoBehaviour
     private bool _freeze = false;
     private int _action;
     private Vector3 _startPosition;
-    private Transform _playerTransform;
+    // private Transform _playerTransform;
 
     public int hp;
     public int damageToPlayer;
@@ -119,7 +119,7 @@ public class SkeletonMelee: MonoBehaviour
     // видит ли скелет игрока
     bool seePlayer(Vector3 playerPos)
     {
-        if (Vector3.Distance(transform.position, playerPos) < agroRange && !Physics.Raycast(transform.position, (playerPos - transform.position).normalized, Mathf.Infinity, 1 << 3))
+        if (Vector3.Distance(transform.position, playerPos) < agroRange /*&& Physics.Raycast(transform.position, (playerPos - transform.position).normalized, Mathf.Infinity, 1 << 3)*/)
         {
             return true;
         }
@@ -155,12 +155,16 @@ public class SkeletonMelee: MonoBehaviour
     void Start()
     {
         _startPosition = transform.position;
-        _playerTransform = player.GetComponent<Transform>();
+      //  _playerTransform = player.GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        Debug.Log("pos :: ");
+        Debug.Log(player.transform.position.y);
+        Debug.Log("pos end ");
 
         if (hp == 0)
         {
@@ -171,7 +175,7 @@ public class SkeletonMelee: MonoBehaviour
         if (_speedMod <= 1)
             _speedMod += 1 * Time.deltaTime;
 
-        int state = getState(_playerTransform.position);
+        int state = getState(player.transform.position);
         // 0 - патрулируем влево
         // 1 - патрулируем вправо
         // 2 - идем к игроку влево
@@ -179,7 +183,8 @@ public class SkeletonMelee: MonoBehaviour
         // 4 - удар
         // 5 - кд удара, стоим на месте
 
-        Debug.Log(state);
+
+
 
         switch (state)
         {
