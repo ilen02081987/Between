@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-namespace Between.SpellsEffects.Shield
+namespace Between.SpellsEffects.ShieldSpell
 {
     public class ShieldSpawner
     {

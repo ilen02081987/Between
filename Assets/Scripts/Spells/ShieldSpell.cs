@@ -1,4 +1,4 @@
-using Between.SpellsEffects.Shield;
+using Between.SpellsEffects.ShieldSpell;
 using Between.UserInput.Trackers;
 
 namespace Between.Spells

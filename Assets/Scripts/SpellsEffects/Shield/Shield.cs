@@ -3,7 +3,7 @@ using Between.Teams;
 using System.Collections;
 using UnityEngine;
 
-namespace Between.SpellsEffects.Shield
+namespace Between.SpellsEffects.ShieldSpell
 {
     public class Shield : MonoBehaviour, IDamagable
     {
@@ -26,6 +26,17 @@ namespace Between.SpellsEffects.Shield
                 DestroyShield();
         }
 
+        public void ApplyDamage(float damage, float attackRadius)
+        {
+            var blastetColliders = Physics.OverlapSphere(transform.position, attackRadius);
+
+            foreach (var collider in blastetColliders)
+            {
+                if (collider.TryGetComponent<IDamagable>(out var damagable))
+                    damagable.ApplyDamage(damage);
+            }
+        }
+
         public void ApplyDamage(float damage)
         {
             _health -= damage;
@@ -38,6 +49,13 @@ namespace Between.SpellsEffects.Shield
         {
             StopCoroutine(WaitToDestroy());
             Destroy(gameObject);
+        }
+
+        private void Blast()
+        {
+
+
+            
         }
     }
 }
