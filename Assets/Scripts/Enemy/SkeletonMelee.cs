@@ -119,7 +119,7 @@ public class SkeletonMelee: MonoBehaviour
     // видит ли скелет игрока
     bool seePlayer(Vector3 playerPos)
     {
-        if (Vector3.Distance(transform.position, playerPos) < agroRange /*&& Physics.Raycast(transform.position, (playerPos - transform.position).normalized, Mathf.Infinity, 1 << 3)*/)
+        if (Vector3.Distance(transform.position, playerPos) < agroRange && !Physics.Raycast(transform.position, (playerPos - transform.position).normalized, Mathf.Infinity, 1 << 3))
         {
             return true;
         }
@@ -161,10 +161,6 @@ public class SkeletonMelee: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        Debug.Log("pos :: ");
-        Debug.Log(player.transform.position.y);
-        Debug.Log("pos end ");
 
         if (hp == 0)
         {

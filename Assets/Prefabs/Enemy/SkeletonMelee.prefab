@@ -117,7 +117,7 @@ MonoBehaviour:
   patrolSpeed: 5
   aggroSpeed: 7
   isMovingRight: 1
-  agroRange: 1
+  agroRange: 14
   minRangeToPlayer: 0
   minRangeToShield: 0
   player: {fileID: 0}
