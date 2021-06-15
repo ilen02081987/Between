@@ -118,7 +118,7 @@ MonoBehaviour:
   aggroSpeed: 7
   attackFrequency: 1
   isMovingRight: 1
-  agroRange: 17
+  agroRange: 20
   minAttackRangeToPlayer: 1
   minAttackRangeToShield: 1
   player: {fileID: 0}

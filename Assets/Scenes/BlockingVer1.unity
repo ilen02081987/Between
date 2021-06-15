@@ -1918,6 +1918,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.767}
+--- !u!1 &1005441126 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8226507996596072160, guid: 7d60c822c3f1b408ea7a00ecdb5e047a, type: 3}
+  m_PrefabInstance: {fileID: 8226507996215862625}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1076504633
 GameObject:
   m_ObjectHideFlags: 0
@@ -2925,11 +2930,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.767}
---- !u!1 &1760318069 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8226507995986304158, guid: 7d60c822c3f1b408ea7a00ecdb5e047a, type: 3}
-  m_PrefabInstance: {fileID: 8226507996215862625}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1791459739
 GameObject:
   m_ObjectHideFlags: 0
@@ -3397,11 +3397,7 @@ PrefabInstance:
     - target: {fileID: 446253478811323100, guid: a56b46cd2bf0af84e8c94bc59e4ceb11, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1760318069}
-    - target: {fileID: 446253478811323100, guid: a56b46cd2bf0af84e8c94bc59e4ceb11, type: 3}
-      propertyPath: agroRange
-      value: 1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1005441126}
     - target: {fileID: 5274703058401629253, guid: a56b46cd2bf0af84e8c94bc59e4ceb11, type: 3}
       propertyPath: m_RootOrder
       value: 37
