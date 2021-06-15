@@ -10,6 +10,10 @@ public class CameraController : MonoBehaviour
  
     private void FixedUpdate()
     {
+        if (_target == null)
+        {
+            return;
+        }
         transform.position = Vector3.Lerp(transform.position, _target.position + _offset, _lerpValue);
     }
 }

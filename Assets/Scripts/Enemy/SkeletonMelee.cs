@@ -15,21 +15,22 @@ public class SkeletonMelee: MonoBehaviour
     const int actionPatrolRight = 1;
     const int actionAggroLeft = 2;
     const int actionAggroRight = 3;
-    const int actionAttack = 4;
-    const int actionStay = 5;
+    const int actionAttackPlayer = 4;
+    const int actionAttackShield = 5;
+    const int actionStay = 6;
     // состояние скелета 
     // 0 - патрулируем влево
     // 1 - патрулируем вправо
     // 2 - идем к игроку влево
     // 3 - идем к игроку вправо
-    // 4 - удар
-    // 5 - кд удара, стоим на месте
+    // 4 - атака по игроку
+    // 5 - атака по щиту
+    // 6 - кд удара, стоим на месте
 
     private int _state;
     private bool _freeze = false;
     private int _action;
     private Vector3 _startPosition;
-    // private Transform _playerTransform;
 
     public int hp;
     public int damageToPlayer;
@@ -37,36 +38,45 @@ public class SkeletonMelee: MonoBehaviour
     public float patrolRange;
     public float patrolSpeed;
     public float aggroSpeed;
+    public float attackFrequency;
     public bool isMovingRight;
 
     private float _speedMod = 0;
 
     public float agroRange;
-    public float minRangeToPlayer; // расстояние до игрока при котором считаем что стоим впритык и надо бить
-    public float minRangeToShield; // расстояние до щита при котором считаем что стоим впритык и надо бить
+    public float minAttackRangeToPlayer; // расстояние до игрока при котором считаем что стоим впритык и надо бить
+    public float minAttackRangeToShield; // расстояние до щита при котором считаем что стоим впритык и надо бить
 
     public GameObject player;
-   
+    private Player playerScript;
 
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        playerScript = player.GetComponent<Player>();
+        _startPosition = transform.position;
+    }
 
     // в зависимости от состояния возвращаем действие моба
     // 0 - патрулируем влево
     // 1 - патрулируем вправо
     // 2 - идем к игроку влево
     // 3 - идем к игроку вправо
-    // 4 - удар
-    // 5 - кд удара, стоим на месте
+    // 4 - атака по игроку
+    // 5 - атака по щиту
+    // 6 - кд удара, стоим на месте
     int getState(Vector3 playerPos)
     {
-
+        // должно быть _freeze + проверка что рядом есть цель
         if (_freeze)
         {
             return actionStay;
         }
 
-        if (closeToTarget(playerPos, minRangeToPlayer))
+        if (closeToPlayer(playerPos))
         {
-            return actionAttack;
+            return actionAttackPlayer;
         }
 
         if (seePlayer(playerPos))
@@ -116,6 +126,20 @@ public class SkeletonMelee: MonoBehaviour
 
     }
 
+    void attackPlayer(Player playerScript)
+    {
+        playerScript.ApplyDamage(damageToPlayer);
+        _freeze = true;
+        StartCoroutine(attackCooldown());
+    }
+
+    IEnumerator attackCooldown()
+    {
+        yield return new WaitForSeconds(attackFrequency);
+        _freeze = false;
+    }
+
+
     // видит ли скелет игрока
     bool seePlayer(Vector3 playerPos)
     {
@@ -140,9 +164,9 @@ public class SkeletonMelee: MonoBehaviour
     }
 
     // стоим ли так близко чтобы атаковать
-    bool closeToTarget(Vector3 target, float attackRange)
+    bool closeToPlayer(Vector3 playerPos)
     {
-        if (Vector3.Distance(transform.position, target) > attackRange)
+        if (Vector3.Distance(transform.position, playerPos) > minAttackRangeToPlayer)
         {
             return false;
         }
@@ -151,16 +175,17 @@ public class SkeletonMelee: MonoBehaviour
 
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        _startPosition = transform.position;
-      //  _playerTransform = player.GetComponent<Transform>();
-    }
+   
+
 
     // Update is called once per frame
     void Update()
     {
+
+        if (player == null)
+        {
+            return;
+        }
 
         if (hp == 0)
         {
@@ -179,9 +204,6 @@ public class SkeletonMelee: MonoBehaviour
         // 4 - удар
         // 5 - кд удара, стоим на месте
 
-
-
-
         switch (state)
         {
             case actionPatrolLeft:
@@ -195,6 +217,9 @@ public class SkeletonMelee: MonoBehaviour
                 break;
             case actionAggroRight:
                 transform.position = new Vector3(transform.position.x + (aggroSpeed * _speedMod * Time.deltaTime), transform.position.y, transform.position.z);
+                break;
+            case actionAttackPlayer:
+                attackPlayer(playerScript);
                 break;
         }
     }

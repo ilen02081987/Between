@@ -10,7 +10,7 @@ public class Player : MonoBehaviour, IDamagable
     [SerializeField] private Collider _collider;
     [SerializeField] private Transform _groundChecker;
     [SerializeField] private float _detectRadius = .1f;
-    [SerializeField] private float _health = 10;
+    [SerializeField] public float _health = 10;
 
     [Header("Можно менять")]
 

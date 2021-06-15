@@ -111,15 +111,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 10
-  damageToPlayer: 5
+  damageToPlayer: 2
   damageToShield: 3
   patrolRange: 2
   patrolSpeed: 5
   aggroSpeed: 7
+  attackFrequency: 1
   isMovingRight: 1
-  agroRange: 14
-  minRangeToPlayer: 0
-  minRangeToShield: 0
+  agroRange: 17
+  minAttackRangeToPlayer: 1
+  minAttackRangeToShield: 1
   player: {fileID: 0}
 --- !u!54 &1562321812
 Rigidbody:
