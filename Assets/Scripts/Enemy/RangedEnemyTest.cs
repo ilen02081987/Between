@@ -15,13 +15,15 @@ public class RangedEnemyTest : MonoBehaviour
     private float attackCD;
     public GameObject arrow;
 
-    ProjectileSpawner _spawner = new ProjectileSpawner("Arrow");
+    public float hp;
+
+    ProjectileSpawner _spawner;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _spawner = new ProjectileSpawner(arrow.gameObject.name);
     }
 
     void FixedUpdate()
@@ -51,6 +53,11 @@ public class RangedEnemyTest : MonoBehaviour
         {
             attackCD -= 1*Time.deltaTime ;
         }
+
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+        }    
     }
 
     void Shooting()
