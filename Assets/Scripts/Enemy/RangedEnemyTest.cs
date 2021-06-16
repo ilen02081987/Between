@@ -9,10 +9,13 @@ public class RangedEnemyTest : MonoBehaviour
     private bool isAgred;
     public float agroRange;
     public Transform target;
+    public Transform spawnPoint;
 
     public float attackDelay;
     private float attackCD;
     public GameObject arrow;
+
+    ProjectileSpawner _spawner = new ProjectileSpawner("Arrow");
 
 
     // Start is called before the first frame update
@@ -54,7 +57,7 @@ public class RangedEnemyTest : MonoBehaviour
     {
         if (attackCD <= 0)
         {
-            new ProjectileSpawner("Projectile");
+            _spawner.Spawn(spawnPoint.position, (target.position - transform.position).normalized);
             attackCD = attackDelay;
         }
     }
