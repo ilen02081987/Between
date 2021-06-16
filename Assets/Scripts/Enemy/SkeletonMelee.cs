@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Between.Teams;
+using Between.Interfaces;
 
-public class SkeletonMelee: MonoBehaviour
+public class SkeletonMelee: MonoBehaviour, IDamagable
 {
     //const int statePatrolLeft = 0;
     //const int statePatrolRight = 1;
@@ -32,7 +34,7 @@ public class SkeletonMelee: MonoBehaviour
     private int _action;
     private Vector3 _startPosition;
 
-    public int hp;
+    public float _health;
     public int damageToPlayer;
     public int damageToShield;
     public float patrolRange;
@@ -50,6 +52,15 @@ public class SkeletonMelee: MonoBehaviour
     public GameObject player;
     private Player playerScript;
 
+    public Team Team { get; set; } = Team.Enemies;
+
+    public void ApplyDamage(float damage)
+    {
+        _health -= damage;
+
+        if (_health <= 0)
+            Destroy(gameObject);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -175,7 +186,17 @@ public class SkeletonMelee: MonoBehaviour
 
     }
 
-   
+    private void TryApplyDamage(GameObject gameObject)
+    {
+        if (gameObject.TryGetComponent<IDamagable>(out var damagable))
+        {
+            if (damagable.Team != _projectileData.Team || _friendlyFire)
+            {
+                ApplyDamage(damagable);
+                TakeImpactDamage();
+            }
+        }
+    }
 
 
     // Update is called once per frame
@@ -187,7 +208,7 @@ public class SkeletonMelee: MonoBehaviour
             return;
         }
 
-        if (hp == 0)
+        if (_health == 0)
         {
             Destroy(gameObject);
         }
