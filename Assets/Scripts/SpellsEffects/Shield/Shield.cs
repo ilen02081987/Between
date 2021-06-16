@@ -32,7 +32,7 @@ namespace Between.SpellsEffects.ShieldSpell
 
             foreach (var collider in blastetColliders)
             {
-                if (collider.TryGetComponent<IDamagable>(out var damagable))
+                if (collider.TryGetComponent<Shield>(out var damagable))
                     damagable.ApplyDamage(damage);
             }
         }
