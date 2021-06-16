@@ -11,13 +11,15 @@ namespace Between.SpellsEffects.Projectile
     {
         [SerializeField] private float _health = 10f;
         [SerializeField] private float _impactDamage = 5f;
-
+        [SerializeField] private Team _team = Team.Player;
+        [SerializeField] private float _damage = 6f;
+        [SerializeField] private float _speed = 10f;
+        [SerializeField] private float _blastRadius = 2f;
         [SerializeField] private bool _friendlyFire = false;
 
         private Rigidbody _rigidbody;
 
-        private ProjectileData _projectileData;
-        private Vector3 direction;
+        private Vector3 _direction;
 
         private bool _hasCollide = false;
 
@@ -28,15 +30,14 @@ namespace Between.SpellsEffects.Projectile
             _rigidbody = GetComponent<Rigidbody>();
         }
 
-        public void Launch(ProjectileData projectileData, Vector3 velocity)
+        public void Launch(Vector3 direction)
         {
-            _projectileData = projectileData;
-            direction = velocity;
+            _direction = direction;
         }
 
         private void Update()
         {
-            _rigidbody.velocity = direction * _projectileData.Speed;
+            _rigidbody.velocity = _direction * _speed;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -61,7 +62,7 @@ namespace Between.SpellsEffects.Projectile
         {
             if (gameObject.TryGetComponent<IDamagable>(out var damagable))
             {
-                if (damagable.Team != _projectileData.Team || _friendlyFire)
+                if (damagable.Team != _team || _friendlyFire)
                 {
                     ApplyDamage(damagable);
                     TakeImpactDamage();
@@ -72,9 +73,9 @@ namespace Between.SpellsEffects.Projectile
         private void ApplyDamage(IDamagable damagable)
         {
             if (damagable is Shield)
-                (damagable as Shield).ApplyDamage(_projectileData.Damage, _projectileData.BlastRadius);
+                (damagable as Shield).ApplyDamage(_damage, _blastRadius);
             else
-                damagable.ApplyDamage(_projectileData.Damage);
+                damagable.ApplyDamage(_damage);
         }
 
         private void TakeImpactDamage()

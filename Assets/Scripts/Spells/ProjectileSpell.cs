@@ -13,9 +13,9 @@ namespace Between.Spells
 
         private ProjectileSpawner _projectileSpawner;
 
-        public ProjectileSpell(ProjectileData projectileData)
+        public ProjectileSpell(string projectileName)
         {
-            _projectileSpawner = new ProjectileSpawner(projectileData);
+            _projectileSpawner = new ProjectileSpawner(projectileName);
         }
 
         protected override void OnCompleteSpell()

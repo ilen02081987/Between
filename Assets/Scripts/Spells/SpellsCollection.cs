@@ -9,13 +9,7 @@ namespace Between.Spells
         private List<BaseSpell> _spells = new List<BaseSpell>
         {
             new ShieldSpell(),
-            new ProjectileSpell(new ProjectileData
-            {
-                Team = Team.Enemies,
-                Damage = 6f,
-                Speed = 10f,
-                BlastRadius = 2f
-            })
+            new ProjectileSpell("Projectile")
         };
     }
 }

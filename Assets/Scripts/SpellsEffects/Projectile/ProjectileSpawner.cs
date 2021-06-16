@@ -8,15 +8,11 @@ namespace Between.SpellsEffects.Projectile
         private Projectile _prefab;
         private GameObject _projectilesParent;
 
-        private ProjectileData _projectileData;
-
         private float _offset = 2f;
 
-        public ProjectileSpawner(ProjectileData projectileData)
+        public ProjectileSpawner(string prefabName)
         {
-            _projectileData = projectileData;
-
-            _prefab = Resources.Load<Projectile>(Path.Combine(ResourcesFoldersNames.SPELLS, "Projectile"));
+            _prefab = Resources.Load<Projectile>(Path.Combine(ResourcesFoldersNames.SPELLS, prefabName));
             _projectilesParent = new GameObject("ProjectilesParent");
         }
 
@@ -26,7 +22,7 @@ namespace Between.SpellsEffects.Projectile
             var projectile = MonoBehaviour.Instantiate(
                 _prefab, spawnPosition, Quaternion.identity, _projectilesParent.transform);
 
-            projectile.Launch(_projectileData, direction);
+            projectile.Launch(direction);
         }
 
         private Vector3 FindSpawnPoint(Vector3 position, Vector3 direction)
