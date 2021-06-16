@@ -47,11 +47,7 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
     public float aggroSpeed;
     public float attackFrequency;
     public bool isMovingRight;
-
-
     public float agroRange;
-    public float minAttackRangeToPlayer; // расстояние до игрока при котором считаем что стоим впритык и надо бить
-    public float minAttackRangeToShield; // расстояние до щита при котором считаем что стоим впритык и надо бить
 
     public GameObject player;
 
@@ -80,17 +76,12 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
     // 4 - атака по игроку
     // 5 - атака по щиту
     // 6 - кд удара, стоим на месте
-    int getState(Vector3 playerPos)
+    int getAction(Vector3 playerPos)
     {
         // должно быть _freeze + проверка что рядом есть цель
         if (_freeze)
         {
             return actionStay;
-        }
-
-        if (closeToPlayer(playerPos))
-        {
-            return actionAttackPlayer;
         }
 
         if (seePlayer(playerPos))
@@ -137,13 +128,6 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
 
     }
 
-    void attackPlayer(Player playerScript)
-    {
-        playerScript.ApplyDamage(damageToPlayer);
-        _freeze = true;
-        StartCoroutine(attackCooldown());
-    }
-
     IEnumerator attackCooldown()
     {
         yield return new WaitForSeconds(attackFrequency);
@@ -174,47 +158,40 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
 
     }
 
-    // стоим ли так близко чтобы атаковать
-    bool closeToPlayer(Vector3 playerPos)
+    private void OnCollisionEnter(Collision other)
     {
-        if (Vector3.Distance(transform.position, playerPos) > minAttackRangeToPlayer)
+        if (!_freeze)
         {
-            return false;
-        }
-
-        return true;
-
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!_hasCollide)
-        {
-            _hasCollide = true;
             TryApplyDamage(other.gameObject);
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnCollisionExit(Collision other)
     {
-        _hasCollide = false;
+        _freeze = false;
     }
 
     private void TryApplyDamage(GameObject gameObject)
     {
         if (gameObject.TryGetComponent<IDamagable>(out var damagable))
         {
-                ApplyDamage(damagable);
+            Attack(damagable);
+            _freeze = true;
+            StartCoroutine(attackCooldown());
         }
         
     }
 
-    private void ApplyDamage(IDamagable damagable)
+    private void Attack(IDamagable damagable)
     {
-        if (damagable is Shield)
+        if (damagable is Shield) { 
             (damagable as Shield).ApplyDamage(damageToShield, damageToShieldRadius);
-        else
-            damagable.ApplyDamage(damageToPlayer);
+            Debug.Log("Attack Shield");
+            return;
+        }
+        Debug.Log("Attack Player");
+        damagable.ApplyDamage(damageToPlayer);
+        return;
     }
 
     // Update is called once per frame
@@ -235,13 +212,11 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
         if (_speedMod <= 1)
             _speedMod += 1 * Time.deltaTime;
 
-        int state = getState(player.transform.position);
+        int state = getAction(player.transform.position);
         // 0 - патрулируем влево
         // 1 - патрулируем вправо
         // 2 - идем к игроку влево
         // 3 - идем к игроку вправо
-        // 4 - удар
-        // 5 - кд удара, стоим на месте
 
         switch (state)
         {
@@ -257,8 +232,7 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
             case actionAggroRight:
                 transform.position = new Vector3(transform.position.x + (aggroSpeed * _speedMod * Time.deltaTime), transform.position.y, transform.position.z);
                 break;
-            case actionAttackPlayer:
-                attackPlayer(_playerScript);
+            default:
                 break;
         }
     }

@@ -113,16 +113,16 @@ MonoBehaviour:
   _health: 10
   damageToPlayer: 2
   damageToShield: 3
-  damageToShieldRadius: 0
+  damageToShieldRadius: 3
   patrolRange: 2
   patrolSpeed: 5
   aggroSpeed: 7
-  attackFrequency: 1
+  attackFrequency: 2
   isMovingRight: 1
   agroRange: 20
   minAttackRangeToPlayer: 1
   minAttackRangeToShield: 1
-  player: {fileID: 0}
+  player: {fileID: 8226507996596072160, guid: 7d60c822c3f1b408ea7a00ecdb5e047a, type: 3}
 --- !u!54 &1562321812
 Rigidbody:
   m_ObjectHideFlags: 0
