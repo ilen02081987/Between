@@ -25,7 +25,7 @@ public class Player : MonoBehaviour, IDamagable
     [Tooltip("Контроль скорости в прыжке, 1 - полный контроль, 0 - никакого изменения скорости"), SerializeField, Range(0f, 1f)]
     private float _airControl = .5f;
 
-    public Team Team { get; set; } = Team.Enemies;
+    public Team Team { get; set; } = Team.Player;
     public void ApplyDamage(float damage)
     {
         _health -= damage;

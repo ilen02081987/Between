@@ -29,6 +29,8 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
     // 5 - атака по щиту
     // 6 - кд удара, стоим на месте
 
+    [SerializeField] private Team _team = Team.Enemies;
+
     private int _state;
     private bool _freeze = false;
     private float _speedMod = 0;
@@ -177,9 +179,11 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
     {
         if (gameObject.TryGetComponent<IDamagable>(out var damagable))
         {
-            Attack(damagable);
-            _freeze = true;
-            StartCoroutine(attackCooldown());
+            if (damagable.Team != _team) { 
+                Attack(damagable);
+                _freeze = true;
+                StartCoroutine(attackCooldown());
+            }
         }
         
     }

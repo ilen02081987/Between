@@ -110,7 +110,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 6
-  _impactDamage: 5
+  _impactDamage: 6
+  _team: 0
+  _damage: 6
+  _speed: 20
+  _blastRadius: 2
   _friendlyFire: 0
 --- !u!54 &4285060811193066946
 Rigidbody:
