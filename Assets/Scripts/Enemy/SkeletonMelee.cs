@@ -5,6 +5,7 @@ using Between.Teams;
 using Between.Interfaces;
 using Between.SpellsEffects.ShieldSpell;
 
+
 public class SkeletonMelee: MonoBehaviour, IDamagable
 {
     //const int statePatrolLeft = 0;
@@ -18,8 +19,6 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
     const int actionPatrolRight = 1;
     const int actionAggroLeft = 2;
     const int actionAggroRight = 3;
-    const int actionAttackPlayer = 4;
-    const int actionAttackShield = 5;
     const int actionStay = 6;
     // состояние скелета 
     // 0 - патрулируем влево
@@ -32,21 +31,21 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
 
     private int _state;
     private bool _freeze = false;
-    private bool _hasCollide = false;
     private float _speedMod = 0;
     private int _action;
     private Vector3 _startPosition;
     private Player _playerScript;
 
     public float _health;
-    public int damageToPlayer;
-    public int damageToShield;
-    public int damageToShieldRadius;
+    public float damageToPlayer;
+    public float damageToShield;
+    public float damageToShieldRadius;
     public float patrolRange;
     public float patrolSpeed;
     public float aggroSpeed;
     public float attackFrequency;
     public bool isMovingRight;
+    public float checkRadius;
     public float agroRange;
 
     public GameObject player;
@@ -73,9 +72,7 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
     // 1 - патрулируем вправо
     // 2 - идем к игроку влево
     // 3 - идем к игроку вправо
-    // 4 - атака по игроку
-    // 5 - атака по щиту
-    // 6 - кд удара, стоим на месте
+
     int getAction(Vector3 playerPos)
     {
         // должно быть _freeze + проверка что рядом есть цель
@@ -160,15 +157,20 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
 
     private void OnCollisionEnter(Collision other)
     {
+
         if (!_freeze)
         {
             TryApplyDamage(other.gameObject);
         }
     }
 
-    private void OnCollisionExit(Collision other)
+    private void OnCollisionStay(Collision other)
     {
-        _freeze = false;
+
+        if (!_freeze)
+        {
+            TryApplyDamage(other.gameObject);
+        }
     }
 
     private void TryApplyDamage(GameObject gameObject)
@@ -186,12 +188,33 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
     {
         if (damagable is Shield) { 
             (damagable as Shield).ApplyDamage(damageToShield, damageToShieldRadius);
-            Debug.Log("Attack Shield");
             return;
         }
-        Debug.Log("Attack Player");
         damagable.ApplyDamage(damageToPlayer);
         return;
+    }
+
+    // можно ли выйти из кд атаки раньше если уничтожили все вокруг
+    private void checkCooldown()
+    {
+        if (_freeze)
+        {
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, checkRadius);
+            bool isCollision = false;
+            foreach (var hitCollider in hitColliders)
+            {
+                if (hitCollider.gameObject.TryGetComponent<Shield>(out Shield s) || hitCollider.gameObject.TryGetComponent<Player>(out Player p))
+                {
+                    isCollision = true;
+                }
+            }
+
+            if (!isCollision)
+            {
+                _freeze = false;
+            }
+
+        }
     }
 
     // Update is called once per frame
@@ -208,11 +231,14 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
             Destroy(gameObject);
         }
 
-        
+        // можно ли выйти из кд атаки раньше если уничтожили все вокруг
+        checkCooldown();
+
         if (_speedMod <= 1)
             _speedMod += 1 * Time.deltaTime;
 
         int state = getAction(player.transform.position);
+
         // 0 - патрулируем влево
         // 1 - патрулируем вправо
         // 2 - идем к игроку влево

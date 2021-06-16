@@ -94,10 +94,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.51533794
+  m_Height: 3.1024375
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0.015337944, y: 0.27400804, z: 0}
 --- !u!114 &446253478811323100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,17 +112,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 10
   damageToPlayer: 2
-  damageToShield: 3
-  damageToShieldRadius: 3
+  damageToShield: 4
+  damageToShieldRadius: 6
   patrolRange: 2
   patrolSpeed: 5
   aggroSpeed: 7
   attackFrequency: 2
   isMovingRight: 1
-  agroRange: 20
-  minAttackRangeToPlayer: 1
-  minAttackRangeToShield: 1
-  player: {fileID: 8226507996596072160, guid: 7d60c822c3f1b408ea7a00ecdb5e047a, type: 3}
+  checkRadius: 2
+  agroRange: 100
+  player: {fileID: 0}
 --- !u!54 &1562321812
 Rigidbody:
   m_ObjectHideFlags: 0

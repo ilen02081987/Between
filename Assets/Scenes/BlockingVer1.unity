@@ -3399,16 +3399,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1005441126}
     - target: {fileID: 446253478811323100, guid: a56b46cd2bf0af84e8c94bc59e4ceb11, type: 3}
-      propertyPath: _health
-      value: 10
+      propertyPath: damageToPlayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 446253478811323100, guid: a56b46cd2bf0af84e8c94bc59e4ceb11, type: 3}
       propertyPath: damageToShield
-      value: 20
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 446253478811323100, guid: a56b46cd2bf0af84e8c94bc59e4ceb11, type: 3}
       propertyPath: attackFrequency
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5274703058401629253, guid: a56b46cd2bf0af84e8c94bc59e4ceb11, type: 3}
       propertyPath: m_RootOrder
@@ -3458,10 +3458,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkeletonMelee
       objectReference: {fileID: 0}
-    - target: {fileID: 8753957706563102299, guid: a56b46cd2bf0af84e8c94bc59e4ceb11, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a56b46cd2bf0af84e8c94bc59e4ceb11, type: 3}
 --- !u!1001 &8226507996215862625
@@ -3501,11 +3497,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8226507996596072164, guid: 7d60c822c3f1b408ea7a00ecdb5e047a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 45.7
+      value: 1.88
       objectReference: {fileID: 0}
     - target: {fileID: 8226507996596072164, guid: 7d60c822c3f1b408ea7a00ecdb5e047a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.9
+      value: 7.78
       objectReference: {fileID: 0}
     - target: {fileID: 8226507996596072164, guid: 7d60c822c3f1b408ea7a00ecdb5e047a, type: 3}
       propertyPath: m_LocalPosition.z

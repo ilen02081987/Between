@@ -9,7 +9,7 @@ namespace Between.Spells
 
         protected override BaseInputTracker tracker => _tracker;
         
-        private CurveTracker _tracker = new CurveTracker(1).SetForceEndAngle(90f).SetLenght(500, 1000);
+        private CurveTracker _tracker = new CurveTracker(1).SetForceEndAngle(90f).SetLenght(20, 1000);
         private ShieldSpawner _shieldSpawner = new ShieldSpawner();
 
         protected override void OnCompleteSpell() => SpawnShields();
