@@ -110,9 +110,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 287f99a0d5604e543baa07f3f0f50453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
+  _health: 10
   damageToPlayer: 2
   damageToShield: 3
+  damageToShieldRadius: 0
   patrolRange: 2
   patrolSpeed: 5
   aggroSpeed: 7

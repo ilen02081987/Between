@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Between.Teams;
 using Between.Interfaces;
+using Between.SpellsEffects.ShieldSpell;
 
 public class SkeletonMelee: MonoBehaviour, IDamagable
 {
@@ -31,26 +32,28 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
 
     private int _state;
     private bool _freeze = false;
+    private bool _hasCollide = false;
+    private float _speedMod = 0;
     private int _action;
     private Vector3 _startPosition;
+    private Player _playerScript;
 
     public float _health;
     public int damageToPlayer;
     public int damageToShield;
+    public int damageToShieldRadius;
     public float patrolRange;
     public float patrolSpeed;
     public float aggroSpeed;
     public float attackFrequency;
     public bool isMovingRight;
 
-    private float _speedMod = 0;
 
     public float agroRange;
     public float minAttackRangeToPlayer; // расстояние до игрока при котором считаем что стоим впритык и надо бить
     public float minAttackRangeToShield; // расстояние до щита при котором считаем что стоим впритык и надо бить
 
     public GameObject player;
-    private Player playerScript;
 
     public Team Team { get; set; } = Team.Enemies;
 
@@ -65,7 +68,7 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
     // Start is called before the first frame update
     void Start()
     {
-        playerScript = player.GetComponent<Player>();
+        _playerScript = player.GetComponent<Player>();
         _startPosition = transform.position;
     }
 
@@ -107,14 +110,11 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
             {
                 return actionPatrolRight;
             }
-            else
-            {
-                _speedMod = 0;
-                isMovingRight = false;
-                transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
-                return actionPatrolLeft;
 
-            }
+            _speedMod = 0;
+            isMovingRight = false;
+            transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            return actionPatrolLeft;
 
         }
 
@@ -125,15 +125,15 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
             {
                 return actionPatrolLeft;
             }
-            else
-            {
-                _speedMod = 0;
-                isMovingRight = true;
-                return actionPatrolRight;
-            }
+
+            _speedMod = 0;
+            isMovingRight = true;
+            return actionPatrolRight;
 
         }
-        return actionAggroRight;
+
+        // в любой непонятной ситуации патрулируй
+        return actionPatrolRight;
 
     }
 
@@ -186,18 +186,36 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!_hasCollide)
+        {
+            _hasCollide = true;
+            TryApplyDamage(other.gameObject);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        _hasCollide = false;
+    }
+
     private void TryApplyDamage(GameObject gameObject)
     {
         if (gameObject.TryGetComponent<IDamagable>(out var damagable))
         {
-            if (damagable.Team != _projectileData.Team || _friendlyFire)
-            {
                 ApplyDamage(damagable);
-                TakeImpactDamage();
-            }
         }
+        
     }
 
+    private void ApplyDamage(IDamagable damagable)
+    {
+        if (damagable is Shield)
+            (damagable as Shield).ApplyDamage(damageToShield, damageToShieldRadius);
+        else
+            damagable.ApplyDamage(damageToPlayer);
+    }
 
     // Update is called once per frame
     void Update()
@@ -240,7 +258,7 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
                 transform.position = new Vector3(transform.position.x + (aggroSpeed * _speedMod * Time.deltaTime), transform.position.y, transform.position.z);
                 break;
             case actionAttackPlayer:
-                attackPlayer(playerScript);
+                attackPlayer(_playerScript);
                 break;
         }
     }
