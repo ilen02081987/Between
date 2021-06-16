@@ -90,12 +90,4 @@ namespace Between.SpellsEffects.Projectile
 
         #endregion
     }
-
-    public class ProjectileData
-    {
-        public Team Team;
-        public float BlastRadius;
-        public float Damage;
-        public float Speed;
-    }
 }
