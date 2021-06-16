@@ -6,14 +6,16 @@ namespace Between.SpellsEffects.Projectile
     public class ProjectileSpawner
     {
         private Projectile _prefab;
-        private GameObject _projectilesParent;
+        private readonly GameObject _projectilesParent;
 
-        private float _offset = 2f;
+        private readonly float _offset;
 
-        public ProjectileSpawner(string prefabName)
+        public ProjectileSpawner(string prefabName, float spawnOffset)
         {
             _prefab = Resources.Load<Projectile>(Path.Combine(ResourcesFoldersNames.SPELLS, prefabName));
             _projectilesParent = new GameObject("ProjectilesParent");
+
+            _offset = spawnOffset;
         }
 
         public void Spawn(Vector3 position, Vector3 direction)

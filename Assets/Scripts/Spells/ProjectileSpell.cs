@@ -9,13 +9,14 @@ namespace Between.Spells
         public override float CoolDownTime => 1f;
 
         protected override BaseInputTracker tracker => _tracker;
-        private CurveTracker _tracker = new CurveTracker(0).SetForceEndAngle(50f).SetLenght(500, 1000);
+        private readonly CurveTracker _tracker = new CurveTracker(0).SetForceEndAngle(50f).SetLenght(500, 1000);
 
-        private ProjectileSpawner _projectileSpawner;
+        private readonly ProjectileSpawner _projectileSpawner;
+        private readonly float _spawnOffset = 2f;
 
         public ProjectileSpell(string projectileName)
         {
-            _projectileSpawner = new ProjectileSpawner(projectileName);
+            _projectileSpawner = new ProjectileSpawner(projectileName, _spawnOffset);
         }
 
         protected override void OnCompleteSpell()
