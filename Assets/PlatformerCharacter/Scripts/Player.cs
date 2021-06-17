@@ -34,7 +34,6 @@ public class Player : MonoBehaviour, IDamagable
             Destroy(gameObject);
     }
 
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))

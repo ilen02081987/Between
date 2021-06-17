@@ -1,18 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Between.Teams;
 using Between.Interfaces;
 using Between.SpellsEffects.ShieldSpell;
 using System;
 
-public class SkeletonMelee: MonoBehaviour, IDamagable
+public class SkeletonMelee: BaseEnemy
 {
-    public event Action OnAttack;
-    public event Action OnDamage;
-    public event Action OnDie;
-    public event Action OnMove;
-
     //const int statePatrolLeft = 0;
     //const int statePatrolRight = 1;
     //const int stateAggroLeft = 2;
@@ -52,24 +46,8 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
 
     public Player player;
 
-    public Team Team { get; set; } = Team.Enemies;
+    public override Team Team { get; set; } = Team.Enemies;
 
-    public void ApplyDamage(float damage)
-    {
-        _health -= damage;
-
-        if (_health <= 0)
-        {
-            Destroy(gameObject);
-            OnDie?.Invoke();
-        }
-        else
-        {
-            OnDamage?.Invoke();
-        }
-    }
-
-    // Start is called before the first frame update
     void Start()
     {
         _startPosition = transform.position;
@@ -188,7 +166,7 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
                 _freeze = true;
                 StartCoroutine(attackCooldown());
 
-                OnAttack?.Invoke();
+                InvokeAttackEvent();
             }
         }
     }
@@ -226,18 +204,11 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-
         if (player == null)
         {
             return;
-        }
-
-        if (_health == 0)
-        {
-            Destroy(gameObject);
         }
 
         // можно ли выйти из кд атаки раньше если уничтожили все вокруг

@@ -1,83 +1,62 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Between.SpellsEffects.Projectile;
 using Between.Teams;
 
-public class RangedEnemyTest : MonoBehaviour
+public class RangedEnemy : BaseEnemy
 {
-    private bool isAgred;
+    public override Team Team { get; set; } = Team.Enemies;
+
     public float agroRange;
     public Transform target;
     public Transform spawnPoint;
 
     public float attackDelay;
-    private float attackCD;
     public GameObject arrow;
 
-   
+    private bool isAgred;
+    private float attackCD;
+    private ProjectileSpawner _spawner;
 
-    ProjectileSpawner _spawner;
-
-    public float _health;
-    
-
-    public Team Team { get; set; } = Team.Enemies;
-
-    public void ApplyDamage(float damage)
-    {
-        _health -= damage;
-
-        if (_health <= 0)
-        {
-            Destroy(gameObject);           
-        }
-       
-    }
-
-
-
-    // Start is called before the first frame update
     void Start()
     {
         _spawner = new ProjectileSpawner("Arrow", 0);
     }
 
-    void FixedUpdate()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
+        TryRotate();
+
         if (Vector3.Distance(transform.position, target.transform.position) < agroRange)
         {
             if (!Physics.Raycast(transform.position, (target.position - transform.position).normalized, Mathf.Infinity, 1 << 3))
-            {
                 isAgred = true;
-            }
         }
         else
+        {
             isAgred = false;
+        }
 
         if (isAgred)
-        {
-            Shooting();
-        }
+            Shoot();
 
         if (attackCD > 0)
-        {
             attackCD -= 1*Time.deltaTime ;
-        }
     }
 
-    void Shooting()
+    private void Shoot()
     {
         if (attackCD <= 0)
         {
             _spawner.Spawn(spawnPoint.position, (target.position - transform.position).normalized);
             attackCD = attackDelay;
+
+            InvokeAttackEvent();
         }
+    }
+
+    private void TryRotate()
+    {
+        int direction = transform.position.x >= target.position.x ? -1 : 1;
+        transform.rotation = Quaternion.Euler(0f, direction * 90f, 0f);
     }
 }

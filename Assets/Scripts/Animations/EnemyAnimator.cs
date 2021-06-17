@@ -5,9 +5,9 @@ using UnityEngine;
 namespace Between.Animations
 {
     [RequireComponent(typeof(Animator))]
-    public class MeleeAnimator : MonoBehaviour
+    public class EnemyAnimator : MonoBehaviour
     {
-        [SerializeField] private SkeletonMelee _skeletonMelee;
+        [SerializeField] private BaseEnemy _skeletonMelee;
         private Animator _animator;
 
         private void Start()
