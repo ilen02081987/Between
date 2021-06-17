@@ -6,10 +6,12 @@ namespace Between.Spells
 {
     public class ProjectileSpell : BaseSpell
     {
-        public override float CoolDownTime => 1f;
+        public override float CoolDownTime => GameSettings.Instance.ProjectileSpellCooldown;
 
         protected override BaseInputTracker tracker => _tracker;
-        private readonly CurveTracker _tracker = new CurveTracker(0).SetForceEndAngle(50f).SetLenght(20, 1000);
+        private readonly CurveTracker _tracker = new CurveTracker(0).
+            SetForceEndAngle(GameSettings.Instance.ProjectileTrackerForceEndAngle).
+            SetLenght(GameSettings.Instance.ProjectileTrackerMinLenght, GameSettings.Instance.ProjectileTrackerMaxLenght);
 
         private readonly ProjectileSpawner _projectileSpawner;
         private readonly float _spawnOffset = 2f;

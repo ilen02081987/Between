@@ -4,10 +4,15 @@ using UnityEngine;
 using Between.Teams;
 using Between.Interfaces;
 using Between.SpellsEffects.ShieldSpell;
-
+using System;
 
 public class SkeletonMelee: MonoBehaviour, IDamagable
 {
+    public event Action OnAttack;
+    public event Action OnDamage;
+    public event Action OnDie;
+    public event Action OnMove;
+
     //const int statePatrolLeft = 0;
     //const int statePatrolRight = 1;
     //const int stateAggroLeft = 2;
@@ -29,14 +34,9 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
     // 5 - атака по щиту
     // 6 - кд удара, стоим на месте
 
-    [SerializeField] private Team _team = Team.Enemies;
-
-    private int _state;
     private bool _freeze = false;
     private float _speedMod = 0;
-    private int _action;
     private Vector3 _startPosition;
-    private Player _playerScript;
 
     public float _health;
     public float damageToPlayer;
@@ -50,7 +50,7 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
     public float checkRadius;
     public float agroRange;
 
-    public GameObject player;
+    public Player player;
 
     public Team Team { get; set; } = Team.Enemies;
 
@@ -59,13 +59,19 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
         _health -= damage;
 
         if (_health <= 0)
+        {
             Destroy(gameObject);
+            OnDamage?.Invoke();
+        }
+        else
+        {
+            OnDie?.Invoke();
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        _playerScript = player.GetComponent<Player>();
         _startPosition = transform.position;
     }
 
@@ -159,7 +165,6 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
 
     private void OnCollisionEnter(Collision other)
     {
-
         if (!_freeze)
         {
             TryApplyDamage(other.gameObject);
@@ -168,7 +173,6 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
 
     private void OnCollisionStay(Collision other)
     {
-
         if (!_freeze)
         {
             TryApplyDamage(other.gameObject);
@@ -179,13 +183,14 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
     {
         if (gameObject.TryGetComponent<IDamagable>(out var damagable))
         {
-            if (damagable.Team != _team) { 
+            if (damagable.Team != Team) { 
                 Attack(damagable);
                 _freeze = true;
                 StartCoroutine(attackCooldown());
+
+                OnAttack?.Invoke();
             }
         }
-        
     }
 
     private void Attack(IDamagable damagable)

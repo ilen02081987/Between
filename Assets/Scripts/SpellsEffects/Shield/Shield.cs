@@ -10,11 +10,14 @@ namespace Between.SpellsEffects.ShieldSpell
         public float Size => transform.localScale.y;
         public Team Team { get; set; } = Team.Player;
 
-        [SerializeField] private float _lifeTime = 3f;
-        [SerializeField] private float _health = 10;
+        private float _lifeTime = 3f;
+        private float _health = 10;
 
         private void Start()
         {
+            _lifeTime = GameSettings.Instance.ShieldLifeTime;
+            _health = GameSettings.Instance.ShieldHealth;
+
             StartCoroutine(WaitToDestroy());
         }
 
