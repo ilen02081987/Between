@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Between.Teams;
+using Between.Interfaces;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamagable
 {
     [SerializeField] private Rigidbody _body;
     [SerializeField] private Collider _collider;
     [SerializeField] private Transform _groundChecker;
     [SerializeField] private float _detectRadius = .1f;
+    [SerializeField] public float _health = 10;
 
     [Header("Можно менять")]
 
@@ -21,6 +24,16 @@ public class Player : MonoBehaviour
     [Tooltip("Гравитация"), SerializeField] private float _gravity = 9.81f;
     [Tooltip("Контроль скорости в прыжке, 1 - полный контроль, 0 - никакого изменения скорости"), SerializeField, Range(0f, 1f)]
     private float _airControl = .5f;
+
+    public Team Team { get; set; } = Team.Player;
+    public void ApplyDamage(float damage)
+    {
+        _health -= damage;
+
+        if (_health <= 0)
+            Destroy(gameObject);
+    }
+
 
     private void Update()
     {
@@ -60,10 +73,10 @@ public class Player : MonoBehaviour
     {
         if (IsGrounded())
         {
-            _body.AddForce(Vector3.up * _jumpForce);
+            _body.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
         } else
         {
-            _body.AddForce(Vector3.up * _jumpForceInAir);
+            _body.AddForce(Vector3.up * _jumpForceInAir, ForceMode.Impulse);
         }
     }
 
@@ -81,4 +94,9 @@ public class Player : MonoBehaviour
         if (!Mathf.Approximately(_mass, _body.mass))
             _body.mass = _mass;
     }
+
+
+
+
+
 }
