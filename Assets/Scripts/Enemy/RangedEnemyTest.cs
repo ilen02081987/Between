@@ -15,9 +15,26 @@ public class RangedEnemyTest : MonoBehaviour
     private float attackCD;
     public GameObject arrow;
 
-    public float hp;
+   
 
     ProjectileSpawner _spawner;
+
+    public float _health;
+    
+
+    public Team Team { get; set; } = Team.Enemies;
+
+    public void ApplyDamage(float damage)
+    {
+        _health -= damage;
+
+        if (_health <= 0)
+        {
+            Destroy(gameObject);           
+        }
+       
+    }
+
 
 
     // Start is called before the first frame update
@@ -53,11 +70,6 @@ public class RangedEnemyTest : MonoBehaviour
         {
             attackCD -= 1*Time.deltaTime ;
         }
-
-        if (hp <= 0)
-        {
-            Destroy(gameObject);
-        }    
     }
 
     void Shooting()
