@@ -14,6 +14,7 @@ public class Player : MonoBehaviour, IDamagable
 
     [Header("Можно менять")]
 
+    [SerializeField] private float _acceleration = 2f;
     [Tooltip("Скорость движения"), SerializeField] private float _maxSpeed;
     [Tooltip("Чем выше, тем быстрее останавливается, когда отжаты клавиши движения"), SerializeField, Range(0f, 1f)] 
     private float _stopCoefficient = .5f;
@@ -36,13 +37,10 @@ public class Player : MonoBehaviour, IDamagable
 
     private void Update()
     {
+        TryMove(Input.GetAxisRaw("Horizontal"));
+
         if (Input.GetKeyDown(KeyCode.Space))
             Jump();
-    }
-
-    private void FixedUpdate()
-    {
-        TryMove(Input.GetAxis("Horizontal"));
     }
 
     private void TryMove(float axis)
@@ -56,10 +54,12 @@ public class Player : MonoBehaviour, IDamagable
         }
         else
         {
+            float currentSpeed = axis * _acceleration;
+
             if (IsGrounded())
-                _body.velocity += Vector3.right * axis;
+                _body.velocity += Vector3.right * currentSpeed;
             else
-                _body.velocity += Vector3.right * axis * _airControl;
+                _body.velocity += Vector3.right * currentSpeed * _airControl;
 
             _body.velocity = new Vector3(
                 Mathf.Clamp(_body.velocity.x, -_maxSpeed, _maxSpeed),
@@ -71,12 +71,9 @@ public class Player : MonoBehaviour, IDamagable
     private void Jump()
     {
         if (IsGrounded())
-        {
             _body.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
-        } else
-        {
+        else
             _body.AddForce(Vector3.up * _jumpForceInAir, ForceMode.Impulse);
-        }
     }
 
     private bool IsGrounded()
