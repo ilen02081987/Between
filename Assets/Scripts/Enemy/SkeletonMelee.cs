@@ -61,11 +61,11 @@ public class SkeletonMelee: MonoBehaviour, IDamagable
         if (_health <= 0)
         {
             Destroy(gameObject);
-            OnDamage?.Invoke();
+            OnDie?.Invoke();
         }
         else
         {
-            OnDie?.Invoke();
+            OnDamage?.Invoke();
         }
     }
 
