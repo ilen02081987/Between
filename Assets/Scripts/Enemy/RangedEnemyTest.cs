@@ -40,7 +40,7 @@ public class RangedEnemyTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _spawner = new ProjectileSpawner(arrow.gameObject.name);
+        _spawner = new ProjectileSpawner("Arrow", 0);
     }
 
     void FixedUpdate()
