@@ -14,6 +14,8 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagable
     public event Action OnDie;
     public event Action OnMove;
 
+    protected float health => _health;
+
     [SerializeField] private float _health;
     [SerializeField] private float _destroyTime = 2f;
 

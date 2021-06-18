@@ -32,7 +32,6 @@ public class SkeletonMelee: BaseEnemy
     private float _speedMod = 0;
     private Vector3 _startPosition;
 
-    public float _health;
     public float damageToPlayer;
     public float damageToShield;
     public float damageToShieldRadius;
@@ -206,7 +205,7 @@ public class SkeletonMelee: BaseEnemy
 
     void Update()
     {
-        if (player == null)
+        if (player == null || health <= 0)
         {
             return;
         }
