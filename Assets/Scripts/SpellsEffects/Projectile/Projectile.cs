@@ -23,16 +23,25 @@ namespace Between.SpellsEffects.Projectile
 
         private bool _hasCollide = false;
 
+        public Transform ImpactParticles;
+
+        //projectile vfx
+        private Transform _particleRotationChildObject;
+
         #region BEHAVIOUR
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
+            _particleRotationChildObject = transform.GetChild(0);
         }
 
         public void Launch(Vector3 direction)
         {
             _direction = direction;
+            //_particleRotationChildObject.rotation = Quaternion.LookRotation(direction);
+            Vector3 newDirection = Vector3.RotateTowards(Vector3.forward, direction, 360, 0.0f);
+            transform.rotation = Quaternion.LookRotation(newDirection);
         }
 
         private void Update()
@@ -86,7 +95,12 @@ namespace Between.SpellsEffects.Projectile
                 DestroyProjectile();
         }
 
-        private void DestroyProjectile() => Destroy(gameObject);
+        private void DestroyProjectile()
+        {
+            Instantiate(ImpactParticles.GetChild(0), transform.position, Quaternion.identity);
+            Instantiate(ImpactParticles.GetChild(1), transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
 
         #endregion
     }
