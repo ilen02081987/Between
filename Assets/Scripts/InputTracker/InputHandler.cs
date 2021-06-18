@@ -37,7 +37,9 @@ namespace Between.UserInput
                     hasActive = true;
                 }
                 else
+                {
                     TrySendForceEndEvent(input);
+                }
             }
         }
 

@@ -9,7 +9,8 @@ namespace Between.Spells
         private List<BaseSpell> _spells = new List<BaseSpell>
         {
             new ShieldSpell(),
-            new ProjectileSpell("Projectile")
+            new ProjectileSpell("Projectile"),
+            new MeteorRainSpell("Meteor")
         };
     }
 }

@@ -19,6 +19,12 @@ namespace Between
         public float ShieldTrackerForceEndAngle;
         public float ShieldSpellCooldown;
 
+        [Header("Заклинание метеоритного дождя")]
+        public float MeteorRainTrackerMinLenght;
+        public float MeteorRainTrackerMaxLenght;
+        public float MeteorRainSpellCooldown;
+        public int MeteorsCount;
+
         [Header("Префаб щита")]
         public float ShieldHealth;
         public float ShieldLifeTime;

@@ -5,6 +5,8 @@ namespace Between.SpellsEffects.Projectile
 {
     public class ProjectileSpawner
     {
+        public float ElementSize => _prefab.transform.localScale.z;
+
         private Projectile _prefab;
         private readonly GameObject _projectilesParent;
 

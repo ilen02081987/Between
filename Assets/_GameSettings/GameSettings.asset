@@ -14,11 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProjectileTrackerMinLenght: 20
   ProjectileTrackerMaxLenght: 1000
-  ProjectileTrackerForceEndAngle: 50
+  ProjectileTrackerForceEndAngle: 35
   ProjectileSpellCooldown: 1
   ShieldTrackerMinLenght: 20
   ShieldTrackerMaxLenght: 1000
   ShieldTrackerForceEndAngle: 90
   ShieldSpellCooldown: 1
+  MeteorRainTrackerMinLenght: 50
+  MeteorRainTrackerMaxLenght: 1000
+  MeteorRainSpellCooldown: 3
+  MeteorsCount: 5
   ShieldHealth: 7
   ShieldLifeTime: 7
