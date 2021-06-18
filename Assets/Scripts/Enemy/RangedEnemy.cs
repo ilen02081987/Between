@@ -17,6 +17,11 @@ public class RangedEnemy : BaseEnemy
     private float attackCD;
     private ProjectileSpawner _spawner;
 
+    public int startDelay = 0;
+    public int delayCount = 0;
+
+
+
     void Start()
     {
         _spawner = new ProjectileSpawner("Arrow", 0);
@@ -24,6 +29,18 @@ public class RangedEnemy : BaseEnemy
 
     void Update()
     {
+        // никогда так не делайте
+        if (delayCount < startDelay)
+        {
+            delayCount++;
+            return;
+        }
+
+        if (target == null || health <= 0)
+        {
+            return;
+        }
+
         TryRotate();
 
         if (Vector3.Distance(transform.position, target.transform.position) < agroRange)
@@ -47,7 +64,7 @@ public class RangedEnemy : BaseEnemy
     {
         if (attackCD <= 0)
         {
-            _spawner.Spawn(spawnPoint.position, (target.position - transform.position).normalized);
+            _spawner.Spawn(spawnPoint.position, (target.position - spawnPoint.position).normalized);
             attackCD = attackDelay;
 
             InvokeAttackEvent();
