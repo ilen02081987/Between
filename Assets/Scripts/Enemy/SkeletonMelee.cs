@@ -1,244 +1,196 @@
 using System.Collections;
 using UnityEngine;
-using Between.Teams;
 using Between.Interfaces;
 using Between.SpellsEffects.ShieldSpell;
-using System;
+using Between.Damage;
 
-public class SkeletonMelee: BaseEnemy
+namespace Between.Enemies
 {
-    //const int statePatrolLeft = 0;
-    //const int statePatrolRight = 1;
-    //const int stateAggroLeft = 2;
-    //const int stateAggroRight = 3;
-    //const int stateAttack = 4;
-    //const int stateCoolddown = 5;
-
-    const int actionPatrolLeft = 0;
-    const int actionPatrolRight = 1;
-    const int actionAggroLeft = 2;
-    const int actionAggroRight = 3;
-    const int actionStay = 6;
-    // состояние скелета 
-    // 0 - патрулируем влево
-    // 1 - патрулируем вправо
-    // 2 - идем к игроку влево
-    // 3 - идем к игроку вправо
-    // 4 - атака по игроку
-    // 5 - атака по щиту
-    // 6 - кд удара, стоим на месте
-
-    private bool _freeze = false;
-    private float _speedMod = 0;
-    private Vector3 _startPosition;
-
-    public float damageToPlayer;
-    public float damageToShield;
-    public float damageToShieldRadius;
-    public float patrolRange;
-    public float patrolSpeed;
-    public float aggroSpeed;
-    public float attackFrequency;
-    public bool isMovingRight;
-    public float checkRadius;
-    public float agroRange;
-
-    public Player player;
-
-    public override Team Team { get; set; } = Team.Enemies;
-
-    void Start()
+    public class SkeletonMelee : BaseEnemy
     {
-        _startPosition = transform.position;
-    }
-
-    // в зависимости от состояния возвращаем действие моба
-    // 0 - патрулируем влево
-    // 1 - патрулируем вправо
-    // 2 - идем к игроку влево
-    // 3 - идем к игроку вправо
-
-    int getAction(Vector3 playerPos)
-    {
-        // должно быть _freeze + проверка что рядом есть цель
-        if (_freeze)
+        private enum State
         {
-            return actionStay;
+            PatrolLeft = 0,
+            PatrolRight,
+            AggroLeft,
+            AggroRight,
+            Stay
         }
 
-        if (seePlayer(playerPos))
-        {
+        [SerializeField] private float _damage;
+        [SerializeField] private float _damageToShieldRadius;
+        [SerializeField] private DamageType _damageType = DamageType.Sword;
 
-            if (playerToTheRight(playerPos))
+        [SerializeField] private float patrolRange;
+        [SerializeField] private float patrolSpeed;
+        [SerializeField] private float aggroSpeed;
+        [SerializeField] private float attackFrequency;
+        [SerializeField] private bool isMovingRight;
+        [SerializeField] private float checkRadius;
+        [SerializeField] private float agroRange;
+
+        [SerializeField] private PlayerController player;
+
+        private bool _freeze = false;
+        private float _speedMod = 0;
+        private Vector3 _startPosition;
+
+        private void Start()
+        {
+            _startPosition = transform.position;
+        }
+
+        private void Update()
+        {
+            if (player == null || health <= 0)
+                return;
+
+            // можно ли выйти из кд атаки раньше если уничтожили все вокруг
+            CheckCooldown();
+
+            if (_speedMod <= 1)
+                _speedMod += 1 * Time.deltaTime;
+
+            switch (GetState(player.transform.position))
             {
-                return actionAggroRight;
-            }
-
-            return actionAggroLeft;
-        }
-
-        if (isMovingRight)
-        {
-            if (transform.position.x <= (_startPosition.x + patrolRange))
-            {
-                return actionPatrolRight;
-            }
-
-            _speedMod = 0;
-            isMovingRight = false;
-            transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
-            return actionPatrolLeft;
-
-        }
-
-
-        if (!isMovingRight)
-        {
-            if (transform.position.x >= (_startPosition.x - patrolRange))
-            {
-                return actionPatrolLeft;
-            }
-
-            _speedMod = 0;
-            isMovingRight = true;
-            return actionPatrolRight;
-
-        }
-
-        // в любой непонятной ситуации патрулируй
-        return actionPatrolRight;
-
-    }
-
-    IEnumerator attackCooldown()
-    {
-        yield return new WaitForSeconds(attackFrequency);
-        _freeze = false;
-    }
-
-
-    // видит ли скелет игрока
-    bool seePlayer(Vector3 playerPos)
-    {
-        if (Vector3.Distance(transform.position, playerPos) < agroRange && !Physics.Raycast(transform.position, (playerPos - transform.position).normalized, Mathf.Infinity, 1 << 3))
-        {
-            return true;
-        }
-
-        return false;
-
-    }
-
-    // определяем в какую сторону к игроку двигаться
-    bool playerToTheRight(Vector3 playerPos)
-    {
-        if (transform.position.x < playerPos.x) { 
-            return true;
-        }
-
-        return false;
-
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        if (!_freeze)
-        {
-            TryApplyDamage(other.gameObject);
-        }
-    }
-
-    private void OnCollisionStay(Collision other)
-    {
-        if (!_freeze)
-        {
-            TryApplyDamage(other.gameObject);
-        }
-    }
-
-    private void TryApplyDamage(GameObject gameObject)
-    {
-        if (gameObject.TryGetComponent<IDamagable>(out var damagable))
-        {
-            if (damagable.Team != Team) { 
-                Attack(damagable);
-                _freeze = true;
-                StartCoroutine(attackCooldown());
-
-                InvokeAttackEvent();
+                case State.PatrolLeft:
+                    Translate(-patrolSpeed * _speedMod * Time.deltaTime);
+                    break;
+                case State.PatrolRight:
+                    Translate(patrolSpeed * _speedMod * Time.deltaTime);
+                    break;
+                case State.AggroLeft:
+                    Translate(-aggroSpeed * _speedMod * Time.deltaTime);
+                    break;
+                case State.AggroRight:
+                    Translate(aggroSpeed * _speedMod * Time.deltaTime);
+                    break;
+                default:
+                    break;
             }
         }
-    }
 
-    private void Attack(IDamagable damagable)
-    {
-        if (damagable is Shield) { 
-            (damagable as Shield).ApplyDamage(damageToShield, damageToShieldRadius);
-            return;
-        }
-        damagable.ApplyDamage(damageToPlayer);
-        return;
-    }
-
-    // можно ли выйти из кд атаки раньше если уничтожили все вокруг
-    private void checkCooldown()
-    {
-        if (_freeze)
+        private void OnCollisionEnter(Collision other)
         {
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, checkRadius);
-            bool isCollision = false;
-            foreach (var hitCollider in hitColliders)
+            if (!_freeze)
+                TryApplyDamage(other.gameObject);
+        }
+
+        private void OnCollisionStay(Collision other)
+        {
+            if (!_freeze)
+                TryApplyDamage(other.gameObject);
+        }
+
+        private State GetState(Vector3 playerPos)
+        {
+            // должно быть _freeze + проверка что рядом есть цель
+            if (_freeze)
+                return State.Stay;
+
+            if (SeePlayer(playerPos))
             {
-                if (hitCollider.gameObject.TryGetComponent<Shield>(out Shield s) || hitCollider.gameObject.TryGetComponent<Player>(out Player p))
+                if (PlayerToTheRight(playerPos))
+                    return State.AggroRight;
+
+                return State.AggroLeft;
+            }
+
+            if (isMovingRight)
+            {
+                if (transform.position.x <= (_startPosition.x + patrolRange))
+                    return State.PatrolRight;
+
+                _speedMod = 0;
+                isMovingRight = false;
+                transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+
+                return State.PatrolLeft;
+            }
+
+
+            if (!isMovingRight)
+            {
+                if (transform.position.x >= (_startPosition.x - patrolRange))
+                    return State.PatrolLeft;
+
+                _speedMod = 0;
+                isMovingRight = true;
+
+                return State.PatrolRight;
+            }
+
+            // в любой непонятной ситуации патрулируй
+            return State.PatrolRight;
+        }
+
+        private IEnumerator AttackCooldown()
+        {
+            _freeze = true;
+            yield return new WaitForSeconds(attackFrequency);
+            _freeze = false;
+        }
+
+        // видит ли скелет игрока
+        private bool SeePlayer(Vector3 playerPosition)
+        {
+            return Vector3.Distance(transform.position, playerPosition) < agroRange &&
+                !Physics.Raycast(transform.position, (playerPosition - transform.position).normalized, Mathf.Infinity, 1 << 3);
+        }
+
+        // определяем в какую сторону к игроку двигаться
+        private bool PlayerToTheRight(Vector3 playerPos)
+        {
+            return transform.position.x < playerPos.x;
+        }
+
+        private void TryApplyDamage(GameObject gameObject)
+        {
+            if (gameObject.TryGetComponent<IDamagable>(out var damagable))
+            {
+                if (damagable.Team != Team)
                 {
-                    isCollision = true;
+                    Attack(damagable);
+                    StartCoroutine(AttackCooldown());
+                    InvokeAttackEvent();
                 }
             }
+        }
 
-            if (!isCollision)
+        private void Attack(IDamagable damagable)
+        {
+            if (damagable is Shield)
             {
-                _freeze = false;
+                (damagable as Shield).ApplyDamage(_damageType, _damage, _damageToShieldRadius);
+                return;
             }
 
-        }
-    }
-
-    void Update()
-    {
-        if (player == null || health <= 0)
-        {
+            damagable.ApplyDamage(_damageType, _damage);
             return;
         }
 
         // можно ли выйти из кд атаки раньше если уничтожили все вокруг
-        checkCooldown();
-
-        if (_speedMod <= 1)
-            _speedMod += 1 * Time.deltaTime;
-
-        int state = getAction(player.transform.position);
-
-        // 0 - патрулируем влево
-        // 1 - патрулируем вправо
-        // 2 - идем к игроку влево
-        // 3 - идем к игроку вправо
-
-        switch (state)
+        private void CheckCooldown()
         {
-            case actionPatrolLeft:
-                transform.position = new Vector3(transform.position.x - (patrolSpeed * _speedMod * Time.deltaTime), transform.position.y, transform.position.z);
-                break;
-            case actionPatrolRight:
-                transform.position = new Vector3(transform.position.x + (patrolSpeed * _speedMod * Time.deltaTime), transform.position.y, transform.position.z);
-                break;
-            case actionAggroLeft:
-                transform.position = new Vector3(transform.position.x - (aggroSpeed * _speedMod * Time.deltaTime), transform.position.y, transform.position.z);
-                break;
-            case actionAggroRight:
-                transform.position = new Vector3(transform.position.x + (aggroSpeed * _speedMod * Time.deltaTime), transform.position.y, transform.position.z);
-                break;
-            default:
-                break;
+            if (_freeze)
+            {
+                Collider[] hitColliders = Physics.OverlapSphere(transform.position, checkRadius);
+                bool isCollision = false;
+
+                foreach (var hitCollider in hitColliders)
+                {
+                    if (hitCollider.gameObject.TryGetComponent<Shield>(out Shield s) || hitCollider.gameObject.TryGetComponent<Player>(out Player p))
+                        isCollision = true;
+                }
+
+                if (!isCollision)
+                    _freeze = false;
+            }
+        }
+
+        private void Translate(float shift)
+        {
+            transform.Translate(shift, 0f, 0f);
         }
     }
 }

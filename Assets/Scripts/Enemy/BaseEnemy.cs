@@ -1,41 +1,32 @@
-using Between.Interfaces;
+using Between.Damage;
 using Between.Teams;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseEnemy : MonoBehaviour, IDamagable
+namespace Between.Enemies
 {
-    public abstract Team Team { get; set; }
-
-    public event Action OnAttack;
-    public event Action OnDamage;
-    public event Action OnDie;
-    public event Action OnMove;
-
-    protected float health => _health;
-
-    [SerializeField] private float _health;
-    [SerializeField] private float _destroyTime = 2f;
-
-    public void ApplyDamage(float damage)
+    public class BaseEnemy : BaseDamagableObject
     {
-        _health -= damage;
+        public event Action OnAttack;
+        public event Action OnDamage;
+        public event Action OnDie;
+        public event Action OnMove;
+        public override Team Team => Team.Enemies;
 
-        if (_health <= 0)
+        [SerializeField] private float _destroyTime = 2;
+
+        protected void InvokeAttackEvent() => OnAttack?.Invoke();
+        protected void InvokeMoveEvent() => OnMove?.Invoke();
+
+        protected override void PerformOnDamage()
+        {
+            OnDamage?.Invoke();
+        }
+
+        protected override void PerformOnDie()
         {
             Destroy(gameObject, _destroyTime);
             OnDie?.Invoke();
         }
-        else
-        {
-            OnDamage?.Invoke();
-        }
     }
-
-    protected void InvokeAttackEvent() => OnAttack?.Invoke();
-    protected void InvokeDieEvent() => OnDie?.Invoke();
-    protected void InvokeDamageEvent() => OnDamage?.Invoke();
-    protected void InvokeMoveEvent() => OnMove?.Invoke();
 }

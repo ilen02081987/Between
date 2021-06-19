@@ -1,3 +1,4 @@
+using Between.Damage;
 using Between.Interfaces;
 using Between.Teams;
 using System.Collections;
@@ -5,18 +6,18 @@ using UnityEngine;
 
 namespace Between.SpellsEffects.ShieldSpell
 {
-    public class Shield : MonoBehaviour, IDamagable
+    public class Shield : BaseDamagableObject
     {
         public float Size => transform.localScale.y;
-        public Team Team { get; set; } = Team.Player;
+
+        public override Team Team => Team.Player;
 
         private float _lifeTime = 3f;
-        private float _health = 10;
 
         private void Start()
         {
             _lifeTime = GameSettings.Instance.ShieldLifeTime;
-            _health = GameSettings.Instance.ShieldHealth;
+            health = GameSettings.Instance.ShieldHealth;
 
             StartCoroutine(WaitToDestroy());
         }
@@ -29,36 +30,26 @@ namespace Between.SpellsEffects.ShieldSpell
                 DestroyShield();
         }
 
-        public void ApplyDamage(float damage, float attackRadius)
+        public void ApplyDamage(DamageType type, float damage, float attackRadius)
         {
             var blastetColliders = Physics.OverlapSphere(transform.position, attackRadius);
 
             foreach (var collider in blastetColliders)
             {
                 if (collider.TryGetComponent<Shield>(out var damagable))
-                    damagable.ApplyDamage(damage);
+                    damagable.ApplyDamage(type, damage);
             }
         }
 
-        public void ApplyDamage(float damage)
+        protected override void PerformOnDie()
         {
-            _health -= damage;
-
-            if (_health <= 0)
-                DestroyShield();
+            DestroyShield();
         }
 
         private void DestroyShield()
         {
             StopCoroutine(WaitToDestroy());
             Destroy(gameObject);
-        }
-
-        private void Blast()
-        {
-
-
-            
         }
     }
 }

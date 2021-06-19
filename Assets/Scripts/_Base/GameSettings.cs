@@ -1,3 +1,4 @@
+using Between.Spells;
 using UnityEngine;
 
 namespace Between
@@ -12,6 +13,7 @@ namespace Between
         public float ProjectileTrackerMaxLenght;
         public float ProjectileTrackerForceEndAngle;
         public float ProjectileSpellCooldown;
+        public ProjectileSpell.ProjectileDrawType ProjectileDrawType;
 
         [Header("Заклинание щита")]
         public float ShieldTrackerMinLenght;
