@@ -23,7 +23,7 @@ namespace Between.UserInput.Trackers
 
         private bool _isEnoughLongToTrack => CalculateLenght() > _minTrackingLenght;
 
-        #region FLUENT BUILDER
+        #region BUILDER
 
         public CurveTracker(int mouseButton) : base(mouseButton) { }
 
@@ -85,8 +85,6 @@ namespace Between.UserInput.Trackers
 
         protected override void OnDrawForceEnded(InputData point) => Complete();
 
-        #region PRIVATE METHODS
-
         public bool IsTooCurve(InputData point) => 
             _isEnoughLongToTrack ? Mathf.Abs(point.Angle - _startAngle) > _forceEndAngle : false;
 
@@ -115,7 +113,5 @@ namespace Between.UserInput.Trackers
             SetState(DrawState.None);
             Clear();
         }
-
-        #endregion
     }
 }

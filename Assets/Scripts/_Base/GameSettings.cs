@@ -23,6 +23,8 @@ namespace Between
         public float MeteorRainTrackerMinLenght;
         public float MeteorRainTrackerMaxLenght;
         public float MeteorRainSpellCooldown;
+        public float MeteorsLinesDelay;
+        public int MeteorsLinesCount;
         public int MeteorsCount;
 
         [Header("Префаб щита")]

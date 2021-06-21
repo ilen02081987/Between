@@ -15,7 +15,7 @@ namespace Between.UserInput.Trackers
         private float _minLenght = 500;
         private readonly float _minTrackingLenght = 50f;
 
-        private float _minAngle = 90f;
+        private float _minAngle = 30f;
         private float _maxAngle = 175f;
 
         private Vector3 _startPosition = GameExtensions.DefaultPosition;
@@ -23,7 +23,7 @@ namespace Between.UserInput.Trackers
 
         private bool _isEnoughLongToTrack => CalculateLenght() > _minTrackingLenght;
 
-        #region FLUENT BUILDER
+        #region BUILDER
 
         public CheckMarkTracker(int mouseButton) : base(mouseButton) { }
 
@@ -87,8 +87,6 @@ namespace Between.UserInput.Trackers
 
         protected override void OnDrawForceEnded(InputData point) => Complete();
 
-        #region PRIVATE METHODS
-
         private bool IsTooCurve(InputData point) =>
             _isEnoughLongToTrack ? Mathf.Abs(point.Angle - _startAngle) > _maxAngle : false;
 
@@ -120,7 +118,5 @@ namespace Between.UserInput.Trackers
             SetState(DrawState.None);
             Clear();
         }
-
-        #endregion
     }
 }
