@@ -16,7 +16,7 @@ MonoBehaviour:
   ProjectileTrackerMaxLenght: 1000
   ProjectileTrackerForceEndAngle: 50
   ProjectileSpellCooldown: 0
-  ProjectileDrawType: 1
+  ProjectileDrawType: 0
   ShieldTrackerMinLenght: 20
   ShieldTrackerMaxLenght: 1000
   ShieldTrackerForceEndAngle: 90

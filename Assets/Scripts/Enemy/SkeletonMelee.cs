@@ -179,7 +179,7 @@ namespace Between.Enemies
 
                 foreach (var hitCollider in hitColliders)
                 {
-                    if (hitCollider.gameObject.TryGetComponent<Shield>(out Shield s) || hitCollider.gameObject.TryGetComponent<Player>(out Player p))
+                    if (hitCollider.gameObject.TryGetComponent<Shield>(out Shield s) || hitCollider.gameObject.TryGetComponent<PlayerController>(out PlayerController p))
                         isCollision = true;
                 }
 

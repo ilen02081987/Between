@@ -1,19 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private Transform _target;
-    [Tooltip("Расстояние от персонажа до камеры"), SerializeField] private Vector3 _offset;
-    [Tooltip("Плавность движения камеры, не выставлять в 0!") ,SerializeField] private float _lerpValue = .125f;
- 
-    private void FixedUpdate()
+    [Tooltip("Большой шаг приближения/отдаления камеры"), SerializeField] private float zoomBig;
+    [Tooltip("Маленький шаг приближения/отдаления камеры"), SerializeField] private float zoomLittle;
+
+    private Camera cm;
+
+    private void Start()
     {
-        if (_target == null)
-        {
-            return;
-        }
-        transform.position = Vector3.Lerp(transform.position, _target.position + _offset, _lerpValue);
+        cm = gameObject.GetComponent<Camera>();
     }
+
+    private void Update()
+    {
+
+        if (cm.fieldOfView > 179) {
+            cm.fieldOfView = 179;
+        }
+
+        if (cm.fieldOfView < 1)
+        {
+            cm.fieldOfView = 1;
+        }
+
+        if (Input.GetKeyDown(KeyCode.PageDown))
+        {
+            cm.fieldOfView += zoomBig;
+        }
+
+        if (Input.GetKeyDown(KeyCode.PageUp))
+        {
+            cm.fieldOfView -= zoomBig;
+        }
+
+        if (Input.GetKeyDown(KeyCode.End))
+        {
+            cm.fieldOfView += zoomLittle;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Home))
+        {
+            cm.fieldOfView -= zoomLittle;
+        }
+
+    }
+
 }
