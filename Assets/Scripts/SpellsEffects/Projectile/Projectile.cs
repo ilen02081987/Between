@@ -2,7 +2,9 @@ using Between.Interfaces;
 using Between.SpellsEffects.ShieldSpell;
 using Between.Teams;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
+using System.Collections;
 
 namespace Between.SpellsEffects.Projectile
 {
@@ -23,25 +25,27 @@ namespace Between.SpellsEffects.Projectile
 
         private bool _hasCollide = false;
 
-        public Transform ImpactParticles;
-
-        //projectile vfx
-        private Transform _particleRotationChildObject;
+        public event Action<Vector3> OnLaunch;
+        public event EventHandler OnDestroyed;
 
         #region BEHAVIOUR
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
-            _particleRotationChildObject = transform.GetChild(0);
+            StartCoroutine(InvokeOnLaunchEvent());
+            
+        }
+
+        private IEnumerator InvokeOnLaunchEvent()
+        {
+            yield return 0;
+            OnLaunch?.Invoke(_direction);
         }
 
         public void Launch(Vector3 direction)
         {
             _direction = direction;
-            //_particleRotationChildObject.rotation = Quaternion.LookRotation(direction);
-            Vector3 newDirection = Vector3.RotateTowards(Vector3.forward, direction, 360, 0.0f);
-            transform.rotation = Quaternion.LookRotation(newDirection);
         }
 
         private void Update()
@@ -97,8 +101,7 @@ namespace Between.SpellsEffects.Projectile
 
         private void DestroyProjectile()
         {
-            Instantiate(ImpactParticles.GetChild(0), transform.position, Quaternion.identity);
-            Instantiate(ImpactParticles.GetChild(1), transform.position, Quaternion.identity);
+            OnDestroyed?.Invoke(this, EventArgs.Empty);
             Destroy(gameObject);
         }
 
