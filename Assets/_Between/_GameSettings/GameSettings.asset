@@ -28,3 +28,4 @@ MonoBehaviour:
   MeteorsCount: 5
   ShieldHealth: 7
   ShieldLifeTime: 7
+  DecideBorder: 0.8

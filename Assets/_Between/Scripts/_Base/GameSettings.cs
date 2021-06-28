@@ -12,6 +12,7 @@ namespace Between
         public float ProjectileTrackerMaxLenght;
         public float ProjectileTrackerForceEndAngle;
         public float ProjectileSpellCooldown;
+        public float ProjectilesSpawnOffset;
 
         [Header("Заклинание щита")]
         public float ShieldTrackerMinLenght;
@@ -30,6 +31,10 @@ namespace Between
         [Header("Префаб щита")]
         public float ShieldHealth;
         public float ShieldLifeTime;
+
+        [Header("SVM")]
+        public float DecideBorder;
+        public bool EnableProbabilitiesLog;
 
         public void CreateInstance()
         {

@@ -43,7 +43,7 @@ namespace Between.UserInput.Trackers
 
         #endregion
 
-        public override void Clear()
+        protected override void Clear()
         {
             DrawPoints.Clear();
 

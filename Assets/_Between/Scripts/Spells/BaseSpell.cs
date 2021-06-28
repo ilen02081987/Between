@@ -10,9 +10,7 @@ namespace Between.Spells
         public abstract float CoolDownTime { get; }
         protected abstract BaseInputTracker tracker { get; }
 
-        public BaseSpell() => Init();
-
-        private void Init()
+        public void Init()
         {
             tracker.Init();
 
@@ -42,9 +40,7 @@ namespace Between.Spells
         private IEnumerator WaitCooldown()
         {
             tracker.Dispose();
-
             yield return new WaitForSeconds(CoolDownTime);
-            
             tracker.Init();
         }
     }

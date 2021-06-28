@@ -32,9 +32,7 @@ namespace Between.UserInput.Trackers
             InputHandler.ForceEndDraw -= ForceEndDraw;
         }
 
-        public void ManualStartDraw(InputData point) => StartDraw(point);
-
-        public abstract void Clear();
+        protected abstract void Clear();
 
         private void StartDraw(InputData point)
         {

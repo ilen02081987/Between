@@ -12,5 +12,11 @@ namespace Between.Spells
             new ProjectileSpell("Projectile"),
             new MeteorRainSpell("Meteor")
         };
+
+        public void Init()
+        {
+            foreach (BaseSpell spell in _spells)
+                spell.Init();
+        }
     }
 }

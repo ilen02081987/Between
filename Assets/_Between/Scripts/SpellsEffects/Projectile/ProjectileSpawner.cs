@@ -8,14 +8,16 @@ namespace Between.SpellsEffects.Projectile
         public float ElementSize => _prefab.transform.localScale.z;
 
         private Projectile _prefab;
-        private readonly GameObject _projectilesParent;
+        private static GameObject _projectilesParent;
 
         private readonly float _offset;
 
         public ProjectileSpawner(string prefabName, float spawnOffset)
         {
             _prefab = Resources.Load<Projectile>(Path.Combine(ResourcesFoldersNames.SPELLS, prefabName));
-            _projectilesParent = new GameObject("ProjectilesParent");
+
+            if (_projectilesParent == null)
+                _projectilesParent = new GameObject("ProjectilesParent");
 
             _offset = spawnOffset;
         }

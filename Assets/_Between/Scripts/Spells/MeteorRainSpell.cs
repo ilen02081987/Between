@@ -1,28 +1,26 @@
 using Between.Extensions;
+using Between.SpellRecognition;
 using Between.SpellsEffects.MeteorRain;
 using Between.UserInput.Trackers;
 
 namespace Between.Spells
 {
-    public class MeteorRainSpell : BaseSpell
+    public class MeteorRainSpell : SvmBasedSpell
     {
         public override float CoolDownTime => GameSettings.Instance.MeteorRainSpellCooldown;
 
-        protected override BaseInputTracker tracker => _tracker;
-
-        private CheckMarkTracker _tracker = new CheckMarkTracker(0).
-            SetLenght(GameSettings.Instance.MeteorRainTrackerMinLenght, GameSettings.Instance.MeteorRainTrackerMaxLenght);
+        protected override SpellFigure _figure => SpellFigure.CheckMark;
 
         private MeteorRainSpawner _spawner;
 
-        public MeteorRainSpell(string projectileName)
+        public MeteorRainSpell(string projectileName) : base()
         {
             _spawner = new MeteorRainSpawner(projectileName);
         }
 
         protected override void OnCompleteSpell()
         {
-            var drawPoints = _tracker.DrawPoints;
+            var drawPoints = ((SvmTracker)tracker).DrawPoints;
 
             var upperPoint = drawPoints.FindUpperPoint();
             var leftPoint = drawPoints.FindLeftPoint();
@@ -30,7 +28,9 @@ namespace Between.Spells
 
             leftPoint.y = rightPoint.y = upperPoint.y;
 
-            _spawner.Spawn(GameCamera.ScreenToWorldPoint(leftPoint), GameCamera.ScreenToWorldPoint(rightPoint));
+            _spawner.Spawn(
+                GameCamera.ScreenToWorldPoint(leftPoint.ToVector3()),
+                GameCamera.ScreenToWorldPoint(rightPoint.ToVector3()));
         }
     }
 }

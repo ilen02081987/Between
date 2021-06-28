@@ -13,7 +13,7 @@ namespace Between
             _gameSettings.CreateInstance();
 
             new Player();
-            new SpellsCollection();
+            new SpellsCollection().Init();
         }
     }
 }

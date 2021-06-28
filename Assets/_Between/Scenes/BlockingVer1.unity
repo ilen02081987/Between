@@ -3864,6 +3864,10 @@ PrefabInstance:
       value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 8226507996596072166, guid: 7d60c822c3f1b408ea7a00ecdb5e047a, type: 3}
+      propertyPath: _health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8226507996596072166, guid: 7d60c822c3f1b408ea7a00ecdb5e047a, type: 3}
       propertyPath: _gravity
       value: 9.81
       objectReference: {fileID: 0}
