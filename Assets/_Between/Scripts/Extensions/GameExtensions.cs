@@ -1,3 +1,4 @@
+using Between.UserInput;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,10 +7,10 @@ namespace Between.Extensions
     public static class GameExtensions
     {
         public static float DefaultAngle => float.MaxValue;
-        public static Vector3 DefaultPosition => Vector3.forward;
+        public static Vector2Int DefaultPosition => new Vector2Int(-1, -1);
 
         public static bool IsDefaultAngle(this float value) => Mathf.Approximately(value, float.MaxValue);
-        public static bool IsDefaultPosition(this Vector3 value) => value == Vector3.forward;
+        public static bool IsDefaultPosition(this Vector2Int value) => value == DefaultPosition;
 
         public static Vector2Int FindLeftPoint(this List<Vector2Int> points)
         {
@@ -55,5 +56,14 @@ namespace Between.Extensions
 
         public static Vector3 ToVector3(this Vector2Int original)
             => new Vector3(original.x, original.y, 0f);
+
+        public static float Angle(this Vector2 vector)
+            => Vector2.Angle(Vector2.right, vector);
+
+        public static float Angle(this Vector2Int vector)
+            => Vector2.Angle(Vector2.right, vector);
+
+        public static float Angle(this InputData input)
+            => input.Position.Angle();
     }
 }

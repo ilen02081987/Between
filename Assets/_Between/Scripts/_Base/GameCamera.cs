@@ -19,7 +19,7 @@ namespace Between
 
         private Camera _mainCamera;
 
-        public static Vector3 ScreenToWorldPoint(Vector3 screenPoint)
+        public static Vector3 ScreenToWorldPoint(Vector2Int screenPoint)
         {
             var zDistance = - MainCamera.transform.position.z;
             return MainCamera.ScreenToWorldPoint(new Vector3(screenPoint.x, screenPoint.y, zDistance));

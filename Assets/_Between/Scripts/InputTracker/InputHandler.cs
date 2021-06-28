@@ -11,11 +11,19 @@ namespace Between.UserInput
         public static event Action<InputData> EndDraw;
         public static event Action<InputData> ForceEndDraw;
 
+        public static Vector2Int MousePosition
+        {
+            get
+            {
+                Vector3 mousePosition = Input.mousePosition;
+                return new Vector2Int((int)mousePosition.x, (int)mousePosition.y);
+            }
+        }
+
         private List<MouseInput> _inputs = new List<MouseInput> 
             { new MouseInput(0, 0), new MouseInput(1, 1) };
 
         private InputData _previousInput;
-        private Vector3 _mousePosition => Input.mousePosition;
 
         private void Start()
         {
@@ -71,15 +79,7 @@ namespace Between.UserInput
 
         private void TrySendForceEndEvent(MouseInput input) => ForceEndDraw?.Invoke(CreateInputData(input));
 
-        private InputData CreateInputData(MouseInput input)
-        {
-            if (input.State == InputState.Start || !CompareInputData(_previousInput, input.MouseButton))
-                return new InputData(input.MouseButton, _mousePosition);
-            else
-                return new InputData(input.MouseButton, _mousePosition, _previousInput.Position);
-        }
-
-        private bool CompareInputData(InputData data, int mouseButton) => 
-            data.MouseButton == mouseButton && data.Position != default;
+        private InputData CreateInputData(MouseInput input) 
+            => new InputData(input.MouseButton, MousePosition);
     }
 }

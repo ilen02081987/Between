@@ -30,6 +30,6 @@ namespace Between.Spells
         }
 
         private Vector3 ConvertVector(Vector2Int input) 
-            => GameCamera.ScreenToWorldPoint(input.ToVector3());
+            => GameCamera.ScreenToWorldPoint(input);
     }
 }

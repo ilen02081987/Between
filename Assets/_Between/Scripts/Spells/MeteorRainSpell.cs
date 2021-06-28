@@ -29,8 +29,8 @@ namespace Between.Spells
             leftPoint.y = rightPoint.y = upperPoint.y;
 
             _spawner.Spawn(
-                GameCamera.ScreenToWorldPoint(leftPoint.ToVector3()),
-                GameCamera.ScreenToWorldPoint(rightPoint.ToVector3()));
+                GameCamera.ScreenToWorldPoint(leftPoint),
+                GameCamera.ScreenToWorldPoint(rightPoint));
         }
     }
 }

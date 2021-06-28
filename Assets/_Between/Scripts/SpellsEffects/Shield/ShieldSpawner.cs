@@ -17,7 +17,7 @@ namespace Between.SpellsEffects.ShieldSpell
             _shieldsParent = new GameObject("ShieldsParent");
         }
 
-        public void Spawn(List<Vector3> curve)
+        public void Spawn(List<Vector2Int> curve)
         {
             var shieldsSpawnPoints = CalculateShieldPositions(ConvertToGameSpace(curve));
 
@@ -46,7 +46,7 @@ namespace Between.SpellsEffects.ShieldSpell
             return shieldPoints;
         }
 
-        private List<Vector3> ConvertToGameSpace(List<Vector3> points)
+        private List<Vector3> ConvertToGameSpace(List<Vector2Int> points)
         {
             var outPoint = new List<Vector3>();
 

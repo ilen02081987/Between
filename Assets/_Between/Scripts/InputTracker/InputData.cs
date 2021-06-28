@@ -5,22 +5,14 @@ namespace Between.UserInput
     public struct InputData
     {
         public readonly int MouseButton;
-        public readonly Vector3 Position;
-        public readonly float Angle;
+        public readonly Vector2Int Position;
 
-        public InputData(int mouseButton, Vector3 position, Vector3 previousPosition) : this(mouseButton, position)
-        {
-            var diff = position - previousPosition;
-            Angle = Vector3.Angle(Vector3.right, diff.normalized);
-        }
-
-        public InputData(int mouseButton, Vector3 position, float angle = 0f)
+        public InputData(int mouseButton, Vector2Int position)
         {
             MouseButton = mouseButton;
             Position = position;
-            Angle = angle;
         }
 
-        public bool IsDefault() => Position == Vector3.zero && Mathf.Approximately(Angle, 0f);
+        public bool IsDefault() => Position == Vector2Int.zero;
     }
 }

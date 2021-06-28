@@ -6,8 +6,8 @@ namespace Between.UserInput.Trackers
 {
     public class CurveTracker : BaseInputTracker
     {
-        public Vector3 LastDrawPoint => DrawPoints[DrawPoints.Count - 1];
-        public List<Vector3> DrawPoints { get; private set; } = new List<Vector3>();
+        public Vector2Int LastDrawPoint => DrawPoints[DrawPoints.Count - 1];
+        public List<Vector2Int> DrawPoints { get; private set; } = new List<Vector2Int>();
 
         public bool IsEnoughLong => CalculateLenght() > _minLenght;
         public bool IsTooLong => CalculateLenght() > _maxLenght;
@@ -18,7 +18,7 @@ namespace Between.UserInput.Trackers
 
         private float _forceEndAngle = 30f;
 
-        private Vector3 _startPosition = GameExtensions.DefaultPosition;
+        private Vector2Int _startPosition = GameExtensions.DefaultPosition;
         private float _startAngle = GameExtensions.DefaultAngle;
 
         private bool _isEnoughLongToTrack => CalculateLenght() > _minTrackingLenght;
@@ -86,12 +86,12 @@ namespace Between.UserInput.Trackers
         protected override void OnDrawForceEnded(InputData point) => Complete();
 
         public bool IsTooCurve(InputData point) => 
-            _isEnoughLongToTrack ? Mathf.Abs(point.Angle - _startAngle) > _forceEndAngle : false;
+            _isEnoughLongToTrack ? Mathf.Abs(point.Angle() - _startAngle) > _forceEndAngle : false;
 
         private float CalculateLenght()
         {
             if (DrawPoints.Count > 2)
-                return Vector3.Distance(DrawPoints[DrawPoints.Count - 1], DrawPoints[0]);
+                return Vector2Int.Distance(DrawPoints[DrawPoints.Count - 1], DrawPoints[0]);
             else
                 return 0f;
         }
@@ -105,7 +105,7 @@ namespace Between.UserInput.Trackers
         private void TrySetStartAngle(InputData point)
         {
             if (_isEnoughLongToTrack && _startAngle.IsDefaultAngle())
-                _startAngle = Vector3.Angle(Vector3.right, (point.Position - _startPosition).normalized);
+                _startAngle = ((Vector2)(point.Position - _startPosition)).normalized.Angle();
         }
 
         private void Complete()

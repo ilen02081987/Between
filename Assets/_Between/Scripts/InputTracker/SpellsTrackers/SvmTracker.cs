@@ -27,12 +27,12 @@ namespace Between.UserInput.Trackers
 
         protected override void OnDrawStarted(InputData input)
         {
-            DrawPoints.Add(input.Position.ToVector2Int());
+            DrawPoints.Add(input.Position);
         }
 
         protected override void OnDrawCalled(InputData input)
         {
-            DrawPoints.Add(input.Position.ToVector2Int());
+            DrawPoints.Add(input.Position);
         }
 
         protected override void OnDrawEnded(InputData input)
