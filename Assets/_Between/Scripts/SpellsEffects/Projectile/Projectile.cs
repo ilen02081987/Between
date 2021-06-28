@@ -1,16 +1,10 @@
+using System;
+using System.Collections;
+using UnityEngine;
 using Between.Damage;
 using Between.Interfaces;
 using Between.SpellsEffects.ShieldSpell;
 using Between.Teams;
-using System.Collections;
-using System.Collections.Generic;
-
-using System;
-
-using Unity.Profiling;
-
-using UnityEngine;
-using System.Collections;
 
 namespace Between.SpellsEffects.Projectile
 {
@@ -34,21 +28,12 @@ namespace Between.SpellsEffects.Projectile
         private bool _hasCollide = false;
 
         public event Action<Vector3> OnLaunch;
-        public event EventHandler OnDestroyed;
+        public event Action OnDestroyed;
 
-        #region BEHAVIOUR
-
-        private void Awake()
+        private void Start()
         {
             _rigidbody = GetComponent<Rigidbody>();
-            StartCoroutine(InvokeOnLaunchEvent());
-        }
-
-        private IEnumerator InvokeOnLaunchEvent()
-        {
-            yield return 0;
             OnLaunch?.Invoke(_direction);
-
             StartCoroutine(WaitToDestroy());
         }
 
@@ -75,10 +60,6 @@ namespace Between.SpellsEffects.Projectile
         {
             _hasCollide = false;
         }
-
-        #endregion
-
-        #region PRIVATE METHODS
 
         private void TryApplyDamage(GameObject gameObject)
         {
@@ -110,7 +91,7 @@ namespace Between.SpellsEffects.Projectile
 
         private void DestroyProjectile()
         {
-            OnDestroyed?.Invoke(this, EventArgs.Empty);
+            OnDestroyed?.Invoke();
             Destroy(gameObject);
         }
 
@@ -121,7 +102,5 @@ namespace Between.SpellsEffects.Projectile
             if (this != null && gameObject != null)
                 DestroyProjectile();
         }
-
-        #endregion
     }
 }

@@ -8,7 +8,7 @@ public class ProjectileParticleController : MonoBehaviour
     [SerializeField]
     private Transform ImpactParticles;
 
-    void Start()
+    private void Awake()
     {
         if (transform.parent != null)
         {
@@ -17,28 +17,19 @@ public class ProjectileParticleController : MonoBehaviour
             parentProjectile.OnDestroyed += SpawnImpactParticles;
         }
     }
+
     private void ControlDirection(Vector3 direction)
     {
-        //float angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
         float angle = CalculateRotation(direction);
         transform.rotation = Quaternion.Euler(0, 0, angle);
-        Debug.Log("Angle: " + angle);
+        //Debug.Log("Angle: " + angle);
     }
 
-    private void SpawnImpactParticles(object sender, System.EventArgs e)
+    private void SpawnImpactParticles()
     {
         Instantiate(ImpactParticles.GetChild(0), transform.position, Quaternion.identity);
         Instantiate(ImpactParticles.GetChild(1), transform.position, Quaternion.identity);
     }
-    //Vector3 launchDirection = Vector3.RotateTowards(Vector3.forward, direction, 360, 0.0f);
-
-    //transform.Rotate(0, 0, angle);
-    //Debug.Log("direction: " + direction);
-    /*
-    Debug.Log("launchDirection: " + launchDirection);
-    Debug.Log("angleRad: " + angleRad);
-    Debug.Log("angle: " + angle);
-    */
 
     private float CalculateRotation(Vector3 direction)
     {
