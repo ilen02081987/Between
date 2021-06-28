@@ -25,11 +25,25 @@ namespace Between.Spells
             var points = ((SvmTracker)tracker).DrawPoints;
             var startPoint = ConvertVector(points[0]);
             var directionPoint = ConvertVector(points[points.Count - 1]);
+            
+            if (GameSettings.Instance.ProjectileDrawType == ProjectileDrawType.Slingshot)
+            {
+                var tempPoint = startPoint;
+                startPoint = directionPoint;
+                directionPoint = tempPoint;
+            }
 
             _projectileSpawner.Spawn(startPoint, (directionPoint - startPoint).normalized);
         }
 
         private Vector3 ConvertVector(Vector2Int input) 
             => GameCamera.ScreenToWorldPoint(input);
+
+
+        public enum ProjectileDrawType
+        {
+            Spell = 0,
+            Slingshot
+        }
     }
 }

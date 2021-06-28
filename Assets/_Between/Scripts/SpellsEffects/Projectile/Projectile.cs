@@ -1,7 +1,10 @@
+using Between.Damage;
 using Between.Interfaces;
 using Between.SpellsEffects.ShieldSpell;
 using Between.Teams;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.Profiling;
 using UnityEngine;
 
 namespace Between.SpellsEffects.Projectile
@@ -16,6 +19,8 @@ namespace Between.SpellsEffects.Projectile
         [SerializeField] private float _speed = 10f;
         [SerializeField] private float _blastRadius = 2f;
         [SerializeField] private bool _friendlyFire = false;
+        [SerializeField] private DamageType _damageType = DamageType.Projectile;
+        [SerializeField] private float _lifeTime = 15f;
 
         private Rigidbody _rigidbody;
 
@@ -28,6 +33,8 @@ namespace Between.SpellsEffects.Projectile
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
+
+            StartCoroutine(WaitToDestroy());
         }
 
         public void Launch(Vector3 direction)
@@ -73,9 +80,9 @@ namespace Between.SpellsEffects.Projectile
         private void ApplyDamage(IDamagable damagable)
         {
             if (damagable is Shield)
-                (damagable as Shield).ApplyDamage(_damage, _blastRadius);
+                (damagable as Shield).ApplyDamage(_damageType, _damage, _blastRadius);
             else
-                damagable.ApplyDamage(_damage);
+                damagable.ApplyDamage(_damageType, _damage);
         }
 
         private void TakeImpactDamage()
@@ -87,6 +94,14 @@ namespace Between.SpellsEffects.Projectile
         }
 
         private void DestroyProjectile() => Destroy(gameObject);
+
+        private IEnumerator WaitToDestroy()
+        {
+            yield return new WaitForSeconds(_lifeTime);
+
+            if (this != null && gameObject != null)
+                DestroyProjectile();
+        }
 
         #endregion
     }

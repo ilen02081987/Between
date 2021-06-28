@@ -1,3 +1,4 @@
+using Between.Spells;
 using UnityEngine;
 
 namespace Between
@@ -7,20 +8,21 @@ namespace Between
     {
         public static GameSettings Instance { get; private set; }
 
-        [Header("Заклинание прожектайла")]
+        [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")]
         public float ProjectileTrackerMinLenght;
         public float ProjectileTrackerMaxLenght;
         public float ProjectileTrackerForceEndAngle;
         public float ProjectileSpellCooldown;
         public float ProjectilesSpawnOffset;
+        public ProjectileSpell.ProjectileDrawType ProjectileDrawType;
 
-        [Header("Заклинание щита")]
+        [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ")]
         public float ShieldTrackerMinLenght;
         public float ShieldTrackerMaxLenght;
         public float ShieldTrackerForceEndAngle;
         public float ShieldSpellCooldown;
 
-        [Header("Заклинание метеоритного дождя")]
+        [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ")]
         public float MeteorRainTrackerMinLenght;
         public float MeteorRainTrackerMaxLenght;
         public float MeteorRainSpellCooldown;
@@ -28,7 +30,7 @@ namespace Between
         public int MeteorsLinesCount;
         public int MeteorsCount;
 
-        [Header("Префаб щита")]
+        [Header("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ")]
         public float ShieldHealth;
         public float ShieldLifeTime;
 
