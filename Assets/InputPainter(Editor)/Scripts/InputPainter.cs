@@ -1,4 +1,5 @@
 using Between;
+using Between.UserInput;
 using UnityEngine;
 
 namespace CV.Editor
@@ -43,7 +44,7 @@ namespace CV.Editor
         {
             var lastPoint = _lineRenderer.positionCount > 0 ? 
                 _lineRenderer.GetPosition(_lineRenderer.positionCount - 1) : Vector3.zero;
-            var newPoint = GameCamera.ScreenToWorldPoint(Input.mousePosition);
+            var newPoint = GameCamera.ScreenToWorldPoint(InputHandler.MousePosition);
 
             if (lastPoint.Equals(newPoint))
                 return;
