@@ -9,6 +9,7 @@ namespace Between
         public static GameSettings Instance { get; private set; }
 
         [Header("Заклинание прожектайла")]
+        public float ProjectileMinLenght;
         public float ProjectileSpellCooldown;
         public float ProjectilesSpawnOffset;
         public ProjectileSpell.ProjectileDrawType ProjectileDrawType;
@@ -20,6 +21,7 @@ namespace Between
         public float ShieldSpellCooldown;
 
         [Header("Заклинание метеоритного дождя")]
+        public float MeteorRainMinLenght;
         public float MeteorRainSpellCooldown;
         public float MeteorsLinesDelay;
         public int MeteorsLinesCount;

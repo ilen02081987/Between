@@ -1,3 +1,4 @@
+using UnityEngine;
 using Between.Extensions;
 using Between.SpellRecognition;
 using Between.SpellsEffects.MeteorRain;
@@ -13,12 +14,29 @@ namespace Between.Spells
 
         private MeteorRainSpawner _spawner;
 
+        private bool _isLongEnough
+        {
+            get
+            {
+                var points = ((SvmTracker)tracker).DrawPoints;
+                var distance = Vector2.Distance(points[0], points[points.Count - 1]);
+
+                return distance > GameSettings.Instance.MeteorRainMinLenght;
+            }
+        }
+
         public MeteorRainSpell(string projectileName) : base()
         {
             _spawner = new MeteorRainSpawner(projectileName);
         }
 
         protected override void OnCompleteSpell()
+        {
+            if (_isLongEnough)
+                SpawnMeteorRain();
+        }
+
+        private void SpawnMeteorRain()
         {
             var drawPoints = ((SvmTracker)tracker).DrawPoints;
 
