@@ -8,8 +8,6 @@ namespace Between
     public abstract class BaseDamagableObject : MonoBehaviour, IDamagable
     {
         public abstract Team Team { get; }
-        public Protection[] Protections { get; }
-
         public float MaxHealth;
         
         protected float health { get; private set; }
