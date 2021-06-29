@@ -1,5 +1,5 @@
-using Between.Damage;
 using UnityEngine;
+using Between.Damage;
 using Between.Interfaces;
 using Between.Teams;
 
@@ -10,8 +10,16 @@ namespace Between
         public abstract Team Team { get; }
         public Protection[] Protections { get; }
 
-        [SerializeField] protected float health;
+        public float MaxHealth;
+        
+        protected float health { get; private set; }
+
         [SerializeField] private Protection[] _protections;
+
+        protected virtual void Start()
+        {
+            health = MaxHealth;
+        }
 
         public void ApplyDamage(DamageType type, float damage)
         {

@@ -20,8 +20,11 @@ namespace Between.Spells
             get
             {
                 var points = ((SvmTracker)tracker).DrawPoints;
-                var distance = Vector2.Distance(points[0], points[points.Count - 1]);
 
+                if (points.Count < 2)
+                    return false;
+
+                var distance = Vector2.Distance(points[0], points[points.Count - 1]);
                 return distance > GameSettings.Instance.ProjectileMinLenght;
             }
         }

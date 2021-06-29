@@ -13,15 +13,17 @@ namespace Between.Enemies
         [SerializeField] private GameObject arrow;
 
         [SerializeField] private int fireDelay;
-        private float delayCount = 0;
 
+        private float delayCount = 0;
         private bool isAgred;
         private float attackCD;
         private ProjectileSpawner _spawner;
 
-        void Start()
+        protected override void Start()
         {
             _spawner = new ProjectileSpawner(arrow.gameObject.name, 0);
+
+            base.Start();
         }
 
         void Update()

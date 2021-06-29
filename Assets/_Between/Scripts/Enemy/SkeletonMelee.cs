@@ -35,9 +35,11 @@ namespace Between.Enemies
         private float _speedMod = 0;
         private Vector3 _startPosition;
 
-        private void Start()
+        protected override void Start()
         {
             _startPosition = transform.position;
+
+            base.Start();
         }
 
         private void Update()

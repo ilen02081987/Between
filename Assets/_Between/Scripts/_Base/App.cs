@@ -6,9 +6,11 @@ namespace Between
 {
     public class App : MonoBehaviourSingleton<App>
     {
+        public PlayerController PlayerController;
+
         [SerializeField] private GameSettings _gameSettings;
 
-        private void Start()
+        private void Awake()
         {
             _gameSettings.CreateInstance();
 

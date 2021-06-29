@@ -1,5 +1,6 @@
 using Between.UserInput.Trackers;
 using Between.Utilities;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -7,6 +8,10 @@ namespace Between.Spells
 {
     public abstract class BaseSpell
     {
+        public event Action CooldownStarted;
+        public event Action<float> CooldownUpdated;
+        public event Action CooldownFinished;
+
         public abstract float CoolDownTime { get; }
         protected abstract BaseInputTracker tracker { get; }
 
@@ -39,9 +44,22 @@ namespace Between.Spells
         //NOTE: корутина вместо асинка чтобы ждать время игры, а не реалтайм
         private IEnumerator WaitCooldown()
         {
+            CooldownStarted?.Invoke();
+
             tracker.Dispose();
-            yield return new WaitForSeconds(CoolDownTime);
+            float currentTime = 0f;
+
+            while (currentTime <= CoolDownTime)
+            {
+                CooldownUpdated?.Invoke(currentTime);
+
+                currentTime += Time.deltaTime;
+                yield return null;
+            }
+
             tracker.Init();
+
+            CooldownFinished?.Invoke();
         }
     }
 }

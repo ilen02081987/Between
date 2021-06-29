@@ -14,12 +14,14 @@ namespace Between.SpellsEffects.ShieldSpell
 
         private float _lifeTime = 3f;
 
-        private void Start()
+        protected override void Start()
         {
             _lifeTime = GameSettings.Instance.ShieldLifeTime;
-            health = GameSettings.Instance.ShieldHealth;
+            MaxHealth = GameSettings.Instance.ShieldHealth;
 
             StartCoroutine(WaitToDestroy());
+
+            base.Start();
         }
 
         private IEnumerator WaitToDestroy()

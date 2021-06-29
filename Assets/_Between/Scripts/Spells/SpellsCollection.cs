@@ -1,10 +1,10 @@
-using Between.SpellsEffects.Projectile;
-using Between.Teams;
+using Between.Utilities;
+using System;
 using System.Collections.Generic;
 
 namespace Between.Spells
 {
-    public class SpellsCollection
+    public class SpellsCollection : Singleton<SpellsCollection>
     {
         private List<BaseSpell> _spells = new List<BaseSpell>
         {
@@ -18,5 +18,8 @@ namespace Between.Spells
             foreach (BaseSpell spell in _spells)
                 spell.Init();
         }
+
+        public BaseSpell GetSpell(Type spellType) =>
+            _spells.Find(spell => spell.GetType().Equals(spellType));
     }
 }
