@@ -8,7 +8,7 @@ namespace Between
     {
         public static GameSettings Instance { get; private set; }
 
-        [Header("���������� �����������")]
+        [Header("Заклинание прожектайла")]
         public float ProjectileTrackerMinLenght;
         public float ProjectileTrackerMaxLenght;
         public float ProjectileTrackerForceEndAngle;
@@ -16,13 +16,13 @@ namespace Between
         public float ProjectilesSpawnOffset;
         public ProjectileSpell.ProjectileDrawType ProjectileDrawType;
 
-        [Header("���������� ����")]
+        [Header("Заклинание щита")]
         public float ShieldTrackerMinLenght;
         public float ShieldTrackerMaxLenght;
         public float ShieldTrackerForceEndAngle;
         public float ShieldSpellCooldown;
 
-        [Header("���������� ������������ �����")]
+        [Header("Заклинание метеоритного дождя")]
         public float MeteorRainTrackerMinLenght;
         public float MeteorRainTrackerMaxLenght;
         public float MeteorRainSpellCooldown;
@@ -30,7 +30,7 @@ namespace Between
         public int MeteorsLinesCount;
         public int MeteorsCount;
 
-        [Header("������ ����")]
+        [Header("Префаб щита")]
         public float ShieldHealth;
         public float ShieldLifeTime;
 
