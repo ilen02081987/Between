@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProjectileMinLenght: 0
   ProjectileSpellCooldown: 1
-  ProjectilesSpawnOffset: 0
+  ProjectilesSpawnOffset: 2
   ProjectileDrawType: 0
   ShieldTrackerMinLenght: 20
   ShieldTrackerMaxLenght: 1000
@@ -27,5 +27,5 @@ MonoBehaviour:
   MeteorsCount: 5
   ShieldHealth: 7
   ShieldLifeTime: 7
-  DecideBorder: 0.95
+  DecideBorder: 0.92
   EnableProbabilitiesLog: 1
