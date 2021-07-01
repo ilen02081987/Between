@@ -29,3 +29,6 @@ MonoBehaviour:
   ShieldLifeTime: 7
   DecideBorder: 0.92
   EnableProbabilitiesLog: 1
+  DetectionRadius: 7
+  CooldownBase: 5
+  CooldownShift: 2

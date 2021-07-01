@@ -35,6 +35,11 @@ namespace Between
         public float DecideBorder;
         public bool EnableProbabilitiesLog;
 
+        [Header("Mavka")]
+        public float DetectionRadius;
+        public float CooldownBase;
+        public float CooldownShift;
+
         public void CreateInstance()
         {
             Instance = this;    
