@@ -3589,7 +3589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 410fd25318eb0db489e44989842fe3fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 50
+  MaxHealth: 30
   _protections: []
   _destroyTime: 2
   _singleProjectileSpawnPoint: {fileID: 1136865293}

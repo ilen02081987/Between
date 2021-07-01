@@ -1,4 +1,3 @@
-using Between.Enemies.Mavka;
 using System;
 
 namespace Between.StateMachine
@@ -8,6 +7,7 @@ namespace Between.StateMachine
         private readonly FinitStateMachine _stateMachine;
 
         protected bool _isCurrentState => _stateMachine.CurrentState.Equals(this);
+        protected bool _stateMachineEnabled => _stateMachine.Enabled;
 
         public BaseState(FinitStateMachine stateMachine)
         {

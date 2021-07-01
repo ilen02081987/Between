@@ -34,6 +34,7 @@ namespace Between.Enemies.Mavka
         protected override void PerformOnDie()
         {
             _stateMachine.Disable();
+            base.PerformOnDie();
         }
 
         private void TryRotate()

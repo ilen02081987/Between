@@ -5,7 +5,7 @@ namespace Between.StateMachine
 {
     public class FinitStateMachine
     {
-        public bool Enabled { get; private set; }
+        public bool Enabled { get; private set; } = true;
 
         public IState CurrentState { get; private set; }
         private List<IState> _states;
@@ -28,7 +28,6 @@ namespace Between.StateMachine
         }
 
         public void Update() => CurrentState.Update();
-
         public void Disable() => Enabled = false;
 
         private void EnterState(IState state)

@@ -20,7 +20,7 @@ namespace Between.Enemies.Mavka
 
         public override void Update()
         {
-            if (_playerCloseEnough)
+            if (_playerCloseEnough && _stateMachineEnabled)
                 SwitchState(typeof(AttackState));
         }
     }

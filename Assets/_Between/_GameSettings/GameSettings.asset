@@ -20,7 +20,7 @@ MonoBehaviour:
   ShieldTrackerMaxLenght: 1000
   ShieldTrackerForceEndAngle: 90
   ShieldSpellCooldown: 1
-  MeteorRainMinLenght: 0
+  MeteorRainMinLenght: 20
   MeteorRainSpellCooldown: 3
   MeteorsLinesDelay: 0.5
   MeteorsLinesCount: 3
@@ -28,7 +28,7 @@ MonoBehaviour:
   ShieldHealth: 7
   ShieldLifeTime: 7
   DecideBorder: 0.92
-  EnableProbabilitiesLog: 1
-  DetectionRadius: 7
-  CooldownBase: 5
+  EnableProbabilitiesLog: 0
+  DetectionRadius: 20
+  CooldownBase: 3
   CooldownShift: 2
