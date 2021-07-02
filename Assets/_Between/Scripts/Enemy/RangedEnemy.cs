@@ -35,7 +35,7 @@ namespace Between.Enemies
                 return;
             }
 
-            if (target == null || health <= 0)
+            if (target == null || Health <= 0)
             {
                 return;
             }

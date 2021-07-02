@@ -44,7 +44,7 @@ namespace Between.Enemies
 
         private void Update()
         {
-            if (player == null || health <= 0)
+            if (player == null || Health <= 0)
                 return;
 
             // можно ли выйти из кд атаки раньше если уничтожили все вокруг

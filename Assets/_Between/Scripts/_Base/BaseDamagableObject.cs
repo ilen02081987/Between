@@ -8,26 +8,25 @@ namespace Between
     public abstract class BaseDamagableObject : MonoBehaviour, IDamagable
     {
         public abstract Team Team { get; }
-        public float MaxHealth;
-        
-        protected float health { get; private set; }
+        public float MaxHealth { get; protected set; }
+        public float Health { get; private set; }
 
         [SerializeField] private Protection[] _protections;
 
         protected virtual void Start()
         {
-            health = MaxHealth;
+            Health = MaxHealth;
         }
 
         public void ApplyDamage(DamageType type, float damage)
         {
-            if (health <= 0)
+            if (Health <= 0)
                 return;
 
             TryDamageProtection(type, ref damage);
             TryDamageHealth(damage);
 
-            if (health <= 0)
+            if (Health <= 0)
                 PerformOnDie();
             else
                 PerformOnDamage();
@@ -53,7 +52,7 @@ namespace Between
 
         private void TryDamageHealth(float damage)
         {
-            health = Mathf.Max(health - damage, 0f);
+            Health = Mathf.Max(Health - damage, 0f);
         }
     }
 }
