@@ -8,7 +8,6 @@ namespace Between.Enemies
     public class BaseEnemy : BaseDamagableObject
     {
         public event Action OnAttack;
-        public event Action OnDamage;
         public event Action OnDie;
         public event Action OnMove;
         public override Team Team => Team.Enemies;
@@ -20,7 +19,7 @@ namespace Between.Enemies
 
         protected override void PerformOnDamage()
         {
-            OnDamage?.Invoke();
+            InvokeDamageEvent();
         }
 
         protected override void PerformOnDie()

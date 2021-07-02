@@ -2,11 +2,14 @@ using UnityEngine;
 using Between.Damage;
 using Between.Interfaces;
 using Between.Teams;
+using System;
 
 namespace Between
 {
     public abstract class BaseDamagableObject : MonoBehaviour, IDamagable
     {
+        public event Action OnDamage;
+
         public abstract Team Team { get; }
         public float MaxHealth { get; protected set; }
         public float Health { get; private set; }
@@ -34,6 +37,8 @@ namespace Between
 
         protected abstract void PerformOnDie();
         protected virtual void PerformOnDamage() { }
+
+        protected void InvokeDamageEvent() => OnDamage?.Invoke();
 
         private void TryDamageProtection(DamageType type, ref float damage)
         {
