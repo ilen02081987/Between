@@ -43,6 +43,7 @@ namespace Between
         public float SeveralProjectilesCastTime;
         public float SeveralProjectilesCastDelay;
         public bool SeveralProjectilesSingleCast;
+        public float TriggerSphereCastRadius;
 
         public void CreateInstance()
         {

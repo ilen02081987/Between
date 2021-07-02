@@ -11,6 +11,8 @@ namespace Between.SpellsEffects.Projectile
     [RequireComponent(typeof(Rigidbody))]
     public class Projectile : MonoBehaviour
     {
+        public Team Team => _team;
+
         [SerializeField] private float _health = 10f;
         [SerializeField] private float _impactDamage = 5f;
         [SerializeField] private Team _team = Team.Player;
