@@ -17,6 +17,11 @@ namespace Between.SpellsEffects.ShieldSpell
             _shieldsParent = new GameObject("ShieldsParent");
         }
 
+        public void Spawn(Vector3 from, Vector3 to)
+        {
+
+        }
+
         public void Spawn(List<Vector2Int> curve)
         {
             var shieldsSpawnPoints = CalculateShieldPositions(ConvertToGameSpace(curve));
