@@ -9,7 +9,7 @@ namespace Between.Enemies.Mavka
         private readonly Transform _target;
 
         private float _detectionRadius => GameSettings.Instance.DetectionRadius;
-        private bool _playerCloseEnough => Vector3.Distance(_owner.position, _target.position) <= _detectionRadius;
+        private bool _targetCloseEnough => Vector3.Distance(_owner.position, _target.position) <= _detectionRadius;
 
         public IdleDetectionState(FinitStateMachine stateMachine, Transform owner, Transform target)
             : base(stateMachine)
@@ -20,7 +20,7 @@ namespace Between.Enemies.Mavka
 
         public override void Update()
         {
-            if (_playerCloseEnough && _stateMachineEnabled)
+            if (_target != null && _targetCloseEnough && _stateMachineEnabled)
                 SwitchState(typeof(AttackState));
         }
     }
