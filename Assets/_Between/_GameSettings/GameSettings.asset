@@ -32,3 +32,6 @@ MonoBehaviour:
   DetectionRadius: 20
   CooldownBase: 3
   CooldownShift: 2
+  SpellPictureCompressCoefficient: 2
+  SeveralProjectilesCastTime: 2
+  SeveralProjectilesCastDelay: 1

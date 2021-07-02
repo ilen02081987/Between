@@ -39,6 +39,10 @@ namespace Between
         public float DetectionRadius;
         public float CooldownBase;
         public float CooldownShift;
+        public float SpellPictureCompressCoefficient;
+        public float SeveralProjectilesCastTime;
+        public float SeveralProjectilesCastDelay;
+        public bool SeveralProjectilesSingleCast;
 
         public void CreateInstance()
         {

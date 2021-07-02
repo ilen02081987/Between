@@ -1,18 +1,20 @@
+using Between;
 using Between.UserInput;
 using System.IO;
 using UnityEngine;
 
-namespace SpellPainter
+namespace SpellPainterEditor
 {
     public class InputWriter : MonoBehaviour
     {
         [SerializeField] private string _fileName;
-        private string _path;
 
         private SpellInputArray _inputArray;
 
         private void Start()
         {
+            _inputArray = new SpellInputArray();
+
             InputHandler.DrawCall += CollectInput;
             InputHandler.EndDraw += AddSpace;
         }
@@ -25,22 +27,26 @@ namespace SpellPainter
 
         private void CollectInput(InputData input)
         {
-            _inputArray.AddInput(new SpellInput(SpellInputType.Dot, input.Position));
+            _inputArray.AddInput(
+                new SpellInput(SpellInputType.Dot, GameCamera.ScreenToWorldPoint(input.Position)));
         }
         
         private void AddSpace(InputData input)
         {
-            _inputArray.AddInput(new SpellInput(SpellInputType.Space, Vector2Int.zero));
+            Debug.Log("Add space");
+            _inputArray.AddInput(new SpellInput(SpellInputType.Space, Vector3.zero));
         }
         
         private void SaveInput()
         {
+            Debug.Log("Save");
+
             _inputArray.ConvertDirtyData();
 
-            _path = Path.Combine(Application.streamingAssetsPath, _fileName);
+            string path = Path.Combine(Application.streamingAssetsPath, _fileName + ".json");
             string convertedData = JsonUtility.ToJson(_inputArray);
 
-            File.WriteAllText(_path, convertedData);
+            File.WriteAllText(path, convertedData);
         }
     }
 }

@@ -7,5 +7,6 @@ namespace Between
     public class ResourcesFoldersNames
     {
         public const string SPELLS = "Spells";
+        public const string SPELL_PAINTERS = "SpellPainters";
     }
 }

@@ -5,7 +5,7 @@ namespace Between.Enemies.Mavka
 {
     public class MavkaController : BaseEnemy
     {
-        [SerializeField] private Transform _singleProjectileSpawnPoint;
+        [SerializeField] private Transform[] _singleProjectileSpawnPoints;
 
         private FinitStateMachine _stateMachine;
         private Transform _player;
@@ -16,7 +16,7 @@ namespace Between.Enemies.Mavka
             _stateMachine = new FinitStateMachine();
 
             IdleDetectionState idleState = new IdleDetectionState(_stateMachine, transform, _player);
-            TestCastState testCastState = new TestCastState(_stateMachine, _singleProjectileSpawnPoint, _player);
+            SeveralProjectilesCastState testCastState = new SeveralProjectilesCastState(_stateMachine, _player, _singleProjectileSpawnPoints);
             AttackState attackState = new AttackState(_stateMachine, transform, _player, testCastState);
             CooldownState cooldownState = new CooldownState(_stateMachine);
 
