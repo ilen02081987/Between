@@ -9,6 +9,7 @@ namespace Between
     public abstract class BaseDamagableObject : MonoBehaviour, IDamagable
     {
         public event Action OnDamage;
+        public event Action OnDie;
 
         public abstract Team Team { get; }
         public float MaxHealth { get; protected set; }
@@ -39,6 +40,7 @@ namespace Between
         protected virtual void PerformOnDamage() { }
 
         protected void InvokeDamageEvent() => OnDamage?.Invoke();
+        protected void InvokeDieEvent() => OnDie?.Invoke();
 
         private void TryDamageProtection(DamageType type, ref float damage)
         {

@@ -8,7 +8,6 @@ namespace Between.Enemies
     public class BaseEnemy : BaseDamagableObject
     {
         public event Action OnAttack;
-        public event Action OnDie;
         public event Action OnMove;
         public override Team Team => Team.Enemies;
 
@@ -25,7 +24,7 @@ namespace Between.Enemies
         protected override void PerformOnDie()
         {
             Destroy(gameObject, _destroyTime);
-            OnDie?.Invoke();
+            InvokeDieEvent();
         }
     }
 }
