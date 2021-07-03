@@ -1,47 +1,47 @@
 using UnityEngine;
-
+using Cinemachine;
 public class CameraController : MonoBehaviour
 {
     [Tooltip("Большой шаг приближения/отдаления камеры"), SerializeField] private float zoomBig;
     [Tooltip("Маленький шаг приближения/отдаления камеры"), SerializeField] private float zoomLittle;
 
-    private Camera cm;
+    private CinemachineVirtualCamera cm;
 
     private void Start()
     {
-        cm = gameObject.GetComponent<Camera>();
+        cm = gameObject.GetComponent<CinemachineVirtualCamera>();
     }
 
     private void Update()
     {
 
-        if (cm.fieldOfView > 179) {
-            cm.fieldOfView = 179;
-        }
+        //if (cm.m_Lens.OrthographicSize > 179) {
+        //    cm.m_Lens.FieldOfView = 179;
+        //}
 
-        if (cm.fieldOfView < 1)
-        {
-            cm.fieldOfView = 1;
-        }
+        //if (cm.m_Lens.FieldOfView < 1)
+        //{
+        //    cm.m_Lens.FieldOfView = 1;
+        //}
 
         if (Input.GetKeyDown(KeyCode.PageDown))
         {
-            cm.fieldOfView += zoomBig;
+            cm.m_Lens.OrthographicSize += zoomBig;
         }
 
         if (Input.GetKeyDown(KeyCode.PageUp))
         {
-            cm.fieldOfView -= zoomBig;
+            cm.m_Lens.OrthographicSize -= zoomBig;
         }
 
         if (Input.GetKeyDown(KeyCode.End))
         {
-            cm.fieldOfView += zoomLittle;
+            cm.m_Lens.OrthographicSize += zoomLittle;
         }
 
         if (Input.GetKeyDown(KeyCode.Home))
         {
-            cm.fieldOfView -= zoomLittle;
+            cm.m_Lens.OrthographicSize -= zoomLittle;
         }
 
     }

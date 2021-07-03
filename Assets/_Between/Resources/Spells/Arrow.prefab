@@ -111,12 +111,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 6
   _impactDamage: 6
-  _team: 0
-  _damage: 6
+  _team: 1
+  _damage: 0.1
   _speed: 20
   _blastRadius: 2
   _friendlyFire: 0
-  ImpactParticles: {fileID: 3362210179839031016, guid: 06c486b0903c8f7479d619bbbc356bd6, type: 3}
+  _damageType: 2
+  _lifeTime: 15
 --- !u!54 &8868428215148044481
 Rigidbody:
   m_ObjectHideFlags: 0
