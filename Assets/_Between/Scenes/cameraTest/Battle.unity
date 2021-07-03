@@ -481,7 +481,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4877566461971141885, guid: 3fb70eecff210d046bc38030c6fa2cf0, type: 3}
       propertyPath: fireDelay
-      value: 400
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fb70eecff210d046bc38030c6fa2cf0, type: 3}
@@ -2623,7 +2623,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4877566461971141885, guid: 3fb70eecff210d046bc38030c6fa2cf0, type: 3}
       propertyPath: fireDelay
-      value: 400
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fb70eecff210d046bc38030c6fa2cf0, type: 3}

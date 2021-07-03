@@ -29,11 +29,11 @@ namespace Between.Enemies
         void Update()
         {
             // никогда так не делайте
-            if (delayCount < fireDelay)
-            {
-                delayCount++;
-                return;
-            }
+            //if (delayCount < fireDelay)
+            //{
+            //    delayCount++;
+            //    return;
+            //}
 
             if (target == null || Health <= 0)
             {
