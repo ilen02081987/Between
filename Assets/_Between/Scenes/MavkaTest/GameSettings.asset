@@ -30,9 +30,9 @@ MonoBehaviour:
   DecideBorder: 0.92
   EnableProbabilitiesLog: 0
   DetectionRadius: 20
-  CooldownBase: 3
-  CooldownShift: 2
+  CooldownBase: 1.6
+  CooldownShift: 0.7
   SpellPictureCompressCoefficient: 2
-  SeveralProjectilesCastTime: 2
-  SeveralProjectilesCastDelay: 1
+  SeveralProjectilesCastTime: 1
+  SeveralProjectilesCastDelay: 0.65
   SeveralProjectilesSingleCast: 0

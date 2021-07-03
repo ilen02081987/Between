@@ -513,7 +513,7 @@ PrefabInstance:
     - target: {fileID: 4869936855435180755, guid: 37d64bf23a9e111429525bd4b4d45dde, type: 3}
       propertyPath: _gameSettings
       value: 
-      objectReference: {fileID: 11400000, guid: d68fd4a8f77be8541966e2fdc649634a, type: 2}
+      objectReference: {fileID: 11400000, guid: 45f53f1c5f8553a43aa26207e1cb25a0, type: 2}
     - target: {fileID: 4869936855435180755, guid: 37d64bf23a9e111429525bd4b4d45dde, type: 3}
       propertyPath: PlayerController
       value: 
@@ -2093,15 +2093,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5782426854273945222, guid: 7c03f3677ff0f5944ab52516dad2a316, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.74
+      value: 17.34
       objectReference: {fileID: 0}
     - target: {fileID: 5782426854273945222, guid: 7c03f3677ff0f5944ab52516dad2a316, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.5
+      value: 7.8
       objectReference: {fileID: 0}
     - target: {fileID: 5782426854273945222, guid: 7c03f3677ff0f5944ab52516dad2a316, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -34.62
+      value: -16.74
       objectReference: {fileID: 0}
     - target: {fileID: 5782426854273945222, guid: 7c03f3677ff0f5944ab52516dad2a316, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3548,11 +3548,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400080, guid: f1a9a077a6f638446a31f5a0ed489124, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 4.12
       objectReference: {fileID: 0}
     - target: {fileID: 400080, guid: f1a9a077a6f638446a31f5a0ed489124, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -0.94
       objectReference: {fileID: 0}
     - target: {fileID: 400080, guid: f1a9a077a6f638446a31f5a0ed489124, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3651,6 +3651,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 410fd25318eb0db489e44989842fe3fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHealth: 0
+  Health: 0
   _protections: []
   _destroyTime: 2
   _singleProjectileSpawnPoints:
@@ -3715,11 +3717,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8226507996596072164, guid: 7d60c822c3f1b408ea7a00ecdb5e047a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.88
+      value: 8.94
       objectReference: {fileID: 0}
     - target: {fileID: 8226507996596072164, guid: 7d60c822c3f1b408ea7a00ecdb5e047a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.78
+      value: 7.36
       objectReference: {fileID: 0}
     - target: {fileID: 8226507996596072164, guid: 7d60c822c3f1b408ea7a00ecdb5e047a, type: 3}
       propertyPath: m_LocalPosition.z
