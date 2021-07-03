@@ -27,10 +27,6 @@ namespace Between
         public int MeteorsLinesCount;
         public int MeteorsCount;
 
-        [Header("Префаб щита")]
-        public float ShieldHealth;
-        public float ShieldLifeTime;
-
         [Header("SVM")]
         public float DecideBorder;
         public bool EnableProbabilitiesLog;
@@ -43,6 +39,7 @@ namespace Between
         public float SeveralProjectilesCastTime;
         public float SeveralProjectilesCastDelay;
         public bool SeveralProjectilesSingleCast;
+        public float SeveralProjectilesSphereCastRadius;
         public float MavkaShieldsCooldownTime;
 
         public void CreateInstance()

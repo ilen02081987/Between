@@ -17,10 +17,7 @@ namespace Between.SpellsEffects.ShieldSpell
 
         protected override void Start()
         {
-            MaxHealth = GameSettings.Instance.ShieldHealth;
-
             StartCoroutine(WaitToDestroy());
-
             base.Start();
         }
 

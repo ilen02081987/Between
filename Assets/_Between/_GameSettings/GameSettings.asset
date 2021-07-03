@@ -35,3 +35,6 @@ MonoBehaviour:
   SpellPictureCompressCoefficient: 2
   SeveralProjectilesCastTime: 2
   SeveralProjectilesCastDelay: 1
+  SeveralProjectilesSingleCast: 0
+  SeveralProjectilesSphereCastRadius: 1
+  MavkaShieldsCooldownTime: 3
