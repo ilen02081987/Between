@@ -3548,7 +3548,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400080, guid: f1a9a077a6f638446a31f5a0ed489124, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.12
+      value: -0.004
       objectReference: {fileID: 0}
     - target: {fileID: 400080, guid: f1a9a077a6f638446a31f5a0ed489124, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3652,7 +3652,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 0
-  Health: 0
   _protections: []
   _destroyTime: 2
   _singleProjectileSpawnPoints:
