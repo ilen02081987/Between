@@ -12,8 +12,9 @@ namespace Between
         public event Action OnDie;
 
         public abstract Team Team { get; }
-        public float MaxHealth { get; protected set; }
-        public float Health { get; private set; }
+
+        public float MaxHealth; //{ get; protected set; }
+        public float Health; //{ get; private set; }
 
         [SerializeField] private Protection[] _protections;
 

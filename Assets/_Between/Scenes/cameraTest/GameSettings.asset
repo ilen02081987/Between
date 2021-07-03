@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6790d3f8a713f847a14535d547a234f, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  ProjectileMinLenght: 0
-  ProjectileSpellCooldown: 1
-  ProjectilesSpawnOffset: 2
+  ProjectileMinLenght: 10
+  ProjectileSpellCooldown: 0
+  ProjectilesSpawnOffset: 20
   ProjectileDrawType: 0
   ShieldTrackerMinLenght: 20
   ShieldTrackerMaxLenght: 1000
@@ -27,8 +27,8 @@ MonoBehaviour:
   MeteorsCount: 5
   ShieldHealth: 7
   ShieldLifeTime: 7
-  DecideBorder: 0.92
-  EnableProbabilitiesLog: 0
+  DecideBorder: 0.85
+  EnableProbabilitiesLog: 1
   DetectionRadius: 20
   CooldownBase: 3
   CooldownShift: 2

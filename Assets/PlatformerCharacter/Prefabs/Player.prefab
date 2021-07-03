@@ -157,13 +157,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e5ee121d599664e9890df439a7188d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHealth: 10
+  Health: 10
+  _protections: []
   _body: {fileID: 8226507996596072167}
   _collider: {fileID: 8226507996596072163}
   _groundChecker: {fileID: 8226507995986304865}
   _detectRadius: 0.1
+  _acceleration: 2
   _maxSpeed: 10
   _stopCoefficient: 0.8
   _jumpForce: 150
+  _jumpForceInAir: 0
   _mass: 0.5
   _gravity: 9.81
   _airControl: 0.5
