@@ -13,10 +13,10 @@ namespace Between.Spells
             SetForceEndAngle(GameSettings.Instance.ShieldTrackerForceEndAngle).
             SetLenght(GameSettings.Instance.ShieldTrackerMinLenght, GameSettings.Instance.ShieldTrackerMaxLenght);
         
-        private ShieldSpawner _shieldSpawner = new ShieldSpawner();
+        private ShieldSpawner _shieldSpawner = new ShieldSpawner("Shield");
 
         protected override void OnCompleteSpell() => SpawnShields();
 
-        private void SpawnShields() => _shieldSpawner.Spawn(_tracker.DrawPoints);
+        private void SpawnShields() => _shieldSpawner.SpawnFromScreenPoints(_tracker.DrawPoints);
     }
 }

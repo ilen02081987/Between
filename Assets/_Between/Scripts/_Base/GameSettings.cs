@@ -43,7 +43,7 @@ namespace Between
         public float SeveralProjectilesCastTime;
         public float SeveralProjectilesCastDelay;
         public bool SeveralProjectilesSingleCast;
-        public float TriggerSphereCastRadius;
+        public float MavkaShieldsCooldownTime;
 
         public void CreateInstance()
         {

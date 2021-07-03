@@ -9,14 +9,14 @@ namespace Between.SpellsEffects.ShieldSpell
     public class Shield : BaseDamagableObject
     {
         public float Size => transform.localScale.y;
+        public float LifeTime => _lifeTime;
+        public override Team Team => _team;
 
-        public override Team Team => Team.Player;
-
-        private float _lifeTime = 3f;
+        [SerializeField] private Team _team;
+        [SerializeField] private float _lifeTime = 3f;
 
         protected override void Start()
         {
-            _lifeTime = GameSettings.Instance.ShieldLifeTime;
             MaxHealth = GameSettings.Instance.ShieldHealth;
 
             StartCoroutine(WaitToDestroy());

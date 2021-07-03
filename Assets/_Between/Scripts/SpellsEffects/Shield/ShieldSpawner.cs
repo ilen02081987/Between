@@ -11,23 +11,28 @@ namespace Between.SpellsEffects.ShieldSpell
         private Shield _shield;
         private GameObject _shieldsParent;
 
-        public ShieldSpawner()
+        public ShieldSpawner(string prefabName)
         {
-            _shield = Resources.Load<Shield>(Path.Combine(ResourcesFoldersNames.SPELLS, "Shield"));
+            _shield = Resources.Load<Shield>(Path.Combine(ResourcesFoldersNames.SPELLS, prefabName));
             _shieldsParent = new GameObject("ShieldsParent");
         }
 
         public void Spawn(Vector3 from, Vector3 to)
         {
-
+            var shieldsSpawnPoints = CalculateShieldPositions(new List<Vector3> { from, to });
+            SpawnShields(shieldsSpawnPoints);
         }
 
-        public void Spawn(List<Vector2Int> curve)
+        public void SpawnFromScreenPoints(List<Vector2Int> curve)
         {
             var shieldsSpawnPoints = CalculateShieldPositions(ConvertToGameSpace(curve));
+            SpawnShields(shieldsSpawnPoints);
+        }
 
+        private void SpawnShields(List<Vector3> shieldsSpawnPoints)
+        {
             foreach (var point in shieldsSpawnPoints)
-                SpawnShield(point);
+                SpawnSingleShield(point);
         }
 
         private List<Vector3> CalculateShieldPositions(List<Vector3> points)
@@ -61,7 +66,7 @@ namespace Between.SpellsEffects.ShieldSpell
             return outPoint;
         }
 
-        private void SpawnShield(Vector3 point)
+        private void SpawnSingleShield(Vector3 point)
         {
             var shield = MonoBehaviour.Instantiate(_shield, point, Quaternion.identity, _shieldsParent.transform);
             shield.transform.LookAt(TestPlayerController.Instance.transform);
