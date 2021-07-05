@@ -17,7 +17,8 @@ namespace Between.SpellPainting
         private LineRendererPainter _painter;
         private WaitForSeconds _afterDrawDelay;
 
-        public SpellPainter(string spellName, string painterName, Vector3 startPoint, float drawTime, float afterDrawDelay)
+        public SpellPainter(string spellName, string painterName, Vector3 startPoint
+            , float drawTime, float afterDrawDelay)
         {
             LoadInputData(spellName);
             CreatePainter(painterName, startPoint);
@@ -26,18 +27,19 @@ namespace Between.SpellPainting
             _afterDrawDelay = new WaitForSeconds(afterDrawDelay);
         }
 
-        private void CreatePainter(string painterName, Vector3 startPoint)
-        {
-            _painter = MonoBehaviour.Instantiate(Resources.Load<LineRendererPainter>
-                (Path.Combine(ResourcesFoldersNames.SPELL_PAINTERS, painterName)));
-            _painter.AddStartPoint(startPoint);
-        }
-
         private void LoadInputData(string spellName)
         {
             string spellPath = Path.Combine(Application.streamingAssetsPath, spellName + ".json");
             _inputArray = JsonUtility.FromJson<SpellInputArray>(File.ReadAllText(spellPath));
             _inputArray.Compress(GameSettings.Instance.SpellPictureCompressCoefficient);
+        }
+
+        private void CreatePainter(string painterName, Vector3 startPoint)
+        {
+            _painter = MonoBehaviour.Instantiate(Resources.Load<LineRendererPainter>
+                (Path.Combine(ResourcesFoldersNames.SPELL_PAINTERS, painterName)));
+
+            _painter.Init(startPoint);
         }
 
         public void StartDraw()

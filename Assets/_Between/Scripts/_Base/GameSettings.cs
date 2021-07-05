@@ -41,6 +41,9 @@ namespace Between
         public bool SeveralProjectilesSingleCast;
         public float SeveralProjectilesSphereCastRadius;
         public float MavkaShieldsCooldownTime;
+        public float MavkaSingleProjectileCastTime;
+        public int SeveralProjectilesCastWeight;
+        public int SingleProjectilesCastWeight;
 
         public void CreateInstance()
         {

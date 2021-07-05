@@ -1407,7 +1407,7 @@ GameObject:
   m_Component:
   - component: {fileID: 585390868}
   m_Layer: 0
-  m_Name: SingleProjectileSpawnPoints
+  m_Name: ProjectilesSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1554,37 +1554,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &747487712
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 747487713}
-  m_Layer: 0
-  m_Name: Enemies
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &747487713
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 747487712}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 5274703058560243288}
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &758200818
 GameObject:
@@ -4330,7 +4299,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5636273630597795697}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 22.6, y: 7.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4340,8 +4309,8 @@ Transform:
   - {fileID: 1681090392}
   - {fileID: 1500391530}
   - {fileID: 770239553}
-  m_Father: {fileID: 747487713}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &5636273630597795697
 GameObject:
@@ -4377,10 +4346,11 @@ MonoBehaviour:
   MaxHealth: 30
   _protections: []
   _destroyTime: 2
-  _singleProjectileSpawnPoints:
+  _severalProjectileSpawnPoints:
   - {fileID: 1136865293}
   - {fileID: 378149460}
   - {fileID: 1253959243}
+  _singleProjectileSpawnPoint: {fileID: 1136865293}
 --- !u!114 &7419934745315578123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4495,7 +4465,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8226507996596072166, guid: 7d60c822c3f1b408ea7a00ecdb5e047a, type: 3}
       propertyPath: MaxHealth
-      value: 20
+      value: 119.85
       objectReference: {fileID: 0}
     - target: {fileID: 8226507996596072166, guid: 7d60c822c3f1b408ea7a00ecdb5e047a, type: 3}
       propertyPath: _maxSpeed

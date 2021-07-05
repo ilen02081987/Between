@@ -1,24 +1,23 @@
+using System.Collections;
 using UnityEngine;
 using Between.SpellsEffects.Projectile;
 using Between.StateMachine;
 using Between.SpellPainting;
-using System.Collections;
 using Between.Utilities;
 
 namespace Between.Enemies.Mavka
 {
     public class SeveralProjectilesCastState : BaseCastState
     {
-        public override int Weight => 1;
+        public override int Weight => GameSettings.Instance.SeveralProjectilesCastWeight;
 
         private readonly Transform[] _spawnPoints;
         private readonly Transform _target;
-        
         private readonly ProjectileSpawner _projectileSpawner;
 
         public SeveralProjectilesCastState(FinitStateMachine stateMachine, Transform target, params Transform[] spawnPoints) : base(stateMachine)
         {
-            _projectileSpawner = new ProjectileSpawner("MavkaSingleProjectile", 0f);
+            _projectileSpawner = new ProjectileSpawner("MavkaSeveralProjectile", 0f);
             _spawnPoints = spawnPoints;
             _target = target;
         }
@@ -47,7 +46,8 @@ namespace Between.Enemies.Mavka
             var spellPainter = new SpellPainter(
                 "MavkaProjectiles",
                 "LineRenderersPainter",
-                _spawnPoints[spawnPointIndex].position, GameSettings.Instance.SeveralProjectilesCastTime, afterDrawDelay);
+                _spawnPoints[spawnPointIndex].position, GameSettings.Instance.SeveralProjectilesCastTime
+                , afterDrawDelay);
 
             spellPainter.Complete += () => CompletePaintSpell(spawnPointIndex);
             spellPainter.StartDraw();

@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Between/Scenes/MavkaTest.unity
+    path: Assets/_Between/Scenes/MavkaDev.unity
     guid: 9b5e5f126d93fe942a2fe8c5d60f4799
   m_configObjects: {}

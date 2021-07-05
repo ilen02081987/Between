@@ -25,10 +25,8 @@ MonoBehaviour:
   MeteorsLinesDelay: 0.5
   MeteorsLinesCount: 3
   MeteorsCount: 5
-  ShieldHealth: 7
-  ShieldLifeTime: 7
   DecideBorder: 0.92
-  EnableProbabilitiesLog: 0
+  EnableProbabilitiesLog: 1
   DetectionRadius: 20
   CooldownBase: 3
   CooldownShift: 2
@@ -38,3 +36,6 @@ MonoBehaviour:
   SeveralProjectilesSingleCast: 0
   SeveralProjectilesSphereCastRadius: 1
   MavkaShieldsCooldownTime: 3
+  MavkaSingleProjectileCastTime: 0
+  SeveralProjectilesCastWeight: 1
+  SingleProjectilesCastWeight: 1

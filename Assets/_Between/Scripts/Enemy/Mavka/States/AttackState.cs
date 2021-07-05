@@ -1,6 +1,5 @@
 using UnityEngine;
 using Between.StateMachine;
-using Accord.Collections;
 
 namespace Between.Enemies.Mavka
 {
@@ -21,7 +20,8 @@ namespace Between.Enemies.Mavka
 
         public override void Enter()
         {
-            int spellWeight = Random.Range(0, CountSpellsWeights());
+            float spellWeight = Random.Range(0f, CountSpellsWeights());
+            Debug.Log(spellWeight);
             int currentWeight = 0;
             BaseCastState currentState = null;
 
@@ -29,16 +29,19 @@ namespace Between.Enemies.Mavka
             {
                 currentWeight += state.Weight;
 
-                if (spellWeight < currentWeight)
+                if (spellWeight <= currentWeight)
+                {
                     currentState = state;
+                    break;
+                }
             }
 
             SwitchState(currentState.GetType());
         }
 
-        private int CountSpellsWeights()
+        private float CountSpellsWeights()
         {
-            int totalWeights = default;
+            float totalWeights = default;
 
             foreach (var state in _castintStates)
                 totalWeights += state.Weight;

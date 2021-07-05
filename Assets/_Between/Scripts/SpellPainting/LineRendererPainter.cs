@@ -8,7 +8,7 @@ public class LineRendererPainter : MonoBehaviour
     private LineRenderer _currentRenderer;
     private Vector3 _startPoint;
 
-    public void AddStartPoint(Vector3 position)
+    public void Init(Vector3 position)
     {
         _startPoint = position;
     }

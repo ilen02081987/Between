@@ -14,7 +14,6 @@ namespace Between.Enemies
 
         [SerializeField] private int fireDelay;
 
-        private float delayCount = 0;
         private bool isAgred;
         private float attackCD;
         private ProjectileSpawner _spawner;
@@ -28,13 +27,6 @@ namespace Between.Enemies
 
         void Update()
         {
-            // никогда так не делайте
-            //if (delayCount < fireDelay)
-            //{
-            //    delayCount++;
-            //    return;
-            //}
-
             if (target == null || Health <= 0)
             {
                 return;
