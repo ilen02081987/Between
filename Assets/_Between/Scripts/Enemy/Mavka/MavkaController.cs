@@ -7,35 +7,74 @@ namespace Between.Enemies.Mavka
     {
         [SerializeField] private Transform[] _severalProjectileSpawnPoints;
         [SerializeField] private Transform _singleProjectileSpawnPoint;
+        [Space]
+        [SerializeField] private Transform _meleeCastPoint;
+        [SerializeField] private Transform _meleeSpawnPoint;
 
-        private FinitStateMachine _stateMachine;
+        private FinitStateMachine _rangeStateMachine;
+        private FinitStateMachine _meleeStateMachine;
         private Transform _player;
 
         protected override void Start()
         {
             _player = App.Instance.PlayerController.transform;
-            _stateMachine = new FinitStateMachine();
 
-            IdleDetectionState idleState = new IdleDetectionState(_stateMachine, transform, _player);
-            SingleProjectileCaseState singleCastState = new SingleProjectileCaseState(_stateMachine, _player, _singleProjectileSpawnPoint);
-            SeveralProjectilesCastState severalCastState = new SeveralProjectilesCastState(_stateMachine, _player, _severalProjectileSpawnPoints);
-            AttackState attackState = new AttackState(_stateMachine, transform, _player, singleCastState, severalCastState);
-            CooldownState cooldownState = new CooldownState(_stateMachine);
-
-            _stateMachine.AddStates(idleState, singleCastState, severalCastState, attackState, cooldownState);
+            InitRangeStateMachine();
+            InitMeleeStateMachine();
 
             base.Start();
         }
 
+        private void InitRangeStateMachine()
+        {
+            _rangeStateMachine = new FinitStateMachine();
+
+            RangeIdleDetectionState idleState = new RangeIdleDetectionState
+                (_rangeStateMachine, transform, _player, GameSettings.Instance.RangeDetectionRadius);
+            
+            SingleProjectileCaseState singleCastState 
+                = new SingleProjectileCaseState(_rangeStateMachine, _player, _singleProjectileSpawnPoint);
+            
+            SeveralProjectilesCastState severalCastState 
+                = new SeveralProjectilesCastState(_rangeStateMachine, _player, _severalProjectileSpawnPoints);
+            
+            AttackState attackState = new AttackState(_rangeStateMachine, singleCastState, severalCastState);
+            
+            CooldownState cooldownState = new CooldownState(
+                _rangeStateMachine, GameSettings.Instance.RangeCooldownBase, 
+                GameSettings.Instance.RangeCooldownShift, idleState);
+
+            _rangeStateMachine.AddStates(idleState, singleCastState, severalCastState, attackState, cooldownState);
+        }
+
+        private void InitMeleeStateMachine()
+        {
+            _meleeStateMachine = new FinitStateMachine();
+
+            MeleeIdleDetectionState idleState = new MeleeIdleDetectionState
+                (_meleeStateMachine, transform, _player, GameSettings.Instance.MeleeDetectionRadius);
+
+            MeleeAttackState attackState 
+                = new MeleeAttackState(_meleeStateMachine, _player, _meleeCastPoint, _meleeSpawnPoint);
+
+            CooldownState cooldownState = new CooldownState
+                (_meleeStateMachine, GameSettings.Instance.MeleeCooldownBase, 
+                GameSettings.Instance.MeleeCooldownShift, idleState);
+
+            _meleeStateMachine.AddStates(idleState, attackState, cooldownState);
+        }
+
         private void Update()
         {
-            _stateMachine.Update();
+            _rangeStateMachine.Update();
+            _meleeStateMachine.Update();
+
             TryRotate();
         }
 
         protected override void PerformOnDie()
         {
-            _stateMachine.Disable();
+            _rangeStateMachine.Disable();
             base.PerformOnDie();
         }
 

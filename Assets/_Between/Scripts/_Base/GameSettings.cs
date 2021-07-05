@@ -32,9 +32,9 @@ namespace Between
         public bool EnableProbabilitiesLog;
 
         [Header("Mavka")]
-        public float DetectionRadius;
-        public float CooldownBase;
-        public float CooldownShift;
+        public float RangeDetectionRadius;
+        public float RangeCooldownBase;
+        public float RangeCooldownShift;
         public float SpellPictureCompressCoefficient;
         public float SeveralProjectilesCastTime;
         public float SeveralProjectilesCastDelay;
@@ -44,6 +44,9 @@ namespace Between
         public float MavkaSingleProjectileCastTime;
         public int SeveralProjectilesCastWeight;
         public int SingleProjectilesCastWeight;
+        public float MeleeDetectionRadius;
+        public float MeleeCooldownBase;
+        public float MeleeCooldownShift;
 
         public void CreateInstance()
         {

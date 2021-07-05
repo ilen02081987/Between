@@ -5,23 +5,17 @@ namespace Between.Enemies.Mavka
 {
     public class AttackState : BaseState
     {
-        private readonly Transform _owner;
-        private readonly Transform _target;
-
         private readonly BaseCastState[] _castintStates;
 
-        public AttackState(FinitStateMachine stateMachine, Transform owner, Transform target
+        public AttackState(FinitStateMachine stateMachine
             , params BaseCastState[] castingStates) : base(stateMachine)
         {
-            _owner = owner;
-            _target = target;
             _castintStates = castingStates;
         }
 
         public override void Enter()
         {
             float spellWeight = Random.Range(0f, CountSpellsWeights());
-            Debug.Log(spellWeight);
             int currentWeight = 0;
             BaseCastState currentState = null;
 

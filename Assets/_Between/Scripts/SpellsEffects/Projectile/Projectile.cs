@@ -71,9 +71,12 @@ namespace Between.SpellsEffects.Projectile
                 {
                     ApplyDamage(damagable);
                     TakeImpactDamage();
+                    ApplySpecialEffects(gameObject);
                 }
             }
         }
+
+        protected virtual void ApplySpecialEffects(GameObject gameObject) { }
 
         private void ApplyDamage(IDamagable damagable)
         {
