@@ -23,7 +23,7 @@ namespace Between.Enemies.Mavka
         public override void Enter()
         {
             var spellPainter = new SpellPainter(
-                "MavkaSingleProjectile",
+                "MavkaMeleeProjectile",
                 "LineRenderersPainter",
                 _castPoint.position, GameSettings.Instance.MavkaSingleProjectileCastTime, 0f);
 

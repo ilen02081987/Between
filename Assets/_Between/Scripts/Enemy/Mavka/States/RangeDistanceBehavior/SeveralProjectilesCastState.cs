@@ -44,7 +44,7 @@ namespace Between.Enemies.Mavka
         private void CreateSpellPainter(int spawnPointIndex, float afterDrawDelay)
         {
             var spellPainter = new SpellPainter(
-                "MavkaProjectiles",
+                "MavkaSeveralProjectiles",
                 "LineRenderersPainter",
                 _spawnPoints[spawnPointIndex].position, GameSettings.Instance.SeveralProjectilesCastTime
                 , afterDrawDelay);
