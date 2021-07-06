@@ -35,13 +35,13 @@ namespace Between.SpellsEffects.Projectile
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody>();
-            OnLaunch?.Invoke(_direction);
             StartCoroutine(WaitToDestroy());
         }
 
         public void Launch(Vector3 direction)
         {
             _direction = direction;
+            OnLaunch?.Invoke(_direction);
         }
 
         private void Update()

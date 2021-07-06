@@ -8,11 +8,17 @@ namespace Between
     {
         public static GameSettings Instance { get; private set; }
 
-        [Header("Заклинание прожектайла")]
+        [Header("Заклинание малого прожектайла")]
         public float ProjectileMinLenght;
+        public float ProjectileMiddleLenght;
         public float ProjectileSpellCooldown;
         public float ProjectilesSpawnOffset;
         public ProjectileSpell.ProjectileDrawType ProjectileDrawType;
+
+        [Header("Заклинание большого прожектайла")]
+        public float ProjectileMaxLenght;
+        public float BigProjectileSpellCooldown;
+        public float BigProjectileCastDelay;
 
         [Header("Заклинание щита")]
         public float ShieldTrackerMinLenght;

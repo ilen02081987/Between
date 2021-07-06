@@ -1,21 +1,23 @@
-using Between.Extensions;
+using UnityEngine;
 using Between.SpellRecognition;
 using Between.SpellsEffects.Projectile;
 using Between.UserInput.Trackers;
-using UnityEngine;
 
 namespace Between.Spells
 {
     public class ProjectileSpell : SvmBasedSpell
     {
-        public override float CoolDownTime => GameSettings.Instance.ProjectileSpellCooldown;
+        public override float CoolDownTime => _coolDownTime;
 
         protected override SpellFigure _figure => SpellFigure.Line;
 
         private readonly ProjectileSpawner _projectileSpawner;
         private readonly float _spawnOffset = GameSettings.Instance.ProjectilesSpawnOffset;
+        private readonly float _minLenght;
+        private readonly float _maxLenght;
+        private readonly float _coolDownTime; 
 
-        private bool _isLongEnough
+        private bool _isValidLenght
         {
             get
             {
@@ -25,18 +27,22 @@ namespace Between.Spells
                     return false;
 
                 var distance = Vector2.Distance(points[0], points[points.Count - 1]);
-                return distance > GameSettings.Instance.ProjectileMinLenght;
+                return distance > _minLenght && distance < _maxLenght;
             }
         }
 
-        public ProjectileSpell(string projectileName) : base()
+        public ProjectileSpell(string projectileName, float cooldown, float minLenght, float maxLenght, float spawnDelay = 0f) : base()
         {
-            _projectileSpawner = new ProjectileSpawner(projectileName, _spawnOffset);
+            _coolDownTime = cooldown;
+            _projectileSpawner = new ProjectileSpawner(projectileName, _spawnOffset, spawnDelay);
+            
+            _minLenght = minLenght;
+            _maxLenght = maxLenght;
         }
 
         protected override void OnCompleteSpell()
         {
-            if (_isLongEnough)
+            if (_isValidLenght)
                 SpawnProjectile();
         }
 

@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6790d3f8a713f847a14535d547a234f, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  ProjectileMinLenght: 0
+  ProjectileMinLenght: 20
+  ProjectileMiddleLenght: 300
   ProjectileSpellCooldown: 1
   ProjectilesSpawnOffset: 2
   ProjectileDrawType: 0
+  ProjectileMaxLenght: 1000
+  BigProjectileSpellCooldown: 2
+  BigProjectileCastDelay: 1
   ShieldTrackerMinLenght: 20
   ShieldTrackerMaxLenght: 1000
   ShieldTrackerForceEndAngle: 90

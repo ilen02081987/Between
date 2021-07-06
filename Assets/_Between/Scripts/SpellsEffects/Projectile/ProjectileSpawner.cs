@@ -1,3 +1,5 @@
+using Between.Utilities;
+using System.Collections;
 using System.IO;
 using UnityEngine;
 
@@ -11,8 +13,9 @@ namespace Between.SpellsEffects.Projectile
         private static GameObject _projectilesParent;
 
         private readonly float _offset;
+        private readonly float _spawnDelay;
 
-        public ProjectileSpawner(string prefabName, float spawnOffset)
+        public ProjectileSpawner(string prefabName, float spawnOffset, float spawnDelay = 0f)
         {
             _prefab = Resources.Load<Projectile>(Path.Combine(ResourcesFoldersNames.SPELLS, prefabName));
 
@@ -20,6 +23,7 @@ namespace Between.SpellsEffects.Projectile
                 _projectilesParent = new GameObject("ProjectilesParent");
 
             _offset = spawnOffset;
+            _spawnDelay = spawnDelay;
         }
 
         public void Spawn(Vector3 position, Vector3 direction)
@@ -28,12 +32,18 @@ namespace Between.SpellsEffects.Projectile
             var projectile = MonoBehaviour.Instantiate(
                 _prefab, spawnPosition, Quaternion.identity, _projectilesParent.transform);
 
-            projectile.Launch(direction);
+            CoroutineLauncher.Start(DelayedLaunch(projectile, direction));
         }
 
         private Vector3 FindSpawnPoint(Vector3 position, Vector3 direction)
         {
             return position - direction * _offset;
+        }
+
+        private IEnumerator DelayedLaunch(Projectile projectile, Vector3 direction)
+        {
+            yield return new WaitForSeconds(_spawnDelay);
+            projectile.Launch(direction);
         }
     }
 }
