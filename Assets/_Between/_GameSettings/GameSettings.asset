@@ -31,8 +31,8 @@ MonoBehaviour:
   MeteorsCount: 5
   DecideBorder: 0.92
   EnableProbabilitiesLog: 1
-  RangeDetectionRadius: 0
-  RangeCooldownBase: 0
+  RangeDetectionRadius: 15
+  RangeCooldownBase: 2.27
   RangeCooldownShift: 0
   SpellPictureCompressCoefficient: 2
   SeveralProjectilesCastTime: 2
@@ -43,6 +43,6 @@ MonoBehaviour:
   MavkaSingleProjectileCastTime: 0
   SeveralProjectilesCastWeight: 1
   SingleProjectilesCastWeight: 1
-  MeleeDetectionRadius: 10
+  MeleeDetectionRadius: 15
   MeleeCooldownBase: 3
   MeleeCooldownShift: 1

@@ -18,6 +18,8 @@ namespace Between.SpellsEffects.ShieldSpell
         protected override void Start()
         {
             StartCoroutine(WaitToDestroy());
+            UpdateColliderTrigger();
+            
             base.Start();
         }
 
@@ -49,6 +51,12 @@ namespace Between.SpellsEffects.ShieldSpell
         {
             StopCoroutine(WaitToDestroy());
             Destroy(gameObject);
+        }
+
+        private void UpdateColliderTrigger()
+        {
+            if (Team == Team.Player)
+                GetComponent<Collider>().isTrigger = GameSettings.Instance.ShieldColliderTrigger;
         }
     }
 }

@@ -25,6 +25,7 @@ namespace Between
         public float ShieldTrackerMaxLenght;
         public float ShieldTrackerForceEndAngle;
         public float ShieldSpellCooldown;
+        public bool ShieldColliderTrigger;
 
         [Header("Заклинание метеоритного дождя")]
         public float MeteorRainMinLenght;

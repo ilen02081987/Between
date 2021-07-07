@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 10
   _impactDamage: 5
-  _team: 0
+  _team: 1
   _damage: 6
   _speed: 10
   _blastRadius: 2
