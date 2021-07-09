@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Between.UserInput
+namespace Between.InputTracking
 {
     public struct InputData
     {

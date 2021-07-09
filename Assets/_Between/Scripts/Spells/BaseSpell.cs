@@ -1,4 +1,5 @@
-using Between.UserInput.Trackers;
+using Between.InputTracking;
+using Between.InputTracking.Trackers;
 using Between.Utilities;
 using System;
 using System.Collections;
@@ -14,6 +15,11 @@ namespace Between.Spells
 
         public abstract float CoolDownTime { get; }
         protected abstract BaseInputTracker tracker { get; }
+        protected abstract float _manaCoefficient { get; }
+
+        protected float _spellLenght => InputLenghtCalculator.LastLenght;
+        protected float _manaAmount => _spellLenght * _manaCoefficient;
+        protected bool _enoughMana => _manaAmount <= Player.Instance.Mana.Value;
 
         public void Init()
         {
@@ -31,15 +37,11 @@ namespace Between.Spells
             tracker.DrawFailed -= OnDrawFailed;
         }
 
-        private void OnCompleteDraw()
-        {
-            OnCompleteSpell();
-            CoroutineLauncher.Start(WaitCooldown());
-        }
-
         protected abstract void OnCompleteSpell();
         protected virtual void OnCanCompleteDraw() { }
         protected virtual void OnDrawFailed() { }
+
+        protected void RemoveMana() => Player.Instance.Mana.Remove(_manaAmount);
 
         //NOTE: корутина вместо асинка чтобы ждать время игры, а не реалтайм
         private IEnumerator WaitCooldown()
@@ -60,6 +62,12 @@ namespace Between.Spells
             tracker.Init();
 
             CooldownFinished?.Invoke();
+        }
+
+        private void OnCompleteDraw()
+        {
+            OnCompleteSpell();
+            CoroutineLauncher.Start(WaitCooldown());
         }
     }
 }

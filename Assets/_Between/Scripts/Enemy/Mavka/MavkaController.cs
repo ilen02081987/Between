@@ -17,7 +17,7 @@ namespace Between.Enemies.Mavka
 
         protected override void Start()
         {
-            _player = App.Instance.PlayerController.transform;
+            _player = Player.Instance.Controller.transform;
 
             InitRangeStateMachine();
             InitMeleeStateMachine();

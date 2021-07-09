@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Between.UserInput.Trackers
+namespace Between.InputTracking.Trackers
 {
     public abstract class BaseInputTracker
     {

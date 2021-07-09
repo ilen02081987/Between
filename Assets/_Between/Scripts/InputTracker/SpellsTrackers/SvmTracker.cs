@@ -3,7 +3,7 @@ using Between.SpellRecognition;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Between.UserInput.Trackers
+namespace Between.InputTracking.Trackers
 {
     public class SvmTracker : BaseInputTracker
     {

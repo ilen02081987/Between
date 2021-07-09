@@ -518,6 +518,10 @@ PrefabInstance:
       propertyPath: PlayerController
       value: 
       objectReference: {fileID: 1005441128}
+    - target: {fileID: 4869936855435180755, guid: 37d64bf23a9e111429525bd4b4d45dde, type: 3}
+      propertyPath: _playerController
+      value: 
+      objectReference: {fileID: 1005441128}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37d64bf23a9e111429525bd4b4d45dde, type: 3}
 --- !u!1 &156030328
@@ -622,6 +626,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1035432024, guid: 857c45c98913bcf42826a3bf79310b39, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3680521765527298619, guid: 857c45c98913bcf42826a3bf79310b39, type: 3}
       propertyPath: m_RootOrder
       value: 1

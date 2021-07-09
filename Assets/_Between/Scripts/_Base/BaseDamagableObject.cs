@@ -14,7 +14,7 @@ namespace Between
         public abstract Team Team { get; }
 
         public float MaxHealth;
-        public float Health { get; private set; }
+        public float Health { get; protected set; }
 
 
         [SerializeField] private Protection[] _protections;

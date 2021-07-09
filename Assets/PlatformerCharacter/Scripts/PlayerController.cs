@@ -32,6 +32,8 @@ namespace Between
                 Jump();
         }
 
+        public void Heal(float value) => Health = Mathf.Min(Health + value, MaxHealth);
+
         private void TryMove(float axis)
         {
             if (Mathf.Approximately(axis, 0f) && IsGrounded())

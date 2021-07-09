@@ -2,7 +2,7 @@ using UnityEngine;
 using Between.Extensions;
 using Between.SpellRecognition;
 using Between.SpellsEffects.MeteorRain;
-using Between.UserInput.Trackers;
+using Between.InputTracking.Trackers;
 
 namespace Between.Spells
 {
@@ -25,6 +25,8 @@ namespace Between.Spells
             }
         }
 
+        protected override float _manaCoefficient => GameSettings.Instance.MeteorRainManaCoefficient;
+
         public MeteorRainSpell(string projectileName) : base()
         {
             _spawner = new MeteorRainSpawner(projectileName);
@@ -32,8 +34,11 @@ namespace Between.Spells
 
         protected override void OnCompleteSpell()
         {
-            if (_isLongEnough)
+            if (_isLongEnough && _enoughMana)
+            {
                 SpawnMeteorRain();
+                RemoveMana();
+            }
         }
 
         private void SpawnMeteorRain()

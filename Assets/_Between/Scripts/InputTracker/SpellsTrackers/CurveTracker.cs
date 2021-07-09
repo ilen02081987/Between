@@ -2,7 +2,7 @@
 using UnityEngine;
 using Between.Extensions;
 
-namespace Between.UserInput.Trackers
+namespace Between.InputTracking.Trackers
 {
     public class CurveTracker : BaseInputTracker
     {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Between.UserInput
+namespace Between.InputTracking
 {
     public class InputHandler : MonoBehaviour
     {

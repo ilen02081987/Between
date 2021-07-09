@@ -1,4 +1,5 @@
 using Between.Spells;
+using System;
 using UnityEngine;
 
 namespace Between
@@ -8,17 +9,26 @@ namespace Between
     {
         public static GameSettings Instance { get; private set; }
 
-        [Header("Заклинание малого прожектайла")]
-        public float ProjectileMinLenght;
+        [Header("Мана игрока")]
+        public float ManaMaxValue;
+        public float ManaRecoveryPerSec;
+        public bool EnableRemoveManaLog;
+
+        [Header("Заклинание прожектайла")]
         public float ProjectileMiddleLenght;
-        public float ProjectileSpellCooldown;
         public float ProjectilesSpawnOffset;
         public ProjectileSpell.ProjectileDrawType ProjectileDrawType;
+
+        [Header("Заклинание малого прожектайла")]
+        public float ProjectileMinLenght;
+        public float ProjectileSpellCooldown;
+        public float SmallProjectileManaCoefficient;
 
         [Header("Заклинание большого прожектайла")]
         public float ProjectileMaxLenght;
         public float BigProjectileSpellCooldown;
         public float BigProjectileCastDelay;
+        public float BigProjectileManaCoefficient;
 
         [Header("Заклинание щита")]
         public float ShieldTrackerMinLenght;
@@ -26,6 +36,7 @@ namespace Between
         public float ShieldTrackerForceEndAngle;
         public float ShieldSpellCooldown;
         public bool ShieldColliderTrigger;
+        public float ShieldManaCoefficient;
 
         [Header("Заклинание метеоритного дождя")]
         public float MeteorRainMinLenght;
@@ -33,6 +44,13 @@ namespace Between
         public float MeteorsLinesDelay;
         public int MeteorsLinesCount;
         public int MeteorsCount;
+        public float MeteorRainManaCoefficient;
+
+        [Header("Заклинание лечения")]
+        public float HealingSpellCooldown;
+        public float HealingSpellManaCoefficient;
+        public float HealingSpellMaxSize;
+        public float HealingSpellMaxHeal;
 
         [Header("SVM")]
         public float DecideBorder;

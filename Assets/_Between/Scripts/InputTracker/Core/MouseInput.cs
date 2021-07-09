@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Between.UserInput
+namespace Between.InputTracking
 {
     public class MouseInput : IComparable<MouseInput>
     {

@@ -1,5 +1,5 @@
 using Between.SpellRecognition;
-using Between.UserInput.Trackers;
+using Between.InputTracking.Trackers;
 
 namespace Between.Spells
 {

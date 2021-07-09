@@ -1,7 +1,7 @@
 using UnityEngine;
 using Between.SpellRecognition;
 using Between.SpellsEffects.Projectile;
-using Between.UserInput.Trackers;
+using Between.InputTracking.Trackers;
 
 namespace Between.Spells
 {
@@ -10,12 +10,14 @@ namespace Between.Spells
         public override float CoolDownTime => _coolDownTime;
 
         protected override SpellFigure _figure => SpellFigure.Line;
+        protected override float _manaCoefficient => _manaCoeff;
 
         private readonly ProjectileSpawner _projectileSpawner;
         private readonly float _spawnOffset = GameSettings.Instance.ProjectilesSpawnOffset;
         private readonly float _minLenght;
         private readonly float _maxLenght;
-        private readonly float _coolDownTime; 
+        private readonly float _coolDownTime;
+        private readonly float _manaCoeff;
 
         private bool _isValidLenght
         {
@@ -31,19 +33,23 @@ namespace Between.Spells
             }
         }
 
-        public ProjectileSpell(string projectileName, float cooldown, float minLenght, float maxLenght, float spawnDelay = 0f) : base()
+        public ProjectileSpell(string projectileName, float cooldown, float minLenght, float maxLenght, float manaCoeff = 1f, float spawnDelay = 0f) : base()
         {
             _coolDownTime = cooldown;
             _projectileSpawner = new ProjectileSpawner(projectileName, _spawnOffset, spawnDelay);
             
             _minLenght = minLenght;
             _maxLenght = maxLenght;
+            _manaCoeff = manaCoeff;
         }
 
         protected override void OnCompleteSpell()
         {
-            if (_isValidLenght)
+            if (_isValidLenght && _enoughMana)
+            {
                 SpawnProjectile();
+                RemoveMana();
+            }
         }
 
         private void SpawnProjectile()
