@@ -28,20 +28,22 @@ namespace Between.Spells
             float healValue = _spellLenght / settings.HealingSpellMaxSize * settings.HealingSpellMaxHeal;
 
             if (ContainsPlayer())
+            {
+                Debug.Log("Contains player");
                 Player.Instance.Controller.Heal(healValue);
+            }
         }
 
         private bool ContainsPlayer()
         {
             List<Vector2Int> points = ((SvmTracker)tracker).DrawPoints;
-            Vector2Int firstPoint = points[0];
-            Vector2Int farthestPoint = FindFarthestPoint(points, firstPoint);
+            Vector2Int farthestPoint = FindFarthestPoint(points, points[0]);
 
-            Vector2Int middlePoint = Vector2Int.RoundToInt(Vector2.Lerp(firstPoint, farthestPoint, .5f));
-            Vector3 worldMiddlePoint = GameCamera.ScreenToWorldPoint(middlePoint);
-            float worldCircleSize = FindWorldPointsDistance(firstPoint, farthestPoint);
+            Vector3 worldMiddlePoint = FindWorldMiddlePoint(points);
+            var circleSize = FindWorldPointsDistance(points[0], farthestPoint);
+            Debug.Log($"circle size = {circleSize}");
 
-            Collider[] colliders = Physics.OverlapSphere(worldMiddlePoint, worldCircleSize / 2f);
+            Collider[] colliders = Physics.OverlapSphere(worldMiddlePoint, circleSize / 2f);
 
             if (colliders == null || colliders.Length == 0)
                 return false;
@@ -74,15 +76,13 @@ namespace Between.Spells
             return farthestPoint;
         }
 
-        private float FindAveragePointsDistance(List<Vector2Int> points)
+        private Vector3 FindWorldMiddlePoint(List<Vector2Int> points)
         {
-            float distancies = default;
             Vector2Int firstPoint = points[0];
+            Vector2Int farthestPoint = FindFarthestPoint(points, firstPoint);
 
-            foreach (var point in points)
-                distancies += Vector2Int.Distance(firstPoint, point);
-
-            return distancies / points.Count;
+            Vector2Int middlePoint = Vector2Int.RoundToInt(Vector2.Lerp(firstPoint, farthestPoint, .5f));
+            return GameCamera.ScreenToWorldPoint(middlePoint);
         }
 
         private float FindWorldPointsDistance(Vector2Int first, Vector2Int second)
