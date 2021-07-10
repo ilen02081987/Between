@@ -65,5 +65,15 @@ namespace Between.Extensions
 
         public static float Angle(this InputData input)
             => input.Position.Angle();
+
+        public static List<Vector3> ToWorldPoints(this List<Vector2Int> original)
+        {
+            List<Vector3> output = new List<Vector3>();
+
+            foreach (var point in original)
+                output.Add(GameCamera.ScreenToWorldPoint(point));
+
+            return output;
+        }
     }
 }

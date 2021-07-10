@@ -1,7 +1,9 @@
-﻿using Between.InputTracking.Trackers;
-using Between.SpellRecognition;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Between.Extensions;
+using Between.InputTracking.Trackers;
+using Between.SpellRecognition;
 
 namespace Between.Spells
 {
@@ -14,7 +16,7 @@ namespace Between.Spells
 
         protected override void OnCompleteSpell()
         {
-            if (_enoughMana)
+            if (_enoughMana && ValidCompressionRatio())
             {
                 TryHealPlayer();
                 RemoveMana();
@@ -27,22 +29,38 @@ namespace Between.Spells
             float healValue = _spellLenght / settings.HealingSpellMaxSize * settings.HealingSpellMaxHeal;
 
             if (ContainsPlayer())
-            {
-                Debug.Log("Contains player");
                 Player.Instance.Controller.Heal(healValue);
+        }
+
+        private bool ValidCompressionRatio()
+        {
+            List<Vector2Int> points = ((SvmTracker)tracker).DrawPoints;
+            
+            float minDistance = float.MaxValue;
+            float maxDistance = 0f;
+
+            for (int i = 0; i < points.Count; i++)
+            {
+                int oppositePointNumber = (i + points.Count / 2) % points.Count;
+                float currentDistance = Vector2Int.Distance(points[i], points[oppositePointNumber]);
+
+                if (currentDistance < minDistance)
+                    minDistance = currentDistance;
+
+                if (currentDistance > maxDistance)
+                    maxDistance = currentDistance;
             }
+
+            return maxDistance / minDistance < GameSettings.Instance.CircleCompressionRatio;
         }
 
         private bool ContainsPlayer()
         {
             List<Vector2Int> points = ((SvmTracker)tracker).DrawPoints;
-            Vector2Int farthestPoint = FindFarthestPoint(points, points[0]);
-
             Vector3 worldMiddlePoint = FindWorldMiddlePoint(points);
-            var circleSize = FindWorldPointsDistance(points[0], farthestPoint);
-            Debug.Log($"circle size = {circleSize}");
+            var minWorldDiameter = FindAverageWorldDiameter(points);
 
-            Collider[] colliders = Physics.OverlapSphere(worldMiddlePoint, circleSize / 2f);
+            Collider[] colliders = Physics.OverlapSphere(worldMiddlePoint, minWorldDiameter / 2f);
 
             if (colliders == null || colliders.Length == 0)
                 return false;
@@ -54,6 +72,45 @@ namespace Between.Spells
             }
 
             return false;
+        }
+
+        private float FindAverageWorldDiameter(List<Vector2Int> points)
+        {
+            List<Vector3> worldPoints = points.ToWorldPoints();
+            int pointsHalfCount = points.Count / 2;
+            float totalDistance = default;
+            int oppositePointNumber = default;
+
+            for (int i = 0; i < worldPoints.Count; i++)
+            {
+                oppositePointNumber = (i + pointsHalfCount) % worldPoints.Count;
+                totalDistance += Vector3.Distance(worldPoints[i], worldPoints[oppositePointNumber]);
+            }
+
+            return totalDistance / points.Count;
+        }
+
+        private float FindWorldRadius(float coefficient, List<Vector2Int> points)
+        {
+            var radius = FindAverageRadius(points);
+            return radius * coefficient;
+        }
+
+        private float FindAverageRadius(List<Vector2Int> circlePoints)
+        {
+            DateTime startCountTime = DateTime.Now;
+            float totalDistance = default;
+
+            for (int i = 0; i < circlePoints.Count; i++)
+                for (int j = 0; j < circlePoints.Count; j++)
+                    totalDistance += Vector2Int.Distance(circlePoints[i], circlePoints[j]);
+
+            float radius = totalDistance / (circlePoints.Count * circlePoints.Count);
+            
+            //Debug.Log($"circle points count = {circlePoints.Count}, radius = {radius}, " +
+            //    $"calculate time ms = {DateTime.Now.Subtract(startCountTime).TotalMilliseconds}");
+
+            return radius;
         }
 
         private Vector2Int FindFarthestPoint(List<Vector2Int> points, Vector2Int firstPoint)

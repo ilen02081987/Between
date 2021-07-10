@@ -51,6 +51,7 @@ namespace Between
         public float HealingSpellManaCoefficient;
         public float HealingSpellMaxSize;
         public float HealingSpellMaxHeal;
+        public float CircleCompressionRatio;
 
         [Header("SVM")]
         public float DecideBorder;
