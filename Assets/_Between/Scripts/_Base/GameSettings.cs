@@ -75,7 +75,7 @@ namespace Between
 
         public void CreateInstance()
         {
-            Instance = this;    
-        }
+            Instance = this;
+        } 
     }
 }
