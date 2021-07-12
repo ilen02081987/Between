@@ -18,6 +18,8 @@ namespace Between.Enemies
         }
 
         [SerializeField] private float _damage;
+        [SerializeField] private float _groundRayCastAngle;
+
         [SerializeField] private float _damageToShieldRadius;
         [SerializeField] private DamageType _damageType = DamageType.Sword;
 
@@ -157,6 +159,18 @@ namespace Between.Enemies
                     InvokeAttackEvent();
                 }
             }
+        }
+
+
+        private bool CanWalk(GameObject gameObject, float angle)
+        {
+
+            Vector3 direction = new Vector3(0, angle, 0);
+            if (Physics.Raycast(gameObject.transform.position, direction, 0))
+            { 
+                return true; 
+            }
+            return false;
         }
 
         private void Attack(IDamagable damagable)
