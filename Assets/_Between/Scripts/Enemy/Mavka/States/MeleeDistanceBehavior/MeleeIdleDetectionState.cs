@@ -1,5 +1,6 @@
 using UnityEngine;
 using Between.StateMachine;
+using Between.Enemies.Mavka;
 
 namespace Between.Enemies.Mavka
 {

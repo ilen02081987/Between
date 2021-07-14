@@ -31,14 +31,14 @@ namespace Between.SpellsEffects.ShieldSpell
                 DestroyShield();
         }
 
-        public void ApplyDamage(DamageType type, float damage, float attackRadius)
+        public void ApplyDamage(DamageItem damage, float attackRadius)
         {
             var blastetColliders = Physics.OverlapSphere(transform.position, attackRadius);
 
             foreach (var collider in blastetColliders)
             {
                 if (collider.TryGetComponent<Shield>(out var damagable))
-                    damagable.ApplyDamage(type, damage);
+                    damagable.ApplyDamage(damage);
             }
         }
 

@@ -59,8 +59,8 @@ namespace Between.Enemies.Mavka
                 _spawnPoints[spawnPointIndex].position, 
                 (_target.position - _spawnPoints[spawnPointIndex].position).normalized);
             
-            if (_isCurrentState && spawnPointIndex == _spawnPoints.Length - 1)
-                SwitchState(typeof(CooldownState));
+            if (IsCurrentState && spawnPointIndex == _spawnPoints.Length - 1)
+                SwitchState(typeof(ChasingCooldownState));
         }
     }
 }

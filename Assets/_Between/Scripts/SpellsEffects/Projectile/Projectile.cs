@@ -16,11 +16,10 @@ namespace Between.SpellsEffects.Projectile
         [SerializeField] private float _health = 10f;
         [SerializeField] private float _impactDamage = 5f;
         [SerializeField] private Team _team = Team.Player;
-        [SerializeField] private float _damage = 6f;
+        [SerializeField] private DamageItem _damage;
         [SerializeField] private float _speed = 10f;
         [SerializeField] private float _blastRadius = 2f;
         [SerializeField] private bool _friendlyFire = false;
-        [SerializeField] private DamageType _damageType = DamageType.Projectile;
         [SerializeField] private float _lifeTime = 15f;
 
         private Rigidbody _rigidbody;
@@ -81,9 +80,9 @@ namespace Between.SpellsEffects.Projectile
         private void ApplyDamage(IDamagable damagable)
         {
             if (damagable is Shield)
-                (damagable as Shield).ApplyDamage(_damageType, _damage, _blastRadius);
+                (damagable as Shield).ApplyDamage(_damage, _blastRadius);
             else
-                damagable.ApplyDamage(_damageType, _damage);
+                damagable.ApplyDamage(_damage);
         }
 
         private void TakeImpactDamage()

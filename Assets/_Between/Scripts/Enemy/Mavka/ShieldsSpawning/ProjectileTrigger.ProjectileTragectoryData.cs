@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using Between.Enemies.Mavka;
 using Between.SpellsEffects.Projectile;
 using Between;
+using Between.Enemies.Mavka;
 
 public partial class ProjectileTrigger
 {

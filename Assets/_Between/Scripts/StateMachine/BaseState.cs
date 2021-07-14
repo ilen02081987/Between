@@ -6,7 +6,7 @@ namespace Between.StateMachine
     {
         private readonly FinitStateMachine _stateMachine;
 
-        protected bool _isCurrentState => _stateMachine.CurrentState.Equals(this);
+        protected bool IsCurrentState => _stateMachine.CurrentState.Equals(this);
         protected bool _stateMachineEnabled => _stateMachine.Enabled;
 
         public BaseState(FinitStateMachine stateMachine)
@@ -18,6 +18,6 @@ namespace Between.StateMachine
         public virtual void Exit() { }
         public virtual void Update() { }
 
-        protected void SwitchState(Type stateType) => _stateMachine.SwitchState(stateType);
+        protected void SwitchState(Type type) => _stateMachine.SwitchState(type);
     }
 }

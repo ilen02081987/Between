@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using Between.StateMachine;
 using Between.Utilities;
-using System;
 
 namespace Between.Enemies.Mavka
 {
@@ -12,7 +11,8 @@ namespace Between.Enemies.Mavka
         private readonly float _shiftValue;
         private readonly BaseState _nextState;
 
-        public CooldownState(FinitStateMachine stateMachine, float baseValue, float shiftValue, BaseState nextState) : base(stateMachine) 
+        public CooldownState(FinitStateMachine stateMachine, BaseState nextState, float baseValue, float shiftValue = 0f)
+            : base(stateMachine) 
         {
             _baseValue = baseValue;
             _shiftValue = shiftValue;
@@ -26,11 +26,11 @@ namespace Between.Enemies.Mavka
 
         private IEnumerator WaitForCooldown()
         {
-            float time = _baseValue + UnityEngine.Random.Range(-_shiftValue, _shiftValue);
+            float time = _baseValue + Random.Range(-_shiftValue, _shiftValue);
 
             yield return new WaitForSeconds(time);
 
-            if (_isCurrentState)
+            if (IsCurrentState)
                 SwitchState(_nextState.GetType());
         }
     }

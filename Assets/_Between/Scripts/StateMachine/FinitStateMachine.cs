@@ -1,3 +1,4 @@
+using Accord.Diagnostics;
 using System;
 using System.Collections.Generic;
 
@@ -23,6 +24,7 @@ namespace Between.StateMachine
 
         public void SwitchState(Type stateType)
         {
+            UnityEngine.Debug.Log($"Switch state to {stateType.Name}");
             CheckSwitchPossibility(stateType, out IState newState);
             EnterState(newState);
         }
