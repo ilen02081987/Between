@@ -37,7 +37,7 @@ namespace Between.Spells
             if (_isLongEnough && _enoughMana)
             {
                 SpawnMeteorRain();
-                RemoveMana();
+                PerformOnCastSpell();
             }
         }
 

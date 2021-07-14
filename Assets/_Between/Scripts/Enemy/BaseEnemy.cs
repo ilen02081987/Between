@@ -13,18 +13,17 @@ namespace Between.Enemies
 
         [SerializeField] private float _destroyTime = 2;
 
+        protected virtual void Start()
+        {
+            InitDamagableObject();
+        }
+
         protected void InvokeAttackEvent() => OnAttack?.Invoke();
         protected void InvokeMoveEvent() => OnMove?.Invoke();
-
-        protected override void PerformOnDamage()
-        {
-            InvokeDamageEvent();
-        }
 
         protected override void PerformOnDie()
         {
             Destroy(gameObject, _destroyTime);
-            InvokeDieEvent();
         }
     }
 }

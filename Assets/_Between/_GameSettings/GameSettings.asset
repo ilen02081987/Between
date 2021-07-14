@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6790d3f8a713f847a14535d547a234f, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  ManaMaxValue: 7090.8
+  ManaMaxValue: 200
   ManaRecoveryPerSec: 1
   EnableRemoveManaLog: 0
   ProjectileMiddleLenght: 300

@@ -74,6 +74,9 @@ namespace Between
         public float MeleeCooldownBase;
         public float MeleeCooldownShift;
 
+        [Header("EnemyUI")]
+        public bool EnemyHealthUIEnabled;
+
         public void CreateInstance()
         {
             Instance = this;

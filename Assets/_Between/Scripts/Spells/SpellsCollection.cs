@@ -17,13 +17,15 @@ namespace Between.Spells
         {
             _spells.Add(SpellType.Shield, new ShieldSpell());
 
-            _spells.Add(SpellType.SmallProjectile, new ProjectileSpell("Projectile"
+            _spells.Add(SpellType.SmallProjectile, new ProjectileSpell(
+                "Projectile"
                 , GameSettings.Instance.ProjectileSpellCooldown
                 , GameSettings.Instance.ProjectileMinLenght
                 , GameSettings.Instance.ProjectileMiddleLenght
                 , GameSettings.Instance.SmallProjectileManaCoefficient));
 
-            _spells.Add(SpellType.BigProjectile, new ProjectileSpell("BigProjectile"
+            _spells.Add(SpellType.BigProjectile, new ProjectileSpell(
+                "BigProjectile"
                 , GameSettings.Instance.BigProjectileSpellCooldown
                 , GameSettings.Instance.ProjectileMiddleLenght
                 , GameSettings.Instance.ProjectileMaxLenght

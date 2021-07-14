@@ -15,12 +15,11 @@ namespace Between.SpellsEffects.ShieldSpell
         [SerializeField] private Team _team;
         [SerializeField] private float _lifeTime = 3f;
 
-        protected override void Start()
+        private void Start()
         {
             StartCoroutine(WaitToDestroy());
             UpdateColliderTrigger();
-            
-            base.Start();
+            InitDamagableObject();
         }
 
         private IEnumerator WaitToDestroy()

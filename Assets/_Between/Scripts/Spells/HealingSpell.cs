@@ -19,7 +19,7 @@ namespace Between.Spells
             if (_enoughMana && ValidCompressionRatio())
             {
                 TryHealPlayer();
-                RemoveMana();
+                PerformOnCastSpell();
             }
         }
 

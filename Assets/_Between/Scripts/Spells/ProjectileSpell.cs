@@ -48,7 +48,7 @@ namespace Between.Spells
             if (_isValidLenght && _enoughMana)
             {
                 SpawnProjectile();
-                RemoveMana();
+                PerformOnCastSpell();
             }
         }
 
