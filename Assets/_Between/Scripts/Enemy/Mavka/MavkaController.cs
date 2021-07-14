@@ -13,12 +13,9 @@ namespace Between.Enemies.Mavka
 
         private FinitStateMachine _rangeStateMachine;
         private FinitStateMachine _meleeStateMachine;
-        private Transform _player;
 
         protected override void Start()
         {
-            _player = Player.Instance.Controller.transform;
-
             InitRangeStateMachine();
             InitMeleeStateMachine();
 
@@ -41,8 +38,8 @@ namespace Between.Enemies.Mavka
             AttackState attackState = new AttackState(_rangeStateMachine, singleCastState, severalCastState);
             
             CooldownState cooldownState = new CooldownState(
-                _rangeStateMachine, GameSettings.Instance.RangeCooldownBase, 
-                GameSettings.Instance.RangeCooldownShift, idleState);
+                _rangeStateMachine, idleState, GameSettings.Instance.RangeCooldownBase, 
+                GameSettings.Instance.RangeCooldownShift);
 
             _rangeStateMachine.AddStates(idleState, singleCastState, severalCastState, attackState, cooldownState);
         }
@@ -58,8 +55,8 @@ namespace Between.Enemies.Mavka
                 = new MeleeAttackState(_meleeStateMachine, _player, _meleeCastPoint, _meleeSpawnPoint);
 
             CooldownState cooldownState = new CooldownState
-                (_meleeStateMachine, GameSettings.Instance.MeleeCooldownBase, 
-                GameSettings.Instance.MeleeCooldownShift, idleState);
+                (_meleeStateMachine, idleState, GameSettings.Instance.MeleeCooldownBase, 
+                GameSettings.Instance.MeleeCooldownShift);
 
             _meleeStateMachine.AddStates(idleState, attackState, cooldownState);
         }

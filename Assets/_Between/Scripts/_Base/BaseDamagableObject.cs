@@ -16,7 +16,6 @@ namespace Between
         public float MaxHealth;
         public float Health { get; protected set; }
 
-
         [SerializeField] private Protection[] _protections;
 
         protected virtual void Start()
@@ -24,13 +23,13 @@ namespace Between
             Health = MaxHealth;
         }
 
-        public void ApplyDamage(DamageType type, float damage)
+        public void ApplyDamage(DamageItem damage)
         {
             if (Health <= 0)
                 return;
 
-            TryDamageProtection(type, ref damage);
-            TryDamageHealth(damage);
+            TryDamageProtection(damage.Type, ref damage.Value);
+            TryDamageHealth(damage.Value);
 
             if (Health <= 0)
                 PerformOnDie();
