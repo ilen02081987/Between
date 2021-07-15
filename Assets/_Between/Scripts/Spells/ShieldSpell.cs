@@ -24,7 +24,7 @@ namespace Between.Spells
             if (_enoughMana)
             {
                 SpawnShields();
-                RemoveMana();
+                PerformOnCastSpell();
             }
         }
 

@@ -26,14 +26,14 @@ namespace Between.Spells
             tracker.Init();
 
             tracker.CanCompleteDraw += OnCanCompleteDraw;
-            tracker.CompleteDraw += OnCompleteDraw;
+            tracker.CompleteDraw += OnCompleteSpell;
             tracker.DrawFailed += OnDrawFailed;
         }
 
         public void Dispose()
         {
             tracker.CanCompleteDraw -= OnCanCompleteDraw;
-            tracker.CompleteDraw -= OnCompleteDraw;
+            tracker.CompleteDraw -= OnCompleteSpell;
             tracker.DrawFailed -= OnDrawFailed;
         }
 
@@ -41,7 +41,12 @@ namespace Between.Spells
         protected virtual void OnCanCompleteDraw() { }
         protected virtual void OnDrawFailed() { }
 
-        protected void RemoveMana() => Player.Instance.Mana.Remove(_manaAmount);
+        protected void PerformOnCastSpell()
+        {
+            Player.Instance.Mana.Remove(_manaAmount);
+            CoroutineLauncher.Start(WaitCooldown());
+        }
+
 
         //NOTE: корутина вместо асинка чтобы ждать время игры, а не реалтайм
         private IEnumerator WaitCooldown()
@@ -62,12 +67,6 @@ namespace Between.Spells
             tracker.Init();
 
             CooldownFinished?.Invoke();
-        }
-
-        private void OnCompleteDraw()
-        {
-            OnCompleteSpell();
-            CoroutineLauncher.Start(WaitCooldown());
         }
     }
 }

@@ -14,6 +14,9 @@ namespace Between
         public float ManaRecoveryPerSec;
         public bool EnableRemoveManaLog;
 
+        [Header("Бутылки с маной")]
+        public float ManaBottleValue;
+
         [Header("Заклинание прожектайла")]
         public float ProjectileMiddleLenght;
         public float ProjectilesSpawnOffset;
@@ -73,6 +76,9 @@ namespace Between
         public float MeleeDetectionRadius;
         public float MeleeCooldownBase;
         public float MeleeCooldownShift;
+
+        [Header("EnemyUI")]
+        public bool EnemyHealthUIEnabled;
 
         public void CreateInstance()
         {

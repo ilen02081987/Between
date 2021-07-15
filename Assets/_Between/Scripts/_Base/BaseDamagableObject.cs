@@ -18,7 +18,7 @@ namespace Between
 
         [SerializeField] private Protection[] _protections;
 
-        protected virtual void Start()
+        public void InitDamagableObject()
         {
             Health = MaxHealth;
         }
@@ -31,17 +31,20 @@ namespace Between
             TryDamageProtection(damage.Type, ref damage.Value);
             TryDamageHealth(damage.Value);
 
-            if (Health <= 0)
-                PerformOnDie();
-            else
+            if (Health > 0)
+            {
+                OnDamage?.Invoke();
                 PerformOnDamage();
+            }
+            else
+            {
+                OnDie?.Invoke();
+                PerformOnDie();
+            }
         }
 
         protected abstract void PerformOnDie();
         protected virtual void PerformOnDamage() { }
-
-        protected void InvokeDamageEvent() => OnDamage?.Invoke();
-        protected void InvokeDieEvent() => OnDie?.Invoke();
 
         private void TryDamageProtection(DamageType type, ref float damage)
         {
