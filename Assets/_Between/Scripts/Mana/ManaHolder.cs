@@ -35,6 +35,12 @@ namespace Between.Mana
             OnValueChanged?.Invoke();
         }
 
+        public void Add(float addend)
+        {
+            Value = Mathf.Min(Value + addend, MaxValue);
+            OnValueChanged?.Invoke();
+        }
+
         private IEnumerator Recover()
         {
             while (Application.isPlaying)

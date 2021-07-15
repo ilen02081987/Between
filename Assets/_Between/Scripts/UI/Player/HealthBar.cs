@@ -1,5 +1,4 @@
-using UnityEngine;
-using UnityEngine.UI;
+using Between.UI.Base;
 
 namespace Between.UI
 {

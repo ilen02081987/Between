@@ -1,20 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Between.UI
+namespace Between.UI.Base
 {
     [RequireComponent(typeof(Slider))]
-    public abstract class UiBar : MonoBehaviour
+    public abstract class UiBar : UiElement
     {
         private Slider _slider;
 
-        public void Init()
+        public override void Init()
         {
             _slider = GetComponent<Slider>();
             Run();
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
             PerformOnDestroy();
         }

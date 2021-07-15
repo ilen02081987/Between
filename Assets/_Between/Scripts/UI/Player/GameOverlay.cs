@@ -1,28 +1,22 @@
+using Between.UI.Base;
 using UnityEngine;
 
 namespace Between.UI
 {
     public class GameOverlay : MonoBehaviour
     {
-        [SerializeField] private UiBar[] _bars;
-        [SerializeField] private SpellColldownDisplay[] _spellsDisplays;
+        [SerializeField] private UiElement[] _elements;
 
         public void Init()
         {
-            foreach (var bar in _bars)
-                bar.Init();
-
-            foreach (var spellDisplay in _spellsDisplays)
-                spellDisplay.Init();
+            foreach (var element in _elements)
+                element.Init();
         }
 
         public void Dispose()
         {
-            foreach (var bar in _bars)
-                bar.Dispose();
-
-            foreach (var spellDisplay in _spellsDisplays)
-                spellDisplay.Dispose();
+            foreach (var element in _elements)
+                element.Dispose();
         }
     }
 }

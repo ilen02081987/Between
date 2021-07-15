@@ -1,17 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Between.Spells;
+using Between.UI.Base;
 
 namespace Between.UI
 {
-    public class SpellColldownDisplay : MonoBehaviour
+    public class SpellColldownDisplay : UiElement
     {
         [SerializeField] private SpellsCollection.SpellType _spellType;
 
         private Image _image;
         private BaseSpell _spell;
 
-        public void Init()
+        public override void Init()
         {
             _image = GetComponent<Image>();
 
@@ -22,7 +23,7 @@ namespace Between.UI
             _spell.CooldownFinished += FillDisplay;
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
             _spell.CooldownUpdated -= UpdateDisplay;
         }

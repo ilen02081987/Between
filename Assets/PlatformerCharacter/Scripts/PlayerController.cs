@@ -73,14 +73,14 @@ namespace Between
             return colliders.Length > 1;
         }
 
-        private void OnValidate()
-        {
-            if (!Mathf.Approximately(Physics.gravity.y, _gravity))
-                Physics.gravity = new Vector3(0f, -_gravity, 0f);
+        //private void OnValidate()
+        //{
+        //    if (!Mathf.Approximately(Physics.gravity.y, _gravity))
+        //        Physics.gravity = new Vector3(0f, -_gravity, 0f);
 
-            if (!Mathf.Approximately(_mass, _body.mass))
-                _body.mass = _mass;
-        }
+        //    if (!Mathf.Approximately(_mass, _body.mass))
+        //        _body.mass = _mass;
+        //}
 
         protected override void PerformOnDie()
         {

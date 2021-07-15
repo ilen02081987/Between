@@ -14,6 +14,9 @@ namespace Between
         public float ManaRecoveryPerSec;
         public bool EnableRemoveManaLog;
 
+        [Header("Бутылки с маной")]
+        public float ManaBottleValue;
+
         [Header("Заклинание прожектайла")]
         public float ProjectileMiddleLenght;
         public float ProjectilesSpawnOffset;
