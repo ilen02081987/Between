@@ -2625,7 +2625,8 @@ PrefabInstance:
       propertyPath: fireDelay
       value: 100
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4877566461971141885, guid: 3fb70eecff210d046bc38030c6fa2cf0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3fb70eecff210d046bc38030c6fa2cf0, type: 3}
 --- !u!1 &1307583009
 GameObject:

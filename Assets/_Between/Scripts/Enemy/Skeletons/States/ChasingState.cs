@@ -1,6 +1,6 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using System.Collections;
 using Between.StateMachine;
 using Between.Utilities;
 using Between.Animations;
@@ -17,7 +17,6 @@ namespace Between.Enemies.Skeletons
         private readonly float _attackDistance;
 
         private readonly WaitForSeconds _updatePathDelay = new WaitForSeconds(.1f);
-
         private bool _closeToAttack => Vector3.Distance(_target.position, _navMeshAgent.transform.position) <= _attackDistance;
 
         public ChasingState(FinitStateMachine stateMachine, Transform target, 
@@ -32,6 +31,12 @@ namespace Between.Enemies.Skeletons
         public override void Enter()
         {
             CoroutineLauncher.Start(MoveToTarget());
+        }
+
+        public override void Exit()
+        {
+            CoroutineLauncher.Stop(MoveToTarget());
+            _navMeshAgent.isStopped = true;
         }
 
         private IEnumerator MoveToTarget()

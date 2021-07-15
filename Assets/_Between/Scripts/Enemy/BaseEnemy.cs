@@ -21,16 +21,18 @@ namespace Between.Enemies
         [SerializeField] protected NavMeshAgent _navMeshAgent;
 
         [SerializeField] protected float _detectionDistance;
-        [SerializeField] protected float _attackDistance;
+
+        [SerializeField, Range(2, 100)] protected float _attackDistance;
         [SerializeField] protected float _cooldownTime;
 
         [SerializeField] private float _destroyTime = 2;
 
-        protected override void Start()
+        protected virtual void Start()
         {
             _player = Player.Instance.Controller.transform;
             _animator.AttachTo(this);
-            base.Start();
+
+            InitDamagableObject();
         }
 
         protected void InvokeAttackEvent(Action action) => OnAttack?.Invoke(action);
@@ -38,13 +40,11 @@ namespace Between.Enemies
 
         protected override void PerformOnDamage()
         {
-            InvokeDamageEvent();
         }
 
         protected override void PerformOnDie()
         {
             Destroy(gameObject, _destroyTime);
-            InvokeDieEvent();
         }
     }
 }

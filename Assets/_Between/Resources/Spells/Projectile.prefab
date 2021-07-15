@@ -113,11 +113,12 @@ MonoBehaviour:
   _health: 6
   _impactDamage: 6
   _team: 0
-  _damage: 5
+  _damage:
+    Type: 2
+    Value: 3
   _speed: 20
   _blastRadius: 2
   _friendlyFire: 0
-  _damageType: 2
   _lifeTime: 15
 --- !u!54 &4285060811193066946
 Rigidbody:

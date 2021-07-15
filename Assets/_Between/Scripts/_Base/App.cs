@@ -37,7 +37,7 @@ namespace Between
         private void InitGameOverlay()
         {
             _gameOverlay = FindObjectOfType<GameOverlay>();
-            _gameOverlay.Init();
+            _gameOverlay?.Init();
         }
     }
 }
