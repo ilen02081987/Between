@@ -57,7 +57,7 @@ namespace Between
         public float CircleCompressionRatio;
 
         [Header("SVM")]
-        public float DecideBorder;
+        public float[] DecideBorder;
         public bool EnableProbabilitiesLog;
 
         [Header("Mavka")]
@@ -83,6 +83,13 @@ namespace Between
         public void CreateInstance()
         {
             Instance = this;
+            InitSettings();
         } 
+
+        private void InitSettings()
+        {
+             if (DecideBorder == null || DecideBorder.Length < 4)
+                DecideBorder = new float[4] { .9f, .9f, .9f, .9f };
+        }
     }
 }

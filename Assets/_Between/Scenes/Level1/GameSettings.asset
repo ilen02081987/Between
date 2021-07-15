@@ -43,7 +43,11 @@ MonoBehaviour:
   HealingSpellMaxSize: 1500
   HealingSpellMaxHeal: 80
   CircleCompressionRatio: 2.25
-  DecideBorder: 0.92
+  DecideBorder:
+  - 0.98
+  - 0.9
+  - 0.9
+  - 0.9
   EnableProbabilitiesLog: 0
   RangeDetectionRadius: 15
   RangeCooldownBase: 2.27
