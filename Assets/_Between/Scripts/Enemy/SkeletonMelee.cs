@@ -29,8 +29,7 @@ namespace Between.Enemies
         [SerializeField] private float checkRadius;
         [SerializeField] private float agroRange;
 
-        [SerializeField] private PlayerController player;
-
+        private PlayerController _player;
         private bool _freeze = false;
         private float _speedMod = 0;
         private Vector3 _startPosition;
@@ -38,13 +37,14 @@ namespace Between.Enemies
         protected override void Start()
         {
             _startPosition = transform.position;
+            _player = Player.Instance.Controller;
 
             base.Start();
         }
 
         private void Update()
         {
-            if (player == null || Health <= 0)
+            if (_player == null || Health <= 0)
                 return;
 
             // можно ли выйти из кд атаки раньше если уничтожили все вокруг
@@ -53,7 +53,7 @@ namespace Between.Enemies
             if (_speedMod <= 1)
                 _speedMod += 1 * Time.deltaTime;
 
-            switch (GetState(player.transform.position))
+            switch (GetState(_player.transform.position))
             {
                 case State.PatrolLeft:
                     Translate(-patrolSpeed * _speedMod * Time.deltaTime);

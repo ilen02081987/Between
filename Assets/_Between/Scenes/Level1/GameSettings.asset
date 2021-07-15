@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6790d3f8a713f847a14535d547a234f, type: 3}
+  m_Name: GameSettings
+  m_EditorClassIdentifier: 
+  ManaMaxValue: 200
+  ManaRecoveryPerSec: 20
+  EnableRemoveManaLog: 0
+  ManaBottleValue: 50
+  ProjectileMiddleLenght: 300
+  ProjectilesSpawnOffset: 2
+  ProjectileDrawType: 0
+  ProjectileMinLenght: 20
+  ProjectileSpellCooldown: 1
+  SmallProjectileManaCoefficient: 0.05
+  ProjectileMaxLenght: 1000
+  BigProjectileSpellCooldown: 2
+  BigProjectileCastDelay: 1
+  BigProjectileManaCoefficient: 0.05
+  ShieldTrackerMinLenght: 20
+  ShieldTrackerMaxLenght: 1000
+  ShieldTrackerForceEndAngle: 90
+  ShieldSpellCooldown: 1
+  ShieldColliderTrigger: 1
+  ShieldManaCoefficient: 0.05
+  MeteorRainMinLenght: 20
+  MeteorRainSpellCooldown: 3
+  MeteorsLinesDelay: 0.5
+  MeteorsLinesCount: 3
+  MeteorsCount: 5
+  MeteorRainManaCoefficient: 0.05
+  HealingSpellCooldown: 1
+  HealingSpellManaCoefficient: 0.05
+  HealingSpellMaxSize: 1500
+  HealingSpellMaxHeal: 80
+  CircleCompressionRatio: 2.25
+  DecideBorder: 0.92
+  EnableProbabilitiesLog: 0
+  RangeDetectionRadius: 15
+  RangeCooldownBase: 2.27
+  RangeCooldownShift: 0
+  SpellPictureCompressCoefficient: 2
+  SeveralProjectilesCastTime: 2
+  SeveralProjectilesCastDelay: 1
+  SeveralProjectilesSingleCast: 0
+  SeveralProjectilesSphereCastRadius: 1
+  MavkaShieldsCooldownTime: 3
+  MavkaSingleProjectileCastTime: 0
+  SeveralProjectilesCastWeight: 1
+  SingleProjectilesCastWeight: 1
+  MeleeDetectionRadius: 15
+  MeleeCooldownBase: 3
+  MeleeCooldownShift: 1
+  EnemyHealthUIEnabled: 1
