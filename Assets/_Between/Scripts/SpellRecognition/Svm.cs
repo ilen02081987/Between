@@ -14,7 +14,7 @@ namespace Between.SpellRecognition
 
         private MulticlassSupportVectorMachine<Linear> svm;
 
-        private float _decideBorder = GameSettings.Instance.DecideBorder;
+        private float[] _decideBorders = GameSettings.Instance.DecideBorder;
 
         public Svm()
         {
@@ -37,7 +37,7 @@ namespace Between.SpellRecognition
 
             for (int i = 0; i < probabilities.Length; i++)
             {
-                if (probabilities[i] > _decideBorder)
+                if (probabilities[i] > _decideBorders[i])
                     return (SpellFigure)i;
             }
 

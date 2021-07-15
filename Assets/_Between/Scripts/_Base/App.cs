@@ -9,23 +9,35 @@ namespace Between
     public class App : MonoBehaviourSingleton<App>
     {
         [SerializeField] private GameSettings _gameSettings;
-        [SerializeField] private GameOverlay _gameOverlay;
+        private GameOverlay _gameOverlay;
 
         private void Awake()
         {
             _gameSettings.CreateInstance();
 
-            new Player(FindObjectOfType<PlayerController>());
-            Player.Instance.Controller.InitDamagableObject();
+            InitPlayer();
 
             InputLenghtCalculator.Init();
             new SpellsCollection().Init();
-            _gameOverlay.Init();
+
+            InitGameOverlay();
         }
 
         private void OnDestroy()
         {
             _gameOverlay.Dispose();
+        }
+
+        private static void InitPlayer()
+        {
+            new Player(FindObjectOfType<PlayerController>());
+            Player.Instance.Controller.InitDamagableObject();
+        }
+
+        private void InitGameOverlay()
+        {
+            _gameOverlay = FindObjectOfType<GameOverlay>();
+            _gameOverlay.Init();
         }
     }
 }
