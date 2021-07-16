@@ -1,28 +1,35 @@
 using Between.Enemies.Mavka;
 using Between.Interfaces;
+using Between.SpellsEffects.ShieldSpell;
 using Between.StateMachine;
+using UnityEngine;
 
 namespace Between.Enemies.Skeletons
 {
-    public class MeleeSkeleton : BaseEnemy
+    public class MeleeSkeleton : BaseSkeleton
     {
         private FinitStateMachine _stateMachine;
+
+        private bool _isTakeDamage => _stateMachine.CurrentState.GetType().Equals(typeof(TakeDamageState));
 
         protected override void Start()
         {
             base.Start();
+            InitStateMachine();
+        }
 
+        private void InitStateMachine()
+        {
             _stateMachine = new FinitStateMachine();
 
-            var idleState = new IdleDetectionState(_stateMachine, transform, _player, _detectionDistance);
-            var chasingState = new ChasingState(_stateMachine, _player, _navMeshAgent, _animator, _attackDistance);
-            var attackState = new AnimatedAttackState
-                (_stateMachine, _animator, _player.GetComponent<IDamagable>(), _damage);
-            var cooldownState = new ChasingCooldownState(_stateMachine, _player, _navMeshAgent
-                , _animator, _attackDistance, _cooldownTime);
-            var takeDamageState = new TakeDamageState(_stateMachine, _animator, chasingState);
+            var idleState = new IdleDetectionState(_stateMachine, transform, player.transform, data.DetectionDistance);
+            var chasingState = new ChasingState(_stateMachine, data);
+            var attackState = new AnimatedAttackState(_stateMachine, data);
+            var cooldownState = new ChasingCooldownState(_stateMachine, data);
+            var takeDamageState = new TakeDamageState(_stateMachine, data, chasingState);
+            var destroyShieldState = new DestroyShieldState(_stateMachine, data);
 
-            _stateMachine.AddStates(idleState, chasingState, attackState, cooldownState, takeDamageState);
+            _stateMachine.AddStates(idleState, chasingState, attackState, cooldownState, takeDamageState, destroyShieldState);
         }
 
         private void Update()
@@ -30,9 +37,16 @@ namespace Between.Enemies.Skeletons
             _stateMachine.Update();
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent<Shield>(out var shield))
+                _stateMachine.SwitchState(typeof(DestroyShieldState));
+        }
+
         protected override void PerformOnDamage()
         {
-            _stateMachine.SwitchState(typeof(TakeDamageState));
+            if (!_isTakeDamage)
+                _stateMachine.SwitchState(typeof(TakeDamageState));
         }
 
         protected override void PerformOnDie()

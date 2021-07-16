@@ -12,20 +12,20 @@ namespace Between.Enemies.Skeletons
         protected virtual bool CanAttack => true;
 
         private readonly Transform _target;
-        private readonly NavMeshAgent _navMeshAgent;
         private readonly NpcAnimator _animator;
+        private readonly NavMeshAgent _navMeshAgent;
+        private readonly Transform _transform;
         private readonly float _attackDistance;
 
         private readonly WaitForSeconds _updatePathDelay = new WaitForSeconds(.1f);
-        private bool _closeToAttack => Vector3.Distance(_target.position, _navMeshAgent.transform.position) <= _attackDistance;
+        private bool _closeToAttack => Vector3.Distance(_target.position, _transform.position) <= _attackDistance;
 
-        public ChasingState(FinitStateMachine stateMachine, Transform target, 
-            NavMeshAgent owner, NpcAnimator animator, float attackDistance) : base(stateMachine)
+        public ChasingState(FinitStateMachine stateMachine, SkeletonData data) : base(stateMachine)
         {
-            _target = target;
-            _navMeshAgent = owner;
-            _animator = animator;
-            _attackDistance = attackDistance;
+            _target = data.Player.transform;
+            _animator = data.Animator;
+            _transform = data.Transform;
+            _navMeshAgent = data.NavMeshAgent;
         }
 
         public override void Enter()
@@ -48,11 +48,14 @@ namespace Between.Enemies.Skeletons
             {
                 Move();
                 yield return _updatePathDelay;
+
+                if (_navMeshAgent == null)
+                    yield break;
             }
 
             _navMeshAgent.isStopped = true;
 
-            if (IsCurrentState)
+            if (isCurrentState)
                 SwitchState(typeof(AnimatedAttackState));
         }
 

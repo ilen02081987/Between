@@ -16,6 +16,8 @@ namespace Between
         public float MaxHealth;
         public float Health { get; protected set; }
 
+        public Vector3 Position => transform.position;
+
         [SerializeField] private Protection[] _protections;
 
         public void InitDamagableObject()

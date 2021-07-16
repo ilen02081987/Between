@@ -6,7 +6,7 @@ namespace Between.StateMachine
     {
         private readonly FinitStateMachine _stateMachine;
 
-        protected bool IsCurrentState => _stateMachine.CurrentState.Equals(this);
+        protected bool isCurrentState => _stateMachine.CurrentState.Equals(this);
         protected bool _stateMachineEnabled => _stateMachine.Enabled;
 
         public BaseState(FinitStateMachine stateMachine)

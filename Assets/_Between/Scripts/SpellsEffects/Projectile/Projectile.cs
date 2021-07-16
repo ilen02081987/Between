@@ -51,10 +51,7 @@ namespace Between.SpellsEffects.Projectile
         private void OnTriggerEnter(Collider other)
         {
             if (!_hasCollide)
-            {
-                _hasCollide = true;
                 TryApplyDamage(other.gameObject);
-            }
         }
 
         private void OnTriggerExit(Collider other)
@@ -68,6 +65,8 @@ namespace Between.SpellsEffects.Projectile
             {
                 if (damagable.Team != _team || _friendlyFire)
                 {
+                    _hasCollide = true;
+
                     ApplyDamage(damagable);
                     TakeImpactDamage();
                     ApplySpecialEffects(gameObject);

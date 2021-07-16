@@ -2,21 +2,23 @@ using Between.Animations;
 using Between.Damage;
 using Between.Interfaces;
 using Between.StateMachine;
+using UnityEngine;
 
 namespace Between.Enemies.Skeletons
 {
     public class AnimatedAttackState : BaseState
     {
         private readonly NpcAnimator _animator;
-        private readonly IDamagable _target;
+        private readonly BaseDamagableObject _target;
         private readonly DamageItem _damage;
+        private readonly float _attackDistance;
 
-        public AnimatedAttackState(FinitStateMachine stateMachine, NpcAnimator animator, 
-            IDamagable target, DamageItem damage) : base(stateMachine)
+        public AnimatedAttackState(FinitStateMachine stateMachine, SkeletonData data) : base(stateMachine)
         {
-            _animator = animator;
-            _target = target;
-            _damage = damage;
+            _animator = data.Animator;
+            _target = data.Player;
+            _damage = data.DamageItem;
+            _attackDistance = data.AttackDistance;
         }
 
         public override void Enter()
@@ -30,7 +32,8 @@ namespace Between.Enemies.Skeletons
 
         private void ApplyDamageToPlayer()
         {
-            _target.ApplyDamage(_damage);
+            if (Vector3.Distance(_target.Position, _animator.Position) <= _attackDistance)
+                _target.ApplyDamage(_damage);
         }
 
         private void SwitchState()

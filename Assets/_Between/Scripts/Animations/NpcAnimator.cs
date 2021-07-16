@@ -7,6 +7,13 @@ namespace Between.Animations
     [RequireComponent(typeof(Animator))]
     public class NpcAnimator : MonoBehaviour
     {
+        public Vector3 Position => transform.position;
+
+        [SerializeField] private float _moveAnimationSpeed = 1;
+        [SerializeField] private float _takeDamageAnimationSpeed = 1;
+        [SerializeField] private float _attackAnimationSpeed = 1;
+        [SerializeField] private float _dieAnimationSpeed = 1;
+
         private BaseEnemy _npc;
         private Animator _animator;
 
@@ -29,34 +36,42 @@ namespace Between.Animations
         public void StartMove() => _animator.SetTrigger("StartMove");
         public void Move(float animationSpeed)
         {
+            _animator.speed = _moveAnimationSpeed;
             _animator.SetFloat("Move", animationSpeed);
         }
 
         public void Attack(Action onAnimationAttack)
         {
             _onAnimationAttack = onAnimationAttack;
+
+            _animator.speed = _attackAnimationSpeed;
             _animator.SetTrigger("Attack");
         }
 
         public void TakeDamage(Action onComplete)
         {
             _onCompleteTakeDamage = onComplete;
+
+            _animator.speed = _takeDamageAnimationSpeed;
             _animator.SetTrigger("TakeDamage");
         }
 
+        private void Die()
+        {
+            _animator.speed = _dieAnimationSpeed;
+            _animator.SetTrigger("Die");
+        }
+        
         private void PerformOnTakeDamageComplete()
         {
             _onCompleteTakeDamage?.Invoke();
+            _onCompleteTakeDamage = null;
         }
 
         private void PerformOnAnimationAttack()
         {
             _onAnimationAttack?.Invoke();
-        }
-
-        private void Die()
-        {
-            _animator.SetTrigger("Die");
+            _onAnimationAttack = null;
         }
     }
 }

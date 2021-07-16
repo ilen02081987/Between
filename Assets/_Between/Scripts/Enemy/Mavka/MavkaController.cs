@@ -27,13 +27,13 @@ namespace Between.Enemies.Mavka
             _rangeStateMachine = new FinitStateMachine();
 
             RangeIdleDetectionState idleState = new RangeIdleDetectionState
-                (_rangeStateMachine, transform, _player, GameSettings.Instance.RangeDetectionRadius);
+                (_rangeStateMachine, transform, player.transform, GameSettings.Instance.RangeDetectionRadius);
             
             SingleProjectileCaseState singleCastState 
-                = new SingleProjectileCaseState(_rangeStateMachine, _player, _singleProjectileSpawnPoint);
+                = new SingleProjectileCaseState(_rangeStateMachine, player.transform, _singleProjectileSpawnPoint);
             
             SeveralProjectilesCastState severalCastState 
-                = new SeveralProjectilesCastState(_rangeStateMachine, _player, _severalProjectileSpawnPoints);
+                = new SeveralProjectilesCastState(_rangeStateMachine, player.transform, _severalProjectileSpawnPoints);
             
             AttackState attackState = new AttackState(_rangeStateMachine, singleCastState, severalCastState);
             
@@ -49,10 +49,10 @@ namespace Between.Enemies.Mavka
             _meleeStateMachine = new FinitStateMachine();
 
             MeleeIdleDetectionState idleState = new MeleeIdleDetectionState
-                (_meleeStateMachine, transform, _player, GameSettings.Instance.MeleeDetectionRadius);
+                (_meleeStateMachine, transform, player.transform, GameSettings.Instance.MeleeDetectionRadius);
 
             MeleeAttackState attackState 
-                = new MeleeAttackState(_meleeStateMachine, _player, _meleeCastPoint, _meleeSpawnPoint);
+                = new MeleeAttackState(_meleeStateMachine, player.transform, _meleeCastPoint, _meleeSpawnPoint);
 
             CooldownState cooldownState = new CooldownState
                 (_meleeStateMachine, idleState, GameSettings.Instance.MeleeCooldownBase, 
@@ -77,11 +77,11 @@ namespace Between.Enemies.Mavka
 
         private void TryRotate()
         {
-            if (_player == null)
+            if (player == null)
                 return;
 
             Quaternion rotation = transform.rotation;
-            int direction = transform.position.x >= _player.position.x ? -1 : 1;
+            int direction = transform.position.x >= player.Position.x ? -1 : 1;
             var newRotation = Quaternion.Euler(0f, direction * 90f, 0f);
 
             if (newRotation != rotation)

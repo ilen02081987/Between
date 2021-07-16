@@ -11,11 +11,9 @@ public class ChasingCooldownState : ChasingState
 
     protected override bool CanAttack => _cooldown <= 0f;
 
-    public ChasingCooldownState(FinitStateMachine stateMachine, Transform target, 
-        NavMeshAgent owner, NpcAnimator animator, float attackDistance, float cooldown) 
-        : base(stateMachine, target, owner, animator, attackDistance)
+    public ChasingCooldownState(FinitStateMachine stateMachine, SkeletonData data) : base(stateMachine, data)
     {
-        _baseCooldown = cooldown;
+        _baseCooldown = data.CooldownTime;
     }
 
     public override void Enter()

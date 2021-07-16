@@ -30,7 +30,7 @@ namespace Between.Enemies.Mavka
 
             yield return new WaitForSeconds(time);
 
-            if (IsCurrentState)
+            if (isCurrentState)
                 SwitchState(_nextState.GetType());
         }
     }

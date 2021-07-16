@@ -1,6 +1,7 @@
 using Accord.Diagnostics;
 using System;
 using System.Collections.Generic;
+using TMPro;
 
 namespace Between.StateMachine
 {
@@ -30,7 +31,11 @@ namespace Between.StateMachine
         }
 
         public void Update() => CurrentState.Update();
-        public void Disable() => Enabled = false;
+        public void Disable()
+        {
+            CurrentState.Exit();
+            Enabled = false;
+        }
 
         private void EnterState(IState state)
         {

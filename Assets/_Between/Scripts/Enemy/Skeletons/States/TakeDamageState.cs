@@ -1,4 +1,5 @@
 using Between.Animations;
+using Between.Enemies.Skeletons;
 using Between.StateMachine;
 
 namespace Between.Enemies
@@ -8,9 +9,9 @@ namespace Between.Enemies
         private readonly NpcAnimator _animator;
         private readonly IState _next;
 
-        public TakeDamageState(FinitStateMachine stateMachine, NpcAnimator animator, IState next) : base(stateMachine)
+        public TakeDamageState(FinitStateMachine stateMachine, SkeletonData data, IState next) : base(stateMachine)
         {
-            _animator = animator;
+            _animator = data.Animator;
             _next = next;
         }
 
@@ -18,7 +19,7 @@ namespace Between.Enemies
         {
             _animator.TakeDamage(() =>
             {
-                if (IsCurrentState && _stateMachineEnabled)
+                if (isCurrentState && _stateMachineEnabled)
                     SwitchState(_next.GetType());
             });
         }
