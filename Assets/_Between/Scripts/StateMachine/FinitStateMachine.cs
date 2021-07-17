@@ -37,6 +37,8 @@ namespace Between.StateMachine
             Enabled = false;
         }
 
+        public bool CompareState(Type type) => CurrentState.GetType().Equals(type);
+
         private void EnterState(IState state)
         {
             CurrentState?.Exit();

@@ -18,7 +18,6 @@ namespace Between.SpellsEffects.ShieldSpell
         private void Start()
         {
             StartCoroutine(WaitToDestroy());
-            UpdateColliderTrigger();
             InitDamagableObject();
         }
 
@@ -50,12 +49,6 @@ namespace Between.SpellsEffects.ShieldSpell
         {
             StopCoroutine(WaitToDestroy());
             Destroy(gameObject);
-        }
-
-        private void UpdateColliderTrigger()
-        {
-            if (Team == Team.Player)
-                GetComponent<Collider>().isTrigger = GameSettings.Instance.ShieldColliderTrigger;
         }
     }
 }

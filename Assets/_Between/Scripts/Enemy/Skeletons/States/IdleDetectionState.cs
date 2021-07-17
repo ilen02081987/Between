@@ -6,8 +6,8 @@ namespace Between.Enemies.Skeletons
 {
     public class IdleDetectionState : BaseIdleDetectionsState
     {
-        public IdleDetectionState(FinitStateMachine stateMachine, Transform owner, Transform target, float radius)
-            : base(stateMachine, owner, target, radius) { }
+        public IdleDetectionState(FinitStateMachine stateMachine, SkeletonData data)
+            : base(stateMachine, data.Transform, data.Player.transform, data.DetectionDistance) { }
 
         protected override void PerformOnCloseEnough() => SwitchState(typeof(ChasingState));
     }

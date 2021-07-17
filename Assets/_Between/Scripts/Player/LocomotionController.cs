@@ -14,7 +14,6 @@ namespace Between.MainCharacter
         [SerializeField] private float _gravity;
 
         private float _velocityY;
-
         private bool _pressedJumpButton => Input.GetKeyDown(KeyCode.Space);
         private bool _isGrounded
         {

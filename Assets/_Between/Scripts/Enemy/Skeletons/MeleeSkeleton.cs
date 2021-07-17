@@ -10,7 +10,8 @@ namespace Between.Enemies.Skeletons
     {
         private FinitStateMachine _stateMachine;
 
-        private bool _isTakeDamage => _stateMachine.CurrentState.GetType().Equals(typeof(TakeDamageState));
+        private bool _isTakeDamage => _stateMachine.CompareState(typeof(TakeDamageState));
+        private bool _isDestroingShield => _stateMachine.CompareState(typeof(DestroyShieldState));
 
         protected override void Start()
         {
@@ -22,7 +23,7 @@ namespace Between.Enemies.Skeletons
         {
             _stateMachine = new FinitStateMachine();
 
-            var idleState = new IdleDetectionState(_stateMachine, transform, player.transform, data.DetectionDistance);
+            var idleState = new IdleDetectionState(_stateMachine, data);
             var chasingState = new ChasingState(_stateMachine, data);
             var attackState = new AnimatedAttackState(_stateMachine, data);
             var cooldownState = new ChasingCooldownState(_stateMachine, data);
@@ -39,8 +40,11 @@ namespace Between.Enemies.Skeletons
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent<Shield>(out var shield))
+            if (other.TryGetComponent<Shield>(out var shield) && !_isDestroingShield)
+            {
+                data.Shield = shield;
                 _stateMachine.SwitchState(typeof(DestroyShieldState));
+            }
         }
 
         protected override void PerformOnDamage()

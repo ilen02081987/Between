@@ -13,10 +13,7 @@ namespace Between.Enemies.Skeletons
         private readonly NpcAnimator _animator;
         private readonly DamageItem _damage;
         private readonly WaitForSeconds _attackCooldown;
-
-        private readonly Vector3 _point0;
-        private readonly Vector3 _point1;
-        private readonly float _radius;
+        private readonly SkeletonData _data;
 
         private Shield _shield;
 
@@ -25,15 +22,12 @@ namespace Between.Enemies.Skeletons
             _animator = data.Animator;
             _damage = data.DamageItem;
             _attackCooldown = new WaitForSeconds(data.CooldownTime);
-
-            _point0 = data.Collider.center + Vector3.up * data.Collider.height / 2f;
-            _point1 = data.Collider.center - Vector3.up * data.Collider.height / 2f;
-            _radius = data.Collider.radius;
+            _data = data;
         }
 
         public override void Enter()
         {
-            FindShield();
+            _shield = _data.Shield;
 
             if (_shield != null)
                 CoroutineLauncher.Start(DestroyShield());
@@ -51,30 +45,11 @@ namespace Between.Enemies.Skeletons
             while(_shield != null)
             {
                 _animator.Attack(() => _shield.ApplyDamage(_damage));
-
                 yield return _attackCooldown;
-                FindShield();
             }
 
             if (isCurrentState)
                 SwitchState(typeof(ChasingState));
-        }
-
-        private void FindShield()
-        {
-            var colliders = Physics.OverlapCapsule(_point0, _point1, _radius);
-
-            if (colliders == null || colliders.Length == 0)
-                return;
-
-            foreach (var collider in colliders)
-            {
-                if (collider.TryGetComponent<Shield>(out var shield))
-                {
-                    _shield = shield;
-                    return;
-                }
-            }
         }
     }
 }
