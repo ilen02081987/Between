@@ -1,9 +1,7 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
 using Between.StateMachine;
 using Between.Utilities;
-using Between.Animations;
 
 namespace Between.Enemies.Skeletons
 {
@@ -12,20 +10,21 @@ namespace Between.Enemies.Skeletons
         protected virtual bool CanAttack => true;
 
         private readonly Transform _target;
-        private readonly NpcAnimator _animator;
         private readonly Transform _transform;
         private readonly float _attackDistance;
         private readonly NpcLocomotionController _npcLocomotionController;
-
         private readonly WaitForSeconds _updatePathDelay = new WaitForSeconds(.1f);
+        private readonly IState _attackState;
+
         private bool _closeToAttack => Vector3.Distance(_target.position, _transform.position) <= _attackDistance;
 
-        public ChasingState(FinitStateMachine stateMachine, SkeletonData data) : base(stateMachine)
+        public ChasingState(FinitStateMachine stateMachine, SkeletonData data, IState attackState) : base(stateMachine)
         {
             _target = data.Player.transform;
-            _animator = data.Animator;
             _transform = data.Transform;
+            _attackDistance = data.AttackDistance;
             _npcLocomotionController = data.LocomotionController;
+            _attackState = attackState;
         }
 
         public override void Enter()
@@ -45,7 +44,11 @@ namespace Between.Enemies.Skeletons
 
             while(!_closeToAttack || !CanAttack)
             {
-                _npcLocomotionController.Move(_target.position);
+                if (!_closeToAttack)
+                    _npcLocomotionController.Move(_target.position);
+                else
+                    _npcLocomotionController.Stop();
+
                 yield return _updatePathDelay;
 
                 if (!_npcLocomotionController.HasNpc)
@@ -55,7 +58,7 @@ namespace Between.Enemies.Skeletons
             _npcLocomotionController.Stop();
 
             if (isCurrentState)
-                SwitchState(typeof(AnimatedAttackState));
+                SwitchState(_attackState.GetType());
         }
     }
 }

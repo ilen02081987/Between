@@ -6,14 +6,14 @@ using UnityEngine;
 
 namespace Between.Enemies.Skeletons
 {
-    public class AnimatedAttackState : BaseState
+    public class MeleeAttackState : BaseState
     {
         private readonly NpcAnimator _animator;
         private readonly BaseDamagableObject _target;
         private readonly DamageItem _damage;
         private readonly float _attackDistance;
 
-        public AnimatedAttackState(FinitStateMachine stateMachine, SkeletonData data) : base(stateMachine)
+        public MeleeAttackState(FinitStateMachine stateMachine, SkeletonData data) : base(stateMachine)
         {
             _animator = data.Animator;
             _target = data.Player;

@@ -11,7 +11,7 @@ public class ChasingCooldownState : ChasingState
 
     protected override bool CanAttack => _cooldown <= 0f;
 
-    public ChasingCooldownState(FinitStateMachine stateMachine, SkeletonData data) : base(stateMachine, data)
+    public ChasingCooldownState(FinitStateMachine stateMachine, SkeletonData data, IState attackState) : base(stateMachine, data, attackState)
     {
         _baseCooldown = data.CooldownTime;
     }
