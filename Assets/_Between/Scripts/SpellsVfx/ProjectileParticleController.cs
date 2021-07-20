@@ -1,20 +1,29 @@
-using Between.SpellsEffects.Projectile;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Between.SpellsEffects.Projectile;
 
 public class ProjectileParticleController : MonoBehaviour
 {
     [SerializeField]
     private Transform ImpactParticles;
 
+    private Projectile _owner;
+
     private void Awake()
     {
         if (transform.parent != null)
         {
-            Projectile parentProjectile = transform.parent.GetComponent<Projectile>();
-            parentProjectile.OnLaunch += ControlDirection;
-            parentProjectile.OnDestroyed += SpawnImpactParticles;
+            _owner = transform.parent.GetComponent<Projectile>();
+            _owner.OnLaunch += ControlDirection;
+            _owner.OnDestroyed += SpawnImpactParticles;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (_owner != null)
+        {
+            _owner.OnLaunch += ControlDirection;
+            _owner.OnDestroyed += SpawnImpactParticles;
         }
     }
 

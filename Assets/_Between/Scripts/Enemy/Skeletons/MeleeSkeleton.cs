@@ -23,7 +23,13 @@ namespace Between.Enemies.Skeletons
         {
             _stateMachine = new FinitStateMachine();
 
-            var idleState = new IdleDetectionState(_stateMachine, data);
+            BaseState idleState = null;
+
+            if (data.WayPoints != null && data.WayPoints.Length > 1)
+                idleState = new PatrolState(_stateMachine, data);
+            else
+                idleState = new IdleDetectionState(_stateMachine, data);
+
             var chasingState = new ChasingState(_stateMachine, data);
             var attackState = new AnimatedAttackState(_stateMachine, data);
             var cooldownState = new ChasingCooldownState(_stateMachine, data);

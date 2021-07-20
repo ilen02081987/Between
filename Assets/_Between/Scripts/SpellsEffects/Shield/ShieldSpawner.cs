@@ -1,3 +1,4 @@
+using Between.Collisions;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -9,6 +10,8 @@ namespace Between.SpellsEffects.ShieldSpell
         private Shield _shield;
         private GameObject _shieldsParent;
         private readonly Transform _owner;
+
+        private float _shieldSize => _shield.Size;
 
         public ShieldSpawner(string prefabName, Transform owner)
         {
@@ -37,18 +40,19 @@ namespace Between.SpellsEffects.ShieldSpell
 
         private List<Vector3> CalculateShieldPositions(List<Vector3> points)
         {
-            var shieldSize = _shield.Size;
-            var shieldPoints = new List<Vector3>() { points[0] };
+            float shieldSize = _shield.Size;
+            List<Vector3> shieldPoints = new List<Vector3>() { points[0] };
 
             for (int i = 0; i < points.Count; i++)
             {
-                var lastShieldPoint = shieldPoints[shieldPoints.Count - 1];
-                var distance = Vector3.Distance(points[i], lastShieldPoint);
+                Vector3 lastShieldPoint = shieldPoints[shieldPoints.Count - 1];
+                float distance = Vector3.Distance(points[i], lastShieldPoint);
 
                 if (distance > shieldSize)
                 {
-                    var shieldPoint = Vector3.Lerp(lastShieldPoint, points[i], shieldSize / distance);
+                    Vector3 shieldPoint = Vector3.Lerp(lastShieldPoint, points[i], shieldSize / distance);
                     shieldPoints.Add(shieldPoint);
+
                     i--;
                 }
             }
@@ -58,7 +62,7 @@ namespace Between.SpellsEffects.ShieldSpell
 
         private List<Vector3> ConvertToGameSpace(List<Vector2Int> points)
         {
-            var outPoint = new List<Vector3>();
+            List<Vector3> outPoint = new List<Vector3>();
 
             foreach (var point in points)
                 outPoint.Add(GameCamera.ScreenToWorldPoint(point));
@@ -68,7 +72,10 @@ namespace Between.SpellsEffects.ShieldSpell
 
         private void SpawnSingleShield(Vector3 point)
         {
-            var shield = MonoBehaviour.Instantiate(_shield, point, Quaternion.identity, _shieldsParent.transform);
+            if (!SpaceDetecting.IsFreeSpace(point, _shieldSize))
+                return;
+
+            Shield shield = MonoBehaviour.Instantiate(_shield, point, Quaternion.identity, _shieldsParent.transform);
             shield.transform.LookAt(_owner);
         }
     }

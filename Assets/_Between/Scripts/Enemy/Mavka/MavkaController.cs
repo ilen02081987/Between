@@ -16,10 +16,10 @@ namespace Between.Enemies.Mavka
 
         protected override void Start()
         {
+            base.Start();
+
             InitRangeStateMachine();
             InitMeleeStateMachine();
-
-            base.Start();
         }
 
         private void InitRangeStateMachine()

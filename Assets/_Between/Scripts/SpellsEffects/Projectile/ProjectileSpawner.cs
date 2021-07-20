@@ -1,7 +1,8 @@
-using Between.Utilities;
-using System.Collections;
 using System.IO;
 using UnityEngine;
+using Between.Collisions;
+using Between.Utilities;
+using System.Collections;
 
 namespace Between.SpellsEffects.Projectile
 {
@@ -28,6 +29,9 @@ namespace Between.SpellsEffects.Projectile
 
         public void Spawn(Vector3 position, Vector3 direction)
         {
+            if (!SpaceDetecting.IsFreeSpace(position, ElementSize / 2f))
+                return;
+
             var spawnPosition = FindSpawnPoint(position, direction);
             var projectile = MonoBehaviour.Instantiate(
                 _prefab, spawnPosition, Quaternion.identity, _projectilesParent.transform);

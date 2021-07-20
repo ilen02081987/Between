@@ -1,9 +1,9 @@
-using Between.Animations;
-using Between.Damage;
-using Between.SpellsEffects.ShieldSpell;
 using System;
 using UnityEngine;
 using UnityEngine.AI;
+using Between.Animations;
+using Between.Damage;
+using Between.SpellsEffects.ShieldSpell;
 
 namespace Between.Enemies.Skeletons
 {
@@ -19,6 +19,7 @@ namespace Between.Enemies.Skeletons
             data.Player = player;
             data.Animator = animator;
             data.DamageItem = _damage;
+            data.LocomotionController = new NpcLocomotionController(data.NavMeshAgent, data.Animator);
         }
     }
 
@@ -29,7 +30,9 @@ namespace Between.Enemies.Skeletons
         public float DetectionDistance;
         public float AttackDistance;
         public float CooldownTime;
-
+        public NpcLocomotionController LocomotionController;
+        public Transform[] WayPoints;
+        
         [HideInInspector] public Shield Shield;
         [HideInInspector] public DamageItem DamageItem;
         [HideInInspector] public Transform Transform;

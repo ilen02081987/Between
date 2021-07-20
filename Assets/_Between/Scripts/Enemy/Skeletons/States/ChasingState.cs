@@ -13,9 +13,9 @@ namespace Between.Enemies.Skeletons
 
         private readonly Transform _target;
         private readonly NpcAnimator _animator;
-        private readonly NavMeshAgent _navMeshAgent;
         private readonly Transform _transform;
         private readonly float _attackDistance;
+        private readonly NpcLocomotionController _npcLocomotionController;
 
         private readonly WaitForSeconds _updatePathDelay = new WaitForSeconds(.1f);
         private bool _closeToAttack => Vector3.Distance(_target.position, _transform.position) <= _attackDistance;
@@ -25,7 +25,7 @@ namespace Between.Enemies.Skeletons
             _target = data.Player.transform;
             _animator = data.Animator;
             _transform = data.Transform;
-            _navMeshAgent = data.NavMeshAgent;
+            _npcLocomotionController = data.LocomotionController;
         }
 
         public override void Enter()
@@ -36,33 +36,26 @@ namespace Between.Enemies.Skeletons
         public override void Exit()
         {
             CoroutineLauncher.Stop(MoveToTarget());
-            _navMeshAgent.isStopped = true;
+            _npcLocomotionController.Stop();
         }
 
         private IEnumerator MoveToTarget()
         {
-            _navMeshAgent.isStopped = false;
-            _animator.StartMove();
+            _npcLocomotionController.Enable();
 
             while(!_closeToAttack || !CanAttack)
             {
-                Move();
+                _npcLocomotionController.Move(_target.position);
                 yield return _updatePathDelay;
 
-                if (_navMeshAgent == null)
+                if (!_npcLocomotionController.HasNpc)
                     yield break;
             }
 
-            _navMeshAgent.isStopped = true;
+            _npcLocomotionController.Stop();
 
             if (isCurrentState)
                 SwitchState(typeof(AnimatedAttackState));
-        }
-
-        private void Move()
-        {
-            _navMeshAgent.SetDestination(_target.position);
-            _animator.Move(_navMeshAgent.velocity.magnitude / _navMeshAgent.speed);
         }
     }
 }
