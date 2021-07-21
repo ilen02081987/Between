@@ -9,13 +9,13 @@ namespace Between.UI
         protected override void Run()
         {
             _player = Player.Instance.Controller;
-            _player.OnDamage += UpdateValue;
+            _player.LivesValueChanged += UpdateValue;
             UpdateValue();
         }
 
         protected override void PerformOnDestroy()
         {
-            _player.OnDamage -= UpdateValue;
+            _player.LivesValueChanged -= UpdateValue;
         }
 
         private void UpdateValue()

@@ -7,8 +7,6 @@ namespace Between
     {
         public override Team Team => Team.Player;
 
-        public void Heal(float value) => Health = Mathf.Min(Health + value, MaxHealth);
-
         protected override void PerformOnDie()
         {
             Destroy(gameObject);

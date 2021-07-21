@@ -20,7 +20,7 @@ namespace Between.UI.Enemies
             else
             {
                 _slider = GetComponent<PlaneSlider>();
-                _enemy.OnDamage += UpdateValue;
+                _enemy.LivesValueChanged += UpdateValue;
                 _enemy.OnDie += HideSlider;
 
                 _slider.Value = 1f;
@@ -29,7 +29,7 @@ namespace Between.UI.Enemies
 
         private void HideSlider()
         {
-            _enemy.OnDamage -= UpdateValue;
+            _enemy.LivesValueChanged -= UpdateValue;
             _enemy.OnDie -= HideSlider;
             _slider.Disable();
         }

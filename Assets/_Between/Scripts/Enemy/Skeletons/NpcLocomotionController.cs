@@ -36,7 +36,7 @@ namespace Between.Enemies.Skeletons
             _navMeshAgent.isStopped = true;
         }
 
-        public void Enable()
+        public void StartMove()
         {
             _navMeshAgent.isStopped = false;
             _animator.StartMove();

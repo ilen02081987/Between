@@ -8,7 +8,7 @@ namespace Between
 {
     public abstract class BaseDamagableObject : MonoBehaviour, IDamagable
     {
-        public event Action OnDamage;
+        public event Action LivesValueChanged;
         public event Action OnDie;
 
         public abstract Team Team { get; }
@@ -35,7 +35,7 @@ namespace Between
 
             if (Health > 0)
             {
-                OnDamage?.Invoke();
+                LivesValueChanged?.Invoke();
                 PerformOnDamage();
             }
             else
@@ -43,6 +43,12 @@ namespace Between
                 OnDie?.Invoke();
                 PerformOnDie();
             }
+        }
+
+        public void Heal(float value)
+        {
+            Health = Mathf.Min(Health + value, MaxHealth);
+            LivesValueChanged?.Invoke();
         }
 
         protected abstract void PerformOnDie();

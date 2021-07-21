@@ -41,9 +41,9 @@ namespace Between.Enemies.Skeletons
 
         private IEnumerator Patrol()
         {
-            _locomotionController.Enable();
-
             int waypointIndex = 0;
+
+            _locomotionController.StartMove();
             _locomotionController.Move(_wayPoints[waypointIndex].position);
 
             while (isCurrentState)

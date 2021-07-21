@@ -16,7 +16,7 @@ namespace Between.Enemies.Skeletons
         private readonly WaitForSeconds _updatePathDelay = new WaitForSeconds(.1f);
         private readonly IState _attackState;
 
-        private bool _closeToAttack => Vector3.Distance(_target.position, _transform.position) <= _attackDistance;
+        private bool _closeEnough => Vector3.Distance(_target.position, _transform.position) <= _attackDistance;
 
         public ChasingState(FinitStateMachine stateMachine, SkeletonData data, IState attackState) : base(stateMachine)
         {
@@ -40,14 +40,17 @@ namespace Between.Enemies.Skeletons
 
         private IEnumerator MoveToTarget()
         {
-            _npcLocomotionController.Enable();
-
-            while(!_closeToAttack || !CanAttack)
+            while(!_closeEnough || !CanAttack)
             {
-                if (!_closeToAttack)
+                if (!_closeEnough)
+                {
+                    _npcLocomotionController.StartMove();
                     _npcLocomotionController.Move(_target.position);
+                }
                 else
+                {
                     _npcLocomotionController.Stop();
+                }
 
                 yield return _updatePathDelay;
 
