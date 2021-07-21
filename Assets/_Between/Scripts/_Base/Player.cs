@@ -1,4 +1,5 @@
 using Between.Inventory;
+using Between.MainCharacter;
 using Between.Mana;
 using Between.Saving;
 using Between.Utilities;
@@ -10,7 +11,9 @@ namespace Between
         public PlayerData Data { get; private set; }
         public ManaHolder Mana { get; private set; }
         public PlayerController Controller { get; private set; }
-        public ManaBottlesHolder ManaBottles { get; private set; }
+        public ManaBottlesHolder ManaBottlesHolder { get; private set; }
+        public ObjectsInteractor ObjectsInteractor { get; private set; }
+        public ManaBottlesUser ManaBottlesUser { get; private set; }
 
         public Player(PlayerController playerController)
         {
@@ -18,6 +21,8 @@ namespace Between
             InitPlayerController(playerController);
             InitMana();
             InitManaBottlesHolder();
+            InitObjectsInteractor(playerController);
+            InitManaBottlesUser(playerController, ManaBottlesHolder);
         }
 
         private void InitData()
@@ -41,7 +46,18 @@ namespace Between
 
         private void InitManaBottlesHolder()
         {
-            ManaBottles = new ManaBottlesHolder();
+            ManaBottlesHolder = new ManaBottlesHolder();
+        }
+
+        private void InitObjectsInteractor(PlayerController playerController)
+        {
+            ObjectsInteractor = playerController.GetComponent<ObjectsInteractor>();
+        }
+        
+        private void InitManaBottlesUser(PlayerController playerController, ManaBottlesHolder holder)
+        {
+            ManaBottlesUser = playerController.GetComponent<ManaBottlesUser>();
+            ManaBottlesUser.Init(holder);
         }
     }
 }

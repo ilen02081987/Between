@@ -1,7 +1,5 @@
 using Between.Inventory;
 using Between.UI.Base;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +13,7 @@ namespace Between.UI
 
         public override void Init()
         {
-            _manaBottlesHolder = Player.Instance.ManaBottles;
+            _manaBottlesHolder = Player.Instance.ManaBottlesHolder;
             _manaBottlesHolder.CountChanged += UpdateValue;
             UpdateValue();
         }

@@ -1,4 +1,3 @@
-using Between.Mana;
 using System;
 
 namespace Between.Inventory
@@ -12,10 +11,11 @@ namespace Between.Inventory
             get => _count;
             set
             {
-                if (_count != value)
-                    CountChanged?.Invoke();
-
+                int previousValue = _count;
                 _count = value;
+
+                if (_count != previousValue)
+                    CountChanged?.Invoke();
             }
         }
 
@@ -32,6 +32,7 @@ namespace Between.Inventory
                 return;
 
             Player.Instance.Mana.Add(GameSettings.Instance.ManaBottleValue);
+            Count--;
         }
     }
 }

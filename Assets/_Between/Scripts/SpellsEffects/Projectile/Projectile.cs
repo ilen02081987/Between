@@ -72,6 +72,10 @@ namespace Between.SpellsEffects.Projectile
                     ApplySpecialEffects(gameObject);
                 }
             }
+            else
+            {
+                DestroyProjectile();
+            }
         }
 
         protected virtual void ApplySpecialEffects(GameObject gameObject) { }
