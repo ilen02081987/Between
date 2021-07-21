@@ -72,7 +72,7 @@ namespace Between.SpellsEffects.Projectile
                     ApplySpecialEffects(gameObject);
                 }
             }
-            else
+            else if (gameObject.CompareTag("Ground"))
             {
                 DestroyProjectile();
             }
