@@ -30,7 +30,6 @@ MonoBehaviour:
   ShieldTrackerMaxLenght: 1000
   ShieldTrackerForceEndAngle: 90
   ShieldSpellCooldown: 1
-  ShieldColliderTrigger: 1
   ShieldManaCoefficient: 0.05
   MeteorRainMinLenght: 20
   MeteorRainSpellCooldown: 3
@@ -61,7 +60,7 @@ MonoBehaviour:
   MavkaSingleProjectileCastTime: 0
   SeveralProjectilesCastWeight: 1
   SingleProjectilesCastWeight: 1
-  MeleeDetectionRadius: 15
+  MeleeDetectionRadius: 5
   MeleeCooldownBase: 3
   MeleeCooldownShift: 1
   EnemyHealthUIEnabled: 1

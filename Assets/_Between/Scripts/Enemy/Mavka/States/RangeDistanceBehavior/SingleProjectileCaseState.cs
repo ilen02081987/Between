@@ -38,7 +38,7 @@ namespace Between.Enemies.Mavka
             _projectileSpawner.Spawn(_spawnPoint.position, (_target.position - _spawnPoint.position).normalized);
 
             if (isCurrentState)
-                SwitchState(typeof(ChasingCooldownState));
+                SwitchState(typeof(CooldownState));
         }
     }
 }
