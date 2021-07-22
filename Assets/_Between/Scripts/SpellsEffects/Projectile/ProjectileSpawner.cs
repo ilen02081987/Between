@@ -29,7 +29,7 @@ namespace Between.SpellsEffects.Projectile
 
         public void Spawn(Vector3 position, Vector3 direction)
         {
-            if (!SpaceDetecting.IsFreeSpace(position, ElementSize / 2f))
+            if (!SpaceDetector.IsFreeSpace(position, ElementSize / 2f))
                 return;
 
             var spawnPosition = FindSpawnPoint(position, direction);

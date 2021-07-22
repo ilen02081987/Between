@@ -1,3 +1,4 @@
+using Between.Collisions;
 using UnityEngine;
 
 namespace Between.MainCharacter
@@ -15,16 +16,7 @@ namespace Between.MainCharacter
 
         private float _velocityY;
         private bool _pressedJumpButton => Input.GetKeyDown(KeyCode.Space);
-        private bool _isGrounded
-        {
-            get
-            {
-                var colliders = Physics.OverlapSphere(_groundChecker.position, .1f);
-                var physicsCollide = colliders != null && colliders.Length > 0;
-
-                return physicsCollide || _characterController.isGrounded;
-            }
-        }
+        private bool _isGrounded => !SpaceDetector.IsFreeSpace(_groundChecker.position, .1f) || _characterController.isGrounded;
 
         private void Start()
         {

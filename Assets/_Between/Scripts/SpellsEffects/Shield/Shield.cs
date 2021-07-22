@@ -1,6 +1,7 @@
 using Between.Damage;
 using Between.Interfaces;
 using Between.Teams;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -15,8 +16,11 @@ namespace Between.SpellsEffects.ShieldSpell
         [SerializeField] private Team _team;
         [SerializeField] private float _lifeTime = 3f;
 
-        private void Start()
+        private Collider _collider;
+
+        private void Awake()
         {
+            _collider = GetComponent<Collider>();
             StartCoroutine(WaitToDestroy());
             InitDamagableObject();
         }
@@ -49,6 +53,11 @@ namespace Between.SpellsEffects.ShieldSpell
         {
             StopCoroutine(WaitToDestroy());
             Destroy(gameObject);
+        }
+
+        internal void SetTrigger(bool isTrigger)
+        {
+            _collider.isTrigger = isTrigger;
         }
     }
 }

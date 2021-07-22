@@ -2,12 +2,17 @@ using UnityEngine;
 
 namespace Between.Collisions
 {
-    public class SpaceDetecting
+    public class SpaceDetector
     {
         public static bool IsFreeSpace(Vector3 position, float radius)
         {
             Collider[] colliders = Physics.OverlapSphere(position, radius);
-            return colliders == null || colliders.Length == 0;
+
+            foreach (var collider in colliders)
+                if (!collider.CompareTag("Not colliding"))
+                    return false;
+
+            return true;
         }
     }
 }
