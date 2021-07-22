@@ -27,41 +27,25 @@ namespace Between.Enemies.Skeletons
             _attackState = attackState;
         }
 
-        public override void Enter()
+        public override void Update()
         {
-            CoroutineLauncher.Start(MoveToTarget());
+            if (!_closeEnough)
+            {
+                _npcLocomotionController.StartMove();
+                _npcLocomotionController.Move(_target.position);
+            }
+            else 
+            {
+                _npcLocomotionController.Stop();
+                
+                if (CanAttack)
+                    SwitchState(_attackState.GetType());
+            }
         }
 
         public override void Exit()
         {
-            CoroutineLauncher.Stop(MoveToTarget());
             _npcLocomotionController.Stop();
-        }
-
-        private IEnumerator MoveToTarget()
-        {
-            while(!_closeEnough || !CanAttack)
-            {
-                if (!_closeEnough)
-                {
-                    _npcLocomotionController.StartMove();
-                    _npcLocomotionController.Move(_target.position);
-                }
-                else
-                {
-                    _npcLocomotionController.Stop();
-                }
-
-                yield return _updatePathDelay;
-
-                if (!_npcLocomotionController.HasNpc)
-                    yield break;
-            }
-
-            _npcLocomotionController.Stop();
-
-            if (isCurrentState)
-                SwitchState(_attackState.GetType());
         }
     }
 }

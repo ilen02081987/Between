@@ -16,7 +16,7 @@ namespace Between.Spells
             SetForceEndAngle(GameSettings.Instance.ShieldTrackerForceEndAngle).
             SetLenght(GameSettings.Instance.ShieldTrackerMinLenght, GameSettings.Instance.ShieldTrackerMaxLenght);
         
-        private ShieldSpawner _shieldSpawner = new ShieldSpawner("Shield", Player.Instance.Controller.transform, true);
+        private ShieldSpawner _shieldSpawner = new ShieldSpawner("Shield", Player.Instance.Controller.transform);
 
         private GameSettings _settings => GameSettings.Instance;
 

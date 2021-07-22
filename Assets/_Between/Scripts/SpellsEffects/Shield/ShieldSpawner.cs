@@ -10,16 +10,14 @@ namespace Between.SpellsEffects.ShieldSpell
         private Shield _shield;
         private GameObject _shieldsParent;
         private readonly Transform _owner;
-        private readonly bool _isTrigger;
 
         private float _shieldSize => _shield.Size;
 
-        public ShieldSpawner(string prefabName, Transform owner, bool isTrigger)
+        public ShieldSpawner(string prefabName, Transform owner)
         {
             _shield = Resources.Load<Shield>(Path.Combine(ResourcesFoldersNames.SPELLS, prefabName));
             _shieldsParent = new GameObject("ShieldsParent");
             _owner = owner;
-            _isTrigger = isTrigger;
         }
 
         public void Spawn(Vector3 from, Vector3 to)
@@ -74,7 +72,7 @@ namespace Between.SpellsEffects.ShieldSpell
 
         private void SpawnSingleShield(Vector3 point)
         {
-            if (!SpaceDetector.IsFreeSpace(point, _shieldSize))
+            if (!SpaceDetector.IsFreeSpace(point, _shieldSize / 2f))
                 return;
 
             Shield shield = MonoBehaviour.Instantiate(_shield, point, Quaternion.identity, _shieldsParent.transform);

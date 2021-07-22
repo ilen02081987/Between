@@ -21,7 +21,7 @@ public partial class ProjectileTrigger : MonoBehaviour
     private void Start()
     {
         if (_shieldSpawner == null)
-            _shieldSpawner = new ShieldSpawner("MavkaShield", _owner, false);
+            _shieldSpawner = new ShieldSpawner("MavkaShield", _owner);
     }
 
     private void OnTriggerEnter(Collider other)
