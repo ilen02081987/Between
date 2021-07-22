@@ -19,8 +19,6 @@ namespace Between.Enemies
 
         public override void Enter()
         {
-            _locomotionController.Stop();
-
             _animator.TakeDamage(() =>
             {
                 if (isCurrentState && _stateMachineEnabled)

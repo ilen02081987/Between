@@ -1,9 +1,7 @@
-using Between.Damage;
-using Between.Interfaces;
-using Between.Teams;
-using System;
 using System.Collections;
 using UnityEngine;
+using Between.Damage;
+using Between.Teams;
 
 namespace Between.SpellsEffects.ShieldSpell
 {
@@ -23,6 +21,7 @@ namespace Between.SpellsEffects.ShieldSpell
             _collider = GetComponent<Collider>();
             StartCoroutine(WaitToDestroy());
             InitDamagableObject();
+            SetTrigger();
         }
 
         private IEnumerator WaitToDestroy()
@@ -55,9 +54,22 @@ namespace Between.SpellsEffects.ShieldSpell
             Destroy(gameObject);
         }
 
-        internal void SetTrigger(bool isTrigger)
+        private void SetTrigger()
         {
-            _collider.isTrigger = isTrigger;
+            _collider.isTrigger = CheckPoint();
+        }
+
+        private bool CheckPoint()
+        {
+            var colliders = Physics.OverlapSphere(transform.position, 1f);
+
+            foreach (Collider collider in colliders)
+            {
+                if (collider.TryGetComponent<ShieldBridgeZone>(out var zone))
+                    return false;
+            }
+
+            return true;
         }
     }
 }

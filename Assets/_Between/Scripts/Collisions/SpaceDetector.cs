@@ -14,5 +14,16 @@ namespace Between.Collisions
 
             return true;
         }
+
+        public static bool IsGrounded(Vector3 position)
+        {
+            Collider[] colliders = Physics.OverlapSphere(position, .1f);
+
+            foreach (var collider in colliders)
+                if (collider.CompareTag("Ground"))
+                    return true;
+
+            return false;
+        }
     }
 }

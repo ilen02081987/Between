@@ -29,9 +29,11 @@ public class ProjectileParticleController : MonoBehaviour
 
     private void ControlDirection(Vector3 direction)
     {
+        if (this == null)
+            return;
+
         float angle = CalculateRotation(direction);
         transform.rotation = Quaternion.Euler(0, 0, angle);
-        //Debug.Log("Angle: " + angle);
     }
 
     private void SpawnImpactParticles()

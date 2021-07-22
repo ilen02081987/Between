@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
 using Between.Animations;
-using Accord.Statistics.Distributions.Univariate;
 
 namespace Between.Enemies.Skeletons
 {

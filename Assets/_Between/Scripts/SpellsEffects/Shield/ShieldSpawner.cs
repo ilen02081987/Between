@@ -79,7 +79,6 @@ namespace Between.SpellsEffects.ShieldSpell
 
             Shield shield = MonoBehaviour.Instantiate(_shield, point, Quaternion.identity, _shieldsParent.transform);
             shield.transform.LookAt(_owner);
-            shield.SetTrigger(_isTrigger);
         }
     }
 }
