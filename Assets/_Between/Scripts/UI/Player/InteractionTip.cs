@@ -1,14 +1,16 @@
+using UnityEngine;
+using UnityEngine.UI;
 using Between.MainCharacter;
 using Between.LevelObjects;
 using Between.UI.Base;
-using UnityEngine;
-using UnityEngine.UI;
 
 namespace Between.UI
 {
     public class InteractionTip : UiElement
     {
-        [SerializeField] private Text _title;
+        [SerializeField] private Transform _textsParent;
+        [SerializeField] private Text _name;
+        [SerializeField] private Text _tip;
 
         private ObjectsInteractor _interactor;
 
@@ -28,13 +30,15 @@ namespace Between.UI
 
         private void EnableTip(InteractableObject obj)
         {
-            _title.gameObject.SetActive(true);
-            _title.text = $"E - {obj.TipText}";
+            _textsParent.gameObject.SetActive(true);
+
+            _name.text = obj.Name;
+            _tip.text = $"E - {obj.TipText}";
         }
         
         private void DisableTip()
         {
-            _title.gameObject.SetActive(false);
+            _textsParent.gameObject.SetActive(false);
         }
     }
 }

@@ -9,17 +9,16 @@ namespace Between
     public class App : MonoBehaviourSingleton<App>
     {
         [SerializeField] private GameSettings _gameSettings;
+        [SerializeField] private LevelManager _level;
         private GameOverlay _gameOverlay;
 
         private void Awake()
         {
             _gameSettings.CreateInstance();
-
+            InitLevel();
             InitPlayer();
-
             InputLenghtCalculator.Init();
             new SpellsCollection().Init();
-
             InitGameOverlay();
         }
 
@@ -38,6 +37,11 @@ namespace Between
         {
             _gameOverlay = FindObjectOfType<GameOverlay>();
             _gameOverlay?.Init();
+        }
+
+        private void InitLevel()
+        {
+            _level?.Init();
         }
     }
 }

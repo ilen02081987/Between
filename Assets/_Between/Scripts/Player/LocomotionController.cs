@@ -1,4 +1,6 @@
 using Between.Collisions;
+using Between.Utilities;
+using System.Collections;
 using UnityEngine;
 
 namespace Between.MainCharacter
@@ -13,12 +15,15 @@ namespace Between.MainCharacter
         [SerializeField] private float _jumpHeight;
 
         [SerializeField] private float _gravity;
+        [SerializeField] private float _pushStopSpeed;
 
         private float _velocityY;
         private bool _pressedJumpButton => Input.GetKeyDown(KeyCode.Space);
         //private bool _isGrounded => !SpaceDetector.IsFreeSpace(_groundChecker.position, .1f) || _characterController.isGrounded;
         private bool _isGrounded => 
             SpaceDetector.IsGrounded(_groundChecker.position) || _characterController.isGrounded;
+
+        private bool _isPushed = false;
 
         private void Start()
         {
@@ -29,6 +34,15 @@ namespace Between.MainCharacter
         {
             Move();
             TryJump();
+        }
+
+        public void Push(Vector3 direction, float force)
+        {
+            if (!_isPushed)
+            {
+                CoroutineLauncher.Start(PushTranslate(direction, force));
+                _isPushed = true;
+            }
         }
 
         private void Move()
@@ -56,6 +70,19 @@ namespace Between.MainCharacter
             _velocityY += Time.deltaTime * _gravity;
             Vector3 velocity = _speed * axisValue * Vector3.right + Vector3.up * _velocityY;
             return velocity;
+        }
+
+        private IEnumerator PushTranslate(Vector3 direction, float force)
+        {
+            while (enabled && force > 0f)
+            {
+                _characterController.Move(direction * force);
+                force -= _pushStopSpeed * Time.deltaTime;
+
+                yield return null;
+            }
+
+            _isPushed = false;
         }
     }
 }

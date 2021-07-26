@@ -4,6 +4,7 @@ namespace Between.LevelObjects
 {
     public abstract class InteractableObject : MonoBehaviour
     {
+        public string Name;
         public string TipText;
         public bool IsDestroyed { get; private set; } = false;
 

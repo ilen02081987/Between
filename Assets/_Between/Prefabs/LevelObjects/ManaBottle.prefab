@@ -108,4 +108,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f2d68c43393314e9065a35e894721e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Name: "\u0431\u0443\u0442\u044B\u043B\u043A\u0430 \u043C\u0430\u043D\u044B"
   TipText: "\u043F\u043E\u0434\u043D\u044F\u0442\u044C"
