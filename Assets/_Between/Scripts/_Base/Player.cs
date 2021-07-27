@@ -1,14 +1,15 @@
+using Between.InputTracking;
 using Between.Inventory;
 using Between.MainCharacter;
 using Between.Mana;
 using Between.Saving;
+using Between.Spells;
 using Between.Utilities;
 
 namespace Between
 {
     public class Player : Singleton<Player>
     {
-        public PlayerData Data { get; private set; }
         public ManaHolder Mana { get; private set; }
         public PlayerController Controller { get; private set; }
         public ManaBottlesHolder ManaBottlesHolder { get; private set; }
@@ -17,7 +18,6 @@ namespace Between
 
         public Player(PlayerController playerController)
         {
-            InitData();
             InitPlayerController(playerController);
             InitMana();
             InitManaBottlesHolder();
@@ -25,18 +25,11 @@ namespace Between
             InitManaBottlesUser(playerController, ManaBottlesHolder);
         }
 
-        private void InitData()
-        {
-            if (!SaveSystem.CanLoad())
-                Data = new PlayerData().CreateDefault();
-            else
-                Data = SaveSystem.Load();
-
-            SaveSystem.Save();
-        }
-
         private void InitPlayerController(PlayerController playerController)
-            => Controller = playerController;
+        {
+            Controller = playerController;
+            Controller.InitDamagableObject();
+        }
 
         private void InitMana()
         {

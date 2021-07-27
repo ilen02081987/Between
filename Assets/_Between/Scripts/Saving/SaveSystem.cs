@@ -1,10 +1,6 @@
+using Between.Data;
 using System.IO;
 using UnityEngine;
-using UnityEditor;
-
-#if UNITY_EDITOR
-using System.Diagnostics;
-#endif
 
 namespace Between.Saving
 {
@@ -12,31 +8,21 @@ namespace Between.Saving
     {
         public static string FilePath => Path.Combine(Folder, "PlayerData.json");
         public static string Folder => Application.persistentDataPath;
+        public static bool CanLoad => File.Exists(FilePath);
 
-        public static void Save()
+        public static void Save(PlayerData data)
         {
-            if (Player.Instance == null)
-                throw new System.Exception($"There is no PlayerData! Can't save.");
-
-            var jsonData = JsonUtility.ToJson(Player.Instance.Data);
+            var jsonData = JsonUtility.ToJson(data);
             File.WriteAllText(FilePath, jsonData);
         }
 
         public static PlayerData Load()
         {
-            if (!CanLoad())
+            if (!CanLoad)
                 throw new System.Exception($"There is no PlayerData at {FilePath}! Can't load.");
 
             var jsonData = File.ReadAllText(FilePath);
             return JsonUtility.FromJson<PlayerData>(jsonData);
         }
-
-        public static bool CanLoad() => File.Exists(FilePath);
-
-#if UNITY_EDITOR
-
-
-
-#endif
     }
 }

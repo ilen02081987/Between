@@ -15,7 +15,6 @@ namespace Between
 
         private void Start()
         {
-            InitDamagableObject();
             _locomotionController = GetComponent<LocomotionController>();
         }
 

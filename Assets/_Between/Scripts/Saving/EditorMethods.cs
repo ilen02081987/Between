@@ -25,7 +25,7 @@ public class EditorMethods : MonoBehaviour
     [MenuItem("SaveSystem/Delete save file")]
     private static void DeleteSave()
     {
-        if (SaveSystem.CanLoad())
+        if (SaveSystem.CanLoad)
             File.Delete(SaveSystem.FilePath);
     }
 }
