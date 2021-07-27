@@ -25,6 +25,8 @@ namespace Between
         private void OnDestroy()
         {
             _gameOverlay.Dispose();
+            Player.DestroyInstance();
+            SpellsCollection.DestroyInstance();
         }
 
         private static void InitPlayer()

@@ -85,6 +85,11 @@ namespace Between
             InitSettings();
         } 
 
+        public void ClearInstance()
+        {
+            Instance = null;
+        }
+
         private void InitSettings()
         {
              if (DecideBorder == null || DecideBorder.Length < 4)

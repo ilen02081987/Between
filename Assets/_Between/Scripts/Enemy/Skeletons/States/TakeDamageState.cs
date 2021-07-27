@@ -21,7 +21,7 @@ namespace Between.Enemies
         {
             _animator.TakeDamage(() =>
             {
-                if (isCurrentState && _stateMachineEnabled)
+                if (isCurrentState && stateMachineEnabled)
                     SwitchState(_next.GetType());
             });
         }

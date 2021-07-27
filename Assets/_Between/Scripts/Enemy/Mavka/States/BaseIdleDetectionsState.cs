@@ -21,7 +21,7 @@ namespace Between.Enemies.Mavka
 
         public override void Update()
         {
-            if (_target != null && _targetCloseEnough && _stateMachineEnabled)
+            if (_target != null && _targetCloseEnough && stateMachineEnabled)
                 PerformOnCloseEnough();
         }
 

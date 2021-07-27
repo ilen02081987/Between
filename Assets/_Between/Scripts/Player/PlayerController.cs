@@ -1,6 +1,9 @@
 using UnityEngine;
 using Between.Teams;
 using Between.MainCharacter;
+using UnityEngine.SceneManagement;
+using System.Collections;
+using Between.Utilities;
 
 namespace Between
 { 
@@ -26,7 +29,16 @@ namespace Between
 
         protected override void PerformOnDie()
         {
+            CoroutineLauncher.Start(ReloadScene());
+        }
+
+        private IEnumerator ReloadScene()
+        {
             Destroy(gameObject);
+
+            yield return new WaitForSeconds(1f);
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
         }
     }
 }

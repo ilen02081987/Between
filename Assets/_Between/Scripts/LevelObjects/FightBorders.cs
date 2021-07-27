@@ -1,0 +1,65 @@
+using Between.Enemies;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Between.LevelObjects
+{
+    public class FightBorders : MonoBehaviour
+    {
+        [SerializeField] private List<BaseEnemy> _enemies;
+
+        [SerializeField] private Collider _leftBorder;
+        [SerializeField] private Collider _rightBorder;
+
+        private bool _isEnabled = false;
+
+        private void Update()
+        {
+            if (Player.Instance.Controller == null)
+                return;
+
+            var playerPosition = Player.Instance.Controller.Position;
+
+            if (playerPosition.x > _leftBorder.transform.position.x
+                && playerPosition.x < _rightBorder.transform.position.x)
+                EnableBorders();
+        }
+
+        public void AddEnemy(BaseEnemy enemy)
+        {
+            _enemies.Add(enemy);
+
+            if (_isEnabled)
+                enemy.OnDie += () => TryDestroyBorders(enemy);
+        }
+
+        private void EnableBorders()
+        {
+            _leftBorder.isTrigger = false;
+            _rightBorder.isTrigger = false;
+
+            foreach (var enemy in _enemies)
+            {
+                enemy.OnDie += () => TryDestroyBorders(enemy);
+            }
+
+            _isEnabled = true;
+        }
+
+        private void TryDestroyBorders(BaseEnemy enemy)
+        {
+            _enemies.Remove(enemy);
+
+            if (_enemies.Count == 0)
+                Destroy();
+        }
+
+        private void Destroy()
+        {
+            Destroy(_leftBorder.gameObject);
+            Destroy(_rightBorder.gameObject);
+            Destroy(gameObject);
+        }
+    }
+}

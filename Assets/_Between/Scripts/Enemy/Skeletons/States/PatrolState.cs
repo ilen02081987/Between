@@ -19,6 +19,8 @@ namespace Between.Enemies.Skeletons
 
         private bool _seePlayer => Vector3.Distance(_owner.position, _player.position) <= _detectionDistance;
 
+        private int _wayPointIndex = 0;
+
         public PatrolState(FinitStateMachine stateMachine, SkeletonData data) : base(stateMachine)
         {
             _locomotionController = data.LocomotionController;
@@ -30,36 +32,35 @@ namespace Between.Enemies.Skeletons
 
         public override void Enter()
         {
-            CoroutineLauncher.Start(Patrol());
+            _wayPointIndex = 0;
+
+            _locomotionController.StartMove();
+            _locomotionController.Move(_wayPoints[_wayPointIndex].position);
+        }
+
+        public override void Update()
+        {
+            if (_player == null)
+                return;
+
+            if (isCurrentState)
+            {
+                if (_seePlayer)
+                    SwitchState(typeof(ChasingState));
+
+                if (ReachWaypoint(_wayPointIndex))
+                {
+                    _wayPointIndex = (_wayPointIndex + 1) % (_wayPoints.Length);
+                    _locomotionController.Move(_wayPoints[_wayPointIndex].position);
+                }
+
+                _locomotionController.UpdateMoveSpeed();
+            }
         }
 
         public override void Exit()
         {
             _locomotionController.Stop();
-            CoroutineLauncher.Stop(Patrol());
-        }
-
-        private IEnumerator Patrol()
-        {
-            int waypointIndex = 0;
-
-            _locomotionController.StartMove();
-            _locomotionController.Move(_wayPoints[waypointIndex].position);
-
-            while (isCurrentState)
-            {
-                if (_seePlayer)
-                    SwitchState(typeof(ChasingState));
-
-                if (ReachWaypoint(waypointIndex))
-                {
-                    waypointIndex = (waypointIndex + 1) % (_wayPoints.Length);
-                    _locomotionController.Move(_wayPoints[waypointIndex].position);
-                }
-
-                _locomotionController.UpdateMoveSpeed();
-                yield return _updatePathDelay;
-            }
         }
 
         private bool ReachWaypoint(int waypointIndex)
