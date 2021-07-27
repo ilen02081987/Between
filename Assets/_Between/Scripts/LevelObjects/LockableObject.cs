@@ -4,7 +4,11 @@ namespace Between.LevelObjects
 {
     public abstract class LockableObject : InteractableObject
     {
-        [SerializeField] private bool _isLocked;
+        [Header("не трогать TipText")]
+        [SerializeField] protected string _lockText;
+        [SerializeField] protected string _unlockText;
+
+        [SerializeField] private bool _isLocked = true;
 
         public override void Interact()
         {
@@ -17,11 +21,13 @@ namespace Between.LevelObjects
         public void Lock()
         {
             _isLocked = true;
+            TipText = _lockText;
         }
 
         public void Unlock()
         {
             _isLocked = false;
+            TipText = _unlockText;
         }
     }
 }

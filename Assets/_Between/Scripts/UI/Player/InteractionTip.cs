@@ -33,7 +33,7 @@ namespace Between.UI
             _textsParent.gameObject.SetActive(true);
 
             _name.text = obj.Name;
-            _tip.text = $"E - {obj.TipText}";
+            _tip.text = obj.TipText;
         }
         
         private void DisableTip()
