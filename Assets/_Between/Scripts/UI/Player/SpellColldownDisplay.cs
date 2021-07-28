@@ -40,7 +40,7 @@ namespace Between.UI
         
         private void UpdateDisplay(float value)
         {
-            _image.fillAmount = value;
+            _image.fillAmount = value / _spell.CoolDownTime;
         }
     }
 }

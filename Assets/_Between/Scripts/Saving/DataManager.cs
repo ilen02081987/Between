@@ -13,10 +13,4 @@ namespace Between.Data
                 SavedData = SaveSystem.Load();
         }
     }
-
-    public class PlayerData
-    {
-        public int LevelSceneBuildIndex;
-        public int LoadPointNumber;
-    }
 }

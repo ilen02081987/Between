@@ -30,7 +30,8 @@ namespace Between.Animations
 
         private void OnDestroy()
         {
-            _npc.OnDie -= Die;
+            if (_npc != null)
+                _npc.OnDie -= Die;
         }
 
         public void StartMove() => _animator.SetTrigger("StartMove");

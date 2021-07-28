@@ -11,7 +11,7 @@ namespace Between
     public class LevelManager : MonoBehaviour
     {
         [SerializeField] private GameSettings _gameSettings;
-        [SerializeField] private LoadPoint[] _loadPoints;
+        [SerializeField] private CheckPoint[] _checkPoints;
         [SerializeField] private CinemachineVirtualCamera _virtualCamera;
         
         private GameOverlay _gameOverlay;
@@ -22,13 +22,19 @@ namespace Between
         public void Init()
         {
             InitSettings();
-
+            InitCheckPoints();
             InitPlayer();
             AttachCameraToPlayer();
             InputLenghtCalculator.Init();
             new SpellsCollection().Init();
             
             InitGameOverlay();
+        }
+
+        private void InitCheckPoints()
+        {
+            for (int i = 0; i < _checkPoints.Length; i++)
+                _checkPoints[i].AttachNumber(i);
         }
 
         public void Dispose()
@@ -45,10 +51,16 @@ namespace Between
 
         private void InitPlayer()
         {
-            if (DataManager.Instance.SavedData == null)
-                _loadPoints[0].LoadPlayer();
+            if (DataManager.Instance?.SavedData == null)
+                _checkPoints[0].LoadPlayer();
             else
-                _loadPoints[DataManager.Instance.SavedData.LoadPointNumber].LoadPlayer();
+            {
+                var pointNumber = DataManager.Instance.SavedData.LoadPointNumber;
+                _checkPoints[pointNumber].LoadPlayer();
+
+                for (int i = 0; i < pointNumber; i++)
+                    _checkPoints[i].Clear();
+            }
         }
 
         private void AttachCameraToPlayer()

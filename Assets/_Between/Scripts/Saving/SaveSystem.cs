@@ -1,6 +1,6 @@
-using Between.Data;
 using System.IO;
 using UnityEngine;
+using Between.Data;
 
 namespace Between.Saving
 {
@@ -23,6 +23,12 @@ namespace Between.Saving
 
             var jsonData = File.ReadAllText(FilePath);
             return JsonUtility.FromJson<PlayerData>(jsonData);
+        }
+
+        public static void ClearSave()
+        {
+            if (CanLoad)
+                File.Delete(FilePath);
         }
     }
 }

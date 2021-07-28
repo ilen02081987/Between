@@ -1,7 +1,6 @@
-using Accord.Diagnostics;
 using System;
 using System.Collections.Generic;
-using TMPro;
+using UnityEngine;
 
 namespace Between.StateMachine
 {
@@ -25,7 +24,9 @@ namespace Between.StateMachine
 
         public void SwitchState(Type stateType)
         {
-            UnityEngine.Debug.Log($"Switch state to {stateType.Name}");
+            if (GameSettings.Instance.EnableStateMachineLogs)
+                Debug.Log($"[StateMachine] Switch state to {stateType.Name}");
+
             CheckSwitchPossibility(stateType, out IState newState);
             EnterState(newState);
         }

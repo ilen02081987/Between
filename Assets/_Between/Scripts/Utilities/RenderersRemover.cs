@@ -6,8 +6,10 @@ namespace Between.Utilities
     {
         private void Awake()
         {
+#if !UNITY_EDITOR
             Destroy(GetComponent<MeshRenderer>());
             Destroy(GetComponent<MeshFilter>());
+#endif
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Between.ShieldsSpawning
             if (other.TryGetComponent<Projectile>(out var projectile))
                 if (projectile.Team != Team.Enemies)
                     _projectileTragectoryDatas.Add(
-                        new ProjectileTragectoryData(projectile, other.transform.position, _owner.gameObject));
+                        new ProjectileTragectoryData(projectile, other.transform.position, _owner));
         }
 
         private void OnTriggerExit(Collider other)
