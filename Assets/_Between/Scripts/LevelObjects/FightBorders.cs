@@ -12,17 +12,23 @@ namespace Between.LevelObjects
         [SerializeField] private Collider _leftBorder;
         [SerializeField] private Collider _rightBorder;
 
+        private float _playerPositionX => Player.Instance.Controller.Position.x;
+        private float _playerWidth;
         private bool _isEnabled = false;
+
+        private void Start()
+        {
+            var characterController = Player.Instance.Controller.GetComponent<CharacterController>();
+            _playerWidth = characterController.radius + characterController.skinWidth;
+        }
 
         private void Update()
         {
             if (Player.Instance.Controller == null)
                 return;
 
-            var playerPosition = Player.Instance.Controller.Position;
-
-            if (playerPosition.x > _leftBorder.transform.position.x
-                && playerPosition.x < _rightBorder.transform.position.x)
+            if (_playerPositionX - _playerWidth > _leftBorder.transform.position.x
+                && _playerPositionX + _playerWidth < _rightBorder.transform.position.x)
                 EnableBorders();
         }
 

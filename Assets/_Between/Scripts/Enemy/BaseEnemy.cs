@@ -19,8 +19,11 @@ namespace Between.Enemies
 
         [SerializeField] private float _destroyTime = 2;
 
+        private Collider _collider;
+
         protected virtual void Start()
         {
+            _collider = GetComponent<Collider>();
             player = Player.Instance.Controller;
             animator.AttachTo(this);
 
@@ -29,6 +32,7 @@ namespace Between.Enemies
         
         protected override void PerformOnDie()
         {
+            _collider.isTrigger = true;
             Destroy(gameObject, _destroyTime);
         }
     }
