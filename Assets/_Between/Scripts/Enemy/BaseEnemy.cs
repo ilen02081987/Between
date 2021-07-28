@@ -1,9 +1,8 @@
+using UnityEngine;
+using UnityEngine.AI;
 using Between.Animations;
 using Between.Damage;
 using Between.Teams;
-using System;
-using UnityEngine;
-using UnityEngine.AI;
 
 namespace Between.Enemies
 {
@@ -19,8 +18,11 @@ namespace Between.Enemies
 
         [SerializeField] private float _destroyTime = 2;
 
+        private Collider _collider;
+
         protected virtual void Start()
         {
+            _collider = GetComponent<Collider>();
             player = Player.Instance.Controller;
             animator.AttachTo(this);
 
@@ -29,6 +31,7 @@ namespace Between.Enemies
         
         protected override void PerformOnDie()
         {
+            _collider.isTrigger = true;
             Destroy(gameObject, _destroyTime);
         }
     }
