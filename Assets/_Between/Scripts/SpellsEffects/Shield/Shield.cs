@@ -50,6 +50,9 @@ namespace Between.SpellsEffects.ShieldSpell
 
         private void DestroyShield()
         {
+            if (this == null)
+                return;
+
             StopCoroutine(WaitToDestroy());
             Destroy(gameObject);
         }
