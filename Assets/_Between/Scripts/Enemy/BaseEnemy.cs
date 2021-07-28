@@ -1,9 +1,8 @@
+using UnityEngine;
+using UnityEngine.AI;
 using Between.Animations;
 using Between.Damage;
 using Between.Teams;
-using System;
-using UnityEngine;
-using UnityEngine.AI;
 
 namespace Between.Enemies
 {
