@@ -5,7 +5,7 @@ namespace Between.Damage
     [Serializable]
     public class DamageItem
     {
-        public DamageType Type;
+        public readonly DamageType Type;
         public float Value;
 
         public DamageItem(DamageType damageType, float value)
