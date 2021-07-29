@@ -10,6 +10,9 @@ namespace Between
 {
     public class LevelManager : MonoBehaviour
     {
+        public static LevelManager Instance;
+        public int SceneIndex => Instance.gameObject.scene.buildIndex;
+
         [SerializeField] private GameSettings _gameSettings;
         [SerializeField] private CheckPoint[] _checkPoints;
         [SerializeField] private CinemachineVirtualCamera _virtualCamera;
@@ -21,6 +24,8 @@ namespace Between
 
         public void Init()
         {
+            Instance = this;
+
             InitSettings();
             InitCheckPoints();
             InitPlayer();
@@ -31,19 +36,19 @@ namespace Between
             InitGameOverlay();
         }
 
-        private void InitCheckPoints()
-        {
-            for (int i = 0; i < _checkPoints.Length; i++)
-                _checkPoints[i].AttachNumber(i);
-        }
-
         public void Dispose()
         {
             InputLenghtCalculator.Dispose();
             Player.DestroyInstance();
             SpellsCollection.DestroyInstance();
         }
-        
+
+        private void InitCheckPoints()
+        {
+            for (int i = 0; i < _checkPoints.Length; i++)
+                _checkPoints[i].AttachNumber(i);
+        }
+
         private void InitSettings()
         {
             _gameSettings.CreateInstance();

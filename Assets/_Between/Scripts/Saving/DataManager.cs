@@ -12,5 +12,11 @@ namespace Between.Data
             if (SaveSystem.CanLoad)
                 SavedData = SaveSystem.Load();
         }
+
+        public void ClearSave()
+        {
+            SaveSystem.ClearSave();
+            SavedData = null;
+        }
     }
 }

@@ -7,7 +7,7 @@ using Between.Teams;
 namespace Between.Enemies
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public class BaseEnemy : BaseDamagableObject
+    public abstract class BaseEnemy : BaseDamagableObject
     {
         public override Team Team => Team.Enemies;
 
@@ -23,12 +23,16 @@ namespace Between.Enemies
         protected virtual void Start()
         {
             _collider = GetComponent<Collider>();
-            player = Player.Instance.Controller;
             animator.AttachTo(this);
+
+            player = Player.Instance.Controller;
+            player.OnDie += PerformOnPlayerDie;
 
             InitDamagableObject();
         }
-        
+
+        protected abstract void PerformOnPlayerDie();
+
         protected override void PerformOnDie()
         {
             _collider.isTrigger = true;

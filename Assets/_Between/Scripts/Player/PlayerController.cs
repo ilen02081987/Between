@@ -1,8 +1,8 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Between.Teams;
 using Between.MainCharacter;
-using UnityEngine.SceneManagement;
-using System.Collections;
 using Between.Utilities;
 
 namespace Between
@@ -37,7 +37,9 @@ namespace Between
 
             yield return new WaitForSeconds(1f);
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+            int sceneNumber = LevelManager.Instance.SceneIndex;
+            SceneManager.UnloadSceneAsync(sceneNumber);
+            SceneManager.LoadScene(sceneNumber, LoadSceneMode.Additive);
         }
     }
 }

@@ -44,6 +44,11 @@ namespace Between.Enemies.Skeletons
             base.PerformOnDie();
         }
 
+        protected override void PerformOnPlayerDie()
+        {
+            _stateMachine.Disable();
+        }
+
         private void Update()
         {
             _stateMachine.Update();

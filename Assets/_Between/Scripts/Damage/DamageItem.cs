@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace Between.Damage
 {
@@ -10,5 +7,11 @@ namespace Between.Damage
     {
         public DamageType Type;
         public float Value;
+
+        public DamageItem(DamageType damageType, float value)
+        {
+            Type = damageType;
+            Value = value;
+        }
     }
 }
