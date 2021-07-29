@@ -22,6 +22,11 @@ namespace Between.StateMachine
             EnterState(firstState);
         }
 
+        public void AddState(IState state)
+        {
+            _states.Add(state);
+        }
+
         public void SwitchState(Type stateType)
         {
             if (GameSettings.Instance.EnableStateMachineLogs)

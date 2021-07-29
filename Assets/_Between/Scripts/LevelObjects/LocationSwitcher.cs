@@ -1,5 +1,5 @@
+using Between.SceneManagement;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Between.LevelObjects
 {
@@ -9,7 +9,7 @@ namespace Between.LevelObjects
 
         protected override void InteractAfterUnlock()
         {
-            SceneManager.LoadScene(_nextSceneBuildIndex);
+            SceneChanger.ChangeScene(LevelManager.Instance.SceneIndex, _nextSceneBuildIndex);
         }
     }
 }

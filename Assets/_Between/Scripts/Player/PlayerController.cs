@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using Between.Teams;
 using Between.MainCharacter;
 using Between.Utilities;
+using Between.SceneManagement;
 
 namespace Between
 { 
@@ -38,8 +39,7 @@ namespace Between
             yield return new WaitForSeconds(1f);
 
             int sceneNumber = LevelManager.Instance.SceneIndex;
-            SceneManager.UnloadSceneAsync(sceneNumber);
-            SceneManager.LoadScene(sceneNumber, LoadSceneMode.Additive);
+            SceneChanger.ChangeScene(sceneNumber, sceneNumber);
         }
     }
 }

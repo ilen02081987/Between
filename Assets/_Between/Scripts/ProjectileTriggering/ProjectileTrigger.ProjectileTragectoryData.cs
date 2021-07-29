@@ -5,18 +5,18 @@ namespace Between.ShieldsSpawning
 {
     public partial class ProjectileTrigger
     {
-        private class ProjectileTragectoryData
+        private class ProjectileTrajectoryData
         {
             public Projectile Projectile;
             public Vector3 EnterPoint;
-            private readonly Transform _target;
+            private readonly Transform _owner;
             public Vector3 ExitPoint;
 
-            public ProjectileTragectoryData(Projectile projectile, Vector3 enterPoint, Transform owner)
+            public ProjectileTrajectoryData(Projectile projectile, Vector3 enterPoint, Transform owner)
             {
                 Projectile = projectile;
                 EnterPoint = enterPoint;
-                _target = owner;
+                _owner = owner;
             }
 
             public void AddExitPoint(Vector3 point)
@@ -30,7 +30,7 @@ namespace Between.ShieldsSpawning
 
                 foreach (var rayCastHit in rayCastHits)
                 {
-                    if (rayCastHit.transform == _target)
+                    if (rayCastHit.transform == _owner)
                         return true;
                 }
 

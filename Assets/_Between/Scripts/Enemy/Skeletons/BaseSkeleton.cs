@@ -12,10 +12,10 @@ namespace Between.Enemies.Skeletons
     {
         [SerializeField] protected SkeletonData data;
 
-        protected FinitStateMachine _stateMachine;
+        protected FinitStateMachine stateMachine;
 
-        protected bool _isTakeDamage => _stateMachine.CompareState(typeof(TakeDamageState));
-        protected bool _isDestroingShield => _stateMachine.CompareState(typeof(DestroyShieldState));
+        protected bool _isTakeDamage => stateMachine.CompareState(typeof(TakeDamageState));
+        protected bool _isDestroingShield => stateMachine.CompareState(typeof(DestroyShieldState));
 
         protected override void Start()
         {
@@ -27,31 +27,33 @@ namespace Between.Enemies.Skeletons
             data.DamageItem = _damage;
             data.LocomotionController = new NpcLocomotionController(data.NavMeshAgent, data.Animator);
 
+            InitNpc();
             InitStateMachine();
         }
 
         protected abstract void InitStateMachine();
+        protected virtual void InitNpc() { }
 
         protected override void PerformOnDamage()
         {
             if (!_isTakeDamage)
-                _stateMachine.SwitchState(typeof(TakeDamageState));
+                stateMachine.SwitchState(typeof(TakeDamageState));
         }
 
         protected override void PerformOnDie()
         {
-            _stateMachine.Disable();
+            stateMachine.Disable();
             base.PerformOnDie();
         }
 
         protected override void PerformOnPlayerDie()
         {
-            _stateMachine.Disable();
+            stateMachine.Disable();
         }
 
         private void Update()
         {
-            _stateMachine.Update();
+            stateMachine.Update();
         }
     }
 

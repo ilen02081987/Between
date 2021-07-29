@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Between.ShieldsSpawning
 {
-    public partial class ProjectileTrigger
+    public partial class NpcShieldSpawner
     {
         [Serializable]
         private class ShieldAnchors

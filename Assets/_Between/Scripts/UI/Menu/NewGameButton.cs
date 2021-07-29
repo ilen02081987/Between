@@ -1,4 +1,5 @@
 using Between.Data;
+using Between.SceneManagement;
 using Between.UI.Base;
 using UnityEngine.SceneManagement;
 
@@ -9,9 +10,7 @@ namespace Between.UI.Menu
         protected override void PerformOnClick()
         {
             DataManager.Instance.ClearSave();
-
-            SceneManager.UnloadSceneAsync(1);
-            SceneManager.LoadScene(2, LoadSceneMode.Additive);
+            SceneChanger.ChangeScene(1, 2);
         }
     }
 }

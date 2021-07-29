@@ -22,6 +22,8 @@ namespace Between.Enemies.Skeletons
             _animator = animator;
         }
 
+        public void Defend(Action onComplete) => _animator.Defend(onComplete);
+
         public void Move(Vector3 position)
         {
             _navMeshAgent.SetDestination(position);
@@ -35,7 +37,8 @@ namespace Between.Enemies.Skeletons
 
         public void Stop()
         {
-            _navMeshAgent.isStopped = true;
+            if (_navMeshAgent != null)
+                _navMeshAgent.isStopped = true;
         }
 
         public void StartMove()

@@ -1,6 +1,6 @@
-using UnityEngine.SceneManagement;
 using Between.Data;
 using Between.UI.Base;
+using Between.SceneManagement;
 
 namespace Between.UI.Menu
 {
@@ -14,8 +14,7 @@ namespace Between.UI.Menu
 
         protected override void PerformOnClick()
         {
-            SceneManager.UnloadSceneAsync(1);
-            SceneManager.LoadScene(DataManager.Instance.SavedData.LevelSceneBuildIndex, LoadSceneMode.Additive);
+            SceneChanger.ChangeScene(1, DataManager.Instance.SavedData.LevelSceneBuildIndex);
         }
     }
 }
