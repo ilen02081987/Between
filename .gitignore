@@ -63,7 +63,6 @@ crashlytics-build.properties
 
 **/.vscode/
 
-**/Assets/Plugins/*
 **/Assets/Plugins.meta
 
 *.idea
