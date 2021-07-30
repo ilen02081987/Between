@@ -25,7 +25,9 @@ namespace Between.UI
 
         public override void Dispose()
         {
+            _spell.CooldownStarted -= EmptiedDisplay;
             _spell.CooldownUpdated -= UpdateDisplay;
+            _spell.CooldownFinished -= FillDisplay;
         }
 
         private void EmptiedDisplay()

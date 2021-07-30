@@ -4,22 +4,28 @@ using Between.SpellsEffects.Projectile;
 using Between.StateMachine;
 using Between.SpellPainting;
 using Between.Utilities;
+using Between.Animations;
 
 namespace Between.Enemies.Mavka
 {
     public class SeveralProjectilesCastState : BaseCastState
     {
-        public override int Weight => GameSettings.Instance.SeveralProjectilesCastWeight;
-
         private readonly Transform[] _spawnPoints;
         private readonly Transform _target;
+        private readonly float _castTime;
+        private readonly float _castDelay;
+        private readonly bool _singleCast;
         private readonly ProjectileSpawner _projectileSpawner;
 
-        public SeveralProjectilesCastState(FinitStateMachine stateMachine, Transform target, params Transform[] spawnPoints) : base(stateMachine)
+        public SeveralProjectilesCastState(FinitStateMachine stateMachine, NpcAnimator animator, Transform target, int weight,
+            float castTime, float castDelay, bool singleCast , params Transform[] spawnPoints) : base(stateMachine, animator, weight)
         {
             _projectileSpawner = new ProjectileSpawner("MavkaSeveralProjectile", 0f);
             _spawnPoints = spawnPoints;
             _target = target;
+            _castTime = castTime;
+            _castDelay = castDelay;
+            _singleCast = singleCast;
         }
 
         public override void Enter()
@@ -29,8 +35,8 @@ namespace Between.Enemies.Mavka
 
         private IEnumerator CastProjectiles()
         {
-            var delay = GameSettings.Instance.SeveralProjectilesCastDelay;
-            var singleCast = GameSettings.Instance.SeveralProjectilesSingleCast;
+            float delay = _castDelay;
+            bool singleCast = _singleCast;
 
             for (int i = 0; i < _spawnPoints.Length; i++)
             {
@@ -39,6 +45,8 @@ namespace Between.Enemies.Mavka
 
                 yield return new WaitForSeconds(delay);
             }
+
+            animator.StartWiz();
         }
 
         private void CreateSpellPainter(int spawnPointIndex, float afterDrawDelay)
@@ -46,8 +54,7 @@ namespace Between.Enemies.Mavka
             var spellPainter = new SpellPainter(
                 "MavkaSeveralProjectiles",
                 "LineRenderersPainter",
-                _spawnPoints[spawnPointIndex].position, GameSettings.Instance.SeveralProjectilesCastTime
-                , afterDrawDelay);
+                _spawnPoints[spawnPointIndex].position, _castTime, afterDrawDelay);
 
             spellPainter.Complete += () => CompletePaintSpell(spawnPointIndex);
             spellPainter.StartDraw();
@@ -61,9 +68,12 @@ namespace Between.Enemies.Mavka
             _projectileSpawner.Spawn(
                 _spawnPoints[spawnPointIndex].position, 
                 (_target.position - _spawnPoints[spawnPointIndex].position).normalized);
-            
+
             if (isCurrentState && spawnPointIndex == _spawnPoints.Length - 1)
+            {
                 SwitchState(typeof(CooldownState));
+                animator.FinishWiz();
+            }
         }
     }
 }

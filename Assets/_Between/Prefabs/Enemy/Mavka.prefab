@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09f8216225dc5d24fa1dafdb727fe259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _id: 0
 --- !u!114 &1911694457663411280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +191,7 @@ MonoBehaviour:
   _attackAnimationSpeed: 1
   _dieAnimationSpeed: 1
   _defendAnimationSpeed: 1
+  _wizSpeed: 1
 --- !u!1 &8970982086991896328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1138,7 +1140,7 @@ PrefabInstance:
     - target: {fileID: 9500000, guid: f1a9a077a6f638446a31f5a0ed489124, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 6cf9750fd8fb74045b12596a6133a067, type: 2}
+      objectReference: {fileID: 9100000, guid: ca7bc98f3af3ca447bb17f05e938110d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1a9a077a6f638446a31f5a0ed489124, type: 3}
 --- !u!1 &7440609492470153877 stripped

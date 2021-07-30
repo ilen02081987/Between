@@ -16,6 +16,6 @@ namespace Between.LevelObjects
             IsDestroyed = true;
         }
 
-        protected virtual void DestroyOnLoad() { }
+        public virtual void DestroyOnLoad() { }
     }
 }

@@ -14,6 +14,7 @@ namespace Between.Animations
         [SerializeField] private float _attackAnimationSpeed = 1;
         [SerializeField] private float _dieAnimationSpeed = 1;
         [SerializeField] private float _defendAnimationSpeed = 1;
+        [SerializeField] private float _wizSpeed = 1;
 
         private BaseEnemy _npc;
         private Animator _animator;
@@ -65,6 +66,18 @@ namespace Between.Animations
 
             _animator.speed = _takeDamageAnimationSpeed;
             _animator.SetTrigger("TakeDamage");
+        }
+
+        public void StartWiz()
+        {
+            _animator.speed = _wizSpeed;
+            _animator.SetTrigger("Wiz");
+        }
+
+        public void FinishWiz()
+        {
+            _animator.speed = 1f;
+            _animator.SetTrigger("Idle");
         }
 
         private void Die()

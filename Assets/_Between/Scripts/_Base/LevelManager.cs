@@ -42,8 +42,10 @@ namespace Between
         public void Dispose()
         {
             InputLenghtCalculator.Dispose();
+            DisposePlayer();
             Player.DestroyInstance();
             SpellsCollection.DestroyInstance();
+            _gameOverlay?.Dispose();
         }
 
         private void InitCheckPoints()
@@ -59,13 +61,19 @@ namespace Between
 
         private void InitPlayer()
         {
-            if (DataManager.Instance.SavedData == null)
+            if (DataManager.Instance.SavedData == null || DataManager.Instance.SavedData.LevelSceneBuildIndex != SceneIndex)
                 _checkPoints[0].LoadPlayer();
             else
             {
                 var pointNumber = DataManager.Instance.SavedData.LoadPointNumber;
                 _checkPoints[pointNumber].LoadPlayer();
             }
+        }
+
+        private void DisposePlayer()
+        {
+            if (Player.Instance.Controller != null)
+                Destroy(Player.Instance.Controller.gameObject);
         }
 
         private void InitLevel()
@@ -97,7 +105,7 @@ namespace Between
         private void RemoveGameObject(GameObject gameObject)
         {
             if (gameObject.TryGetComponent<InteractableObject>(out var interactable))
-                interactable.Interact();
+                interactable.DestroyOnLoad();
             else
                 Destroy(gameObject);
         }

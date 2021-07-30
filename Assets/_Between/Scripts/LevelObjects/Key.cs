@@ -11,6 +11,6 @@ namespace Between.LevelObjects
             Destroy();
         }
 
-        protected override void DestroyOnLoad() => Interact();
+        public override void DestroyOnLoad() => Interact();
     }
 }
