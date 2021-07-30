@@ -8,22 +8,22 @@ namespace Between.Enemies.Skeletons
     {
         protected override void InitStateMachine()
         {
-            _stateMachine = new FinitStateMachine();
+            stateMachine = new FinitStateMachine();
 
             BaseState idleState = null;
 
             if (data.WayPoints != null && data.WayPoints.Length > 1)
-                idleState = new PatrolState(_stateMachine, data);
+                idleState = new PatrolState(stateMachine, data);
             else
-                idleState = new IdleDetectionState(_stateMachine, data);
+                idleState = new IdleDetectionState(stateMachine, data);
 
-            var attackState = new MeleeAttackState(_stateMachine, data);
-            var chasingState = new ChasingState(_stateMachine, data, attackState);
-            var cooldownState = new ChasingCooldownState(_stateMachine, data, attackState);
-            var takeDamageState = new TakeDamageState(_stateMachine, data, chasingState);
-            var destroyShieldState = new DestroyShieldState(_stateMachine, data);
+            var attackState = new MeleeAttackState(stateMachine, data);
+            var chasingState = new ChasingState(stateMachine, data, attackState);
+            var cooldownState = new ChasingCooldownState(stateMachine, data, attackState);
+            var takeDamageState = new TakeDamageState(stateMachine, data, chasingState);
+            var destroyShieldState = new DestroyShieldState(stateMachine, data);
 
-            _stateMachine.AddStates(idleState, chasingState, attackState, cooldownState, takeDamageState, destroyShieldState);
+            stateMachine.AddStates(idleState, chasingState, attackState, cooldownState, takeDamageState, destroyShieldState);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -31,7 +31,7 @@ namespace Between.Enemies.Skeletons
             if (other.TryGetComponent<Shield>(out var shield) && !_isDestroingShield)
             {
                 data.Shield = shield;
-                _stateMachine.SwitchState(typeof(DestroyShieldState));
+                stateMachine.SwitchState(typeof(DestroyShieldState));
             }
         }
     }

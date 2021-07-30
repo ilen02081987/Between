@@ -1,18 +1,14 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Between.Saving
+﻿namespace Between.Data
 {
-    [Serializable]
     public class PlayerData
     {
+        public int LevelSceneBuildIndex;
+        public int LoadPointNumber;
 
-
-        public PlayerData CreateDefault()
+        public PlayerData(int buildIndex, int pointNumber)
         {
-            return this;
+            LevelSceneBuildIndex = buildIndex;
+            LoadPointNumber = pointNumber;
         }
     }
 }

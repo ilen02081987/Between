@@ -79,6 +79,9 @@ namespace Between
         [Header("EnemyUI")]
         public bool EnemyHealthUIEnabled;
 
+        [Header("State machine")]
+        public bool EnableStateMachineLogs;
+
         public void CreateInstance()
         {
             Instance = this;

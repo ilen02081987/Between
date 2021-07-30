@@ -71,8 +71,13 @@ namespace Between.Enemies.Mavka
 
         protected override void PerformOnDie()
         {
-            _rangeStateMachine.Disable();
+            DisableStateMachines();
             base.PerformOnDie();
+        }
+
+        protected override void PerformOnPlayerDie()
+        {
+            DisableStateMachines();
         }
 
         private void TryRotate()
@@ -86,6 +91,12 @@ namespace Between.Enemies.Mavka
 
             if (newRotation != rotation)
                 transform.rotation = newRotation;
+        }
+
+        private void DisableStateMachines()
+        {
+            _rangeStateMachine.Disable();
+            _meleeStateMachine.Disable();
         }
     }
 }
