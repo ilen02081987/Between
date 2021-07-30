@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/_Between/Scripts/Saving/PlayerData.cs.meta
 guid: b36e462105cc38f478dc5a26dfba9d00
+=======
+guid: d83e7c8eebe269a49bf036fa3f67cc58
+>>>>>>> EnviromentMerge:Assets/Scripts/Saving/PlayerData.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

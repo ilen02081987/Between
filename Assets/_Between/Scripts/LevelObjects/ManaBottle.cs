@@ -1,3 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
 namespace Between.LevelObjects
 {
     public class ManaBottle : InteractableObject
