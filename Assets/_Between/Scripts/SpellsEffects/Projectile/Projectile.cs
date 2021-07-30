@@ -11,6 +11,8 @@ namespace Between.SpellsEffects.Projectile
     [RequireComponent(typeof(Rigidbody))]
     public class Projectile : MonoBehaviour
     {
+        public float SizeZ => transform.localScale.z;
+        public float SizeX => transform.localScale.x;
         public Team Team => _team;
 
         [SerializeField] private float _health = 10f;

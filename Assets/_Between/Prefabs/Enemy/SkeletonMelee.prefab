@@ -108,15 +108,18 @@ MonoBehaviour:
   data:
     NavMeshAgent: {fileID: 2963166369793736704}
     DetectionDistance: 8
-    AttackDistance: 2.2
+    AttackDistance: 2.5
     CooldownTime: 1.5
+    WayPoints: []
+    ArrowPrefab: {fileID: 0}
+    ArrowSpawnPoint: {fileID: 0}
+    Shield: {fileID: 0}
     DamageItem:
       Type: 0
       Value: 4
     Transform: {fileID: 0}
     Player: {fileID: 0}
     Animator: {fileID: 0}
-    Collider: {fileID: 0}
 --- !u!1001 &1962740701087253283
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using Between.SpellsEffects.Projectile;
-using Between;
-using Between.Enemies.Mavka;
 
 public partial class ProjectileTrigger
 {
@@ -9,12 +7,14 @@ public partial class ProjectileTrigger
     {
         public Projectile Projectile;
         public Vector3 EnterPoint;
+        private readonly GameObject _target;
         public Vector3 ExitPoint;
 
-        public ProjectileTragectoryData(Projectile projectile, Vector3 enterPoint)
+        public ProjectileTragectoryData(Projectile projectile, Vector3 enterPoint, GameObject owner)
         {
             Projectile = projectile;
             EnterPoint = enterPoint;
+            _target = owner;
         }
 
         public void AddExitPoint(Vector3 point)
@@ -22,11 +22,15 @@ public partial class ProjectileTrigger
             ExitPoint = point;
         }
 
-        public bool CanHitMavka()
+        public bool CanHitTarget()
         {
-            if (Physics.SphereCast(ExitPoint, GameSettings.Instance.SeveralProjectilesSphereCastRadius,
-                (ExitPoint - EnterPoint).normalized, out RaycastHit info, 100f))
-                return info.collider.TryGetComponent<MavkaController>(out var mavka);
+            var rayCastHits = Physics.SphereCastAll(ExitPoint, Projectile.SizeX / 2f, (ExitPoint - EnterPoint).normalized);
+
+            foreach (var rayCastHit in rayCastHits)
+            {
+                if (rayCastHit.collider.gameObject == _target)
+                    return true;
+            }
 
             return false;
         }

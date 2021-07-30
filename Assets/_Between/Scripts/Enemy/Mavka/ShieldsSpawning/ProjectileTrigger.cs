@@ -28,7 +28,8 @@ public partial class ProjectileTrigger : MonoBehaviour
     {
         if (other.TryGetComponent<Projectile>(out var projectile))
             if (projectile.Team != Team.Enemies)
-                _projectileTragectoryDatas.Add(new ProjectileTragectoryData(projectile, other.transform.position));
+                _projectileTragectoryDatas.Add(
+                    new ProjectileTragectoryData(projectile, other.transform.position, _owner.gameObject));
     }
 
     private void OnTriggerExit(Collider other)
@@ -42,8 +43,10 @@ public partial class ProjectileTrigger : MonoBehaviour
             
             projectileData.AddExitPoint(other.transform.position);
 
-            if (projectileData.CanHitMavka())
+            if (projectileData.CanHitTarget())
                 TrySpawnShield(_shieldsAnchors);
+
+            _projectileTragectoryDatas.Remove(projectileData);
         }
     }
 

@@ -167,6 +167,7 @@ MonoBehaviour:
   _speed: 10
   _jumpHeight: 3
   _gravity: -9.81
+  _pushStopSpeed: 2
 --- !u!114 &2385858048596587276
 MonoBehaviour:
   m_ObjectHideFlags: 0

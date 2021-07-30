@@ -77,7 +77,7 @@ namespace Between.MainCharacter
             while (enabled && force > 0f)
             {
                 _characterController.Move(direction * force);
-                force -= _pushStopSpeed * Time.deltaTime;
+                force -= _pushStopSpeed;
 
                 yield return null;
             }
