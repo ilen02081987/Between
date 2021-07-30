@@ -25,7 +25,13 @@ namespace Between.UI
 
         public override void Dispose()
         {
+<<<<<<< HEAD
             _spell.CooldownUpdated -= UpdateDisplay;
+=======
+            _spell.CooldownStarted -= EmptiedDisplay;
+            _spell.CooldownUpdated -= UpdateDisplay;
+            _spell.CooldownFinished -= FillDisplay;
+>>>>>>> Prototype_1.0
         }
 
         private void EmptiedDisplay()
@@ -40,7 +46,11 @@ namespace Between.UI
         
         private void UpdateDisplay(float value)
         {
+<<<<<<< HEAD
             _image.fillAmount = value;
+=======
+            _image.fillAmount = value / _spell.CoolDownTime;
+>>>>>>> Prototype_1.0
         }
     }
 }

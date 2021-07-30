@@ -13,12 +13,15 @@ namespace Between.Animations
         [SerializeField] private float _takeDamageAnimationSpeed = 1;
         [SerializeField] private float _attackAnimationSpeed = 1;
         [SerializeField] private float _dieAnimationSpeed = 1;
+        [SerializeField] private float _defendAnimationSpeed = 1;
+        [SerializeField] private float _wizSpeed = 1;
 
         private BaseEnemy _npc;
         private Animator _animator;
 
         private Action _onAnimationAttack;
         private Action _onCompleteTakeDamage;
+        private Action _onCompleteDefend;
 
         public void AttachTo(BaseEnemy npc)
         {
@@ -28,9 +31,18 @@ namespace Between.Animations
             _animator = GetComponent<Animator>();
         }
 
+        internal void Defend(Action onComplete)
+        {
+            _onCompleteDefend = onComplete;
+
+            _animator.speed = _defendAnimationSpeed;
+            _animator.SetTrigger("Defend");
+        }
+
         private void OnDestroy()
         {
-            _npc.OnDie -= Die;
+            if (_npc != null)
+                _npc.OnDie -= Die;
         }
 
         public void StartMove() => _animator.SetTrigger("StartMove");
@@ -56,6 +68,18 @@ namespace Between.Animations
             _animator.SetTrigger("TakeDamage");
         }
 
+        public void StartWiz()
+        {
+            _animator.speed = _wizSpeed;
+            _animator.SetTrigger("Wiz");
+        }
+
+        public void FinishWiz()
+        {
+            _animator.speed = 1f;
+            _animator.SetTrigger("Idle");
+        }
+
         private void Die()
         {
             _animator.speed = _dieAnimationSpeed;
@@ -72,6 +96,12 @@ namespace Between.Animations
         {
             _onAnimationAttack?.Invoke();
             _onAnimationAttack = null;
+        }
+
+        private void PerformOnDefendComplete()
+        {
+            _onCompleteDefend?.Invoke();
+            _onCompleteDefend = null;
         }
     }
 }

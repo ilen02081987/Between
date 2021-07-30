@@ -1,9 +1,10 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Between.Teams;
 using Between.MainCharacter;
-using UnityEngine.SceneManagement;
-using System.Collections;
 using Between.Utilities;
+using Between.SceneManagement;
 
 namespace Between
 { 
@@ -15,7 +16,6 @@ namespace Between
 
         private void Start()
         {
-            InitDamagableObject();
             _locomotionController = GetComponent<LocomotionController>();
         }
 
@@ -38,7 +38,8 @@ namespace Between
 
             yield return new WaitForSeconds(1f);
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+            int sceneNumber = LevelManager.Instance.SceneIndex;
+            SceneChanger.ChangeScene(sceneNumber, sceneNumber);
         }
     }
 }

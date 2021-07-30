@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace Between.LevelObjects
 {
     public class ManaBottle : InteractableObject
@@ -11,5 +7,7 @@ namespace Between.LevelObjects
             Player.Instance.ManaBottlesHolder.Add();
             Destroy();
         }
+
+        public override void DestroyOnLoad() => Destroy();
     }
 }

@@ -15,6 +15,7 @@ namespace Between
 
         public float MaxHealth;
         public float Health { get; protected set; }
+        public bool Immortal = false;
 
         public Vector3 Position => transform.position;
 
@@ -27,7 +28,7 @@ namespace Between
 
         public void ApplyDamage(DamageItem damage)
         {
-            if (Health <= 0)
+            if (Health <= 0 || Immortal) 
                 return;
 
             TryDamageProtection(damage.Type, ref damage.Value);

@@ -27,7 +27,11 @@ namespace Between.Spawning
             }
         }
 
+<<<<<<< HEAD
         private void Destroy()
+=======
+        public void Destroy()
+>>>>>>> Prototype_1.0
         {
             foreach (SpawnPoint point in _spawnPoints)
                 Destroy(point.gameObject);

@@ -17,6 +17,12 @@ namespace Between.InputTracking
             InputHandler.DrawCall += CollectInput;
         }
 
+        public static void Dispose()
+        {
+            InputHandler.StartDraw -= ClearPreviousLenght;
+            InputHandler.DrawCall -= CollectInput;
+        }
+
         private static void ClearPreviousLenght(InputData obj)
         {
             LastLenght = 0f;
