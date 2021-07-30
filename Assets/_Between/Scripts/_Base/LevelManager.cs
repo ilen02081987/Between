@@ -5,6 +5,7 @@ using Between.InputTracking;
 using Between.Spells;
 using Between.LevelObjects;
 using Between.Data;
+using Between.Saving;
 
 namespace Between
 {
@@ -29,6 +30,7 @@ namespace Between
             InitSettings();
             InitCheckPoints();
             InitPlayer();
+            InitLevel();
             AttachCameraToPlayer();
             InputLenghtCalculator.Init();
             new SpellsCollection().Init();
@@ -36,6 +38,7 @@ namespace Between
             InitGameOverlay();
         }
 
+        
         public void Dispose()
         {
             InputLenghtCalculator.Dispose();
@@ -56,15 +59,27 @@ namespace Between
 
         private void InitPlayer()
         {
-            if (DataManager.Instance?.SavedData == null)
+            if (DataManager.Instance.SavedData == null)
                 _checkPoints[0].LoadPlayer();
             else
             {
                 var pointNumber = DataManager.Instance.SavedData.LoadPointNumber;
                 _checkPoints[pointNumber].LoadPlayer();
+            }
+        }
 
-                for (int i = 0; i < pointNumber; i++)
-                    _checkPoints[i].Clear();
+        private void InitLevel()
+        {
+            if (DataManager.Instance.SavedData != null)
+            {
+                var existingsObjects = DataManager.Instance.SavedData.ExistingGameObjects;
+                var savableObjects = FindObjectsOfType<SavableObject>();
+
+                foreach (SavableObject savableObject in savableObjects)
+                {
+                    if (!existingsObjects.Contains(savableObject.Id))
+                        RemoveGameObject(savableObject.gameObject);
+                }
             }
         }
 
@@ -77,6 +92,14 @@ namespace Between
         {
             _gameOverlay = FindObjectOfType<GameOverlay>();
             _gameOverlay?.Init();
+        }
+
+        private void RemoveGameObject(GameObject gameObject)
+        {
+            if (gameObject.TryGetComponent<InteractableObject>(out var interactable))
+                interactable.Interact();
+            else
+                Destroy(gameObject);
         }
     }
 }

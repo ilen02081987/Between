@@ -15,5 +15,7 @@ namespace Between.LevelObjects
             Destroy(gameObject);
             IsDestroyed = true;
         }
+
+        protected virtual void DestroyOnLoad() { }
     }
 }

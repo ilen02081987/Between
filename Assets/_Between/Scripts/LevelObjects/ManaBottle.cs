@@ -11,5 +11,7 @@ namespace Between.LevelObjects
             Player.Instance.ManaBottlesHolder.Add();
             Destroy();
         }
+
+        protected override void DestroyOnLoad() => Destroy();
     }
 }

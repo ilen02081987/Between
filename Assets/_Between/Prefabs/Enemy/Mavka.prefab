@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3924479447909108672}
   - component: {fileID: 6248868487798569790}
   - component: {fileID: 3794299448014822691}
+  - component: {fileID: -5952147788153481308}
   m_Layer: 0
   m_Name: Mavka
   m_TagString: Untagged
@@ -71,6 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 30
+  Immortal: 0
   _protections: []
   animator: {fileID: 1911694457663411280}
   _damage:
@@ -159,6 +161,18 @@ MonoBehaviour:
   - StartPoint: {fileID: 8970982087737883100}
     EndPoint: {fileID: 8970982088743131631}
   _owner: {fileID: 3840680778164278019}
+--- !u!114 &-5952147788153481308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3622941033159952938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09f8216225dc5d24fa1dafdb727fe259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1911694457663411280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +189,7 @@ MonoBehaviour:
   _takeDamageAnimationSpeed: 1
   _attackAnimationSpeed: 1
   _dieAnimationSpeed: 1
+  _defendAnimationSpeed: 1
 --- !u!1 &8970982086991896328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1126,14 +1141,14 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 6cf9750fd8fb74045b12596a6133a067, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1a9a077a6f638446a31f5a0ed489124, type: 3}
---- !u!4 &7440609492469997237 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400080, guid: f1a9a077a6f638446a31f5a0ed489124, type: 3}
-  m_PrefabInstance: {fileID: 7440609492470121573}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7440609492470153877 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100080, guid: f1a9a077a6f638446a31f5a0ed489124, type: 3}
+  m_PrefabInstance: {fileID: 7440609492470121573}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7440609492469997237 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400080, guid: f1a9a077a6f638446a31f5a0ed489124, type: 3}
   m_PrefabInstance: {fileID: 7440609492470121573}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8727824505244348557
