@@ -71,7 +71,7 @@ namespace Between
         public float MavkaShieldsCooldownTime;
         public float MavkaSingleProjectileCastTime;
         public int SeveralProjectilesCastWeight;
-        public int SingleProjectilesCastWeight;
+        public int SingleProjectileCastWeight;
         public float MeleeDetectionRadius;
         public float MeleeCooldownBase;
         public float MeleeCooldownShift;
@@ -81,6 +81,9 @@ namespace Between
 
         [Header("State machine")]
         public bool EnableStateMachineLogs;
+
+        [Header("Lich")]
+        public LichSettings Lich;
 
         public void CreateInstance()
         {
@@ -97,6 +100,26 @@ namespace Between
         {
              if (DecideBorder == null || DecideBorder.Length < 4)
                 DecideBorder = new float[4] { .9f, .9f, .9f, .9f };
+        }
+
+        [Serializable]
+        public class LichSettings
+        {
+            public float RangeDetectionRadius;
+            public float RangeCooldownBase;
+            public float RangeCooldownShift;
+            public float SpellPictureCompressCoefficient;
+            public float SeveralProjectilesCastTime;
+            public float SeveralProjectilesCastDelay;
+            public bool SeveralProjectilesSingleCast;
+            public float SeveralProjectilesSphereCastRadius;
+            public float ShieldsCooldownTime;
+            public float SingleProjectileCastTime;
+            public int SeveralProjectilesCastWeight;
+            public int SingleProjectileCastWeight;
+            public float MeleeDetectionRadius;
+            public float MeleeCooldownBase;
+            public float MeleeCooldownShift;
         }
     }
 }

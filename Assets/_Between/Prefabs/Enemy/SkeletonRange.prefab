@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4339423618595309777}
   - component: {fileID: 7808042119093579402}
   - component: {fileID: 5897783717799022352}
+  - component: {fileID: 6829753153153166107}
   m_Layer: 0
   m_Name: SkeletonRange
   m_TagString: Untagged
@@ -85,10 +86,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 10
+  Immortal: 0
   _protections: []
   animator: {fileID: 2431785801126676754}
   _damage:
-    Type: 0
     Value: 0
   _destroyTime: 2
   data:
@@ -101,11 +102,22 @@ MonoBehaviour:
     ArrowSpawnPoint: {fileID: 4076714567226425071}
     Shield: {fileID: 0}
     DamageItem:
-      Type: 0
       Value: 0
     Transform: {fileID: 0}
     Player: {fileID: 0}
     Animator: {fileID: 0}
+--- !u!114 &6829753153153166107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827789234446689254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09f8216225dc5d24fa1dafdb727fe259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2431785801126676673
 GameObject:
   m_ObjectHideFlags: 0
@@ -1455,6 +1467,7 @@ MonoBehaviour:
   _takeDamageAnimationSpeed: 1
   _attackAnimationSpeed: 1
   _dieAnimationSpeed: 1
+  _defendAnimationSpeed: 1
 --- !u!1 &2431785801126676757
 GameObject:
   m_ObjectHideFlags: 0

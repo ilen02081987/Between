@@ -1695,6 +1695,7 @@ GameObject:
   - component: {fileID: 8753957706563102299}
   - component: {fileID: 2963166369793736704}
   - component: {fileID: 1747392648594765496}
+  - component: {fileID: 7369549689720369733}
   m_Layer: 0
   m_Name: SkeletonBlockingMelee
   m_TagString: Untagged
@@ -1792,6 +1793,18 @@ MonoBehaviour:
   _triggers:
   - {fileID: 3335495299913863356}
   - {fileID: 5146905710971075940}
+--- !u!114 &7369549689720369733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5636273630288186732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09f8216225dc5d24fa1dafdb727fe259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5746258358245089385
 GameObject:
   m_ObjectHideFlags: 0

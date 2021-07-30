@@ -10,5 +10,7 @@ namespace Between.LevelObjects
             _lockableObject.Unlock();
             Destroy();
         }
+
+        public override void DestroyOnLoad() => Interact();
     }
 }

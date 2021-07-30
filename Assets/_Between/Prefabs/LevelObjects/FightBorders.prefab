@@ -226,6 +226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1890678847255158765}
   - component: {fileID: 1890678847255158766}
+  - component: {fileID: 3208662153194835192}
   m_Layer: 0
   m_Name: FightBorders
   m_TagString: Untagged
@@ -264,3 +265,15 @@ MonoBehaviour:
   _enemies: []
   _leftBorder: {fileID: 1890678846934628657}
   _rightBorder: {fileID: 1890678845926057746}
+--- !u!114 &3208662153194835192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890678847255158767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09f8216225dc5d24fa1dafdb727fe259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
