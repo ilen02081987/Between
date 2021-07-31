@@ -32,7 +32,7 @@ MonoBehaviour:
   ShieldSpellCooldown: 1
   ShieldManaCoefficient: 0.05
   MeteorRainMinLenght: 20
-  MeteorRainSpellCooldown: 15
+  MeteorRainSpellCooldown: 8
   MeteorsLinesDelay: 0.5
   MeteorsLinesCount: 3
   MeteorsCount: 6
