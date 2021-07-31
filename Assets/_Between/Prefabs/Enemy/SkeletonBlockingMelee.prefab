@@ -933,6 +933,7 @@ MonoBehaviour:
   _attackAnimationSpeed: 1
   _dieAnimationSpeed: 1
   _defendAnimationSpeed: 1
+  _wizSpeed: 1
 --- !u!1 &1962740701087155671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1805,6 +1806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09f8216225dc5d24fa1dafdb727fe259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _id: 0
 --- !u!1 &5746258358245089385
 GameObject:
   m_ObjectHideFlags: 0
@@ -1862,7 +1864,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5746258358245089385}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0aeeb9753a96c8d429b8871fbdcfe89c, type: 3}
+  m_Script: {fileID: 11500000, guid: dbef37a6c89411841a284dbaf7d28ff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _owner: {fileID: 5274703058401629253}
@@ -1984,7 +1986,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7116493567728060940}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0aeeb9753a96c8d429b8871fbdcfe89c, type: 3}
+  m_Script: {fileID: 11500000, guid: dbef37a6c89411841a284dbaf7d28ff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _owner: {fileID: 5274703058401629253}
