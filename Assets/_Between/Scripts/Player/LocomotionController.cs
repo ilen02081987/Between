@@ -17,6 +17,8 @@ namespace Between.MainCharacter
         [SerializeField] private float _gravity;
         [SerializeField] private float _pushStopSpeed;
 
+        [SerializeField] private Transform _gfx;
+
         private float _velocityY;
         private bool _pressedJumpButton => Input.GetKeyDown(KeyCode.Space);
         //private bool _isGrounded => !SpaceDetector.IsFreeSpace(_groundChecker.position, .1f) || _characterController.isGrounded;
@@ -53,6 +55,14 @@ namespace Between.MainCharacter
 
             if (_isGrounded && velocity.y < 0)
                 _velocityY = 0f;
+
+            Rotate(velocity.x);
+        }
+
+        private void Rotate(float xAxisValue)
+        {
+            var angle = xAxisValue >= 0 ? 90f : -90f;
+            _gfx.rotation = Quaternion.Euler(0f, angle, 0f);
         }
 
         private void TryJump()
