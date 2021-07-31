@@ -27,7 +27,7 @@ MonoBehaviour:
   BigProjectileCastDelay: 1
   BigProjectileManaCoefficient: 0.05
   ShieldTrackerMinLenght: 20
-  ShieldTrackerMaxLenght: 1000
+  ShieldTrackerMaxLenght: 50
   ShieldTrackerForceEndAngle: 90
   ShieldSpellCooldown: 1
   ShieldManaCoefficient: 0.05

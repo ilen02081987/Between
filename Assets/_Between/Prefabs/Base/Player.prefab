@@ -165,8 +165,8 @@ MonoBehaviour:
   _player: {fileID: 8226507996596072166}
   _characterController: {fileID: 1005441129}
   _groundChecker: {fileID: 8226507995986304865}
-  _speed: 4.5
-  _jumpHeight: 3
+  _speed: 3.2
+  _jumpHeight: 1.5
   _gravity: -9.81
   _pushStopSpeed: 2
 --- !u!114 &2385858048596587276
