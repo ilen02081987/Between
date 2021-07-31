@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e382e5a19ac3c0418587d7b0d21e528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 10
+  MaxHealth: 15
   Immortal: 0
   _protections: []
   animator: {fileID: 2431785801126676754}
@@ -94,8 +94,8 @@ MonoBehaviour:
   _destroyTime: 2
   data:
     NavMeshAgent: {fileID: 7808042119093579402}
-    DetectionDistance: 15
-    AttackDistance: 15
+    DetectionDistance: 30
+    AttackDistance: 30
     CooldownTime: 2
     WayPoints: []
     ArrowPrefab: {fileID: 5040516816108501139, guid: e1e23cf6434be714e8050f436606c4e1, type: 3}
@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09f8216225dc5d24fa1dafdb727fe259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _id: 0
 --- !u!1 &2431785801126676673
 GameObject:
   m_ObjectHideFlags: 0
@@ -1468,6 +1469,7 @@ MonoBehaviour:
   _attackAnimationSpeed: 1
   _dieAnimationSpeed: 1
   _defendAnimationSpeed: 1
+  _wizSpeed: 1
 --- !u!1 &2431785801126676757
 GameObject:
   m_ObjectHideFlags: 0

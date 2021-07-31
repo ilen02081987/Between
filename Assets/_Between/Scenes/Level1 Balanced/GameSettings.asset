@@ -27,12 +27,12 @@ MonoBehaviour:
   BigProjectileCastDelay: 1
   BigProjectileManaCoefficient: 0.05
   ShieldTrackerMinLenght: 20
-  ShieldTrackerMaxLenght: 50
+  ShieldTrackerMaxLenght: 1000
   ShieldTrackerForceEndAngle: 90
   ShieldSpellCooldown: 1
   ShieldManaCoefficient: 0.05
   MeteorRainMinLenght: 20
-  MeteorRainSpellCooldown: 8
+  MeteorRainSpellCooldown: 15
   MeteorsLinesDelay: 0.5
   MeteorsLinesCount: 3
   MeteorsCount: 6
@@ -57,27 +57,10 @@ MonoBehaviour:
   SeveralProjectilesSingleCast: 0
   SeveralProjectilesSphereCastRadius: 1
   MavkaShieldsCooldownTime: 3
-  MavkaSingleProjectileCastTime: 1
+  MavkaSingleProjectileCastTime: 0
   SeveralProjectilesCastWeight: 1
-  SingleProjectileCastWeight: 0
+  SingleProjectilesCastWeight: 1
   MeleeDetectionRadius: 5
   MeleeCooldownBase: 3
   MeleeCooldownShift: 1
   EnemyHealthUIEnabled: 1
-  EnableStateMachineLogs: 0
-  Lich:
-    RangeDetectionRadius: 10
-    RangeCooldownBase: 2
-    RangeCooldownShift: 1
-    SpellPictureCompressCoefficient: 3
-    SeveralProjectilesCastTime: 1
-    SeveralProjectilesCastDelay: 1
-    SeveralProjectilesSingleCast: 1
-    SeveralProjectilesSphereCastRadius: 1
-    ShieldsCooldownTime: 2
-    SingleProjectileCastTime: 1
-    SeveralProjectilesCastWeight: 2
-    SingleProjectileCastWeight: 4
-    MeleeDetectionRadius: 0
-    MeleeCooldownBase: 0
-    MeleeCooldownShift: 0
