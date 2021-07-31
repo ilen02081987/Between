@@ -63,6 +63,9 @@ namespace Between.LevelObjects
 
         private void Destroy()
         {
+            if (this == null)
+                return;
+
             Destroy(_leftBorder.gameObject);
             Destroy(_rightBorder.gameObject);
             Destroy(gameObject);
