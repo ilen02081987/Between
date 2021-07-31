@@ -1,5 +1,7 @@
+using Accord.Statistics.Testing;
 using Between.Collisions;
 using Between.Utilities;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -7,6 +9,10 @@ namespace Between.MainCharacter
 {
     public class LocomotionController : MonoBehaviour
     {
+        public event Action<float> OnRun;
+        public event Action OnStop;
+        public event Action OnJump;
+
         [SerializeField] private PlayerController _player;
         [SerializeField] private CharacterController _characterController;
         [SerializeField] private Transform _groundChecker;
@@ -56,6 +62,7 @@ namespace Between.MainCharacter
             if (_isGrounded && velocity.y < 0)
                 _velocityY = 0f;
 
+            CheckState(velocity);
             Rotate(velocity.x);
         }
 
@@ -71,6 +78,8 @@ namespace Between.MainCharacter
             {
                 float jumpVelocity = Mathf.Sqrt(-2 * _gravity * _jumpHeight);
                 _velocityY = jumpVelocity;
+
+                OnJump?.Invoke();
             }
         }
 
@@ -94,6 +103,17 @@ namespace Between.MainCharacter
             }
 
             _isPushed = false;
+        }
+
+        private void CheckState(Vector3 velocity)
+        {
+            if (!_isGrounded)
+                return;
+
+            if (Mathf.Approximately(velocity.x, 0f))
+                OnStop?.Invoke();
+            else
+                OnRun?.Invoke(1f);
         }
     }
 }
