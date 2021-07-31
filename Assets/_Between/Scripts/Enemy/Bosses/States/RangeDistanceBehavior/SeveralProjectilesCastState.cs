@@ -40,6 +40,9 @@ namespace Between.Enemies.Mavka
 
             for (int i = 0; i < _spawnPoints.Length; i++)
             {
+                if (_spawnPoints[i] == null)
+                    yield break;
+
                 int index = i;
                 CreateSpellPainter(index, singleCast ? (_spawnPoints.Length - i - 1) * delay : 0f);
 

@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/_Between/Scenes/Preview/MainMenu/MainMenu.unity
     guid: 5175cab49b37ff64a8320a04cfefecfa
   - enabled: 1
+    path: Assets/_Between/Scenes/Preview/Level 0 draft/Level 0.unity
+    guid: 6b364de475589df47ad48bd8cdad4415
+  - enabled: 0
     path: Assets/_Between/Scenes/Preview/Level 0/Level 0.unity
     guid: c434291aabb343148aa8ba05d9d8b7ae
   - enabled: 1

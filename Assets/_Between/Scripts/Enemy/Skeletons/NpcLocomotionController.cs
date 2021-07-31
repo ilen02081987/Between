@@ -27,6 +27,7 @@ namespace Between.Enemies.Skeletons
         public void Move(Vector3 position)
         {
             _navMeshAgent.SetDestination(position);
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
             UpdateMoveSpeed();
         }
 

@@ -49,6 +49,7 @@ namespace Between.MainCharacter
         {
             Vector3 velocity = CalculateVelocity();
             _characterController.Move(velocity * Time.deltaTime);
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
 
             if (_isGrounded && velocity.y < 0)
                 _velocityY = 0f;
