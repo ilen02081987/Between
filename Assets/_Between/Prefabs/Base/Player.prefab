@@ -129,7 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e5ee121d599664e9890df439a7188d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 10
+  MaxHealth: 100
+  Immortal: 0
   _protections: []
 --- !u!143 &1005441129
 CharacterController:
@@ -164,7 +165,7 @@ MonoBehaviour:
   _player: {fileID: 8226507996596072166}
   _characterController: {fileID: 1005441129}
   _groundChecker: {fileID: 8226507995986304865}
-  _speed: 10
+  _speed: 4.5
   _jumpHeight: 3
   _gravity: -9.81
   _pushStopSpeed: 2

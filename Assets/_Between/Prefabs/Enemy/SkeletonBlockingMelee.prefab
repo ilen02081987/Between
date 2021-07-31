@@ -933,6 +933,7 @@ MonoBehaviour:
   _attackAnimationSpeed: 1
   _dieAnimationSpeed: 1
   _defendAnimationSpeed: 1
+  _wizSpeed: 1
 --- !u!1 &1962740701087155671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1745,10 +1746,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 360
   m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -1769,16 +1770,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc17e23a18105c749aa22e9c7b31cf9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 12
+  MaxHealth: 20
   Immortal: 0
   _protections: []
   animator: {fileID: 7419934744819356438}
   _damage:
-    Value: 4
+    Value: 25
   _destroyTime: 2
   data:
     NavMeshAgent: {fileID: 2963166369793736704}
-    DetectionDistance: 12
+    DetectionDistance: 20
     AttackDistance: 2.5
     CooldownTime: 1.5
     WayPoints: []
@@ -1805,6 +1806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09f8216225dc5d24fa1dafdb727fe259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _id: 0
 --- !u!1 &5746258358245089385
 GameObject:
   m_ObjectHideFlags: 0

@@ -50,10 +50,9 @@ MonoBehaviour:
   _impactDamage: 6
   _team: 1
   _damage:
-    Type: 1
-    Value: 8
-  _speed: 20
-  _blastRadius: 2
+    Value: 15
+  _speed: 30
+  _blastRadius: 1
   _friendlyFire: 0
   _lifeTime: 15
 --- !u!54 &8868428215148044481

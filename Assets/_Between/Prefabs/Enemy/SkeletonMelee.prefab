@@ -932,6 +932,7 @@ MonoBehaviour:
   _attackAnimationSpeed: 1
   _dieAnimationSpeed: 1
   _defendAnimationSpeed: 1
+  _wizSpeed: 1
 --- !u!1 &1962740701087155671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1661,7 +1662,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1685,7 +1686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f39b6c2d081f3e9429a71c8d5d4b743b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 15
+  MaxHealth: 25
   Immortal: 0
   _protections: []
   animator: {fileID: 7419934744819356438}
@@ -1718,6 +1719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09f8216225dc5d24fa1dafdb727fe259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _id: 0
 --- !u!1001 &1767497250337107048
 PrefabInstance:
   m_ObjectHideFlags: 0
