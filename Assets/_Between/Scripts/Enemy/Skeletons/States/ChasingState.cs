@@ -1,7 +1,5 @@
-using System.Collections;
 using UnityEngine;
 using Between.StateMachine;
-using Between.Utilities;
 
 namespace Between.Enemies.Skeletons
 {
