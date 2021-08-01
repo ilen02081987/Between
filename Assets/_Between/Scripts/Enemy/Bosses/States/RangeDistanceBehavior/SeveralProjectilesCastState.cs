@@ -65,7 +65,7 @@ namespace Between.Enemies.Mavka
 
         private void CompletePaintSpell(int spawnPointIndex)
         {
-            if (_target == null || _spawnPoints[0] != null)
+            if (_target == null || _spawnPoints[0] == null)
                 return;
 
             _projectileSpawner.Spawn(

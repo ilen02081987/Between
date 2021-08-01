@@ -17,7 +17,7 @@ namespace Between.Collisions
 
         public static bool IsGrounded(Vector3 position)
         {
-            Collider[] colliders = Physics.OverlapSphere(position, .1f);
+            Collider[] colliders = Physics.OverlapSphere(position, 1.4f);
 
             foreach (var collider in colliders)
                 if (collider.CompareTag("Ground"))
