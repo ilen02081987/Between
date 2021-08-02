@@ -45,9 +45,9 @@ MonoBehaviour:
   DecideBorder:
   - 0.98
   - 0.9
-  - 0.9
-  - 0.9
-  EnableProbabilitiesLog: 0
+  - 0.8
+  - 0.8
+  EnableProbabilitiesLog: 1
   RangeDetectionRadius: 15
   RangeCooldownBase: 2.27
   RangeCooldownShift: 0
@@ -58,8 +58,8 @@ MonoBehaviour:
   SeveralProjectilesSphereCastRadius: 1
   MavkaShieldsCooldownTime: 3
   MavkaSingleProjectileCastTime: 1
-  SeveralProjectilesCastWeight: 1
-  SingleProjectileCastWeight: 0
+  SeveralProjectilesCastWeight: 2
+  SingleProjectileCastWeight: 1
   MeleeDetectionRadius: 5
   MeleeCooldownBase: 3
   MeleeCooldownShift: 1

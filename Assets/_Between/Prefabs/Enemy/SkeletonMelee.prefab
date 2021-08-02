@@ -1695,7 +1695,7 @@ MonoBehaviour:
   _destroyTime: 2
   data:
     NavMeshAgent: {fileID: 2963166369793736704}
-    DetectionDistance: 8
+    DetectionDistance: 20
     AttackDistance: 2.5
     CooldownTime: 1.5
     WayPoints: []
