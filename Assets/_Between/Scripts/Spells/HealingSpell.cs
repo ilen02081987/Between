@@ -9,8 +9,6 @@ namespace Between.Spells
 {
     public class HealingSpell : SvmBasedSpell
     {
-        public override float CoolDownTime => GameSettings.Instance.HealingSpellCooldown;
-
         protected override SpellFigure _figure => SpellFigure.Circle;
         protected override float _manaCoefficient => GameSettings.Instance.HealingSpellManaCoefficient;
 

@@ -23,7 +23,6 @@ namespace Between
         public ProjectileSpell.ProjectileDrawType ProjectileDrawType;
         public float ProjectileMinLenght;
         public float ProjectileMaxLenght;
-        public float ProjectileSpellCooldown;
         public float ProjectileManaCoefficient;
         public float ProjectilePowerValue;
         public float ProjectileBaseDamageValue;
@@ -32,19 +31,16 @@ namespace Between
         public float ShieldTrackerMinLenght;
         public float ShieldTrackerMaxLenght;
         public float ShieldTrackerForceEndAngle;
-        public float ShieldSpellCooldown;
         public float ShieldManaCoefficient;
 
         [Header("Заклинание метеоритного дождя")]
         public float MeteorRainMinLenght;
-        public float MeteorRainSpellCooldown;
         public float MeteorsLinesDelay;
         public int MeteorsLinesCount;
         public int MeteorsCount;
         public float MeteorRainManaCoefficient;
 
         [Header("Заклинание лечения")]
-        public float HealingSpellCooldown;
         public float HealingSpellManaCoefficient;
         public float HealingSpellMaxSize;
         public float HealingSpellMaxHeal;

@@ -9,8 +9,6 @@ namespace Between.Spells
 {
     public class ProjectileSpell : SvmBasedSpell
     {
-        public override float CoolDownTime => _coolDownTime;
-
         protected override SpellFigure _figure => SpellFigure.Line;
         protected override float _manaCoefficient => _manaCoeff;
 
@@ -18,7 +16,6 @@ namespace Between.Spells
 
         private float _minLenght => GameSettings.Instance.ProjectileMinLenght;
         private float _maxLenght => GameSettings.Instance.ProjectileMaxLenght;
-        private float _coolDownTime => GameSettings.Instance.ProjectileSpellCooldown;
         private float _manaCoeff => GameSettings.Instance.ProjectileManaCoefficient;
         private float _powerValue => GameSettings.Instance.ProjectilePowerValue;
         private float _baseDamage => GameSettings.Instance.ProjectileBaseDamageValue;

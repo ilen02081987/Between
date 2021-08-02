@@ -8,8 +8,6 @@ namespace Between.Spells
 {
     public class MeteorRainSpell : SvmBasedSpell
     {
-        public override float CoolDownTime => GameSettings.Instance.MeteorRainSpellCooldown;
-
         protected override SpellFigure _figure => SpellFigure.CheckMark;
 
         private MeteorRainSpawner _spawner;

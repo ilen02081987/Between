@@ -5,7 +5,6 @@ namespace Between.Spells
 {
     public abstract class SvmBasedSpell : BaseSpell
     {
-        public abstract override float CoolDownTime { get; }
         protected abstract SpellFigure _figure { get; }
 
         protected override BaseInputTracker tracker => _tracker;
