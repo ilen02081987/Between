@@ -27,6 +27,7 @@ namespace Between
         {
             Instance = this;
 
+            DataManager.Instance.Load();
             InitSettings();
             InitCheckPoints();
             InitPlayer();

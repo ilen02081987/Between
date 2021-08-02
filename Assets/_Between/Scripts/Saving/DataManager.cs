@@ -7,7 +7,9 @@ namespace Between.Data
     {
         public PlayerData SavedData;
 
-        public DataManager()
+        public DataManager() => Load();
+
+        public void Load()
         {
             if (SaveSystem.CanLoad)
                 SavedData = SaveSystem.Load();

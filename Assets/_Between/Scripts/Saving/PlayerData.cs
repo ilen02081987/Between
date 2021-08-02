@@ -7,6 +7,7 @@ namespace Between.Data
     {
         public int LevelSceneBuildIndex;
         public int LoadPointNumber;
+        public int ManaBottlesCount;
 
         public List<int> ExistingGameObjects;
 
@@ -15,6 +16,7 @@ namespace Between.Data
             LevelSceneBuildIndex = buildIndex;
             LoadPointNumber = pointNumber;
             ExistingGameObjects = objects;
+            ManaBottlesCount = Player.Instance.ManaBottlesHolder.Count;
         }
     }
 }
