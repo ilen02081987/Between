@@ -33,16 +33,18 @@ namespace Between.SpellsEffects.Projectile
         public event Action<Vector3> OnLaunch;
         public event Action OnDestroyed;
 
-        private void Start()
-        {
-            _rigidbody = GetComponent<Rigidbody>();
-            StartCoroutine(WaitToDestroy());
-        }
-
         public void Launch(Vector3 direction)
         {
             _direction = direction;
             OnLaunch?.Invoke(_direction);
+        }
+
+        public void ChangeDamageValue(float to) => _damage.Value = to;
+
+        private void Start()
+        {
+            _rigidbody = GetComponent<Rigidbody>();
+            StartCoroutine(WaitToDestroy());
         }
 
         private void Update()

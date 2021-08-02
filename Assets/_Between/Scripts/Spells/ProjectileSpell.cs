@@ -2,6 +2,8 @@ using UnityEngine;
 using Between.SpellRecognition;
 using Between.SpellsEffects.Projectile;
 using Between.InputTracking.Trackers;
+using Between.InputTracking;
+using System.Collections.Generic;
 
 namespace Between.Spells
 {
@@ -13,11 +15,13 @@ namespace Between.Spells
         protected override float _manaCoefficient => _manaCoeff;
 
         private readonly ProjectileSpawner _projectileSpawner;
-        private readonly float _spawnOffset = GameSettings.Instance.ProjectilesSpawnOffset;
-        private readonly float _minLenght;
-        private readonly float _maxLenght;
-        private readonly float _coolDownTime;
-        private readonly float _manaCoeff;
+
+        private float _minLenght => GameSettings.Instance.ProjectileMinLenght;
+        private float _maxLenght => GameSettings.Instance.ProjectileMaxLenght;
+        private float _coolDownTime => GameSettings.Instance.ProjectileSpellCooldown;
+        private float _manaCoeff => GameSettings.Instance.ProjectileManaCoefficient;
+        private float _powerValue => GameSettings.Instance.ProjectilePowerValue;
+        private float _baseDamage => GameSettings.Instance.ProjectileBaseDamageValue;
 
         private bool _isValidLenght
         {
@@ -33,14 +37,9 @@ namespace Between.Spells
             }
         }
 
-        public ProjectileSpell(string projectileName, float cooldown, float minLenght, float maxLenght, float manaCoeff = 1f, float spawnDelay = 0f) : base()
+        public ProjectileSpell(string projectileName) : base()
         {
-            _coolDownTime = cooldown;
-            _projectileSpawner = new ProjectileSpawner(projectileName, _spawnOffset, spawnDelay);
-            
-            _minLenght = minLenght;
-            _maxLenght = maxLenght;
-            _manaCoeff = manaCoeff;
+            _projectileSpawner = new ProjectileSpawner(projectileName);
         }
 
         protected override void OnCompleteSpell()
@@ -54,22 +53,31 @@ namespace Between.Spells
 
         private void SpawnProjectile()
         {
-            var points = ((SvmTracker)tracker).DrawPoints;
-            var startPoint = ConvertVector(points[0]);
-            var directionPoint = ConvertVector(points[points.Count - 1]);
+            List<Vector2Int> points = ((SvmTracker)tracker).DrawPoints;
+            Vector3 startPoint = ConvertVector(points[0]);
+            Vector3 directionPoint = ConvertVector(points[points.Count - 1]);
 
             if (GameSettings.Instance.ProjectileDrawType == ProjectileDrawType.Slingshot)
             {
-                var tempPoint = startPoint;
+                Vector3 tempPoint = startPoint;
                 startPoint = directionPoint;
                 directionPoint = tempPoint;
             }
 
+            UpdateProjectileDamage();
             _projectileSpawner.Spawn(startPoint, (directionPoint - startPoint).normalized);
         }
 
         private Vector3 ConvertVector(Vector2Int input) 
             => GameCamera.ScreenToWorldPoint(input);
+
+        private void UpdateProjectileDamage()
+        {
+            float relativeLenght = InputLenghtCalculator.LastLenght / _minLenght;
+            float damageValue = Mathf.Pow(relativeLenght, _powerValue);
+
+            _projectileSpawner.ChangeDamageValue(damageValue);
+        }
 
         public enum ProjectileDrawType
         {

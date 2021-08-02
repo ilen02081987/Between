@@ -14,7 +14,7 @@ namespace Between.SpellsEffects.MeteorRain
 
         public MeteorRainSpawner(string projectileName)
         {
-            _projectileSpawner = new ProjectileSpawner(projectileName, 0f);
+            _projectileSpawner = new ProjectileSpawner(projectileName);
         }
 
         public void Spawn(Vector3 from, Vector3 to)

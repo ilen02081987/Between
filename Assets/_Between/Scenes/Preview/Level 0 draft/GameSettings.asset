@@ -16,28 +16,26 @@ MonoBehaviour:
   ManaRecoveryPerSec: 20
   EnableRemoveManaLog: 0
   ManaBottleValue: 50
-  ProjectileMiddleLenght: 300
   ProjectilesSpawnOffset: 2
   ProjectileDrawType: 0
   ProjectileMinLenght: 20
-  ProjectileSpellCooldown: 1
-  SmallProjectileManaCoefficient: 0.05
   ProjectileMaxLenght: 1000
-  BigProjectileSpellCooldown: 2
-  BigProjectileCastDelay: 1
-  BigProjectileManaCoefficient: 0.05
+  ProjectileSpellCooldown: 0
+  ProjectileManaCoefficient: 0.05
+  ProjectilePowerValue: 2
+  ProjectileBaseDamageValue: 4
   ShieldTrackerMinLenght: 20
   ShieldTrackerMaxLenght: 1000
   ShieldTrackerForceEndAngle: 90
-  ShieldSpellCooldown: 1
+  ShieldSpellCooldown: 0
   ShieldManaCoefficient: 0.05
   MeteorRainMinLenght: 20
-  MeteorRainSpellCooldown: 3
+  MeteorRainSpellCooldown: 0
   MeteorsLinesDelay: 0.5
   MeteorsLinesCount: 3
   MeteorsCount: 5
   MeteorRainManaCoefficient: 0.05
-  HealingSpellCooldown: 1
+  HealingSpellCooldown: 0
   HealingSpellManaCoefficient: 0.05
   HealingSpellMaxSize: 1500
   HealingSpellMaxHeal: 80

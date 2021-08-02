@@ -15,14 +15,17 @@ namespace Between.Mana
 
         private readonly float _recoverySpeed;
 
+        private bool _needDelay = false;
+
+        private float _recoverDelay => GameSettings.Instance.ManaRecoveryDelay;
+
         public ManaHolder(float maxValue, float recoverySpeed)
         {
             Value = MaxValue = maxValue;
             _recoverySpeed = recoverySpeed;
-        }
 
-        public void StartRecover() => CoroutineLauncher.Start(Recover());
-        public void StopRecover() => CoroutineLauncher.Stop(Recover());
+            CoroutineLauncher.Start(Recover());
+        }
 
         public void Remove(float removeValue)
         {
@@ -33,6 +36,8 @@ namespace Between.Mana
 
             Value -= removeValue;
             OnValueChanged?.Invoke();
+
+            _needDelay = true;
         }
 
         public void Add(float addend)
@@ -45,6 +50,12 @@ namespace Between.Mana
         {
             while (Application.isPlaying)
             {
+                if (_needDelay)
+                {
+                    _needDelay = false;
+                    yield return new WaitForSeconds(_recoverDelay);
+                }
+
                 if (Value < MaxValue)
                 {
                     Value = Mathf.Min(Value + _recoverySpeed * Time.deltaTime, MaxValue);

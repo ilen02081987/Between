@@ -17,7 +17,7 @@ namespace Between.Enemies.Mavka
             _target = target;
             _castPoint = castPoint;
             _spawnPoint = spawnPoint;
-            _projectileSpawner = new ProjectileSpawner("PushableProjectile", 0f);
+            _projectileSpawner = new ProjectileSpawner("PushableProjectile");
         }
 
         public override void Enter()

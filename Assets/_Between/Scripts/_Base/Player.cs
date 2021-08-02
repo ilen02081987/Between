@@ -1,9 +1,6 @@
-using Between.InputTracking;
 using Between.Inventory;
 using Between.MainCharacter;
 using Between.Mana;
-using Between.Saving;
-using Between.Spells;
 using Between.Utilities;
 
 namespace Between
@@ -34,7 +31,6 @@ namespace Between
         private void InitMana()
         {
             Mana = new ManaHolder(GameSettings.Instance.ManaMaxValue, GameSettings.Instance.ManaRecoveryPerSec);
-            Mana.StartRecover();
         }
 
         private void InitManaBottlesHolder()

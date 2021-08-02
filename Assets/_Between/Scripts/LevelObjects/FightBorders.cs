@@ -1,7 +1,6 @@
-using Between.Enemies;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Between.Enemies;
 
 namespace Between.LevelObjects
 {

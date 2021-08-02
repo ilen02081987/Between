@@ -19,7 +19,7 @@ namespace Between.Enemies.Mavka
             _target = target;
             _spawnPoint = spawnPoint;
             _castTime = castTime;
-            _projectileSpawner = new ProjectileSpawner("MavkaSingleProjectile", 0f);
+            _projectileSpawner = new ProjectileSpawner("MavkaSingleProjectile");
         }
 
         public override void Enter()

@@ -20,7 +20,7 @@ namespace Between.Enemies.Mavka
         public SeveralProjectilesCastState(FinitStateMachine stateMachine, NpcAnimator animator, Transform target, int weight,
             float castTime, float castDelay, bool singleCast , params Transform[] spawnPoints) : base(stateMachine, animator, weight)
         {
-            _projectileSpawner = new ProjectileSpawner("MavkaSeveralProjectile", 0f);
+            _projectileSpawner = new ProjectileSpawner("MavkaSeveralProjectile");
             _spawnPoints = spawnPoints;
             _target = target;
             _castTime = castTime;
