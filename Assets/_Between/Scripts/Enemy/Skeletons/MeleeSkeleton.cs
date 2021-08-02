@@ -6,6 +6,10 @@ namespace Between.Enemies.Skeletons
 {
     public class MeleeSkeleton : BaseSkeleton
     {
+        [SerializeField] private ShieldTrigger _shieldTrigger;
+
+        private bool _isDestroingShield => stateMachine.CompareState(typeof(DestroyShieldState));
+
         protected override void InitStateMachine()
         {
             stateMachine = new FinitStateMachine();
@@ -26,9 +30,14 @@ namespace Between.Enemies.Skeletons
             stateMachine.AddStates(idleState, chasingState, attackState, cooldownState, takeDamageState, destroyShieldState);
         }
 
-        private void OnTriggerEnter(Collider other)
+        protected override void InitNpc()
         {
-            if (other.TryGetComponent<Shield>(out var shield) && !_isDestroingShield)
+            _shieldTrigger.OnCollideWithShield += TryStartDestroyShield;
+        }
+
+        private void TryStartDestroyShield(Shield shield)
+        {
+            if (!_isDestroingShield)
             {
                 data.Shield = shield;
                 stateMachine.SwitchState(typeof(DestroyShieldState));

@@ -15,7 +15,6 @@ namespace Between.Enemies.Skeletons
         protected FinitStateMachine stateMachine;
 
         protected bool _isTakeDamage => stateMachine.CompareState(typeof(TakeDamageState));
-        protected bool _isDestroingShield => stateMachine.CompareState(typeof(DestroyShieldState));
 
         protected override void Start()
         {

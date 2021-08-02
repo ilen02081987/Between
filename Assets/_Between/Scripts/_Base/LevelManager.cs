@@ -62,7 +62,7 @@ namespace Between
 
         private void InitPlayer()
         {
-            if (DataManager.Instance.SavedData == null || DataManager.Instance.SavedData.LevelSceneBuildIndex != SceneIndex)
+            if (!DataManager.Instance.HasData || DataManager.Instance.SavedData.LevelSceneBuildIndex != SceneIndex)
                 _checkPoints[0].LoadPlayer();
             else
             {
@@ -79,7 +79,7 @@ namespace Between
 
         private void InitLevel()
         {
-            if (DataManager.Instance.SavedData != null)
+            if (DataManager.Instance.HasData)
             {
                 var existingsObjects = DataManager.Instance.SavedData.ExistingGameObjects;
                 var savableObjects = FindObjectsOfType<SavableObject>();

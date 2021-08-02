@@ -24,7 +24,8 @@ namespace Between.Inventory
 
         public ManaBottlesHolder()
         {
-            Count = DataManager.Instance.SavedData.ManaBottlesCount;
+            if (DataManager.Instance.HasData)
+                Count = DataManager.Instance.SavedData.ManaBottlesCount;
         }
 
         public void Add()
