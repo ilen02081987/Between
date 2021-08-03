@@ -24,6 +24,8 @@ MonoBehaviour:
   ProjectileManaCoefficient: 0.05
   ProjectilePowerValue: 2
   ProjectileBaseDamageValue: 4
+  ProjectileMinSize: 1
+  ProjectileMaxSize: 3
   ShieldTrackerMinLenght: 20
   ShieldTrackerMaxLenght: 1000
   ShieldTrackerForceEndAngle: 90

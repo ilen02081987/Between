@@ -34,5 +34,6 @@ namespace Between.SpellsEffects.Projectile
         }
 
         public void ChangeDamageValue(float to) => _prefab.ChangeDamageValue(to);
+        public void ChangeSize(float to) => _prefab.transform.localScale = new Vector3(to, to, to);
     }
 }

@@ -1,9 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Between.SpellRecognition;
 using Between.SpellsEffects.Projectile;
 using Between.InputTracking.Trackers;
 using Between.InputTracking;
-using System.Collections.Generic;
 
 namespace Between.Spells
 {
@@ -19,6 +19,9 @@ namespace Between.Spells
         private float _manaCoeff => GameSettings.Instance.ProjectileManaCoefficient;
         private float _powerValue => GameSettings.Instance.ProjectilePowerValue;
         private float _baseDamage => GameSettings.Instance.ProjectileBaseDamageValue;
+
+        private float _minSize => GameSettings.Instance.ProjectileMinSize;
+        private float _maxSize => GameSettings.Instance.ProjectileMaxSize;
 
         private bool _isValidLenght
         {
@@ -61,7 +64,9 @@ namespace Between.Spells
                 directionPoint = tempPoint;
             }
 
+            UpdateProjectileSize();
             UpdateProjectileDamage();
+            
             _projectileSpawner.Spawn(startPoint, (directionPoint - startPoint).normalized);
         }
 
@@ -71,9 +76,17 @@ namespace Between.Spells
         private void UpdateProjectileDamage()
         {
             float relativeLenght = InputLenghtCalculator.LastLenght / _minLenght;
-            float damageValue = Mathf.Pow(relativeLenght, _powerValue);
+            float damageValue = _baseDamage * Mathf.Pow(relativeLenght, _powerValue);
 
             _projectileSpawner.ChangeDamageValue(damageValue);
+        }
+
+        private void UpdateProjectileSize()
+        {
+            float relativeLerpLength = (InputLenghtCalculator.LastLenght - _minLenght) / (_maxLenght - _minLenght);
+            float size = Mathf.Lerp(_minSize, _maxSize, relativeLerpLength);
+
+            _projectileSpawner.ChangeSize(size);
         }
 
         public enum ProjectileDrawType

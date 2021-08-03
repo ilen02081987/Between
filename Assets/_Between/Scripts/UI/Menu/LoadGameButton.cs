@@ -8,7 +8,7 @@ namespace Between.UI.Menu
     {
         protected override void Init()
         {
-            if (DataManager.Instance.HasData)
+            if (!DataManager.Instance.HasData)
                 gameObject.SetActive(false);
         }
 

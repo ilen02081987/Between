@@ -26,6 +26,8 @@ namespace Between
         public float ProjectileManaCoefficient;
         public float ProjectilePowerValue;
         public float ProjectileBaseDamageValue;
+        public float ProjectileMinSize;
+        public float ProjectileMaxSize;
 
         [Header("Заклинание щита")]
         public float ShieldTrackerMinLenght;
