@@ -6,8 +6,6 @@ namespace Between.Spells
 {
     public class ShieldSpell : BaseSpell
     {
-        public override float CoolDownTime => _settings.ShieldSpellCooldown;
-
         protected override BaseInputTracker tracker => _tracker;
 
         protected override float _manaCoefficient => _settings.ShieldManaCoefficient;

@@ -1,3 +1,4 @@
+using Between.Data;
 using System;
 
 namespace Between.Inventory
@@ -20,6 +21,12 @@ namespace Between.Inventory
         }
 
         private int _count;
+
+        public ManaBottlesHolder()
+        {
+            if (DataManager.Instance.HasData)
+                Count = DataManager.Instance.SavedData.ManaBottlesCount;
+        }
 
         public void Add()
         {

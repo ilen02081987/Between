@@ -13,18 +13,12 @@ namespace Between.SpellsEffects.Projectile
         private Projectile _prefab;
         private static GameObject _projectilesParent;
 
-        private readonly float _offset;
-        private readonly float _spawnDelay;
-
-        public ProjectileSpawner(string prefabName, float spawnOffset, float spawnDelay = 0f)
+        public ProjectileSpawner(string prefabName)
         {
             _prefab = Resources.Load<Projectile>(Path.Combine(ResourcesFoldersNames.SPELLS, prefabName));
 
             if (_projectilesParent == null)
                 _projectilesParent = new GameObject("ProjectilesParent");
-
-            _offset = spawnOffset;
-            _spawnDelay = spawnDelay;
         }
 
         public void Spawn(Vector3 position, Vector3 direction)
@@ -32,22 +26,13 @@ namespace Between.SpellsEffects.Projectile
             if (!SpaceDetector.IsFreeSpace(position, ElementSize / 2f))
                 return;
 
-            var spawnPosition = FindSpawnPoint(position, direction);
+            Vector3 spawnPosition = position - direction;
             var projectile = MonoBehaviour.Instantiate(
                 _prefab, spawnPosition, Quaternion.identity, _projectilesParent.transform);
 
-            CoroutineLauncher.Start(DelayedLaunch(projectile, direction));
-        }
-
-        private Vector3 FindSpawnPoint(Vector3 position, Vector3 direction)
-        {
-            return position - direction * _offset;
-        }
-
-        private IEnumerator DelayedLaunch(Projectile projectile, Vector3 direction)
-        {
-            yield return new WaitForSeconds(_spawnDelay);
             projectile.Launch(direction);
         }
+
+        public void ChangeDamageValue(float to) => _prefab.ChangeDamageValue(to);
     }
 }

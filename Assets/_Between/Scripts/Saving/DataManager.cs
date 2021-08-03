@@ -6,8 +6,11 @@ namespace Between.Data
     public class DataManager : Singleton<DataManager>
     {
         public PlayerData SavedData;
+        public bool HasData => SavedData != null;
 
-        public DataManager()
+        public DataManager() => Load();
+
+        public void Load()
         {
             if (SaveSystem.CanLoad)
                 SavedData = SaveSystem.Load();

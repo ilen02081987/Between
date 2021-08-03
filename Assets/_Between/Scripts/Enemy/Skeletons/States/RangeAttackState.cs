@@ -17,7 +17,7 @@ namespace Between.Enemies.Skeletons
             _locomotionController = data.LocomotionController;
             _target = data.Player;
             _spawnPoint = data.ArrowSpawnPoint;
-            _projectileSpawner = new ProjectileSpawner(data.ArrowPrefab.name, 0f);
+            _projectileSpawner = new ProjectileSpawner(data.ArrowPrefab.name);
         }
 
         public override void Enter()
