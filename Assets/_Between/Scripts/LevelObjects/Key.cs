@@ -5,7 +5,7 @@ namespace Between.LevelObjects
     public class Key : InteractableObject
     {
         [SerializeField] private LockableObject _lockableObject;
-        public override void Interact()
+        protected override void PerformOnInteract()
         {
             _lockableObject.Unlock();
             Destroy();

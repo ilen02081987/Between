@@ -10,7 +10,7 @@ namespace Between.LevelObjects
 
         [SerializeField] private bool _isLocked = true;
 
-        public override void Interact()
+        protected override void PerformOnInteract()
         {
             if (!_isLocked)
                 InteractAfterUnlock();

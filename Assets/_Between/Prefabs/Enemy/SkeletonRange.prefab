@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7808042119093579402}
   - component: {fileID: 5897783717799022352}
   - component: {fileID: 6829753153153166107}
+  - component: {fileID: 985931013652517160}
   m_Layer: 0
   m_Name: SkeletonRange
   m_TagString: Untagged
@@ -119,6 +120,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+--- !u!114 &985931013652517160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827789234446689254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a67784f6f9a4ea4d9504ef51b038971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemy: {fileID: 5897783717799022352}
+  _death: {fileID: 8300000, guid: 15328f2d61dcb134392003be65545f09, type: 3}
 --- !u!1 &2431785801126676673
 GameObject:
   m_ObjectHideFlags: 0

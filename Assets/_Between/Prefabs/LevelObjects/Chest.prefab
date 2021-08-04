@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6505789729993548594}
   - component: {fileID: 4556441501377367034}
   - component: {fileID: 520856196292041528}
+  - component: {fileID: 9197344996647554619}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Untagged
@@ -110,6 +111,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: "\u0421\u0443\u043D\u0434\u0443\u043A"
   TipText: "\u0437\u0430\u043A\u0440\u044B\u0442\u043E"
+  _lockText: 
+  _unlockText: 
   _isLocked: 1
-  _loots:
-  - {fileID: 0}
+  _loots: []
+--- !u!114 &9197344996647554619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7505938450619179620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c76faf9f2230d442964ffca4cba8454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clip: {fileID: 8300000, guid: 64eee0fb24fa0ec45823e0a6d8468fe0, type: 3}
+  _chest: {fileID: 520856196292041528}

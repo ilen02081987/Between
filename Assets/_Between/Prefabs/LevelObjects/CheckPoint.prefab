@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4697138251625510019}
   - component: {fileID: 1422242658422872514}
   - component: {fileID: 2648794081298199677}
+  - component: {fileID: 958240392689717661}
   m_Layer: 0
   m_Name: CheckPoint
   m_TagString: Untagged
@@ -126,8 +127,6 @@ MonoBehaviour:
   Name: "\u0427\u0435\u043A\u043F\u043E\u0438\u043D\u0442"
   TipText: "\u0415 - \u0441\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C"
   _playerSpawnPoint: {fileID: 4697138251625510019}
-  _enemies: []
-  _spawnGates: []
 --- !u!65 &2648794081298199677
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -141,3 +140,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0000001, y: 2.0000002, z: 1.0000002}
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &958240392689717661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4697138251625510021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a175fbc578dbffb41824994010c5bf73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clip: {fileID: 8300000, guid: b1d982cd00c09a248a3967fc7aa00ea1, type: 3}
+  _interactableObject: {fileID: 1422242658422872514}

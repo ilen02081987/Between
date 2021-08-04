@@ -11,6 +11,9 @@ namespace Between.SpellsEffects.Projectile
     [RequireComponent(typeof(Rigidbody))]
     public class Projectile : MonoBehaviour
     {
+        public event Action<Vector3> OnLaunch;
+        public event Action OnHit;
+        public event Action OnDestroyed;
         public float SizeZ => transform.localScale.z;
         public float SizeX => transform.localScale.x;
         public Team Team => _team;
@@ -25,13 +28,8 @@ namespace Between.SpellsEffects.Projectile
         [SerializeField] private float _lifeTime = 15f;
 
         private Rigidbody _rigidbody;
-
         private Vector3 _direction;
-
         private bool _hasCollide = false;
-
-        public event Action<Vector3> OnLaunch;
-        public event Action OnDestroyed;
 
         public void Launch(Vector3 direction)
         {
@@ -74,10 +72,12 @@ namespace Between.SpellsEffects.Projectile
                     ApplyDamage(damagable);
                     TakeImpactDamage();
                     ApplySpecialEffects(gameObject);
+                    OnHit?.Invoke();
                 }
             }
             else if (gameObject.CompareTag("Ground"))
             {
+                OnHit?.Invoke();
                 DestroyProjectile();
             }
         }

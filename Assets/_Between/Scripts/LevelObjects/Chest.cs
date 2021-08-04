@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 namespace Between.LevelObjects
 {
     public partial class Chest : LockableObject
     {
+        public event Action OnOpen;
+
         [SerializeField] private GameObject[] _loots;
 
         private void Start()
@@ -13,6 +16,8 @@ namespace Between.LevelObjects
 
         protected override void InteractAfterUnlock()
         {
+            OnOpen?.Invoke();
+
             foreach (GameObject loot in _loots)
                 loot.SetActive(true);
 

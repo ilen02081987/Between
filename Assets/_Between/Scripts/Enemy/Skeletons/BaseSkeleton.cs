@@ -67,7 +67,9 @@ namespace Between.Enemies.Skeletons
         public Transform[] WayPoints;
         public GameObject ArrowPrefab;
         public Transform ArrowSpawnPoint;
-        
+        public AudioClip AttackSound;
+        public AudioClip HitSound;
+
         [HideInInspector] public Shield Shield;
         [HideInInspector] public DamageItem DamageItem;
         [HideInInspector] public Transform Transform;

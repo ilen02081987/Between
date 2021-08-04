@@ -1792,6 +1792,7 @@ GameObject:
   - component: {fileID: 2963166369793736704}
   - component: {fileID: 7369549689720369733}
   - component: {fileID: 766050878487350986}
+  - component: {fileID: -7980271771978421244}
   m_Layer: 0
   m_Name: SkeletonBlockingMelee
   m_TagString: Untagged
@@ -1893,6 +1894,8 @@ MonoBehaviour:
     WayPoints: []
     ArrowPrefab: {fileID: 0}
     ArrowSpawnPoint: {fileID: 0}
+    AttackSound: {fileID: 8300000, guid: d81415b5a27b3444592be7c8042d0936, type: 3}
+    HitSound: {fileID: 8300000, guid: e592c12287b740e429159ae09a464b84, type: 3}
     Shield: {fileID: 0}
     DamageItem:
       Value: 0
@@ -1900,6 +1903,20 @@ MonoBehaviour:
     Player: {fileID: 0}
     Animator: {fileID: 0}
   _shieldTrigger: {fileID: 3829572150575127374}
+--- !u!114 &-7980271771978421244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5636273630288186732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a67784f6f9a4ea4d9504ef51b038971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemy: {fileID: 766050878487350986}
+  _death: {fileID: 8300000, guid: 15328f2d61dcb134392003be65545f09, type: 3}
 --- !u!1 &7945469510472785005
 GameObject:
   m_ObjectHideFlags: 0

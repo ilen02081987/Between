@@ -14,7 +14,7 @@ namespace Between.LevelObjects
 
         public void AttachNumber(int number) => _number = number;
 
-        public override void Interact()
+        protected override void PerformOnInteract()
         {
             Player.Instance.Controller.Heal(Mathf.Infinity);
             Player.Instance.Mana.Add(Mathf.Infinity);

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8839939359220561425}
   - component: {fileID: 8868428215148044481}
   - component: {fileID: 5518396684089979283}
+  - component: {fileID: 921027039839594041}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -85,6 +86,21 @@ CapsuleCollider:
   m_Height: 0.74
   m_Direction: 2
   m_Center: {x: -0.4042254, y: 0.00010042032, z: -0.0011946214}
+--- !u!114 &921027039839594041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5040516816108501139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fa9af9b5f231e947a6582ba3e6b7407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projectile: {fileID: 8839939359220561425}
+  _launchClip: {fileID: 8300000, guid: 2952b231d81c17a4e8b32bc398c5f754, type: 3}
+  _hitClip: {fileID: 8300000, guid: 557c6d3c74ef25e4183f7c7b1a994de1, type: 3}
 --- !u!1 &7378525264145051840
 GameObject:
   m_ObjectHideFlags: 0

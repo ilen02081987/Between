@@ -2,7 +2,7 @@ namespace Between.LevelObjects
 {
     public class ManaBottle : InteractableObject
     {
-        public override void Interact()
+        protected override void PerformOnInteract()
         {
             Player.Instance.ManaBottlesHolder.Add();
             Destroy();
