@@ -9,8 +9,19 @@ namespace Between.Sounds
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent<PlayerController>(out var player))
-                _source.PlayOneShot(_clip);
+            if (IsPlayer(other))
+            {
+                _source.clip = _clip;
+                _source.Play();
+            }
         }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (IsPlayer(other))
+                _source.Stop();
+        }
+
+        private bool IsPlayer(Collider other) => other.TryGetComponent<PlayerController>(out var player);
     }
 }

@@ -1,15 +1,13 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Between.Utilities
 {
-    public class RenderersRemover : MonoBehaviour
+    public class RenderersEditorRemover : MonoBehaviour
     {
         private void Awake()
         {
-#if !UNITY_EDITOR
             Destroy(GetComponent<MeshRenderer>());
             Destroy(GetComponent<MeshFilter>());
-#endif
         }
     }
 }
