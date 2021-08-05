@@ -1,9 +1,8 @@
-using Accord.Statistics.Testing;
-using Between.Collisions;
-using Between.Utilities;
 using System;
 using System.Collections;
 using UnityEngine;
+using Between.Collisions;
+using Between.Utilities;
 
 namespace Between.MainCharacter
 {

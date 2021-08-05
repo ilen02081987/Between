@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Between.Enemies;
@@ -6,6 +7,8 @@ namespace Between.LevelObjects
 {
     public class FightBorders : MonoBehaviour
     {
+        public event Action OnActivate;
+
         [SerializeField] private List<BaseEnemy> _enemies;
 
         [SerializeField] private Collider _leftBorder;
@@ -50,6 +53,7 @@ namespace Between.LevelObjects
             }
 
             _isEnabled = true;
+            OnActivate?.Invoke();
         }
 
         private void TryDestroyBorders(BaseEnemy enemy)
