@@ -1,7 +1,9 @@
 using System.Collections;
+using System.IO;
 using UnityEngine;
 using Between.SpellsEffects.Projectile;
 using Between.Utilities;
+using Between.Sounds;
 
 namespace Between.SpellsEffects.MeteorRain
 {
@@ -11,6 +13,8 @@ namespace Between.SpellsEffects.MeteorRain
         private int _meteorsCount => GameSettings.Instance.MeteorsCount;
         private int _linesCount => GameSettings.Instance.MeteorsLinesCount;
         private float _linesDelay => GameSettings.Instance.MeteorsLinesDelay;
+
+        private static AudioClip _spawnSound;
 
         public MeteorRainSpawner(string projectileName)
         {
@@ -39,6 +43,16 @@ namespace Between.SpellsEffects.MeteorRain
         {
             for (int i = 0; i < count; i++)
                 _projectileSpawner.Spawn(Vector3.Lerp(from, to, (float)i / count), Vector3.down);
+
+            PlaySpawnSound(Vector3.Lerp(from, to, .5f));
+        }
+
+        private void PlaySpawnSound(Vector3 position)
+        {
+            if (_spawnSound == null)
+                _spawnSound = Resources.Load<AudioClip>(Path.Combine(ResourcesFoldersNames.SOUNDS, "meteor_rain"));
+
+            AudioSource.PlayClipAtPoint(_spawnSound, position, MainVolume.Value);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace Between.MainCharacter
     public class LocomotionController : MonoBehaviour
     {
         public event Action<float> OnRun;
+        public event Action OnLand;
         public event Action OnStop;
         public event Action OnJump;
 
@@ -25,6 +26,7 @@ namespace Between.MainCharacter
 
         [SerializeField] private Transform _gfx;
 
+        private bool _previousFrameGrounded;
         private float _velocityY;
         private bool _pressedJumpButton => Input.GetKeyDown(KeyCode.Space);
         //private bool _isGrounded => !SpaceDetector.IsFreeSpace(_groundChecker.position, .1f) || _characterController.isGrounded;
@@ -40,8 +42,14 @@ namespace Between.MainCharacter
 
         private void Update()
         {
+            UpdateSavedState();
             Move();
             TryJump();
+        }
+
+        private void UpdateSavedState()
+        {
+            _previousFrameGrounded = _isGrounded;
         }
 
         public void Push(Vector3 direction, float force)
