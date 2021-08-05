@@ -6,8 +6,7 @@ using UnityEngine;
 
 namespace Between.Sounds
 {
-    [RequireComponent(typeof(AudioSource))]
-    public class PlayerSoundsController : MonoBehaviour
+    public class PlayerSoundsController : BaseSoundsController
     {
         [SerializeField] private LocomotionController _locomotionController;
 
@@ -15,11 +14,8 @@ namespace Between.Sounds
         [SerializeField] private AudioClip _jump;
         [SerializeField] private AudioClip _step;
 
-        private AudioSource _source;
-
-        private void Awake()
+        private void Start()
         {
-            _source = GetComponent<AudioSource>();
             _locomotionController.OnJump += PlayJumpClip;
         }
 
@@ -28,15 +24,9 @@ namespace Between.Sounds
             _locomotionController.OnJump -= PlayJumpClip;
         }
 
-        private void PlayJumpClip()
-        {
-            _source.PlayOneShot(_jump);
-        }
+        private void PlayJumpClip() => Play(_jump);
 
         //call from unity animator
-        private void PerformOnStep()
-        {
-            _source.PlayOneShot(_jump);
-        }
+        private void PerformOnStep() => Play(_step);
     }
 }

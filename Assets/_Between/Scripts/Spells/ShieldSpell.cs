@@ -1,6 +1,5 @@
 using Between.SpellsEffects.ShieldSpell;
 using Between.InputTracking.Trackers;
-using UnityEngine;
 
 namespace Between.Spells
 {
@@ -24,6 +23,10 @@ namespace Between.Spells
             {
                 SpawnShields();
                 PerformOnCastSpell();
+            }
+            else
+            {
+                InvokeNotEnoughManaEvent();
             }
         }
 

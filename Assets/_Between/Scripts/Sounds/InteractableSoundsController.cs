@@ -3,12 +3,12 @@ using Between.LevelObjects;
 
 namespace Between.Sounds
 {
-    public class InteractableSoundsController : MonoBehaviour
+    public class InteractableSoundsController : BaseSoundsController
     {
         [SerializeField] private AudioClip _clip;
         [SerializeField] private InteractableObject _interactableObject;
 
-        private void Awake()
+        private void Start()
         {
             _interactableObject.OnInteract += PlayClip;
         }
@@ -20,8 +20,7 @@ namespace Between.Sounds
 
         private void PlayClip()
         {
-            if (_clip != null)
-                AudioSource.PlayClipAtPoint(_clip, transform.position);
+            Play(_clip);
         }
     }
 }

@@ -1,10 +1,14 @@
 using Between.InputTracking;
 using Between.InputTracking.Trackers;
+using System;
 
 namespace Between.Spells
 {
     public abstract class BaseSpell
     {
+        public static event Action NotEnoughMana;
+        public static event Action NotRecognizeSpell;
+
         protected abstract BaseInputTracker tracker { get; }
         protected abstract float _manaCoefficient { get; }
 
@@ -33,5 +37,8 @@ namespace Between.Spells
         protected virtual void OnDrawFailed() { }
 
         protected void PerformOnCastSpell() => Player.Instance.Mana.Remove(_manaAmount);
+
+        protected void InvokeNotEnoughManaEvent() => NotEnoughMana?.Invoke();
+        protected void InvokeNotRecognizeManaEvent() => NotRecognizeSpell?.Invoke();
     }
 }

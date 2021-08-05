@@ -3,12 +3,12 @@ using Between.Enemies;
 
 namespace Between.Sounds
 {
-    public class BaseEnemySoundsController : MonoBehaviour
+    public class BaseEnemySoundsController : BaseSoundsController
     {
         [SerializeField] private BaseEnemy _enemy;
         [SerializeField] private AudioClip _death;
 
-        private void Awake()
+        private void Start()
         {
             _enemy.OnDie += PlayDeathClip;
         }
@@ -18,9 +18,6 @@ namespace Between.Sounds
             _enemy.OnDie -= PlayDeathClip;
         }
 
-        private void PlayDeathClip()
-        {
-            AudioSource.PlayClipAtPoint(_death, transform.position);
-        }
+        private void PlayDeathClip() => Play(_death);
     }
 }

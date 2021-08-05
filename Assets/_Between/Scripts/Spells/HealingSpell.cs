@@ -14,11 +14,20 @@ namespace Between.Spells
 
         protected override void OnCompleteSpell()
         {
-            if (_enoughMana && ValidCompressionRatio())
+            if (!ValidCompressionRatio())
             {
-                TryHealPlayer();
-                PerformOnCastSpell();
+                InvokeNotRecognizeManaEvent();
+                return;
             }
+
+            if (!_enoughMana)
+            {
+                InvokeNotEnoughManaEvent();
+                return;
+            }
+
+            TryHealPlayer();
+            PerformOnCastSpell();
         }
 
         private void TryHealPlayer()

@@ -44,11 +44,20 @@ namespace Between.Spells
 
         protected override void OnCompleteSpell()
         {
-            if (_isValidLenght && _enoughMana)
+            if (!_isValidLenght)
             {
-                SpawnProjectile();
-                PerformOnCastSpell();
+                InvokeNotRecognizeManaEvent();
+                return;
             }
+
+            if (!_enoughMana)
+            {
+                InvokeNotEnoughManaEvent();
+                return;
+            }
+
+            SpawnProjectile();
+            PerformOnCastSpell();
         }
 
         private void SpawnProjectile()

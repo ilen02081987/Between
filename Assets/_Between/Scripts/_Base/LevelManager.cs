@@ -6,6 +6,7 @@ using Between.Spells;
 using Between.LevelObjects;
 using Between.Data;
 using Between.Saving;
+using Between.Sounds;
 
 namespace Between
 {
@@ -17,6 +18,7 @@ namespace Between
         [SerializeField] private GameSettings _gameSettings;
         [SerializeField] private CheckPoint[] _checkPoints;
         [SerializeField] private CinemachineVirtualCamera _virtualCamera;
+        [SerializeField] private SpellsSoundsManager _spellsSounds;
         
         private GameOverlay _gameOverlay;
 
@@ -35,8 +37,8 @@ namespace Between
             AttachCameraToPlayer();
             InputLenghtCalculator.Init();
             new SpellsCollection().Init();
-            
             InitGameOverlay();
+            _spellsSounds.Init();
         }
 
         
@@ -47,6 +49,7 @@ namespace Between
             Player.DestroyInstance();
             SpellsCollection.DestroyInstance();
             _gameOverlay?.Dispose();
+            _spellsSounds.Dispose();
         }
 
         private void InitCheckPoints()

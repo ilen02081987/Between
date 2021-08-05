@@ -32,11 +32,20 @@ namespace Between.Spells
 
         protected override void OnCompleteSpell()
         {
-            if (_isLongEnough && _enoughMana)
+            if (!_isLongEnough)
             {
-                SpawnMeteorRain();
-                PerformOnCastSpell();
+                InvokeNotRecognizeManaEvent();
+                return;
             }
+
+            if (!_enoughMana)
+            {
+                InvokeNotEnoughManaEvent();
+                return;
+            }
+
+            SpawnMeteorRain();
+            PerformOnCastSpell();
         }
 
         private void SpawnMeteorRain()
