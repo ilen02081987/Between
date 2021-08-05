@@ -1,5 +1,6 @@
 using Between.Animations;
 using Between.Damage;
+using Between.Sounds;
 using Between.StateMachine;
 using UnityEngine;
 
@@ -38,7 +39,7 @@ namespace Between.Enemies.Skeletons
         private void PlayAttackSound()
         {
             if (_attack != null)
-                AudioSource.PlayClipAtPoint(_attack, _animator.transform.position);
+                AudioSource.PlayClipAtPoint(_attack, _animator.transform.position, MainVolume.Value);
         }
 
         private void ApplyDamageToPlayer()
@@ -58,7 +59,7 @@ namespace Between.Enemies.Skeletons
         private void PlayHitSound()
         {
             if (_hit != null)
-                AudioSource.PlayClipAtPoint(_hit, _animator.transform.position);
+                AudioSource.PlayClipAtPoint(_hit, _animator.transform.position, MainVolume.Value);
         }
     }
 }
