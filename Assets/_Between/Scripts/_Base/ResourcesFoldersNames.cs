@@ -8,5 +8,6 @@ namespace Between
     {
         public const string SPELLS = "Spells";
         public const string SPELL_PAINTERS = "SpellPainters";
+        public const string SOUNDS = "Sounds";
     }
 }

@@ -124,6 +124,7 @@ MonoBehaviour:
   _locomotionController: {fileID: 1005441127}
   _jump: {fileID: 8300000, guid: 1dfadce4aea0f4a49b0b534dbfd9516f, type: 3}
   _step: {fileID: 8300000, guid: 0c9e432dbcef79a4a8c9b22db3822d6c, type: 3}
+  _land: {fileID: 8300000, guid: d8b3933cf016c5640b9cf9f0a6819f00, type: 3}
 --- !u!1 &8226507995986304158
 GameObject:
   m_ObjectHideFlags: 0
