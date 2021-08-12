@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e382e5a19ac3c0418587d7b0d21e528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 15
+  MaxHealth: 20
   Immortal: 0
   _protections: []
   animator: {fileID: 2431785801126676754}
@@ -101,6 +101,8 @@ MonoBehaviour:
     WayPoints: []
     ArrowPrefab: {fileID: 5040516816108501139, guid: e1e23cf6434be714e8050f436606c4e1, type: 3}
     ArrowSpawnPoint: {fileID: 4076714567226425071}
+    AttackSound: {fileID: 0}
+    HitSound: {fileID: 0}
     Shield: {fileID: 0}
     DamageItem:
       Value: 0

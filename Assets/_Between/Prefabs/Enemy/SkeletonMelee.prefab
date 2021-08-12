@@ -1693,7 +1693,7 @@ MonoBehaviour:
   _protections: []
   animator: {fileID: 7419934744819356438}
   _damage:
-    Value: 4
+    Value: 15
   _destroyTime: 2
   data:
     NavMeshAgent: {fileID: 2963166369793736704}

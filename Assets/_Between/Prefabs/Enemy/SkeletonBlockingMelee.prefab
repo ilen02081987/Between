@@ -1879,12 +1879,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f39b6c2d081f3e9429a71c8d5d4b743b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 20
+  MaxHealth: 25
   Immortal: 0
   _protections: []
   animator: {fileID: 7419934744819356438}
   _damage:
-    Value: 25
+    Value: 20
   _destroyTime: 2
   data:
     NavMeshAgent: {fileID: 2963166369793736704}
