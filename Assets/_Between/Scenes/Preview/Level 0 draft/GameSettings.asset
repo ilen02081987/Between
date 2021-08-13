@@ -21,21 +21,21 @@ MonoBehaviour:
   ProjectileDrawType: 0
   ProjectileMinLenght: 20
   ProjectileMaxLenght: 1000
-  ProjectileManaCoefficient: 0.1
-  ProjectilePowerValue: 0.4
-  ProjectileBaseDamageValue: 5
+  ProjectileManaCoefficient: 0.05
+  ProjectilePowerValue: 1.1
+  ProjectileBaseDamageValue: 2
   ProjectileMinSize: 1
   ProjectileMaxSize: 3
   ShieldTrackerMinLenght: 20
-  ShieldTrackerMaxLenght: 200
+  ShieldTrackerMaxLenght: 350
   ShieldTrackerForceEndAngle: 90
-  ShieldManaCoefficient: 0.1
+  ShieldManaCoefficient: 0.07
   MeteorRainMinLenght: 50
   MeteorsLinesDelay: 0.5
   MeteorsLinesCount: 3
   MeteorsCount: 5
-  MeteorRainManaCoefficient: 0.2
-  HealingSpellManaCoefficient: 0.1
+  MeteorRainManaCoefficient: 0.15
+  HealingSpellManaCoefficient: 0.15
   HealingSpellMaxSize: 1500
   HealingSpellMaxHeal: 80
   CircleCompressionRatio: 2.25

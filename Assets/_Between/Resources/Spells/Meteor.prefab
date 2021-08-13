@@ -114,7 +114,7 @@ MonoBehaviour:
   _impactDamage: 6
   _team: 0
   _damage:
-    Value: 5
+    Value: 20
   _speed: 20
   _blastRadius: 2
   _friendlyFire: 0
