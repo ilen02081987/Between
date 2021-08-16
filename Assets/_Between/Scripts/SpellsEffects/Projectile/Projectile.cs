@@ -12,7 +12,7 @@ namespace Between.SpellsEffects.Projectile
     public class Projectile : MonoBehaviour
     {
         public event Action<Vector3> OnLaunch;
-        public event Action OnHit;
+        public event Action<Collider> OnHit;
         public event Action OnDestroyed;
         public float SizeZ => transform.localScale.z;
         public float SizeX => transform.localScale.x;
@@ -53,7 +53,7 @@ namespace Between.SpellsEffects.Projectile
         private void OnTriggerEnter(Collider other)
         {
             if (!_hasCollide)
-                TryApplyDamage(other.gameObject);
+                TryApplyDamage(other);
         }
 
         private void OnTriggerExit(Collider other)
@@ -61,9 +61,9 @@ namespace Between.SpellsEffects.Projectile
             _hasCollide = false;
         }
 
-        private void TryApplyDamage(GameObject gameObject)
+        private void TryApplyDamage(Collider collider)
         {
-            if (gameObject.TryGetComponent<IDamagable>(out var damagable))
+            if (collider.TryGetComponent<IDamagable>(out var damagable))
             {
                 if (damagable.Team != _team || _friendlyFire)
                 {
@@ -71,13 +71,13 @@ namespace Between.SpellsEffects.Projectile
 
                     ApplyDamage(damagable);
                     TakeImpactDamage();
-                    ApplySpecialEffects(gameObject);
-                    OnHit?.Invoke();
+                    ApplySpecialEffects(collider.gameObject);
+                    OnHit?.Invoke(collider);
                 }
             }
-            else if (gameObject.CompareTag("Ground"))
+            else if (collider.CompareTag("Ground"))
             {
-                OnHit?.Invoke();
+                OnHit?.Invoke(collider);
                 DestroyProjectile();
             }
         }

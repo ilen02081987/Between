@@ -22,6 +22,6 @@ namespace Between.Sounds
         }
 
         private void PlayLaunchSound(Vector3 obj) => Play(_launchClip);
-        private void PlayHitSound() => Play(_hitClip);
+        private void PlayHitSound(Collider collider) => Play(_hitClip);
     }
 }

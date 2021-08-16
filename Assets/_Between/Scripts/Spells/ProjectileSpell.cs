@@ -23,6 +23,9 @@ namespace Between.Spells
         private float _minSize => GameSettings.Instance.ProjectileMinSize;
         private float _maxSize => GameSettings.Instance.ProjectileMaxSize;
 
+        private float _clampedSpellLenght => Mathf.Clamp(_spellLenght, _minSize, _maxSize);
+        private bool _enoughMana => EnoughMana(_clampedSpellLenght);
+
         private bool _isValidLenght
         {
             get
@@ -57,7 +60,7 @@ namespace Between.Spells
             }
 
             SpawnProjectile();
-            PerformOnCastSpell();
+            SpendManaForSpell(_clampedSpellLenght);
         }
 
         private void SpawnProjectile()

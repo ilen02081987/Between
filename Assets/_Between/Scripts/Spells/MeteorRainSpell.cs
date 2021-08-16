@@ -38,14 +38,14 @@ namespace Between.Spells
                 return;
             }
 
-            if (!_enoughMana)
+            if (!_enoughManaForInputLenght)
             {
                 InvokeNotEnoughManaEvent();
                 return;
             }
 
             SpawnMeteorRain();
-            PerformOnCastSpell();
+            SpendDefaultMana();
         }
 
         private void SpawnMeteorRain()

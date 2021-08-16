@@ -109,3 +109,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnedObject: {fileID: 5636273630288186732, guid: a56b46cd2bf0af84e8c94bc59e4ceb11, type: 3}
   _parent: {fileID: 0}
+  _vfx: {fileID: 176446, guid: cb452253bf9759f409f031e951c88f43, type: 3}

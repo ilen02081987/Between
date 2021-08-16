@@ -13,6 +13,12 @@ namespace Between.Spells
             InitSpells();
         }
 
+        protected override void PrepareToDestroy()
+        {
+            foreach (KeyValuePair<SpellType, BaseSpell> pair in _spells)
+                pair.Value.Dispose();
+        }
+
         private void AddSpells()
         {
             _spells.Add(SpellType.Shield, new ShieldSpell());
