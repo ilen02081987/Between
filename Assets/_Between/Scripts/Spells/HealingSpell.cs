@@ -12,6 +12,12 @@ namespace Between.Spells
         protected override SpellFigure _figure => SpellFigure.Circle;
         protected override float _manaCoefficient => GameSettings.Instance.HealingSpellManaCoefficient;
 
+        private float _maxSize => GameSettings.Instance.HealingSpellMaxSize;
+        private float _maxHeal => GameSettings.Instance.HealingSpellMaxHeal;
+
+        private bool _enoughMana => EnoughMana(_clampedSpellLenght);
+        private float _clampedSpellLenght => Mathf.Min(_spellLenght, _maxSize);
+
         protected override void OnCompleteSpell()
         {
             if (!ValidCompressionRatio())
@@ -27,13 +33,12 @@ namespace Between.Spells
             }
 
             TryHealPlayer();
-            PerformOnCastSpell();
+            SpendManaForSpell(_clampedSpellLenght);
         }
 
         private void TryHealPlayer()
         {
-            GameSettings settings = GameSettings.Instance;
-            float healValue = _spellLenght / settings.HealingSpellMaxSize * settings.HealingSpellMaxHeal;
+            float healValue = _spellLenght / _maxSize * _maxHeal;
 
             if (ContainsPlayer())
                 Player.Instance.Controller.Heal(healValue);

@@ -19,10 +19,10 @@ namespace Between.Spells
 
         protected override void OnCompleteSpell()
         {
-            if (_enoughMana)
+            if (_enoughManaForInputLenght)
             {
                 SpawnShields();
-                PerformOnCastSpell();
+                SpendDefaultMana();
             }
             else
             {

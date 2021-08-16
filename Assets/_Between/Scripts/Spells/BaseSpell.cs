@@ -12,9 +12,8 @@ namespace Between.Spells
         protected abstract BaseInputTracker tracker { get; }
         protected abstract float _manaCoefficient { get; }
 
+        protected bool _enoughManaForInputLenght => EnoughMana(_spellLenght);
         protected float _spellLenght => InputLenghtCalculator.LastLenght;
-        protected float _manaAmount => _spellLenght * _manaCoefficient;
-        protected bool _enoughMana => _manaAmount <= Player.Instance.Mana.Value;
 
         public void Init()
         {
@@ -36,7 +35,10 @@ namespace Between.Spells
         protected virtual void OnCanCompleteDraw() { }
         protected virtual void OnDrawFailed() { }
 
-        protected void PerformOnCastSpell() => Player.Instance.Mana.Remove(_manaAmount);
+        protected void SpendDefaultMana() => SpendManaForSpell(_spellLenght);
+        protected void SpendManaForSpell(float spellLenght) => Player.Instance.Mana.Remove(CalculateMana(spellLenght));
+        protected bool EnoughMana(float spellLenght) => CalculateMana(spellLenght) <= Player.Instance.Mana.Value;
+        protected float CalculateMana(float spellLenght) => spellLenght * _manaCoefficient;
 
         protected void InvokeNotEnoughManaEvent() => NotEnoughMana?.Invoke();
         protected void InvokeNotRecognizeManaEvent() => NotRecognizeSpell?.Invoke();

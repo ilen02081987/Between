@@ -1,4 +1,3 @@
-using System.IO;
 using UnityEngine;
 using Between.Controllers;
 using Between.Spells;
@@ -17,14 +16,20 @@ namespace Between.Sounds
             BaseSpell.NotEnoughMana += PlayNoEnoughSound;
             BaseSpell.NotRecognizeSpell += PlayNoRecognizeSound;
         }
-
-        private void PlayNoRecognizeSound() => _source.PlayOneShot(_noRecognize);
-        private void PlayNoEnoughSound() => _source.PlayOneShot(_noMana);
-
         public void Dispose()
         {
             BaseSpell.NotEnoughMana += PlayNoEnoughSound;
             BaseSpell.NotRecognizeSpell += PlayNoRecognizeSound;
+        }
+        private void PlayNoRecognizeSound() => PlayOneShot(_noRecognize);
+        private void PlayNoEnoughSound() => PlayOneShot(_noMana);
+
+        private void PlayOneShot(AudioClip clip)
+        {
+            if (_source == null || clip == null)
+                return;
+
+            _source.PlayOneShot(clip);
         }
     }
 }
