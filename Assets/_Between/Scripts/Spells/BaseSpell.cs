@@ -6,6 +6,7 @@ namespace Between.Spells
 {
     public abstract class BaseSpell
     {
+        public static event Action SpellCasted;
         public static event Action NotEnoughMana;
         public static event Action NotRecognizeSpell;
 
@@ -36,11 +37,15 @@ namespace Between.Spells
         protected virtual void OnDrawFailed() { }
 
         protected void SpendDefaultMana() => SpendManaForSpell(_spellLenght);
-        protected void SpendManaForSpell(float spellLenght) => Player.Instance.Mana.Remove(CalculateMana(spellLenght));
+        protected void SpendManaForSpell(float spellLenght)
+        {
+            Player.Instance.Mana.Remove(CalculateMana(spellLenght));
+            SpellCasted?.Invoke();
+        }
         protected bool EnoughMana(float spellLenght) => CalculateMana(spellLenght) <= Player.Instance.Mana.Value;
         protected float CalculateMana(float spellLenght) => spellLenght * _manaCoefficient;
 
         protected void InvokeNotEnoughManaEvent() => NotEnoughMana?.Invoke();
-        protected void InvokeNotRecognizeManaEvent() => NotRecognizeSpell?.Invoke();
+        protected void InvokeNotRecognizeEvent() => NotRecognizeSpell?.Invoke();
     }
 }

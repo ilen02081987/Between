@@ -25,6 +25,7 @@ namespace Between.Spells
             _spells.Add(SpellType.SmallProjectile, new ProjectileSpell("Projectile"));
             _spells.Add(SpellType.MeteorRain, new MeteorRainSpell("Meteor"));
             _spells.Add(SpellType.Heal, new HealingSpell());
+            _spells.Add(SpellType.FailedTracker, new FailedTrackerSpell());
         }
 
         private void InitSpells()
@@ -49,7 +50,8 @@ namespace Between.Spells
             Shield = 0,
             SmallProjectile,
             MeteorRain,
-            Heal
+            Heal,
+            FailedTracker
         }
     }
 }

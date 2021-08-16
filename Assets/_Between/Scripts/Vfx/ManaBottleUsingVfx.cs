@@ -13,7 +13,8 @@ namespace Between.Vfx
 
         private void OnDestroy()
         {
-            Player.Instance.ManaBottlesUser.BottleUsed -= EnableVfx;
+            if (Player.Instance != null)
+                Player.Instance.ManaBottlesUser.BottleUsed -= EnableVfx;
         }
 
         private void EnableVfx()

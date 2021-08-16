@@ -6613,7 +6613,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mouseButton: 0
-  _prefab: {fileID: 1019054629656254, guid: 00a8a52fa3892f246a7dfd18df2d7ea0, type: 3}
+  _prefab: {fileID: -5160684198669555670, guid: 00a8a52fa3892f246a7dfd18df2d7ea0, type: 3}
+  _failedColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &2082608262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6627,7 +6628,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mouseButton: 1
-  _prefab: {fileID: 1019054629656254, guid: 752d61b75347f594cbbd5632f67121ae, type: 3}
+  _prefab: {fileID: 4900912235218113391, guid: 752d61b75347f594cbbd5632f67121ae, type: 3}
+  _failedColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1001 &2106385492
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -22,7 +22,7 @@ namespace Between.Spells
         {
             if (!ValidCompressionRatio())
             {
-                InvokeNotRecognizeManaEvent();
+                InvokeNotRecognizeEvent();
                 return;
             }
 

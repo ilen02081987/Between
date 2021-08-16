@@ -34,7 +34,7 @@ namespace Between.Spells
         {
             if (!_isLongEnough)
             {
-                InvokeNotRecognizeManaEvent();
+                InvokeNotRecognizeEvent();
                 return;
             }
 

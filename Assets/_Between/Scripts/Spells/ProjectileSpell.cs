@@ -49,7 +49,7 @@ namespace Between.Spells
         {
             if (!_isValidLenght)
             {
-                InvokeNotRecognizeManaEvent();
+                InvokeNotRecognizeEvent();
                 return;
             }
 
