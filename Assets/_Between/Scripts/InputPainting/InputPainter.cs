@@ -8,7 +8,8 @@ namespace Between.InputPainting
     {
         [SerializeField] private int _mouseButton;
         [SerializeField] private InputPainterEffect _prefab;
-        [SerializeField] private Color _failedColor;
+        [SerializeField] private Color _notRecognizedColor;
+        [SerializeField] private Color _notEnoughManaColor;
 
         private InputPainterEffect _currentPainter;
 
@@ -19,8 +20,8 @@ namespace Between.InputPainting
             InputHandler.ForceEndDraw += DestroyPainter;
 
             BaseSpell.SpellCasted += PerformOnSpellCasted;
-            BaseSpell.NotEnoughMana += PerformOnSpellFailed;
-            BaseSpell.NotRecognizeSpell += PerformOnSpellFailed;
+            BaseSpell.NotEnoughMana += PerformOnSpellNotEnoughMana;
+            BaseSpell.NotRecognizeSpell += PerformOnSpellNotRecognized;
         }
 
         private void OnDestroy()
@@ -30,8 +31,8 @@ namespace Between.InputPainting
             InputHandler.ForceEndDraw -= DestroyPainter;
             
             BaseSpell.SpellCasted -= PerformOnSpellCasted;
-            BaseSpell.NotEnoughMana -= PerformOnSpellFailed;
-            BaseSpell.NotRecognizeSpell -= PerformOnSpellFailed;
+            BaseSpell.NotEnoughMana -= PerformOnSpellNotEnoughMana;
+            BaseSpell.NotRecognizeSpell -= PerformOnSpellNotRecognized;
         }
 
         private void CreatePainter(InputData screenPoint)
@@ -59,22 +60,25 @@ namespace Between.InputPainting
             DestroyPainter(default);
         }
 
-        private void PerformOnSpellFailed()
-        {
-            if (_currentPainter != null)
-            {
-                _currentPainter.ChangeTrailColor(_failedColor);
-                var painterToRemove = _currentPainter;
-                _currentPainter = null;
-
-                Destroy(painterToRemove.gameObject, 1.5f);
-            }
-        }
+        private void PerformOnSpellNotRecognized() => ChangePainterColor(_notRecognizedColor);
+        private void PerformOnSpellNotEnoughMana() => ChangePainterColor(_notEnoughManaColor);
 
         private void DestroyPainter(InputData obj)
         {
             if (_currentPainter != null)
                 Destroy(_currentPainter.gameObject);
+        }
+
+        private void ChangePainterColor(Color to)
+        {
+            if (_currentPainter != null)
+            {
+                _currentPainter.ChangeTrailColor(to);
+                var painterToRemove = _currentPainter;
+                _currentPainter = null;
+
+                Destroy(painterToRemove.gameObject, 1.5f);
+            }
         }
 
         private Vector3 GetWorldPosition(Vector2Int from) => GameCamera.ScreenToWorldPoint(from);
