@@ -1,12 +1,13 @@
-using Between.Inventory;
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using Between.Inventory;
 
 namespace Between.MainCharacter
 {
     public class ManaBottlesUser : MonoBehaviour
     {
+        public event Action BottleUsed;
+
         [SerializeField] private KeyCode _key;
 
         private ManaBottlesHolder _holder;
@@ -19,7 +20,10 @@ namespace Between.MainCharacter
         private void Update()
         {
             if (Input.GetKeyDown(_key) && _holder.Count > 0)
+            {
                 _holder.Apply();
+                BottleUsed?.Invoke();
+            }
         }
     }
 }

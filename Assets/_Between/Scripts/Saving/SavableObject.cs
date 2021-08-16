@@ -16,7 +16,7 @@ namespace Between.Saving
         [MenuItem("SaveSystem/Generate objects ids")]
         public static void GenerateObjectsIds()
         {
-            var savableObjects = FindObjectsOfType<SavableObject>();
+            var savableObjects = FindObjectsOfType<SavableObject>(true);
 
             for (int i = 0; i < savableObjects.Length; i++)
             {
