@@ -1,17 +1,16 @@
-﻿using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
-namespace ARPGFX
+namespace Between.Vfx
 {
-    public class ARPGFXPortalScript : MonoBehaviour
+    public class PortalVfx : MonoBehaviour
     {
-
         public GameObject portalOpen;
         public GameObject portalIdle;
         public GameObject portalClose;
 
-        public float portalLifetime = 4.0f;
-        
+        public float portalLifetime = 2.5f;
+
         private void Start()
         {
             OpenPortal();
@@ -35,7 +34,8 @@ namespace ARPGFX
 
             yield return new WaitForSeconds(1f);
             Destroy(portalCloser);
-            OpenPortal();
+
+            Destroy(gameObject);
         }
     }
 }

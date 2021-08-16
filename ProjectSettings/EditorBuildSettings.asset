@@ -6,13 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Between/Scenes/Prototype/App/App.unity
+    path: Assets/_Between/Scenes/Preview/App/App.unity
     guid: 112c67fc9edb89249aeec54413713fad
   - enabled: 1
-    path: Assets/_Between/Scenes/Prototype/MainMenu/MainMenu.unity
+    path: Assets/_Between/Scenes/Preview/MainMenu/MainMenu.unity
     guid: 5175cab49b37ff64a8320a04cfefecfa
   - enabled: 1
-    path: Assets/_Between/Scenes/Prototype/Level 0 draft/Level 0.unity
+    path: Assets/_Between/Scenes/Preview/Level 0 draft/Level 0.unity
     guid: 6b364de475589df47ad48bd8cdad4415
   - enabled: 1
     path: Assets/_Between/Scenes/Level 1 blocking/Level 1.unity
