@@ -5,7 +5,7 @@ using UnityEngine;
 namespace CV.Editor
 {
     [RequireComponent(typeof(LineRenderer))]
-    public class InputPainter : MonoBehaviour
+    public class RendererInputPainter : MonoBehaviour
     {
         [SerializeField] private int _mouseButton = 0;
 
