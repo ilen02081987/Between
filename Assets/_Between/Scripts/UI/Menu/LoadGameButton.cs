@@ -12,9 +12,15 @@ namespace Between.UI.Menu
                 gameObject.SetActive(false);
         }
 
+        private void OnEnable()
+        {
+            if (!DataManager.Instance.HasData && isInitialized)
+                gameObject.SetActive(false);
+        }
+
         protected override void PerformOnClick()
         {
-            SceneChanger.ChangeScene(1, DataManager.Instance.SavedData.LevelSceneBuildIndex);
+            SceneChanger.ChangeScene(gameObject.scene.buildIndex, DataManager.Instance.SavedData.LevelSceneBuildIndex);
         }
     }
 }
