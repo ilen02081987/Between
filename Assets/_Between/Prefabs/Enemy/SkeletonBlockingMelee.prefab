@@ -1696,6 +1696,7 @@ GameObject:
   - component: {fileID: 2716549557346878541}
   - component: {fileID: 8230906007643905631}
   - component: {fileID: 2363108748404498202}
+  - component: {fileID: 7540450516900916296}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Ground
@@ -1779,6 +1780,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_Center: {x: 0, y: 0.0000009536743, z: 0}
+--- !u!114 &7540450516900916296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4915717465123043916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33c2df16bb1254d4988c4a0c05093048, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 1
+  Immortal: 1
+  _protections: []
+  _team: 1
+  _lifeTime: 9000000
 --- !u!1 &5636273630288186732
 GameObject:
   m_ObjectHideFlags: 0
