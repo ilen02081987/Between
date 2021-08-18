@@ -34,7 +34,7 @@ namespace Between.InputTracking
             if (_lastPoint == GameExtensions.DefaultPosition)
                 _lastPoint = input.Position;
 
-            LastLenght += Vector2.Distance(input.Position, _lastPoint);
+            LastLenght += Vector2.Distance(input.Position, _lastPoint) / Screen.width;
             _lastPoint = input.Position;
         }
     }

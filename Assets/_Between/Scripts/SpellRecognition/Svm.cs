@@ -52,7 +52,7 @@ namespace Between.SpellRecognition
             string message = "";
 
             for (int i = 0; i < probabilities.Length; i++)
-                message += $"{(SpellFigure)i} - {probabilities[i].ToString("F2")} ";
+                message += $"{probabilities[i].ToString("F2")} ";
 
             Debug.Log(message);
         }

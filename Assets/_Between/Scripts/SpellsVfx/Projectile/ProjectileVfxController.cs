@@ -83,7 +83,7 @@ namespace Between.SpellsEffects.Projectile
                     }
                 }
 
-                Vector3 contactPoint = collider.ClosestPoint(transform.position);
+                Vector3 contactPoint = FindContactMethod(collider);
 
                 if (hitPrefab != null)
                 {
@@ -101,6 +101,16 @@ namespace Between.SpellsEffects.Projectile
 
                 Destroy(gameObject);
             }
+        }
+
+        private Vector3 FindContactMethod(Collider collider)
+        {
+            MeshCollider meshCollider = collider as MeshCollider;
+
+            if (meshCollider != null && !meshCollider.convex)
+                return transform.position;
+            else
+                return collider.ClosestPoint(transform.position);
         }
     }
 }
