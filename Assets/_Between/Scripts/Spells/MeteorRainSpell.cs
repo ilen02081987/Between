@@ -1,8 +1,8 @@
-using UnityEngine;
 using Between.Extensions;
 using Between.SpellRecognition;
 using Between.SpellsEffects.MeteorRain;
 using Between.InputTracking.Trackers;
+using Between.InputTracking;
 
 namespace Between.Spells
 {
@@ -12,16 +12,7 @@ namespace Between.Spells
 
         private MeteorRainSpawner _spawner;
 
-        private bool _isLongEnough
-        {
-            get
-            {
-                var points = ((SvmTracker)tracker).DrawPoints;
-                var distance = Vector2.Distance(points[0], points[points.Count - 1]);
-
-                return distance > GameSettings.Instance.MeteorRainMinLenght;
-            }
-        }
+        private bool _isLongEnough => InputLenghtCalculator.LastLenght > GameSettings.Instance.MeteorRainMinLenght;
 
         protected override float _manaCoefficient => GameSettings.Instance.MeteorRainManaCoefficient;
 

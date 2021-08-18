@@ -35,7 +35,7 @@ namespace Between.Spells
                 if (points.Count < 2)
                     return false;
 
-                var distance = Vector2.Distance(points[0], points[points.Count - 1]);
+                var distance = InputLenghtCalculator.LastLenght;
                 return distance > _minLenght && distance < _maxLenght;
             }
         }
