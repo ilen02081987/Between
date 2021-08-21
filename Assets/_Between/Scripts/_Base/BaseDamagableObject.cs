@@ -38,9 +38,10 @@ namespace Between
             TryDamageProtection(damage.Type, ref damage.Value);
             TryDamageHealth(damage.Value);
 
+            LivesValueChanged?.Invoke();
+
             if (Health > 0)
             {
-                LivesValueChanged?.Invoke();
                 PerformOnDamage();
             }
             else
