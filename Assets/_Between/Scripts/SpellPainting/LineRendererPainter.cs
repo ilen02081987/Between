@@ -1,21 +1,14 @@
-using Between;
 using UnityEngine;
 
 namespace Between.SpellPainting
 {
-    public class LineRendererPainter : MonoBehaviour, IPainter
+    public class LineRendererPainter : BasePainter
     {
         [SerializeField] private LineRenderer _rendererPrefab;
 
         private LineRenderer _currentRenderer;
-        private Vector3 _startPoint;
 
-        public void Init(Vector3 position)
-        {
-            _startPoint = position;
-        }
-
-        public void Draw(Vector3 point)
+        public override void Draw(Vector3 point)
         {
             if (_currentRenderer == null)
                 CreateNewRenderer();
@@ -26,32 +19,11 @@ namespace Between.SpellPainting
             _currentRenderer.SetPosition(_currentRenderer.positionCount - 1, newPoint);
         }
 
-        public void AddSpace()
+        public override void AddSpace()
         {
             _currentRenderer = null;
         }
 
-        private void CreateNewRenderer()
-        {
-            _currentRenderer = MonoBehaviour.Instantiate(_rendererPrefab, transform);
-        }
-    }
-
-    public class TrailPainter : MonoBehaviour, IPainter
-    {
-        public void Init(Vector3 point)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Draw(Vector3 point)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void AddSpace()
-        {
-            
-        }
+        private void CreateNewRenderer() => _currentRenderer = Instantiate(_rendererPrefab, transform);
     }
 }

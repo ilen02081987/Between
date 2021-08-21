@@ -7,5 +7,6 @@ namespace Between.SpellPainting
         public void Init(Vector3 point);
         public void Draw(Vector3 point);
         public void AddSpace();
+        public void Destroy();
     }
 }

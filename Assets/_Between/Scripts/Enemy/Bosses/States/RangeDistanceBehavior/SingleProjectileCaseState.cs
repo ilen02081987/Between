@@ -26,7 +26,7 @@ namespace Between.Enemies.Mavka
         {
             var spellPainter = new SpellPainter(
                 "MavkaSingleProjectile",
-                "LineRenderersPainter",
+                PAINTER_NAME,
                 _spawnPoint.position, _castTime, 0f);
 
             spellPainter.Complete += () => CompletePaintSpell();
