@@ -7,6 +7,7 @@ namespace Between.Vfx
     {
         [SerializeField] private Chest _chest;
         [SerializeField] private GameObject _vfx;
+        [SerializeField] private Animator _animator;
 
         private void Start()
         {
@@ -16,6 +17,7 @@ namespace Between.Vfx
         private void EnableVfx()
         {
             _vfx.SetActive(true);
+            _animator.enabled = true;
         }
     }
 }

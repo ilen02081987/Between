@@ -19,9 +19,9 @@ MonoBehaviour:
   ManaBottleValue: 50
   ProjectilesSpawnOffset: 2
   ProjectileDrawType: 0
-  ProjectileMinLenght: 20
-  ProjectileMaxLenght: 1000
-  ProjectileManaCoefficient: 0.05
+  ProjectileMinLenght: 0.1
+  ProjectileMaxLenght: 0.5
+  ProjectileManaCoefficient: 1
   ProjectilePowerValue: 1.1
   ProjectileBaseDamageValue: 2
   ProjectileMinSize: 1
