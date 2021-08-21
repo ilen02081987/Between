@@ -20,10 +20,10 @@ namespace Between.Spells
         private float _powerValue => GameSettings.Instance.ProjectilePowerValue;
         private float _baseDamage => GameSettings.Instance.ProjectileBaseDamageValue;
 
-        private float _minSize => GameSettings.Instance.ProjectileMinSize;
-        private float _maxSize => GameSettings.Instance.ProjectileMaxSize;
+        private float _minProjectileSize => GameSettings.Instance.ProjectileMinSize;
+        private float _maxProjectileSize => GameSettings.Instance.ProjectileMaxSize;
 
-        private float _clampedSpellLenght => Mathf.Clamp(_spellLenght, _minSize, _maxSize);
+        private float _clampedSpellLenght => Mathf.Clamp(_spellLenght, _minLenght, _maxLenght);
         private bool _enoughMana => EnoughMana(_clampedSpellLenght);
 
         private bool _isValidLenght
@@ -90,13 +90,15 @@ namespace Between.Spells
             float relativeLenght = InputLenghtCalculator.LastLenght / _minLenght;
             float damageValue = _baseDamage * Mathf.Pow(relativeLenght, _powerValue);
 
+            Debug.Log("Projectile damage = " + damageValue);
+
             _projectileSpawner.ChangeDamageValue(damageValue);
         }
 
         private void UpdateProjectileSize()
         {
             float relativeLerpLength = (InputLenghtCalculator.LastLenght - _minLenght) / (_maxLenght - _minLenght);
-            float size = Mathf.Lerp(_minSize, _maxSize, relativeLerpLength);
+            float size = Mathf.Lerp(_minProjectileSize, _maxProjectileSize, relativeLerpLength);
 
             _projectileSpawner.ChangeSize(size);
         }

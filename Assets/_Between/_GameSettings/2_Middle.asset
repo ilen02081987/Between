@@ -44,7 +44,7 @@ MonoBehaviour:
   - 0.9
   - 0.8
   - 0.8
-  EnableProbabilitiesLog: 1
+  EnableProbabilitiesLog: 0
   RangeDetectionRadius: 15
   RangeCooldownBase: 2.27
   RangeCooldownShift: 0
