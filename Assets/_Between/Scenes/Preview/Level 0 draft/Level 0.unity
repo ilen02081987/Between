@@ -9330,6 +9330,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7218910359052554065, guid: 32c5d8b40a7c9d34785dc89d7bfcb6f6, type: 3}
+      propertyPath: _canvas
+      value: 
+      objectReference: {fileID: 1556860654}
+    - target: {fileID: 7218910359052554065, guid: 32c5d8b40a7c9d34785dc89d7bfcb6f6, type: 3}
       propertyPath: _virtualCamera
       value: 
       objectReference: {fileID: 969597381}

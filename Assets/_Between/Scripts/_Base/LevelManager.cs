@@ -14,10 +14,12 @@ namespace Between
     {
         public static LevelManager Instance;
         public int SceneIndex => Instance.gameObject.scene.buildIndex;
+        public Canvas Canvas => _canvas;
 
         [SerializeField] private CheckPoint[] _checkPoints;
         [SerializeField] private CinemachineVirtualCamera _virtualCamera;
         [SerializeField] private SpellsSoundsManager _spellsSounds;
+        [SerializeField] private Canvas _canvas;
         
         private GameOverlay _gameOverlay;
 

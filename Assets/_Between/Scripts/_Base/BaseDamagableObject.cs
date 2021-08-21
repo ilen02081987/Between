@@ -3,11 +3,15 @@ using Between.Damage;
 using Between.Interfaces;
 using Between.Teams;
 using System;
+using System.IO;
 
 namespace Between
 {
     public abstract class BaseDamagableObject : MonoBehaviour, IDamagable
     {
+        private static GameObject _healVfxPrefab;
+        private static string _prefabName = Path.Combine(ResourcesFoldersNames.VFX, "Vfx_Heal_IdentifyFinish");
+
         public event Action LivesValueChanged;
         public event Action OnDie;
 
@@ -34,9 +38,10 @@ namespace Between
             TryDamageProtection(damage.Type, ref damage.Value);
             TryDamageHealth(damage.Value);
 
+            LivesValueChanged?.Invoke();
+
             if (Health > 0)
             {
-                LivesValueChanged?.Invoke();
                 PerformOnDamage();
             }
             else
@@ -50,6 +55,16 @@ namespace Between
         {
             Health = Mathf.Min(Health + value, MaxHealth);
             LivesValueChanged?.Invoke();
+
+            CreateHealVfx();
+        }
+
+        private void CreateHealVfx()
+        {
+            if (_healVfxPrefab == null)
+                _healVfxPrefab = Resources.Load(_prefabName) as GameObject;
+            
+            Instantiate(_healVfxPrefab, Position, Quaternion.identity);
         }
 
         protected abstract void PerformOnDie();

@@ -24,5 +24,7 @@ namespace Between
             var zDistance = - MainCamera.transform.position.z;
             return MainCamera.ScreenToWorldPoint(new Vector3(screenPoint.x, screenPoint.y, zDistance));
         }
+
+        public static Vector3 WorldToScreenPoint(Vector3 from) => MainCamera.WorldToScreenPoint(from);
     }
 }
