@@ -91,7 +91,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2981786914150981074}
   - component: {fileID: 2952614823328565210}
-  - component: {fileID: 2992403980530348002}
   m_Layer: 0
   m_Name: Portal 1 Transit
   m_TagString: Untagged
@@ -131,19 +130,6 @@ MonoBehaviour:
   exit: {fileID: 0}
   gizmosColor: {r: 1, g: 0, b: 0, a: 1}
   isPortalOpened: 0
---- !u!65 &2992403980530348002
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2984016224105165808}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 2.5}
-  m_Center: {x: 0, y: 0, z: 1.25}
 --- !u!1 &2984057842909287088
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,13 +270,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2990340277858156502}
+  - component: {fileID: 2073428696}
+  - component: {fileID: 2073428695}
   m_Layer: 0
   m_Name: FinalPortal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2990340277858156502
 Transform:
   m_ObjectHideFlags: 0
@@ -300,7 +288,7 @@ Transform:
   m_GameObject: {fileID: 2984329415652079002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.064, y: -22.868122, z: 0.958}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.1842, y: 2.1842, z: 2.1842}
   m_Children:
   - {fileID: 2990244307179785538}
   - {fileID: 2981786914150981074}
@@ -309,6 +297,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2073428696
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2984329415652079002}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.95, y: 7.04, z: 7.75}
+  m_Center: {x: 0, y: -0.75, z: 1.25}
+--- !u!114 &2073428695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2984329415652079002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac23e5726352db549b83da98aa4165c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: "\u041F\u043E\u0440\u0442\u0430\u043B"
+  TipText: "\u0415 - \u0432\u043E\u0439\u0442\u0438"
 --- !u!1 &2984399839614258158
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +336,6 @@ GameObject:
   - component: {fileID: 2920275288839826270}
   - component: {fileID: 2899534298511594046}
   - component: {fileID: 2952149069459791676}
-  - component: {fileID: 2952927061983173410}
   m_Layer: 1
   m_Name: portal_mesh
   m_TagString: Untagged
@@ -433,25 +447,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewTextureName: _MainTex
-  view: {fileID: 2952073004680202134, guid: a0386b5485748e54791f64acc8684fa5, type: 3}
+  view: {fileID: 0}
   materialId: 1
---- !u!114 &2952927061983173410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2984399839614258158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b34a2d18ea82a814580a2e73d9393353, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targets:
-  - {fileID: 2920275288839826270}
-  - {fileID: 2920083193618059326}
-  hueParamName: _HueOffset
-  value: 0
 --- !u!1 &2984503423025570506
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,7 +544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewTextureName: _MainTex
-  view: {fileID: 2952073004680202134, guid: a0386b5485748e54791f64acc8684fa5, type: 3}
+  view: {fileID: 0}
   materialId: 0
 --- !u!1 &2984715201507027980
 GameObject:
