@@ -13,7 +13,7 @@ namespace Between.LevelObjects
         protected override void InteractAfterUnlock()
         {
             OnEnter?.Invoke();
-            SceneChanger.ChangeScene(LevelManager.Instance.SceneIndex, _nextSceneBuildIndex);
+            //SceneChanger.ChangeScene(LevelManager.Instance.SceneIndex, _nextSceneBuildIndex);
         }
     }
 }
