@@ -10551,6 +10551,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2082608261, guid: 4baacd0d70d870040b4a092e2aa13192, type: 3}
+      propertyPath: _notRecognizedColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082608262, guid: 4baacd0d70d870040b4a092e2aa13192, type: 3}
+      propertyPath: _notRecognizedColor.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6892224715983517920, guid: 4baacd0d70d870040b4a092e2aa13192, type: 3}
       propertyPath: m_Name
       value: InputPainters
