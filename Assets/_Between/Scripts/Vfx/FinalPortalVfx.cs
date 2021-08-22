@@ -10,12 +10,12 @@ namespace Between.Vfx
 
         private void Start()
         {
-            _locationSwitcher.OnEnter += EnableVfx;
+            _locationSwitcher.OnInteract += EnableVfx;
         }
 
         private void EnableVfx()
         {
-            _locationSwitcher.OnEnter -= EnableVfx;
+            _locationSwitcher.OnInteract -= EnableVfx;
             _vfx.SetActive(true);
         }
     }

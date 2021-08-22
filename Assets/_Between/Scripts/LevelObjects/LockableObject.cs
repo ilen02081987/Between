@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Between.LevelObjects
 {
@@ -10,6 +9,11 @@ namespace Between.LevelObjects
         [SerializeField] protected string _unlockText;
 
         [SerializeField] private bool _isLocked = true;
+
+        private void Start()
+        {
+            TipText = _lockText;
+        }
 
         protected override void PerformOnInteract()
         {

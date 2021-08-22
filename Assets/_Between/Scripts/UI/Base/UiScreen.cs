@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Between.UI.Level
+namespace Between.UI.Base
 {
     public abstract class UiScreen : MonoBehaviour
     {

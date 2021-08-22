@@ -1,4 +1,6 @@
-﻿namespace Between.UI.Level
+﻿using Between.UI.Base;
+
+namespace Between.UI.Level
 {
     public class PauseScreen : UiScreen
     {
