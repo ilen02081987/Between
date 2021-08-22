@@ -20,6 +20,11 @@ namespace Knife.Portal
 
         [SerializeField] private bool isPortalOpened = false;
 
+        private void Start()
+        {
+            OpenPortal();
+        }
+
         public bool IsPortalOpened
         {
             get
@@ -31,13 +36,6 @@ namespace Knife.Portal
             {
                 isPortalOpened = value;
             }
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            var transient = other.GetComponent<IPortalTransient>();
-            if (transient != null)
-                transients.Add(new PortalTransient(other.transform, transient));
         }
 
         public void OpenPortal()
@@ -61,23 +59,6 @@ namespace Knife.Portal
             if (OnPortalClose != null)
             {
                 OnPortalClose();
-            }
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            var transient = other.GetComponent<IPortalTransient>();
-            if (transient != null)
-            {
-                var instanceID = other.transform.GetInstanceID();
-                for (int i = 0; i < transients.Count; i++)
-                {
-                    if (transients[i].Transform.GetInstanceID() == instanceID)
-                    {
-                        transients.RemoveAt(i);
-                        break;
-                    }
-                }
             }
         }
 

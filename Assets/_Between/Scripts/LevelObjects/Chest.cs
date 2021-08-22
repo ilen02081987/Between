@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Between.LevelObjects
 {
-    public partial class Chest : LockableObject
+    public class Chest : LockableObject
     {
         public event Action OnOpen;
 

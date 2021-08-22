@@ -56,7 +56,7 @@ namespace Between.Enemies.Mavka
         {
             var spellPainter = new SpellPainter(
                 "MavkaSeveralProjectiles",
-                "LineRenderersPainter",
+                PAINTER_NAME,
                 _spawnPoints[spawnPointIndex].position, _castTime, afterDrawDelay);
 
             spellPainter.Complete += () => CompletePaintSpell(spawnPointIndex);

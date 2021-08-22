@@ -16,7 +16,7 @@ namespace Knife.Portal
         private void Start()
         {
             attachedRenderer = GetComponent<Renderer>();
-            view.OnRenderTextureChanged += OnRenderTextureChanged;
+            //view.OnRenderTextureChanged += OnRenderTextureChanged;
         }
 
         private void OnRenderTextureChanged()

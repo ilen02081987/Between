@@ -1,3 +1,5 @@
+using Between.UI.Base;
+
 namespace Between.UI.Level
 {
     public class DeathScreen : UiScreen

@@ -1,15 +1,7 @@
-using Between.SceneManagement;
-using UnityEngine;
-
 namespace Between.LevelObjects
 {
-    public class LocationSwitcher : LockableObject
+    public class LocationSwitcher : InteractableObject
     {
-        [SerializeField] private int _nextSceneBuildIndex;
-
-        protected override void InteractAfterUnlock()
-        {
-            SceneChanger.ChangeScene(LevelManager.Instance.SceneIndex, _nextSceneBuildIndex);
-        }
+        protected override void PerformOnInteract() { }
     }
 }

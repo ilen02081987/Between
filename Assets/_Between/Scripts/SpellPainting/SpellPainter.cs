@@ -14,7 +14,7 @@ namespace Between.SpellPainting
         private readonly float _drawTime;
         private SpellInputArray _inputArray;
 
-        private LineRendererPainter _painter;
+        private IPainter _painter;
         private WaitForSeconds _afterDrawDelay;
 
         public SpellPainter(string spellName, string painterName, Vector3 startPoint
@@ -36,7 +36,7 @@ namespace Between.SpellPainting
 
         private void CreatePainter(string painterName, Vector3 startPoint)
         {
-            _painter = MonoBehaviour.Instantiate(Resources.Load<LineRendererPainter>
+            _painter = MonoBehaviour.Instantiate(Resources.Load<TrailPainter>
                 (Path.Combine(ResourcesFoldersNames.SPELL_PAINTERS, painterName)));
 
             _painter.Init(startPoint);
@@ -69,7 +69,7 @@ namespace Between.SpellPainting
         private void CompleteDraw()
         {
             Complete?.Invoke();
-            MonoBehaviour.Destroy(_painter.gameObject);
+            _painter.Destroy();
         }
     }
 }

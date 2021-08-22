@@ -5,6 +5,8 @@ namespace Between.Enemies.Mavka
 {
     public abstract class BaseCastState : BaseState
     {
+        public const string PAINTER_NAME = "TrailPainter";
+
         protected readonly NpcAnimator animator;
         public readonly int Weight;
 
