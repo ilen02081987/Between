@@ -1,36 +1,29 @@
-using Between;
 using UnityEngine;
 
-public class LineRendererPainter : MonoBehaviour
+namespace Between.SpellPainting
 {
-    [SerializeField] private LineRenderer _rendererPrefab;
-
-    private LineRenderer _currentRenderer;
-    private Vector3 _startPoint;
-
-    public void Init(Vector3 position)
+    public class LineRendererPainter : BasePainter
     {
-        _startPoint = position;
-    }
+        [SerializeField] private LineRenderer _rendererPrefab;
 
-    public void Draw(Vector3 point)
-    {
-        if (_currentRenderer == null)
-            CreateNewRenderer();
+        private LineRenderer _currentRenderer;
 
-        var newPoint = _startPoint + point;
+        public override void Draw(Vector3 point)
+        {
+            if (_currentRenderer == null)
+                CreateNewRenderer();
 
-        _currentRenderer.positionCount++;
-        _currentRenderer.SetPosition(_currentRenderer.positionCount - 1, newPoint);
-    }
+            var newPoint = _startPoint + point;
 
-    public void AddSpace()
-    {
-        _currentRenderer = null;
-    }
+            _currentRenderer.positionCount++;
+            _currentRenderer.SetPosition(_currentRenderer.positionCount - 1, newPoint);
+        }
 
-    private void CreateNewRenderer()
-    {
-        _currentRenderer = MonoBehaviour.Instantiate(_rendererPrefab, transform);
+        public override void AddSpace()
+        {
+            _currentRenderer = null;
+        }
+
+        private void CreateNewRenderer() => _currentRenderer = Instantiate(_rendererPrefab, transform);
     }
 }

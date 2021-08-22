@@ -1,42 +1,52 @@
-using Between.Enemies;
-using Between.UI.Base;
 using UnityEngine;
+using UnityEngine.UI;
+using Between.Enemies;
 
 namespace Between.UI.Enemies
 {
-    [RequireComponent(typeof(PlaneSlider))]
+    [RequireComponent(typeof(Slider))]
     public class HealthBar : MonoBehaviour
     {
-        [SerializeField] private BaseEnemy _enemy;
+        private BaseEnemy _enemy;
+        private Transform _anchor;
+        private Slider _slider;
 
-        private PlaneSlider _slider;
-
-        private void Start()
+        public void AttachTo(BaseEnemy enemy, Transform anchor)
         {
+            _enemy = enemy;
+            _anchor = anchor;
+
             if (!GameSettings.Instance.EnemyHealthUIEnabled)
             {
                 Destroy(gameObject);
             }
             else
             {
-                _slider = GetComponent<PlaneSlider>();
+                _slider = GetComponent<Slider>();
                 _enemy.LivesValueChanged += UpdateValue;
                 _enemy.OnDie += HideSlider;
 
-                _slider.Value = 1f;
+                _slider.value = 1f;
             }
+        }
+
+        private void Update()
+        {
+            if (this != null)
+                transform.position = GameCamera.WorldToScreenPoint(_anchor.position);
         }
 
         private void HideSlider()
         {
             _enemy.LivesValueChanged -= UpdateValue;
             _enemy.OnDie -= HideSlider;
-            _slider.Disable();
+
+            Destroy(gameObject);
         }
 
         private void UpdateValue()
         {
-            _slider.Value = _enemy.Health / _enemy.MaxHealth;
+            _slider.value = _enemy.Health / _enemy.MaxHealth;
         }
     }
 }

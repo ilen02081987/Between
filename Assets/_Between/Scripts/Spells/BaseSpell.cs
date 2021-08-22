@@ -1,6 +1,7 @@
 using Between.InputTracking;
 using Between.InputTracking.Trackers;
 using System;
+using UnityEngine;
 
 namespace Between.Spells
 {
@@ -39,7 +40,10 @@ namespace Between.Spells
         protected void SpendDefaultMana() => SpendManaForSpell(_spellLenght);
         protected void SpendManaForSpell(float spellLenght)
         {
-            Player.Instance.Mana.Remove(CalculateMana(spellLenght));
+            float manaAmount = CalculateMana(spellLenght);
+            Debug.Log("Mana amount = " + manaAmount);
+
+            Player.Instance.Mana.Remove(manaAmount);
             SpellCasted?.Invoke();
         }
         protected bool EnoughMana(float spellLenght) => CalculateMana(spellLenght) <= Player.Instance.Mana.Value;

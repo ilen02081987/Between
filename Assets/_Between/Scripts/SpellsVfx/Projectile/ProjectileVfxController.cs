@@ -17,6 +17,14 @@ namespace Between.SpellsEffects.Projectile
 
         private void Start()
         {
+            UpdateOffset();
+            CreateMuzzle();
+
+            _projectile.OnHit += PerformOnHit;
+        }
+
+        private void UpdateOffset()
+        {
             if (accuracy != 100)
             {
                 accuracy = 1 - (accuracy / 100);
@@ -41,14 +49,17 @@ namespace Between.SpellsEffects.Projectile
                     }
                 }
             }
+        }
 
+        private void CreateMuzzle()
+        {
             if (muzzlePrefab != null)
             {
                 var muzzleVFX = Instantiate(muzzlePrefab, transform.position, Quaternion.identity);
                 var ps = muzzleVFX.GetComponent<ParticleSystem>();
-                
+
                 muzzleVFX.transform.forward = gameObject.transform.forward + offset;
-                
+
                 if (ps != null)
                     Destroy(muzzleVFX, ps.main.duration);
                 else
@@ -57,8 +68,6 @@ namespace Between.SpellsEffects.Projectile
                     Destroy(muzzleVFX, psChild.main.duration);
                 }
             }
-
-            _projectile.OnHit += PerformOnHit;
         }
 
         private void PerformOnHit(Collider collider)
@@ -83,7 +92,7 @@ namespace Between.SpellsEffects.Projectile
                     }
                 }
 
-                Vector3 contactPoint = collider.ClosestPoint(transform.position);
+                Vector3 contactPoint = FindContactPoint(collider);
 
                 if (hitPrefab != null)
                 {
@@ -101,6 +110,16 @@ namespace Between.SpellsEffects.Projectile
 
                 Destroy(gameObject);
             }
+        }
+
+        private Vector3 FindContactPoint(Collider collider)
+        {
+            MeshCollider meshCollider = collider as MeshCollider;
+
+            if (meshCollider != null && !meshCollider.convex)
+                return transform.position;
+            else
+                return collider.ClosestPoint(transform.position);
         }
     }
 }

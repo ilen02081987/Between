@@ -1,23 +1,19 @@
+using System;
 using UnityEngine;
 
 namespace Between.Spawning
 {
     public class SpawnPoint : MonoBehaviour
     {
+        public event Action OnSpawn;
+
         [SerializeField] private GameObject _spawnedObject;
         [SerializeField] private Transform _parent;
-        [SerializeField] private GameObject _vfx;
 
         public GameObject Spawn()
         {
-            TryEnableVfx();
+            OnSpawn?.Invoke();
             return Instantiate(_spawnedObject, transform.position, Quaternion.identity, _parent);
-        }
-
-        private void TryEnableVfx()
-        {
-            if (_vfx != null)
-                Instantiate(_vfx, transform.position, Quaternion.identity);
         }
     }
 }

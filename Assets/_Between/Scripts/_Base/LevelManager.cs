@@ -14,11 +14,12 @@ namespace Between
     {
         public static LevelManager Instance;
         public int SceneIndex => Instance.gameObject.scene.buildIndex;
+        public Canvas Canvas => _canvas;
 
-        [SerializeField] private GameSettings _gameSettings;
         [SerializeField] private CheckPoint[] _checkPoints;
         [SerializeField] private CinemachineVirtualCamera _virtualCamera;
         [SerializeField] private SpellsSoundsManager _spellsSounds;
+        [SerializeField] private Canvas _canvas;
         
         private GameOverlay _gameOverlay;
 
@@ -30,7 +31,6 @@ namespace Between
             Instance = this;
 
             DataManager.Instance.Load();
-            InitSettings();
             InitCheckPoints();
             InitPlayer();
             InitLevel();
@@ -56,11 +56,6 @@ namespace Between
         {
             for (int i = 0; i < _checkPoints.Length; i++)
                 _checkPoints[i].AttachNumber(i);
-        }
-
-        private void InitSettings()
-        {
-            _gameSettings.CreateInstance();
         }
 
         private void InitPlayer()

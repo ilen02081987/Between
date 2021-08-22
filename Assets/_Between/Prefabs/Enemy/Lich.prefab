@@ -847,6 +847,36 @@ MonoBehaviour:
   _dieAnimationSpeed: 1
   _defendAnimationSpeed: 1
   _wizSpeed: 1
+--- !u!1 &6793473044943546490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1608792370723761438}
+  m_Layer: 0
+  m_Name: HealthBarAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1608792370723761438
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6793473044943546490}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.35, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8536365756355860653}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8177639792850157956
 GameObject:
   m_ObjectHideFlags: 0
@@ -887,7 +917,7 @@ Transform:
   - {fileID: 4558981005145500077}
   - {fileID: 4558981005459728031}
   - {fileID: 4558981004192703156}
-  - {fileID: 5828040307050133973}
+  - {fileID: 1608792370723761438}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -1013,78 +1043,13 @@ MonoBehaviour:
   _damage:
     Value: 0
   _destroyTime: 2
+  _healthBarAnchor: {fileID: 1608792370723761438}
   _severalProjectileSpawnPoints:
   - {fileID: 4558981005633076984}
   - {fileID: 4558981004379428001}
   - {fileID: 4558981005792110782}
   - {fileID: 4844630458960719375}
   _singleProjectileSpawnPoint: {fileID: 4558981004379428001}
---- !u!1001 &4189723801296616227
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 8536365756355860653}
-    m_Modifications:
-    - target: {fileID: 7693758254667072245, guid: f2659faec7d8f9344bc7dbf64ce43530, type: 3}
-      propertyPath: m_Name
-      value: NpcHealthBar
-      objectReference: {fileID: 0}
-    - target: {fileID: 7693758254667072246, guid: f2659faec7d8f9344bc7dbf64ce43530, type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7693758254667072246, guid: f2659faec7d8f9344bc7dbf64ce43530, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7693758254667072246, guid: f2659faec7d8f9344bc7dbf64ce43530, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 7693758254667072246, guid: f2659faec7d8f9344bc7dbf64ce43530, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7693758254667072246, guid: f2659faec7d8f9344bc7dbf64ce43530, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7693758254667072246, guid: f2659faec7d8f9344bc7dbf64ce43530, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7693758254667072246, guid: f2659faec7d8f9344bc7dbf64ce43530, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7693758254667072246, guid: f2659faec7d8f9344bc7dbf64ce43530, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7693758254667072246, guid: f2659faec7d8f9344bc7dbf64ce43530, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7693758254667072246, guid: f2659faec7d8f9344bc7dbf64ce43530, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7693758254667072246, guid: f2659faec7d8f9344bc7dbf64ce43530, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7693758254667072247, guid: f2659faec7d8f9344bc7dbf64ce43530, type: 3}
-      propertyPath: _enemy
-      value: 
-      objectReference: {fileID: 8177639792850157957}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f2659faec7d8f9344bc7dbf64ce43530, type: 3}
---- !u!4 &5828040307050133973 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7693758254667072246, guid: f2659faec7d8f9344bc7dbf64ce43530, type: 3}
-  m_PrefabInstance: {fileID: 4189723801296616227}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4844630459134443137
 PrefabInstance:
   m_ObjectHideFlags: 0

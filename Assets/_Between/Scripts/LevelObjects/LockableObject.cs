@@ -10,6 +10,11 @@ namespace Between.LevelObjects
 
         [SerializeField] private bool _isLocked = true;
 
+        private void Start()
+        {
+            TipText = _lockText;
+        }
+
         protected override void PerformOnInteract()
         {
             if (!_isLocked)

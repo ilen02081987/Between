@@ -78,18 +78,18 @@ namespace Between
         [Header("Lich")]
         public LichSettings Lich;
 
-        public void CreateInstance()
+        public void InitSettings()
         {
             Instance = this;
-            InitSettings();
+            InitEmptySettings();
         } 
 
-        public void ClearInstance()
+        public void Dispose()
         {
             Instance = null;
         }
 
-        private void InitSettings()
+        private void InitEmptySettings()
         {
              if (DecideBorder == null || DecideBorder.Length < 4)
                 DecideBorder = new float[4] { .9f, .9f, .9f, .9f };

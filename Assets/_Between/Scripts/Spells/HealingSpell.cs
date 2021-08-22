@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Between.Extensions;
 using Between.InputTracking.Trackers;
@@ -102,15 +101,8 @@ namespace Between.Spells
             return totalDistance / points.Count;
         }
 
-        private float FindWorldRadius(float coefficient, List<Vector2Int> points)
-        {
-            var radius = FindAverageRadius(points);
-            return radius * coefficient;
-        }
-
         private float FindAverageRadius(List<Vector2Int> circlePoints)
         {
-            DateTime startCountTime = DateTime.Now;
             float totalDistance = default;
 
             for (int i = 0; i < circlePoints.Count; i++)
@@ -118,9 +110,6 @@ namespace Between.Spells
                     totalDistance += Vector2Int.Distance(circlePoints[i], circlePoints[j]);
 
             float radius = totalDistance / (circlePoints.Count * circlePoints.Count);
-            
-            //Debug.Log($"circle points count = {circlePoints.Count}, radius = {radius}, " +
-            //    $"calculate time ms = {DateTime.Now.Subtract(startCountTime).TotalMilliseconds}");
 
             return radius;
         }
@@ -151,13 +140,6 @@ namespace Between.Spells
 
             Vector2Int middlePoint = Vector2Int.RoundToInt(Vector2.Lerp(firstPoint, farthestPoint, .5f));
             return GameCamera.ScreenToWorldPoint(middlePoint);
-        }
-
-        private float FindWorldPointsDistance(Vector2Int first, Vector2Int second)
-        {
-            return Vector3.Distance(
-                GameCamera.ScreenToWorldPoint(first), 
-                GameCamera.ScreenToWorldPoint(second));
         }
     }
 }

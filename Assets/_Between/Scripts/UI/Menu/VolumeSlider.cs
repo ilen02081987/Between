@@ -1,6 +1,6 @@
-using Between.Sounds;
 using UnityEngine;
 using UnityEngine.UI;
+using Between.Sounds;
 
 namespace Between.UI.Menu
 {
@@ -13,6 +13,7 @@ namespace Between.UI.Menu
         {
             _slider = GetComponent<Slider>();
             _slider.onValueChanged.AddListener(ChangeMainVolume);
+            _slider.value = MainVolume.Value;
         }
 
         private void OnDestroy()

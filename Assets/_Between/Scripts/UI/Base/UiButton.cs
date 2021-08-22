@@ -6,6 +6,8 @@ namespace Between.UI.Base
     [RequireComponent(typeof(Button))]
     public abstract class UiButton : MonoBehaviour
     {
+        protected bool isInitialized;
+
         private Button _button;
 
         private void Start()
@@ -14,6 +16,7 @@ namespace Between.UI.Base
             _button.onClick.AddListener(PerformOnClick);
 
             Init();
+            isInitialized = true;
         }
 
         private void OnDestroy()
