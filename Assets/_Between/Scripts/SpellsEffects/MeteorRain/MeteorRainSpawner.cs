@@ -52,7 +52,7 @@ namespace Between.SpellsEffects.MeteorRain
             if (_spawnSound == null)
                 _spawnSound = Resources.Load<AudioClip>(Path.Combine(ResourcesFoldersNames.SOUNDS, "meteor_rain"));
 
-            AudioSource.PlayClipAtPoint(_spawnSound, position, MainVolume.Value);
+            AudioSource.PlayClipAtPoint(_spawnSound, position, Volume.Value);
         }
     }
 }

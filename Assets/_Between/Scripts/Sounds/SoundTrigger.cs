@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Between.Sounds
@@ -6,6 +7,16 @@ namespace Between.Sounds
     {
         [SerializeField] private AudioSource _source;
         [SerializeField] private AudioClip _clip;
+
+        private void Start()
+        {
+            Volume.OnValueChanged += ChangeVolume;
+        }
+
+        private void OnDestroy()
+        {
+            Volume.OnValueChanged -= ChangeVolume;
+        }
 
         private void OnTriggerEnter(Collider other)
         {
@@ -23,5 +34,10 @@ namespace Between.Sounds
         }
 
         private bool IsPlayer(Collider other) => other.TryGetComponent<PlayerController>(out var player);
+        
+        private void ChangeVolume()
+        {
+            _source.volume = Volume.Value;
+        }
     }
 }

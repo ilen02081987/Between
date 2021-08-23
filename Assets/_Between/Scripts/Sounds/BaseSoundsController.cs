@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Experimental.TerrainAPI;
 
 namespace Between.Sounds
 {
@@ -10,7 +11,22 @@ namespace Between.Sounds
         private void Awake()
         {
             _source = GetComponent<AudioSource>();
-            _source.volume *= MainVolume.Value;
+            _source.volume *= Volume.Value;
+
+            Volume.OnValueChanged += ChangeVolume;
+        }
+
+        private void OnDestroy()
+        {
+            Volume.OnValueChanged -= ChangeVolume;
+        }
+
+        private void ChangeVolume()
+        {
+            if (this == null)
+                return;
+
+            _source.volume = Volume.Value;
         }
 
         public void Play(AudioClip clip)

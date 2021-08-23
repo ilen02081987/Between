@@ -13,7 +13,7 @@ namespace Between.UI.Menu
         {
             _slider = GetComponent<Slider>();
             _slider.onValueChanged.AddListener(ChangeMainVolume);
-            _slider.value = MainVolume.Value;
+            _slider.value = Volume.Value;
         }
 
         private void OnDestroy()
@@ -23,7 +23,7 @@ namespace Between.UI.Menu
 
         private void ChangeMainVolume(float value)
         {
-            MainVolume.Value = value;
+            Volume.Value = value;
         }
     }
 }

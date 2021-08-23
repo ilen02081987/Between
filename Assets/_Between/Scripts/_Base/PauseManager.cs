@@ -27,12 +27,14 @@ namespace Between
         public static void Play()
         {
             Time.timeScale = 1f;
+            IsPause = false;
             OnPlay?.Invoke();
         }
 
         public static void Pause()
         {
             Time.timeScale = 0f;
+            IsPause = true;
             OnPause?.Invoke();
         }
     }

@@ -11,13 +11,13 @@ namespace Between.Sounds
         public void OnPointerClick(PointerEventData eventData)
         {
             if (_clickClip != null)
-                AudioSource.PlayClipAtPoint(_clickClip, Vector3.zero, MainVolume.Value);
+                AudioSource.PlayClipAtPoint(_clickClip, Vector3.zero, Volume.Value);
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
             if (_overlapClip != null)
-                AudioSource.PlayClipAtPoint(_overlapClip, Vector3.zero, MainVolume.Value);
+                AudioSource.PlayClipAtPoint(_overlapClip, Vector3.zero, Volume.Value);
         }
     }
 }

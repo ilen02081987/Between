@@ -80,7 +80,7 @@ namespace Between
             if (DataManager.Instance.HasData)
             {
                 var existingsObjects = DataManager.Instance.SavedData.ExistingGameObjects;
-                var savableObjects = FindObjectsOfType<SavableObject>();
+                var savableObjects = FindObjectsOfType<SavableObject>(true);
 
                 foreach (SavableObject savableObject in savableObjects)
                 {
