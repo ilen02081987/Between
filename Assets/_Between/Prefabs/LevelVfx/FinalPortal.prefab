@@ -324,6 +324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: "\u041F\u043E\u0440\u0442\u0430\u043B"
   TipText: "\u0415 - \u0432\u043E\u0439\u0442\u0438"
+  _portalVfx: {fileID: 2952614823328565210}
 --- !u!1 &2984399839614258158
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,7 +461,6 @@ GameObject:
   - component: {fileID: 2990244307179785538}
   - component: {fileID: 2961946625829115732}
   - component: {fileID: 2971738127581636884}
-  - component: {fileID: 2952259433296495394}
   m_Layer: 0
   m_Name: PortalMesh
   m_TagString: Untagged
@@ -531,21 +531,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2952259433296495394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2984503423025570506}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2c4739941f870945bb751b86efb8f83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewTextureName: _MainTex
-  view: {fileID: 0}
-  materialId: 0
 --- !u!1 &2984715201507027980
 GameObject:
   m_ObjectHideFlags: 0
