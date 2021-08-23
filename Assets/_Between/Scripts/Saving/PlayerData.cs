@@ -16,7 +16,7 @@ namespace Between.Data
             LevelSceneBuildIndex = buildIndex;
             LoadPointNumber = pointNumber;
             ExistingGameObjects = objects;
-            ManaBottlesCount = Player.Instance.ManaBottlesHolder.Count;
+            ManaBottlesCount = Player.Instance != null ? Player.Instance.ManaBottlesHolder.Count : 0;
         }
     }
 }

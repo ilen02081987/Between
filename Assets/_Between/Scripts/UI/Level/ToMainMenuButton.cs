@@ -7,6 +7,7 @@ namespace Between.UI.Level
     {
         protected override void PerformOnClick()
         {
+            PauseManager.Play();
             SceneChanger.ChangeScene(LevelManager.Instance.SceneIndex, 1);
         }
     }

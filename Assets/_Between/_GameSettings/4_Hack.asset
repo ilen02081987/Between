@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6790d3f8a713f847a14535d547a234f, type: 3}
-  m_Name: 2_Middle
+  m_Name: 4_Hack
   m_EditorClassIdentifier: 
   ManaMaxValue: 200
   ManaRecoveryPerSec: 20
@@ -19,11 +19,11 @@ MonoBehaviour:
   ManaBottleValue: 50
   ProjectilesSpawnOffset: 2
   ProjectileDrawType: 0
-  ProjectileMinLenght: 0.1
-  ProjectileMaxLenght: 0.5
-  ProjectileManaCoefficient: 1
+  ProjectileMinLenght: 20
+  ProjectileMaxLenght: 1000
+  ProjectileManaCoefficient: 0.05
   ProjectilePowerValue: 1.1
-  ProjectileBaseDamageValue: 42.56
+  ProjectileBaseDamageValue: 2
   ProjectileMinSize: 1
   ProjectileMaxSize: 3
   ShieldTrackerMinLenght: 20
@@ -44,7 +44,7 @@ MonoBehaviour:
   - 0.9
   - 0.8
   - 0.8
-  EnableProbabilitiesLog: 0
+  EnableProbabilitiesLog: 1
   RangeDetectionRadius: 15
   RangeCooldownBase: 2.27
   RangeCooldownShift: 0

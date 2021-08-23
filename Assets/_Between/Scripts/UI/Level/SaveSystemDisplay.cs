@@ -37,6 +37,9 @@ namespace Between.UI.Level
 
             yield return new WaitForSeconds(_showTime);
 
+            if (_tip == null)
+                yield break;
+
             _isShowing = false;
             _tip.enabled = false;
         }

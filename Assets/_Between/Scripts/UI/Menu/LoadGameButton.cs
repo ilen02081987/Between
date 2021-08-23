@@ -20,6 +20,7 @@ namespace Between.UI.Menu
 
         protected override void PerformOnClick()
         {
+            PauseManager.Play();
             SceneChanger.ChangeScene(gameObject.scene.buildIndex, DataManager.Instance.SavedData.LevelSceneBuildIndex);
         }
     }
