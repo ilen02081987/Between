@@ -9,6 +9,7 @@ namespace Between.Hacks
     public partial class HacksHandler : MonoBehaviour
     {
         [SerializeField] private GameSettings _hackSettings;
+        [SerializeField] private GameSettings _middleSettings;
 
         private List<Hack> _hacks = new List<Hack>();
 
@@ -50,11 +51,22 @@ namespace Between.Hacks
             if (Player.Instance == null)
                 return;
 
-            _hackSettings.InitSettings();
-            Player.Instance.Controller.Immortal = true;
+            if (Player.Instance.Controller.Immortal)
+            {
+                _middleSettings.InitSettings();
+                Player.Instance.Controller.Immortal = false;
 
-            GameObject hackShieldZone = GameObject.Find("HackShieldZone");
-            hackShieldZone?.SetActive(true);
+                GameObject hackShieldZone = GameObject.Find("HackShieldZone");
+                hackShieldZone?.SetActive(false);
+            }
+            else
+            {
+                _hackSettings.InitSettings();
+                Player.Instance.Controller.Immortal = true;
+
+                GameObject hackShieldZone = GameObject.Find("HackShieldZone");
+                hackShieldZone?.SetActive(true);
+            }
         }
     }
 }
