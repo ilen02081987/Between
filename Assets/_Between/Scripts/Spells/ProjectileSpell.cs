@@ -60,7 +60,7 @@ namespace Between.Spells
             }
 
             SpawnProjectile();
-            SpendManaForSpell(_clampedSpellLenght);
+            SpendDefaultMana();
         }
 
         private void SpawnProjectile()

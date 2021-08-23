@@ -15,6 +15,8 @@ namespace Between.Saving
 
         public static void Save(PlayerData data)
         {
+            DataManager.Instance.SavedData = data;
+
             var jsonData = JsonUtility.ToJson(data);
             File.WriteAllText(FilePath, jsonData);
 

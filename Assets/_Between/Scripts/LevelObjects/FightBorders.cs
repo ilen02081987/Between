@@ -44,16 +44,40 @@ namespace Between.LevelObjects
 
         private void EnableBorders()
         {
+            if (!NeedEnable())
+                Destroy();
+
             _leftBorder.isTrigger = false;
             _rightBorder.isTrigger = false;
 
             foreach (var enemy in _enemies)
-            {
                 enemy.OnDie += () => TryDestroyBorders(enemy);
-            }
 
             _isEnabled = true;
             OnActivate?.Invoke();
+        }
+
+        private bool NeedEnable()
+        {
+            CheckAliveEnemies();
+
+            if (_enemies.Count == 0)
+                return false;
+
+            return true;
+        }
+
+        private void CheckAliveEnemies()
+        {
+            List<BaseEnemy> clearEnemies = new List<BaseEnemy>();
+
+            foreach (var enemy in _enemies)
+            {
+                if (enemy != null)
+                    clearEnemies.Add(enemy);
+            }
+
+            _enemies = clearEnemies;
         }
 
         private void TryDestroyBorders(BaseEnemy enemy)
