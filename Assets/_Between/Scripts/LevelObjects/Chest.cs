@@ -19,7 +19,8 @@ namespace Between.LevelObjects
             OnOpen?.Invoke();
 
             foreach (GameObject loot in _loots)
-                loot?.SetActive(true);
+                if (loot != null)
+                    loot.SetActive(true);
 
             Lock();
         }
