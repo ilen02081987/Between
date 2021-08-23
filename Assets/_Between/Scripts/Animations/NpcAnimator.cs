@@ -54,6 +54,9 @@ namespace Between.Animations
 
         public void Attack(Action onAnimationAttack)
         {
+            if (_animator == null)
+                return;
+
             _onAnimationAttack = onAnimationAttack;
 
             _animator.speed = _attackAnimationSpeed;
