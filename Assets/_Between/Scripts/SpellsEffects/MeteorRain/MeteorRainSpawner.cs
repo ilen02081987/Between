@@ -2,8 +2,8 @@ using System.Collections;
 using System.IO;
 using UnityEngine;
 using Between.SpellsEffects.Projectile;
-using Between.Utilities;
 using Between.Sounds;
+using RH.Utilities.Coroutines;
 
 namespace Between.SpellsEffects.MeteorRain
 {

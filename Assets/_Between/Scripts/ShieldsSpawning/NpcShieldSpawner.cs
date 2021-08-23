@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using Between.SpellsEffects.ShieldSpell;
-using Between.Utilities;
+using RH.Utilities.Coroutines;
 
 namespace Between.ShieldsSpawning
 {

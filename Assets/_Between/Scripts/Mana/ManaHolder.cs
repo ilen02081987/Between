@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using Between.Utilities;
+using RH.Utilities.Coroutines;
 
 namespace Between.Mana
 {

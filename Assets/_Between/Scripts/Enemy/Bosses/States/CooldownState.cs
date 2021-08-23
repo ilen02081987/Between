@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using Between.StateMachine;
-using Between.Utilities;
+using RH.Utilities.Coroutines;
 
 namespace Between.Enemies.Mavka
 {

@@ -4,7 +4,7 @@ using Between.Animations;
 using Between.Damage;
 using Between.SpellsEffects.ShieldSpell;
 using Between.StateMachine;
-using Between.Utilities;
+using RH.Utilities.Coroutines;
 
 namespace Between.Enemies.Skeletons
 {

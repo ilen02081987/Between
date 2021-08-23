@@ -3,8 +3,8 @@ using UnityEngine;
 using Between.SpellsEffects.Projectile;
 using Between.StateMachine;
 using Between.SpellPainting;
-using Between.Utilities;
 using Between.Animations;
+using RH.Utilities.Coroutines;
 
 namespace Between.Enemies.Mavka
 {

@@ -1,13 +1,12 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Between.Teams;
 using Between.MainCharacter;
-using Between.Utilities;
 using Between.SceneManagement;
+using RH.Utilities.Coroutines;
 
 namespace Between
-{ 
+{
     public class PlayerController : BaseDamagableObject
     {
         public override Team Team => Team.Player;

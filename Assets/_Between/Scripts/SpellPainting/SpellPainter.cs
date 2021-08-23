@@ -2,8 +2,8 @@ using System;
 using System.Collections;
 using System.IO;
 using UnityEngine;
-using Between.Utilities;
 using SpellPainterEditor;
+using RH.Utilities.Coroutines;
 
 namespace Between.SpellPainting
 {
