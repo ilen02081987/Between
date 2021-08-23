@@ -31,7 +31,7 @@ namespace Between.LevelObjects
         private List<int> CollectExistingGameObjects()
         {
             var existingObjects = new List<int>();
-            var savingObjects = FindObjectsOfType<SavableObject>();
+            var savingObjects = FindObjectsOfType<SavableObject>(true);
 
             foreach (var savingObject in savingObjects)
                 existingObjects.Add(savingObject.Id);
