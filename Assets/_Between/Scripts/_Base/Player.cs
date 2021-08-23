@@ -1,7 +1,7 @@
 using Between.Inventory;
 using Between.MainCharacter;
 using Between.Mana;
-using Between.Utilities;
+using RH.Utilities.SingletonAccess;
 
 namespace Between
 {

@@ -1,5 +1,5 @@
+using RH.Utilities.SingletonAccess;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Between.Utilities

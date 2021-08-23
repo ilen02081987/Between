@@ -1,4 +1,4 @@
-using Between.Utilities;
+using RH.Utilities.SingletonAccess;
 using System.Collections.Generic;
 
 namespace Between.Spells
