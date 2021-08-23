@@ -19,7 +19,6 @@ namespace Between
         public float ManaBottleValue;
 
         [Header("Заклинание прожектайла")]
-        public float ProjectilesSpawnOffset;
         public ProjectileSpell.ProjectileDrawType ProjectileDrawType;
         public float ProjectileMinLenght;
         public float ProjectileMaxLenght;
