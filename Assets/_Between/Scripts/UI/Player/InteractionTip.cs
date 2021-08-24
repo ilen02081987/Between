@@ -30,6 +30,9 @@ namespace Between.UI
 
         private void EnableTip(InteractableObject obj)
         {
+            if (_textsParent == null)
+                return;
+
             _textsParent.gameObject.SetActive(true);
 
             _name.text = obj.Name;
