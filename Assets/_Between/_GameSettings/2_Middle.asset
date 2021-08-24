@@ -25,11 +25,11 @@ MonoBehaviour:
   ProjectileBaseDamageValue: 42.56
   ProjectileMinSize: 1
   ProjectileMaxSize: 3
-  ShieldTrackerMinLenght: 20
-  ShieldTrackerMaxLenght: 350
+  ShieldTrackerMinLenght: 0
+  ShieldTrackerMaxLenght: 1
   ShieldTrackerForceEndAngle: 90
   ShieldManaCoefficient: 0.07
-  MeteorRainMinLenght: 50
+  MeteorRainMinLenght: 0
   MeteorsLinesDelay: 0.5
   MeteorsLinesCount: 3
   MeteorsCount: 5

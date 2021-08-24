@@ -7,6 +7,7 @@ TagManager:
   - CinemachineTarget
   - Ground
   - Not colliding
+  - Bullet
   layers:
   - Default
   - TransparentFX

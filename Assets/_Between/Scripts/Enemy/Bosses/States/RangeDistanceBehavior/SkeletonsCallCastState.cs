@@ -54,7 +54,7 @@ namespace Between.Enemies.Mavka
         private void CreateSpellPainter(int spawnPointIndex, float afterDrawDelay)
         {
             var spellPainter = new SpellPainter(
-                "MavkaSeveralProjectiles",
+                "LichSkeletonsCast",
                 PAINTER_NAME,
                 _spawnPoints[spawnPointIndex], _castTime, afterDrawDelay);
 

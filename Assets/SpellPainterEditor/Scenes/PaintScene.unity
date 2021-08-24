@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc09c477648e1b9418c354e5e5ef3d30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fileName: MavkaSingleProjectile
+  _fileName: LichSkeletonsCast
 --- !u!4 &451106633
 Transform:
   m_ObjectHideFlags: 0

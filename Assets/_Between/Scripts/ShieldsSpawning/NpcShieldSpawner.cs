@@ -10,13 +10,12 @@ namespace Between.ShieldsSpawning
         [SerializeField] private ProjectileTrigger[] _triggers;
         [SerializeField] private NpcShieldController _controller;
         [SerializeField] private ShieldAnchors[] _shieldsAnchors;
-        [SerializeField] private Transform _owner;
 
         private ShieldSpawner _shieldSpawner;
 
         private void Start()
         {
-            _shieldSpawner = new ShieldSpawner("MavkaShield", _owner);
+            _shieldSpawner = new ShieldSpawner("MavkaShield");
 
             foreach (ProjectileTrigger trigger in _triggers)
                 trigger.OnDetect += TrySpawnShield;
