@@ -24,7 +24,7 @@ namespace Between.Enemies.Mavka
         {
             var spellPainter = new SpellPainter(
                 "MavkaMeleeProjectile",
-                "LineRenderersPainter",
+                "TrailPainter",
                 _castPoint.position, GameSettings.Instance.MavkaSingleProjectileCastTime, 0f);
 
             spellPainter.Complete += CompletePaintSpell;

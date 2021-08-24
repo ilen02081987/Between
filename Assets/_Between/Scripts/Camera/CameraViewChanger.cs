@@ -12,6 +12,8 @@ namespace Between
         private Vector3 _defaultDepth;
 
         private bool _isChanging = false;
+        private CameraViewTrigger _currentTrigger;
+
         private void Start()
         {
             _transposer = _camera.GetCinemachineComponent<CinemachineTransposer>();
@@ -26,18 +28,30 @@ namespace Between
                     StopAllCoroutines();
 
                 StartCoroutine(ChangeDepth(trigger.ChangeTo, trigger.ChangeTime));
+
+                _currentTrigger = trigger;
+                _currentTrigger.Destroyed += Restore;
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
             if (other.TryGetComponent<CameraViewTrigger>(out var trigger))
-            {
-                if (_isChanging)
-                    StopAllCoroutines();
+                Restore(trigger);
+        }
 
-                StartCoroutine(ChangeDepth(_defaultDepth, trigger.RestoreTime));
-            }
+        private void Restore()
+        {
+            _currentTrigger.Destroyed -= Restore;
+            Restore(_currentTrigger);
+        }
+
+        private void Restore(CameraViewTrigger trigger)
+        {
+            if (_isChanging)
+                StopAllCoroutines();
+
+            StartCoroutine(ChangeDepth(_defaultDepth, trigger.RestoreTime));
         }
 
         private IEnumerator ChangeDepth(Vector3 to, float changeTime)
