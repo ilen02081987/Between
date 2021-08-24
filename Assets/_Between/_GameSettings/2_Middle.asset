@@ -17,7 +17,6 @@ MonoBehaviour:
   ManaRecoveryDelay: 1
   EnableRemoveManaLog: 0
   ManaBottleValue: 50
-  ProjectilesSpawnOffset: 2
   ProjectileDrawType: 0
   ProjectileMinLenght: 0.1
   ProjectileMaxLenght: 0.5
@@ -75,6 +74,7 @@ MonoBehaviour:
     SingleProjectileCastTime: 1
     SeveralProjectilesCastWeight: 2
     SingleProjectileCastWeight: 4
-    MeleeDetectionRadius: 0
-    MeleeCooldownBase: 0
-    MeleeCooldownShift: 0
+    SkeletonsCallCastWeight: 1
+    SkeletonsCastDelay: 1
+    SkeletonsCastTime: 1.5
+    SkeletonsSingleCast: 1

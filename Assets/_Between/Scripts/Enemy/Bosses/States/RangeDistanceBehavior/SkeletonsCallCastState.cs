@@ -1,35 +1,30 @@
-using System.Collections;
-using UnityEngine;
-using Between.SpellsEffects.Projectile;
+﻿using UnityEngine;
 using Between.StateMachine;
-using Between.SpellPainting;
-using Between.Utilities;
 using Between.Animations;
+using Between.SpellPainting;
+using System.Collections;
+using Between.Utilities;
 
 namespace Between.Enemies.Mavka
 {
-    public class SeveralProjectilesCastState : BaseCastState
+    public class SkeletonsCallCastState : BaseCastState
     {
         private readonly Vector3[] _spawnPoints;
-        private readonly Transform _target;
-        private readonly float _castTime;
         private readonly float _castDelay;
+        private readonly float _castTime;
         private readonly bool _singleCast;
-        private readonly ProjectileSpawner _projectileSpawner;
+        private readonly BaseEnemy _enemy;
 
-        public SeveralProjectilesCastState(FinitStateMachine stateMachine, NpcAnimator animator, Transform target, int weight,
-            float castTime, float castDelay, bool singleCast , params Transform[] spawnPoints) : base(stateMachine, animator, weight)
+        public SkeletonsCallCastState(FinitStateMachine stateMachine, NpcAnimator animator, int weight, float castDelay, float castTime, bool singleCast, BaseEnemy enemy, params Transform[] spawnPoints) : base(stateMachine, animator, weight)
         {
-            _projectileSpawner = new ProjectileSpawner("MavkaSeveralProjectile");
-            
+            _castDelay = castDelay;
+            _castTime = castTime;
+            _singleCast = singleCast;
+            _enemy = enemy;
+
             _spawnPoints = new Vector3[spawnPoints.Length];
             for (int i = 0; i < spawnPoints.Length; i++)
                 _spawnPoints[i] = spawnPoints[i].position;
-
-            _target = target;
-            _castTime = castTime;
-            _castDelay = castDelay;
-            _singleCast = singleCast;
         }
 
         public override void Enter()
@@ -69,13 +64,8 @@ namespace Between.Enemies.Mavka
 
         private void CompletePaintSpell(int spawnPointIndex)
         {
-            if (_target == null || _spawnPoints[0] == null)
-                return;
-
-            _projectileSpawner.Spawn(
-                _spawnPoints[spawnPointIndex], 
-                (_target.position - _spawnPoints[spawnPointIndex]).normalized);
-
+            MonoBehaviour.Instantiate(_enemy, _spawnPoints[spawnPointIndex], Quaternion.identity);
+            
             if (isCurrentState && spawnPointIndex == _spawnPoints.Length - 1)
             {
                 SwitchState(typeof(CooldownState));

@@ -109,9 +109,10 @@ namespace Between
             public float SingleProjectileCastTime;
             public int SeveralProjectilesCastWeight;
             public int SingleProjectileCastWeight;
-            public float MeleeDetectionRadius;
-            public float MeleeCooldownBase;
-            public float MeleeCooldownShift;
+            public int SkeletonsCallCastWeight;
+            public float SkeletonsCastDelay;
+            public float SkeletonsCastTime;
+            public bool SkeletonsSingleCast;
         }
     }
 }

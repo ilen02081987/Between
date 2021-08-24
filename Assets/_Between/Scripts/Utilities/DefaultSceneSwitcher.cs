@@ -7,21 +7,21 @@ namespace Between.Editor
 {
     public static class DefaultSceneSwitcher
     {
-        [MenuItem("Scenes/Switch to default")]
+        [MenuItem("Scenes/App")]
         public static void SwitchToDefault()
         {
             EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
             EditorSceneManager.OpenScene("Assets/_Between/Scenes/Preview/App/App.unity");
         }
 
-        [MenuItem("Scenes/Switch to level")]
+        [MenuItem("Scenes/Level")]
         public static void SwitchToLevel()
         {
             EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
             EditorSceneManager.OpenScene("Assets/_Between/Scenes/Preview/Level 0 draft/Level 0.unity");
         }
 
-        [MenuItem("Scenes/Switch to menu")]
+        [MenuItem("Scenes/MainMenu")]
         public static void SwitchSToMenu()
         {
             EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
