@@ -13,6 +13,9 @@ namespace Between.MainCharacter
         public event Action OnStop;
         public event Action OnJump;
 
+        public bool IsGrounded => 
+            SpaceDetector.IsGrounded(_groundChecker.position) || _characterController.isGrounded;
+
         [SerializeField] private PlayerController _player;
         [SerializeField] private CharacterController _characterController;
         [SerializeField] private Transform _groundChecker;
@@ -28,9 +31,6 @@ namespace Between.MainCharacter
         private bool _previousFrameGrounded;
         private float _velocityY;
         private bool _pressedJumpButton => Input.GetKeyDown(KeyCode.Space);
-        //private bool _isGrounded => !SpaceDetector.IsFreeSpace(_groundChecker.position, .1f) || _characterController.isGrounded;
-        private bool _isGrounded => 
-            SpaceDetector.IsGrounded(_groundChecker.position) || _characterController.isGrounded;
 
         private bool _isPushed = false;
 
@@ -48,7 +48,7 @@ namespace Between.MainCharacter
 
         private void UpdateSavedState()
         {
-            _previousFrameGrounded = _isGrounded;
+            _previousFrameGrounded = IsGrounded;
         }
 
         public void Push(Vector3 direction, float force)
@@ -66,7 +66,7 @@ namespace Between.MainCharacter
             _characterController.Move(velocity * Time.deltaTime);
             transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
 
-            if (_isGrounded && velocity.y < 0)
+            if (IsGrounded && velocity.y < 0)
                 _velocityY = 0f;
 
             CheckState(velocity);
@@ -81,7 +81,7 @@ namespace Between.MainCharacter
 
         private void TryJump()
         {
-            if (_pressedJumpButton && _isGrounded)
+            if (_pressedJumpButton && IsGrounded)
             {
                 float jumpVelocity = Mathf.Sqrt(-2 * _gravity * _jumpHeight);
                 _velocityY = jumpVelocity;
@@ -114,7 +114,7 @@ namespace Between.MainCharacter
 
         private void CheckState(Vector3 velocity)
         {
-            if (!_isGrounded)
+            if (!IsGrounded)
                 return;
 
             if (Mathf.Approximately(velocity.x, 0f))
