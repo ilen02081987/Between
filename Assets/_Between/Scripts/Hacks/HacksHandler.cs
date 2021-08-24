@@ -37,7 +37,7 @@ namespace Between.Hacks
 
         private void LoadCheckPoint(int number)
         {
-            PlayerData playerData = new PlayerData(2, number, new List<int>());
+            PlayerData playerData = new PlayerData(2, number, CreateFilledList(100));
             SaveSystem.Save(playerData);
 
             if (LevelManager.Instance == null)
@@ -67,6 +67,19 @@ namespace Between.Hacks
                 GameObject hackShieldZone = GameObject.Find("HackShieldZone");
                 hackShieldZone?.SetActive(true);
             }
+        }
+
+        private List<int> CreateFilledList(int count)
+        {
+            var list = new List<int>();
+
+            for (int i = 0; i < count; i++)
+            {
+                var number = i;
+                list.Add(number);
+            }
+
+            return list;
         }
     }
 }
