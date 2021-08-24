@@ -1,5 +1,6 @@
 using UnityEngine;
 using Between.UI.Base;
+using Accord.MachineLearning;
 
 namespace Between.UI.Menu
 {
@@ -8,9 +9,11 @@ namespace Between.UI.Menu
         [SerializeField] private GameSettings _settings;
         [SerializeField] private bool _isDefault = false;
 
+        public bool IsSelected => GameSettings.Instance == _settings;
+
         protected override void Init()
         {
-            if (_isDefault)
+            if (_isDefault && GameSettings.Instance == null)
                 _settings.InitSettings();
         }
 

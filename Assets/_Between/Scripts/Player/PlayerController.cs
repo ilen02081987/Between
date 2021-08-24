@@ -36,7 +36,7 @@ namespace Between
         {
             Destroy(gameObject);
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
 
             int sceneNumber = LevelManager.Instance.SceneIndex;
             SceneChanger.ChangeScene(sceneNumber, sceneNumber);
