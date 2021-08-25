@@ -10578,6 +10578,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 5.75
       objectReference: {fileID: 0}
+    - target: {fileID: 8174156846450593974, guid: fed1c94f2e4b5404986792d8a1f4d7b5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.06315903
+      objectReference: {fileID: 0}
+    - target: {fileID: 8174156846450593974, guid: fed1c94f2e4b5404986792d8a1f4d7b5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0000040181594
+      objectReference: {fileID: 0}
+    - target: {fileID: 8174156846450593974, guid: fed1c94f2e4b5404986792d8a1f4d7b5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.000000013127509
+      objectReference: {fileID: 0}
     - target: {fileID: 8311658138517794167, guid: fed1c94f2e4b5404986792d8a1f4d7b5, type: 3}
       propertyPath: _enemies.Array.data[0]
       value: 

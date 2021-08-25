@@ -44,11 +44,11 @@ MonoBehaviour:
   - 0.8
   - 0.8
   EnableProbabilitiesLog: 0
-  RangeDetectionRadius: 15
-  RangeCooldownBase: 2.27
-  RangeCooldownShift: 0
+  RangeDetectionRadius: 20
+  RangeCooldownBase: 3.2
+  RangeCooldownShift: 0.5
   SpellPictureCompressCoefficient: 2
-  SeveralProjectilesCastTime: 2
+  SeveralProjectilesCastTime: 3
   SeveralProjectilesCastDelay: 1
   SeveralProjectilesSingleCast: 0
   SeveralProjectilesSphereCastRadius: 1
@@ -62,19 +62,19 @@ MonoBehaviour:
   EnemyHealthUIEnabled: 1
   EnableStateMachineLogs: 0
   Lich:
-    RangeDetectionRadius: 10
-    RangeCooldownBase: 2
-    RangeCooldownShift: 1
+    RangeDetectionRadius: 15
+    RangeCooldownBase: 2.5
+    RangeCooldownShift: 0.7
     SpellPictureCompressCoefficient: 3
-    SeveralProjectilesCastTime: 1
+    SeveralProjectilesCastTime: 1.7
     SeveralProjectilesCastDelay: 1
     SeveralProjectilesSingleCast: 1
     SeveralProjectilesSphereCastRadius: 1
-    ShieldsCooldownTime: 2
+    ShieldsCooldownTime: 2.8
     SingleProjectileCastTime: 1
-    SeveralProjectilesCastWeight: 2
-    SingleProjectileCastWeight: 4
+    SeveralProjectilesCastWeight: 3
+    SingleProjectileCastWeight: 2
     SkeletonsCallCastWeight: 1
-    SkeletonsCastDelay: 1
+    SkeletonsCastDelay: 1.5
     SkeletonsCastTime: 1.5
     SkeletonsSingleCast: 1
