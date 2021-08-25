@@ -51,7 +51,8 @@ namespace Between
             if (_isChanging)
                 StopAllCoroutines();
 
-            StartCoroutine(ChangeDepth(_defaultDepth, trigger.RestoreTime));
+            if (this != null)
+                StartCoroutine(ChangeDepth(_defaultDepth, trigger.RestoreTime));
         }
 
         private IEnumerator ChangeDepth(Vector3 to, float changeTime)

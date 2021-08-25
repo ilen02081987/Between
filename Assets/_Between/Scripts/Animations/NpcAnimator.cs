@@ -45,9 +45,19 @@ namespace Between.Animations
                 _npc.OnDie -= Die;
         }
 
-        public void StartMove() => _animator.SetTrigger("StartMove");
+        public void StartMove()
+        {
+            if (_animator == null)
+                return;
+
+            _animator.SetTrigger("StartMove");
+        }
+
         public void Move(float animationSpeed)
         {
+            if (_animator == null)
+                return;
+
             _animator.speed = _moveAnimationSpeed;
             _animator.SetFloat("Move", animationSpeed);
         }
@@ -73,18 +83,27 @@ namespace Between.Animations
 
         public void StartWiz()
         {
+            if (_animator == null)
+                return;
+
             _animator.speed = _wizSpeed;
             _animator.SetTrigger("Wiz");
         }
 
         public void FinishWiz()
         {
+            if (_animator == null)
+                return;
+
             _animator.speed = 1f;
             _animator.SetTrigger("Idle");
         }
 
         private void Die()
         {
+            if (_animator == null)
+                return;
+
             _animator.speed = _dieAnimationSpeed;
             _animator.SetTrigger("Die");
         }

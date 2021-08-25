@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6593712163609254364}
   m_Layer: 0
   m_Name: RightFightBorder
-  m_TagString: Untagged
+  m_TagString: Not colliding
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 2983713417094346214}
   m_Layer: 0
   m_Name: LeftFightBorder
-  m_TagString: Untagged
+  m_TagString: Not colliding
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
