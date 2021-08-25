@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 410fd25318eb0db489e44989842fe3fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 550
+  MaxHealth: 450
   Immortal: 0
   _protections: []
   animator: {fileID: 1911694457663411280}
@@ -139,7 +139,6 @@ MonoBehaviour:
   _shieldsAnchors:
   - StartPoint: {fileID: 8970982088611437384}
     EndPoint: {fileID: 8970982088941578011}
-  _owner: {fileID: 3840680778164278019}
 --- !u!114 &3794299448014822691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,7 +160,6 @@ MonoBehaviour:
     EndPoint: {fileID: 8970982088200682425}
   - StartPoint: {fileID: 8970982087737883100}
     EndPoint: {fileID: 8970982088743131631}
-  _owner: {fileID: 3840680778164278019}
 --- !u!114 &-5952147788153481308
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10506,6 +10506,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1112280237133185182, guid: fed1c94f2e4b5404986792d8a1f4d7b5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 13.442005
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112280237999810472, guid: fed1c94f2e4b5404986792d8a1f4d7b5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 136.07195
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112280237999810472, guid: fed1c94f2e4b5404986792d8a1f4d7b5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.80799484
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112280238779318989, guid: fed1c94f2e4b5404986792d8a1f4d7b5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 13.442005
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112280238829262316, guid: fed1c94f2e4b5404986792d8a1f4d7b5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.942005
+      objectReference: {fileID: 0}
     - target: {fileID: 7594752799316304824, guid: fed1c94f2e4b5404986792d8a1f4d7b5, type: 3}
       propertyPath: m_RootOrder
       value: 41
@@ -10554,10 +10574,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: objects
       objectReference: {fileID: 0}
+    - target: {fileID: 8066468046549205441, guid: fed1c94f2e4b5404986792d8a1f4d7b5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.75
+      objectReference: {fileID: 0}
     - target: {fileID: 8311658138517794167, guid: fed1c94f2e4b5404986792d8a1f4d7b5, type: 3}
       propertyPath: _enemies.Array.data[0]
       value: 
       objectReference: {fileID: 730582080}
+    - target: {fileID: 8822553481959818452, guid: fed1c94f2e4b5404986792d8a1f4d7b5, type: 3}
+      propertyPath: _spawnedObject
+      value: 
+      objectReference: {fileID: 827789234446689254, guid: 50a871935a12b8a489891a851c8e9ef0, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fed1c94f2e4b5404986792d8a1f4d7b5, type: 3}
 --- !u!1001 &7632793295002757901
