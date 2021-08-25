@@ -26,6 +26,9 @@ namespace Between
 
         public static void Play()
         {
+            if (!IsPause)
+                return;
+
             Time.timeScale = 1f;
             IsPause = false;
             OnPlay?.Invoke();
@@ -33,6 +36,9 @@ namespace Between
 
         public static void Pause()
         {
+            if (IsPause)
+                return;
+
             Time.timeScale = 0f;
             IsPause = true;
             OnPause?.Invoke();

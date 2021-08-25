@@ -4,6 +4,8 @@ namespace Between.UI.Base
 {
     public abstract class UiScreen : MonoBehaviour
     {
+        protected bool isEnabled => root.activeSelf;
+
         [SerializeField] protected GameObject root;
 
         protected void Enable()

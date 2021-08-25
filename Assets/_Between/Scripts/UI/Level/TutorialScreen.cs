@@ -16,8 +16,11 @@ namespace Between.UI.Level
 
         private void Update()
         {
-            if (Input.anyKeyDown)
+            if (Input.GetKeyDown(KeyCode.Escape) && isEnabled)
                 Disable();
         }
+
+        protected override void PerformOnEnable() => PauseManager.Pause();
+        protected override void PerformOnDisable() => PauseManager.Play();
     }
 }
