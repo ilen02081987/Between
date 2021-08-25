@@ -8,6 +8,8 @@ TagManager:
   - Ground
   - Not colliding
   - Bullet
+  - FxTemporaire
+  - Laser
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - Player
   - Some
   - Ground
-  - 
+  - PostProcessing
   - 
   - 
   - 
