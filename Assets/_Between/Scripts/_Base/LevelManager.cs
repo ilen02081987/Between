@@ -7,12 +7,15 @@ using Between.LevelObjects;
 using Between.Data;
 using Between.Saving;
 using Between.Sounds;
+using Between.UI.Level;
+using System;
 
 namespace Between
 {
     public class LevelManager : MonoBehaviour
     {
         public static LevelManager Instance;
+        public event Action CanShowTutorial;
         public int SceneIndex => Instance.gameObject.scene.buildIndex;
         public Canvas Canvas => _canvas;
 
@@ -41,7 +44,7 @@ namespace Between
             _spellsSounds.Init();
         }
 
-        
+
         public void Dispose()
         {
             InputLenghtCalculator.Dispose();

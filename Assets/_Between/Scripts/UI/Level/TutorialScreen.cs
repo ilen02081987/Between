@@ -1,16 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using Between.UI.Base;
+using Between.Data;
 
 namespace Between.UI.Level
 {
-    public class TutorialScreen : MonoBehaviour
+    public class TutorialScreen : UiScreen
     {
-        [SerializeField] private Button _closeButton;
+        public void Show() => Enable();
+
         private void Start()
         {
+            if (!DataManager.Instance.HasData)
+                Enable();
+        }
 
+        private void Update()
+        {
+            if (Input.anyKeyDown)
+                Disable();
         }
     }
 }
