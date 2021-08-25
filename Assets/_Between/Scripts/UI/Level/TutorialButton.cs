@@ -2,12 +2,15 @@ using UnityEngine;
 using Between.UI.Base;
 using Between.UI.Level;
 
-public class TutorialButton : UiButton
+namespace Between.UI.Level
 {
-    [SerializeField] private TutorialScreen _screen;
-
-    protected override void PerformOnClick()
+    public class TutorialButton : UiButton
     {
-        _screen.Show();
+        [SerializeField] private TutorialScreen _screen;
+
+        protected override void PerformOnClick()
+        {
+            _screen.Show();
+        }
     }
 }
