@@ -34,5 +34,10 @@ namespace Between.LevelObjects
             _isLocked = false;
             TipText = _unlockText;
         }
+
+        protected void Clear()
+        {
+            TipText = string.Empty;
+        }
     }
 }
