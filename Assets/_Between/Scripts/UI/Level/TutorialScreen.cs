@@ -6,6 +6,8 @@ namespace Between.UI.Level
 {
     public class TutorialScreen : UiScreen
     {
+        private bool _exitButtonPressed => Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Return);
+
         public void Show() => Enable();
 
         private void Start()
@@ -16,7 +18,7 @@ namespace Between.UI.Level
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape) && isEnabled)
+            if (_exitButtonPressed && isEnabled)
                 Disable();
         }
 
