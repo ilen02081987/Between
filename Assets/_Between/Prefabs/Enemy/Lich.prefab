@@ -1081,7 +1081,6 @@ MonoBehaviour:
   _shieldsAnchors:
   - StartPoint: {fileID: 4558981004858151142}
     EndPoint: {fileID: 4558981005247016117}
-  _owner: {fileID: 8536365756355860653}
 --- !u!114 &8616400397644535437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1103,7 +1102,6 @@ MonoBehaviour:
     EndPoint: {fileID: 4558981005588213783}
   - StartPoint: {fileID: 4558981003984728690}
     EndPoint: {fileID: 4558981005048566337}
-  _owner: {fileID: 8536365756355860653}
 --- !u!114 &7952843072692116490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1129,7 +1127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68677e46674a93c4486654445fcaacc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
+  MaxHealth: 400
   Immortal: 0
   _protections: []
   animator: {fileID: 4844630459134443164}

@@ -64,7 +64,7 @@ MonoBehaviour:
   EnableStateMachineLogs: 0
   Lich:
     RangeDetectionRadius: 40
-    RangeCooldownBase: 2.5
+    RangeCooldownBase: 3
     RangeCooldownShift: 0.7
     SpellPictureCompressCoefficient: 3
     SeveralProjectilesCastTime: 1.7
