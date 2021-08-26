@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hackSettings: {fileID: 11400000, guid: ac3aac9e8c90d544698dad7b8b662169, type: 2}
-  _middleSettings: {fileID: 0}
+  _middleSettings: {fileID: 11400000, guid: 6baaabbce9a60d644b737d199dcc44aa, type: 2}
 --- !u!4 &257888515
 Transform:
   m_ObjectHideFlags: 0

@@ -25,6 +25,7 @@ namespace Between
         private void InitPlayerController(PlayerController playerController)
         {
             Controller = playerController;
+            Controller.SetMaxHealth(GameSettings.Instance.PlayerHealth);
             Controller.InitDamagableObject();
         }
 

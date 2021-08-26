@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6790d3f8a713f847a14535d547a234f, type: 3}
   m_Name: 2_Middle
   m_EditorClassIdentifier: 
+  PlayerHealth: 100
   ManaMaxValue: 200
   ManaRecoveryPerSec: 20
   ManaRecoveryDelay: 1

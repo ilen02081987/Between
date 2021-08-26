@@ -25,6 +25,11 @@ namespace Between
 
         [SerializeField] private Protection[] _protections;
 
+        public void SetMaxHealth(float to)
+        {
+            MaxHealth = to;
+        }
+
         public void InitDamagableObject()
         {
             Health = MaxHealth;

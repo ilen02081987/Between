@@ -9,6 +9,9 @@ namespace Between
     {
         public static GameSettings Instance { get; private set; }
 
+        [Header("Жизни игрока")]
+        public float PlayerHealth;
+
         [Header("Мана игрока")]
         public float ManaMaxValue;
         public float ManaRecoveryPerSec;
