@@ -1295,7 +1295,7 @@ GameObject:
   m_Name: Terrain_(208.5, 7.6, 0.0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!154 &168089575
@@ -4610,7 +4610,7 @@ GameObject:
   m_Name: Terrain_0_0_9ae44c04-7bd4-4974-afa7-006872fa4365
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &734296631
@@ -4939,7 +4939,7 @@ GameObject:
   m_Name: Terrain_(148.5, 7.6, 0.0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!154 &771729903
@@ -5808,7 +5808,7 @@ GameObject:
   m_Name: Terrain_(10.9, 7.6, 0.0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!154 &1028644865
@@ -6987,6 +6987,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate_cliff_without_biba
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ce3bfd7e60ce43a40b8273d9ab00ccd6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce3bfd7e60ce43a40b8273d9ab00ccd6, type: 3}
 --- !u!1 &1232689045 stripped
@@ -8087,7 +8091,7 @@ GameObject:
   m_Name: Terrain_(70.9, 7.6, 0.0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!154 &1480802891
@@ -8244,7 +8248,7 @@ GameObject:
   m_Name: Terrain_(40.9, 7.6, 0.0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!154 &1502140887
@@ -9092,6 +9096,10 @@ PrefabInstance:
     - target: {fileID: 1569810889, guid: bbca20e4e28ed3346be55a6e9f651460, type: 3}
       propertyPath: m_Convex
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198676783964834116, guid: bbca20e4e28ed3346be55a6e9f651460, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 280202963157781325, guid: bbca20e4e28ed3346be55a6e9f651460, type: 3}
       propertyPath: m_LocalScale.x
@@ -10978,7 +10986,7 @@ GameObject:
   m_Name: Terrain_(238.5, 7.6, 0.0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!154 &1813245298
@@ -12105,7 +12113,7 @@ GameObject:
   m_Name: TerrainGroup_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!114 &2019867650
