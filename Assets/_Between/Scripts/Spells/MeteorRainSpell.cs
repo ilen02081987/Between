@@ -3,6 +3,7 @@ using Between.SpellRecognition;
 using Between.SpellsEffects.MeteorRain;
 using Between.InputTracking.Trackers;
 using Between.InputTracking;
+using UnityEngine;
 
 namespace Between.Spells
 {
@@ -25,12 +26,14 @@ namespace Between.Spells
         {
             if (!_isLongEnough)
             {
+                Debug.LogWarning("Rain not long enough");
                 InvokeNotRecognizeEvent();
                 return;
             }
 
             if (!_enoughManaForInputLenght)
             {
+                Debug.LogWarning("Rain not enough mana");
                 InvokeNotEnoughManaEvent();
                 return;
             }

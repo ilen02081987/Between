@@ -16,6 +16,8 @@ namespace Between.LevelObjects
             foreach (GameObject loot in _loots)
                 if (loot != null)
                     loot.SetActive(true);
+
+            Clear();
         }
     }
 }
