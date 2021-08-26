@@ -62,7 +62,7 @@ MonoBehaviour:
   EnemyHealthUIEnabled: 1
   EnableStateMachineLogs: 0
   Lich:
-    RangeDetectionRadius: 15
+    RangeDetectionRadius: 40
     RangeCooldownBase: 2.5
     RangeCooldownShift: 0.7
     SpellPictureCompressCoefficient: 3
