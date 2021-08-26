@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1890678845926057745}
   - component: {fileID: 1890678845926057746}
   - component: {fileID: 6593712163609254364}
+  - component: {fileID: 2184342861046907009}
   m_Layer: 0
   m_Name: RightFightBorder
   m_TagString: Not colliding
@@ -109,6 +110,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 110f67dc2c410fd41aa2133542c468af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2184342861046907009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890678845926057747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2baaa8b72c292f94086aee3f6f51243c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1890678846934628658
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,6 +135,7 @@ GameObject:
   - component: {fileID: 1890678846934628656}
   - component: {fileID: 1890678846934628657}
   - component: {fileID: 2983713417094346214}
+  - component: {fileID: 5647198821145939924}
   m_Layer: 0
   m_Name: LeftFightBorder
   m_TagString: Not colliding
@@ -218,6 +232,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 110f67dc2c410fd41aa2133542c468af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5647198821145939924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890678846934628658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2baaa8b72c292f94086aee3f6f51243c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1890678847255158767
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,8 +292,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemies: []
-  _leftBorder: {fileID: 1890678846934628657}
-  _rightBorder: {fileID: 1890678845926057746}
+  _leftBorder: {fileID: 5647198821145939924}
+  _rightBorder: {fileID: 2184342861046907009}
 --- !u!114 &3208662153194835192
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -60,7 +60,10 @@ namespace Between.SpellsEffects.ShieldSpell
 
         private void SetTrigger()
         {
-            _collider.isTrigger = CheckPoint();
+            if (Team == Team.Player)
+                _collider.isTrigger = CheckPoint();
+            else
+                _collider.isTrigger = true;
         }
 
         private bool CheckPoint()

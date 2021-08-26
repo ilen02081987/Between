@@ -1713,7 +1713,7 @@ MonoBehaviour:
     Transform: {fileID: 0}
     Player: {fileID: 0}
     Animator: {fileID: 0}
-  _shieldTrigger: {fileID: 1236149875042193934}
+  _playerShieldTrigger: {fileID: 1236149875042193934}
 --- !u!114 &-3288955662240086383
 MonoBehaviour:
   m_ObjectHideFlags: 0

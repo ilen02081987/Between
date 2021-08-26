@@ -6,7 +6,7 @@ namespace Between.Enemies.Skeletons
 {
     public class MeleeSkeleton : BaseSkeleton
     {
-        [SerializeField] private ShieldTrigger _shieldTrigger;
+        [SerializeField] private ShieldTrigger _playerShieldTrigger;
 
         private bool _isDestroingShield => stateMachine.CompareState(typeof(DestroyShieldState));
 
@@ -32,7 +32,7 @@ namespace Between.Enemies.Skeletons
 
         protected override void InitNpc()
         {
-            _shieldTrigger.OnCollideWithShield += TryStartDestroyShield;
+            _playerShieldTrigger.OnCollideWithShield += TryStartDestroyShield;
         }
 
         private void TryStartDestroyShield(Shield shield)

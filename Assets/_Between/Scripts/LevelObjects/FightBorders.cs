@@ -10,29 +10,14 @@ namespace Between.LevelObjects
         public event Action OnActivate;
 
         [SerializeField] private List<BaseEnemy> _enemies;
-
-        [SerializeField] private Collider _leftBorder;
-        [SerializeField] private Collider _rightBorder;
+        [SerializeField] private FightBorder _leftBorder;
+        [SerializeField] private FightBorder _rightBorder;
 
         private float _playerPositionX => Player.Instance.Controller.Position.x;
-        private float _playerWidth;
         private bool _isEnabled = false;
 
-        private void Start()
-        {
-            var characterController = Player.Instance.Controller.GetComponent<CharacterController>();
-            _playerWidth = characterController.radius + characterController.skinWidth;
-        }
-
-        private void Update()
-        {
-            if (Player.Instance.Controller == null)
-                return;
-
-            if (_playerPositionX - _playerWidth > _leftBorder.transform.position.x
-                && _playerPositionX + _playerWidth < _rightBorder.transform.position.x)
-                EnableBorders();
-        }
+        private bool _playerInBorders => _playerPositionX > _leftBorder.transform.position.x
+            && _playerPositionX < _rightBorder.transform.position.x;
 
         public void AddEnemy(BaseEnemy enemy)
         {
@@ -42,19 +27,44 @@ namespace Between.LevelObjects
                 enemy.OnDie += () => TryDestroyBorders(enemy);
         }
 
+        private void Start() => AttachListeners();
+
+        private void AttachListeners()
+        {
+            _leftBorder.OnPlayerExitCollider += TryEnableBorders;
+            _rightBorder.OnPlayerExitCollider += TryEnableBorders;
+        }
+
+        private void TryEnableBorders()
+        {
+            if (_playerInBorders)
+                EnableBorders();
+        }
+
         private void EnableBorders()
         {
+            DetachListeners();
+
             if (!NeedEnable())
                 Destroy();
 
-            _leftBorder.isTrigger = false;
-            _rightBorder.isTrigger = false;
+            if (_isEnabled)
+                return;
+
+            _leftBorder.Enable();
+            _rightBorder.Enable();
 
             foreach (var enemy in _enemies)
                 enemy.OnDie += () => TryDestroyBorders(enemy);
 
             _isEnabled = true;
             OnActivate?.Invoke();
+        }
+
+        private void DetachListeners()
+        {
+            _leftBorder.OnPlayerExitCollider += TryEnableBorders;
+            _rightBorder.OnPlayerExitCollider += TryEnableBorders;
         }
 
         private bool NeedEnable()
@@ -93,8 +103,9 @@ namespace Between.LevelObjects
             if (this == null)
                 return;
 
-            Destroy(_leftBorder.gameObject);
-            Destroy(_rightBorder.gameObject);
+            _leftBorder.Destroy();
+            _rightBorder.Destroy();
+
             Destroy(gameObject);
         }
     }
