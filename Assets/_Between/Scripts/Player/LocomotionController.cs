@@ -75,6 +75,9 @@ namespace Between.MainCharacter
 
         private void Rotate(float xAxisValue)
         {
+            if (Mathf.Approximately(xAxisValue, 0f))
+                return;
+
             var angle = xAxisValue >= 0 ? 90f : -90f;
             _gfx.rotation = Quaternion.Euler(0f, angle, 0f);
         }
