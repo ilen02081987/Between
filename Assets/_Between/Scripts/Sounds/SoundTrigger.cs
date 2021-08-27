@@ -12,12 +12,12 @@ namespace Between.Sounds
         private void Start()
         {
             _defaultSourceVolume = _source.volume;
-            Volume.OnValueChanged += ChangeVolume;
+            Volume.OnChanged += ChangeVolume;
         }
 
         private void OnDestroy()
         {
-            Volume.OnValueChanged -= ChangeVolume;
+            Volume.OnChanged -= ChangeVolume;
         }
 
         private void OnTriggerEnter(Collider other)

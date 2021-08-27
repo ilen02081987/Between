@@ -14,12 +14,12 @@ namespace Between.Sounds
             _source = GetComponent<AudioSource>();
             _source.volume *= Volume.Value;
 
-            Volume.OnValueChanged += ChangeVolume;
+            Volume.OnChanged += ChangeVolume;
         }
 
         private void OnDestroy()
         {
-            Volume.OnValueChanged -= ChangeVolume;
+            Volume.OnChanged -= ChangeVolume;
         }
 
         private void ChangeVolume()

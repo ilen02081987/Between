@@ -11,11 +11,22 @@ namespace Between.Sounds
         [SerializeField] private AudioClip _noMana;
         [SerializeField] private AudioClip _noRecognize;
 
+        private float _defaultVolume;
+
         public void Init()
         {
+            _defaultVolume = _source.volume;
+
             BaseSpell.NotEnoughMana += PlayNoEnoughSound;
             BaseSpell.NotRecognizeSpell += PlayNoRecognizeSound;
+            Volume.OnChanged += ChangeVolume;
         }
+
+        private void ChangeVolume()
+        {
+            _source.volume = Volume.Value * _defaultVolume;
+        }
+
         public void Dispose()
         {
             BaseSpell.NotEnoughMana += PlayNoEnoughSound;
