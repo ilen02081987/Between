@@ -7,18 +7,19 @@ namespace Between.Sounds
     public class BaseSoundsController : MonoBehaviour
     {
         private AudioSource _source;
+        private float _defaultSourceVolume;
 
         private void Awake()
         {
             _source = GetComponent<AudioSource>();
             _source.volume *= Volume.Value;
 
-            Volume.OnValueChanged += ChangeVolume;
+            Volume.OnChanged += ChangeVolume;
         }
 
         private void OnDestroy()
         {
-            Volume.OnValueChanged -= ChangeVolume;
+            Volume.OnChanged -= ChangeVolume;
         }
 
         private void ChangeVolume()
@@ -26,7 +27,7 @@ namespace Between.Sounds
             if (this == null)
                 return;
 
-            _source.volume = Volume.Value;
+            _source.volume = Volume.Value * _defaultSourceVolume;
         }
 
         public void Play(AudioClip clip)

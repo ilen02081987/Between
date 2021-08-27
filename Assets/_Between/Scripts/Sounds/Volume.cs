@@ -4,7 +4,7 @@ namespace Between.Sounds
 {
     public class Volume
     {
-        public static event Action OnValueChanged;
+        public static event Action OnChanged;
 
         public static float Value
         {
@@ -12,7 +12,7 @@ namespace Between.Sounds
             set
             {
                 if (_value != value)
-                    OnValueChanged?.Invoke();
+                    OnChanged?.Invoke();
 
                 _value = value;
             }

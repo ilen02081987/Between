@@ -8,14 +8,16 @@ namespace Between.Sounds
         [SerializeField] private AudioSource _source;
         [SerializeField] private AudioClip _clip;
 
+        private float _defaultSourceVolume;
         private void Start()
         {
-            Volume.OnValueChanged += ChangeVolume;
+            _defaultSourceVolume = _source.volume;
+            Volume.OnChanged += ChangeVolume;
         }
 
         private void OnDestroy()
         {
-            Volume.OnValueChanged -= ChangeVolume;
+            Volume.OnChanged -= ChangeVolume;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -37,7 +39,7 @@ namespace Between.Sounds
         
         private void ChangeVolume()
         {
-            _source.volume = Volume.Value;
+            _source.volume = _defaultSourceVolume * Volume.Value;
         }
     }
 }
