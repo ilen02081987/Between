@@ -1888,7 +1888,7 @@ MonoBehaviour:
   _healthBarAnchor: {fileID: 8568986614926906967}
   data:
     NavMeshAgent: {fileID: 2963166369793736704}
-    DetectionDistance: 30
+    DetectionDistance: 50
     AttackDistance: 2.5
     CooldownTime: 1.5
     WayPoints: []
