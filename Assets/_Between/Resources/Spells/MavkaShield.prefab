@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33c2df16bb1254d4988c4a0c05093048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 30
+  MaxHealth: 3000
   Immortal: 1
   _protections: []
   _team: 1
