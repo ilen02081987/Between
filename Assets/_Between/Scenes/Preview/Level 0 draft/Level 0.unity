@@ -4717,6 +4717,10 @@ PrefabInstance:
       propertyPath: _id
       value: 31
       objectReference: {fileID: 0}
+    - target: {fileID: 3622941033159952937, guid: 8962c8f0fc18ca0468c0fbd1e7004670, type: 3}
+      propertyPath: _destroyTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3622941033159952938, guid: 8962c8f0fc18ca0468c0fbd1e7004670, type: 3}
       propertyPath: m_Name
       value: Mavka
