@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 30
-  Immortal: 0
+  Immortal: 1
   _protections: []
   _team: 1
   _lifeTime: 3
