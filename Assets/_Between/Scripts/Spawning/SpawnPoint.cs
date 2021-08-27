@@ -11,10 +11,12 @@ namespace Between.Spawning
         [SerializeField] private Transform _atPoint;
         [SerializeField] private Transform _parent;
 
+        private Vector3 _position => _atPoint != null ? _atPoint.position : transform.position;
+
         public GameObject Spawn()
         {
             OnSpawn?.Invoke();
-            return Instantiate(_spawnedObject, _atPoint.position, Quaternion.identity, _parent);
+            return Instantiate(_spawnedObject, _position, Quaternion.identity, _parent);
         }
     }
 }

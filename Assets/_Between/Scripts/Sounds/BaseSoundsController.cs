@@ -34,5 +34,10 @@ namespace Between.Sounds
             if (clip != null)
                 _source.PlayOneShot(clip);
         }
+
+        protected void PlayWithoutSource(AudioClip clip)
+        {
+            AudioSource.PlayClipAtPoint(clip, transform.position, Volume.Value);
+        }
     }
 }
