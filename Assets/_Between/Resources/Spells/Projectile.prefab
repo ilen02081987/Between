@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 402763435397938576}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.6160307, y: 1.6160307, z: 1.6160307}
+  m_LocalScale: {x: 1.7454627, y: 1.7454627, z: 1.7454627}
   m_Children:
   - {fileID: 4271677398210971863}
   - {fileID: 3635938855818366609}
@@ -64,7 +64,7 @@ MonoBehaviour:
   _impactDamage: 6
   _team: 0
   _damage:
-    Value: 42.493587
+    Value: 34.884205
   _speed: 25
   _blastRadius: 2
   _friendlyFire: 0
