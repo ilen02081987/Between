@@ -13730,6 +13730,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -8.2
       objectReference: {fileID: 0}
+    - target: {fileID: 1979270441798799404, guid: fed1c94f2e4b5404986792d8a1f4d7b5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 159.96
+      objectReference: {fileID: 0}
     - target: {fileID: 7594752799316304824, guid: fed1c94f2e4b5404986792d8a1f4d7b5, type: 3}
       propertyPath: m_RootOrder
       value: 42
@@ -13782,6 +13786,10 @@ PrefabInstance:
       propertyPath: _enemies.Array.data[0]
       value: 
       objectReference: {fileID: 730582080}
+    - target: {fileID: 8738431975873321905, guid: fed1c94f2e4b5404986792d8a1f4d7b5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.21
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fed1c94f2e4b5404986792d8a1f4d7b5, type: 3}
 --- !u!1001 &7632793295002757901
