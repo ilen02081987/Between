@@ -10,34 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6790d3f8a713f847a14535d547a234f, type: 3}
-  m_Name: 4_Hack
+  m_Name: 2_Middle
   m_EditorClassIdentifier: 
+  PlayerHealth: 100
   ManaMaxValue: 200
   ManaRecoveryPerSec: 20
   ManaRecoveryDelay: 1
   EnableRemoveManaLog: 0
-  ManaBottleValue: 50
-  ProjectilesSpawnOffset: 2
+  ManaBottleValue: 70
   ProjectileDrawType: 0
-  ProjectileMinLenght: 20
-  ProjectileMaxLenght: 1000
-  ProjectileManaCoefficient: 0.05
-  ProjectilePowerValue: 1.1
-  ProjectileBaseDamageValue: 2
-  ProjectileMinSize: 1
-  ProjectileMaxSize: 3
-  ShieldTrackerMinLenght: 20
-  ShieldTrackerMaxLenght: 350
+  ProjectileMinLenght: 0.05
+  ProjectileMaxLenght: 0.7
+  ProjectileManaCoefficient: 70
+  ProjectilePowerValue: 1.2
+  ProjectileBaseDamageValue: 4
+  ProjectileMinSize: 0.3
+  ProjectileMaxSize: 4
+  ShieldTrackerMinLenght: 0
+  ShieldTrackerMaxLenght: 1
   ShieldTrackerForceEndAngle: 90
-  ShieldManaCoefficient: 0.07
-  MeteorRainMinLenght: 50
-  MeteorsLinesDelay: 0.5
+  ShieldManaCoefficient: 60
+  MeteorRainMinLenght: 0
+  MeteorsLinesDelay: 0.4
   MeteorsLinesCount: 3
   MeteorsCount: 5
-  MeteorRainManaCoefficient: 0.15
-  HealingSpellManaCoefficient: 0.15
-  HealingSpellMaxSize: 1500
-  HealingSpellMaxHeal: 80
+  MeteorRainManaCoefficient: 90
+  HealingSpellManaCoefficient: 70
+  HealingSpellMaxSize: 0.4
+  HealingSpellMaxHeal: 40
   CircleCompressionRatio: 2.25
   DecideBorder:
   - 0.98
@@ -45,11 +45,11 @@ MonoBehaviour:
   - 0.8
   - 0.8
   EnableProbabilitiesLog: 1
-  RangeDetectionRadius: 15
-  RangeCooldownBase: 2.27
-  RangeCooldownShift: 0
+  RangeDetectionRadius: 20
+  RangeCooldownBase: 3.2
+  RangeCooldownShift: 0.5
   SpellPictureCompressCoefficient: 2
-  SeveralProjectilesCastTime: 2
+  SeveralProjectilesCastTime: 3
   SeveralProjectilesCastDelay: 1
   SeveralProjectilesSingleCast: 0
   SeveralProjectilesSphereCastRadius: 1
@@ -63,18 +63,19 @@ MonoBehaviour:
   EnemyHealthUIEnabled: 1
   EnableStateMachineLogs: 0
   Lich:
-    RangeDetectionRadius: 10
-    RangeCooldownBase: 2
-    RangeCooldownShift: 1
+    RangeDetectionRadius: 40
+    RangeCooldownBase: 3
+    RangeCooldownShift: 0.7
     SpellPictureCompressCoefficient: 3
-    SeveralProjectilesCastTime: 1
+    SeveralProjectilesCastTime: 1.7
     SeveralProjectilesCastDelay: 1
     SeveralProjectilesSingleCast: 1
     SeveralProjectilesSphereCastRadius: 1
-    ShieldsCooldownTime: 2
+    ShieldsCooldownTime: 2.8
     SingleProjectileCastTime: 1
-    SeveralProjectilesCastWeight: 2
-    SingleProjectileCastWeight: 4
-    MeleeDetectionRadius: 0
-    MeleeCooldownBase: 0
-    MeleeCooldownShift: 0
+    SeveralProjectilesCastWeight: 3
+    SingleProjectileCastWeight: 2
+    SkeletonsCallCastWeight: 1
+    SkeletonsCastDelay: 1.5
+    SkeletonsCastTime: 1.5
+    SkeletonsSingleCast: 1
