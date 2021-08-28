@@ -19,5 +19,10 @@ namespace Between.LevelObjects
 
             Clear();
         }
+
+        protected override void PerformOnInteract()
+        {
+            _loots[1].SetActive(true);
+        }
     }
 }
