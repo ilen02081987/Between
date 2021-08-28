@@ -34,7 +34,8 @@ namespace Between.UI.Base
 
         private void OnDestroy()
         {
-            _button.onClick.RemoveListener(PerformOnClick);
+            if (_button != null)
+                _button.onClick.RemoveListener(PerformOnClick);
         }
 
         protected virtual void Init() { }
