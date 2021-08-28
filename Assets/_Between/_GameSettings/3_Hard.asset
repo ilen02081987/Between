@@ -40,7 +40,7 @@ MonoBehaviour:
   HealingSpellMaxHeal: 40
   CircleCompressionRatio: 2.25
   DecideBorder:
-  - 0.98
+  - 0.9
   - 0.9
   - 0.8
   - 0.8
