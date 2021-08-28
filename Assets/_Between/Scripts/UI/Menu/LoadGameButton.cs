@@ -6,10 +6,11 @@ namespace Between.UI.Menu
 {
     public class LoadGameButton : UiButton
     {
+        public void UpdateVisibility() => Init();
+
         protected override void Init()
         {
-            if (!DataManager.Instance.HasData)
-                gameObject.SetActive(false);
+            gameObject.SetActive(DataManager.Instance.HasData);
         }
 
         private void OnEnable()

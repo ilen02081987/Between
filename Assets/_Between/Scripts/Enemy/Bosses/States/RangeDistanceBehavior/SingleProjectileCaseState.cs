@@ -24,6 +24,9 @@ namespace Between.Enemies.Mavka
 
         public override void Enter()
         {
+            if (!animator.IsOwnerAlive)
+                return;
+
             var spellPainter = new SpellPainter(
                 "MavkaSingleProjectile",
                 PAINTER_NAME,

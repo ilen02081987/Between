@@ -1,7 +1,5 @@
-using Between.SpellsEffects.ShieldSpell;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Between.SpellsEffects.ShieldSpell;
 
 namespace Between.Sounds
 {
@@ -9,6 +7,7 @@ namespace Between.Sounds
     {
         [SerializeField] private Shield _shield;
         [SerializeField] private AudioClip _damage;
+        [SerializeField, Range(0, 1)] private float _volumeCoefficient;
 
         private void Start()
         {
@@ -20,6 +19,6 @@ namespace Between.Sounds
             _shield.LivesValueChanged -= PlayeDamageSound;
         }
 
-        private void PlayeDamageSound() => Play(_damage);
+        private void PlayeDamageSound() => PlayWithoutSource(_damage, _volumeCoefficient);
     }
 }

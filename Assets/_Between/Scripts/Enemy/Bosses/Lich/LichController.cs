@@ -43,5 +43,10 @@ namespace Between.Enemies.Bosses
             stateMachine.AddStates(idleState, singleCastState, severalCastState, skeletonsCallCastState, attackState, cooldownState);
             return stateMachine;
         }
+
+        protected override void PerformOnUpdate()
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
+        }
     }
 }

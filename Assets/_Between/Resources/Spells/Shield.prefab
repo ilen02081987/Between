@@ -83,6 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shield: {fileID: 5428454242764722723}
   _damage: {fileID: 8300000, guid: b468a9ab19057904088f4a4073786370, type: 3}
+  _volumeCoefficient: 0.5
 --- !u!82 &5022960898744428959
 AudioSource:
   m_ObjectHideFlags: 0

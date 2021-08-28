@@ -3300,9 +3300,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 102444, guid: d0ed7c2c4e9a4084fbe40d250eab957d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 105424, guid: d0ed7c2c4e9a4084fbe40d250eab957d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 116596, guid: d0ed7c2c4e9a4084fbe40d250eab957d, type: 3}
       propertyPath: m_Name
       value: ColumnDamage01
+      objectReference: {fileID: 0}
+    - target: {fileID: 123898, guid: d0ed7c2c4e9a4084fbe40d250eab957d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 421680, guid: d0ed7c2c4e9a4084fbe40d250eab957d, type: 3}
       propertyPath: m_RootOrder
@@ -3362,13 +3374,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4554706319057276, guid: d0ed7c2c4e9a4084fbe40d250eab957d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.388
+      value: 0.241
       objectReference: {fileID: 0}
     - target: {fileID: 4554706319057276, guid: d0ed7c2c4e9a4084fbe40d250eab957d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.645
+      value: -0.353
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 64674539687269702, guid: d0ed7c2c4e9a4084fbe40d250eab957d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 20558334, guid: d0ed7c2c4e9a4084fbe40d250eab957d, type: 3}
+    - {fileID: 64674539687269702, guid: d0ed7c2c4e9a4084fbe40d250eab957d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d0ed7c2c4e9a4084fbe40d250eab957d, type: 3}
 --- !u!1 &469587442
 GameObject:

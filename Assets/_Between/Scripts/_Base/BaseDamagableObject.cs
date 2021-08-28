@@ -19,6 +19,7 @@ namespace Between
 
         public float MaxHealth;
         public float Health { get; protected set; }
+        public bool IsAlive => Health > 0f;
         public bool Immortal = false;
 
         public Vector3 Position => transform.position;

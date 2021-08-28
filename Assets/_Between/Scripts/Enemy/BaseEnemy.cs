@@ -12,9 +12,7 @@ namespace Between.Enemies
     public abstract class BaseEnemy : BaseDamagableObject
     {
         private static HealthBar _bar;
-
         public override Team Team => Team.Enemies;
-
         protected PlayerController player { get; private set; }
 
         [SerializeField] protected NpcAnimator animator;

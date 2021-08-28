@@ -1,5 +1,6 @@
 using UnityEngine;
 using Between.StateMachine;
+using Unity.IO.LowLevel.Unsafe;
 
 namespace Between.Enemies.Bosses
 {
@@ -25,6 +26,7 @@ namespace Between.Enemies.Bosses
             _meleeStateMachine?.Update();
 
             TryRotate();
+            PerformOnUpdate();
         }
 
         protected abstract FinitStateMachine InitMeleeStateMachine();
@@ -59,5 +61,7 @@ namespace Between.Enemies.Bosses
             if (newRotation != rotation)
                 transform.rotation = newRotation;
         }
+
+        protected virtual void PerformOnUpdate() { }
     }
 }

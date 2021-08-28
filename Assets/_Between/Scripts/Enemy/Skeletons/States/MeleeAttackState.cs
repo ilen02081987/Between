@@ -44,6 +44,9 @@ namespace Between.Enemies.Skeletons
 
         private void ApplyDamageToPlayer()
         {
+            if (_target == null || _animator == null)
+                return;
+
             if (Vector3.Distance(_target.Position, _animator.Position) <= _attackDistance)
             {
                 _target.ApplyDamage(_damage);

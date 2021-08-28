@@ -12,6 +12,7 @@ namespace Between.Sounds
         private void Awake()
         {
             _source = GetComponent<AudioSource>();
+            _defaultSourceVolume = _source.volume;
             _source.volume *= Volume.Value;
 
             Volume.OnChanged += ChangeVolume;
@@ -36,9 +37,9 @@ namespace Between.Sounds
                 _source.PlayOneShot(clip);
         }
 
-        protected void PlayWithoutSource(AudioClip clip)
+        protected void PlayWithoutSource(AudioClip clip, float volumeCoeff = 1f)
         {
-            AudioSource.PlayClipAtPoint(clip, transform.position, Volume.Value);
+            AudioSource.PlayClipAtPoint(clip, transform.position, Volume.Value * volumeCoeff);
         }
     }
 }

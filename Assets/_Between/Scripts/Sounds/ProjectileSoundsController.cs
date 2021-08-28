@@ -7,7 +7,9 @@ namespace Between.Sounds
     {
         [SerializeField] private Projectile _projectile;
         [SerializeField] private AudioClip _launchClip;
+        [Space]
         [SerializeField] private AudioClip _hitClip;
+        [SerializeField, Range(0, 1)] private float _hitClipVolume = 1f;
 
         private void Start()
         {
@@ -22,6 +24,6 @@ namespace Between.Sounds
         }
 
         private void PlayLaunchSound(Vector3 obj) => Play(_launchClip);
-        private void PlayHitSound(Collider collider) => PlayWithoutSource(_hitClip);
+        private void PlayHitSound(Collider collider) => PlayWithoutSource(_hitClip, _hitClipVolume);
     }
 }

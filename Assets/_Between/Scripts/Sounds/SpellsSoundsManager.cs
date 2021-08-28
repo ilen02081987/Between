@@ -24,6 +24,9 @@ namespace Between.Sounds
 
         private void ChangeVolume()
         {
+            if (_source == null)
+                Destroy(this);
+
             _source.volume = Volume.Value * _defaultVolume;
         }
 

@@ -7,6 +7,7 @@ namespace Between.Animations
     [RequireComponent(typeof(Animator))]
     public class NpcAnimator : MonoBehaviour
     {
+        public bool IsOwnerAlive => _npc.IsAlive;
         public Vector3 Position => transform.position;
 
         [SerializeField] private float _moveAnimationSpeed = 1;

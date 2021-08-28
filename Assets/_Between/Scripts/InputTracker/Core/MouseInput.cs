@@ -24,11 +24,13 @@ namespace Between.InputTracking
 
         private InputState GetState()
         {
-            if (Input.GetMouseButtonDown(MouseButton))
+            if (Input.GetMouseButtonDown(MouseButton) && !PauseManager.IsPause)
                 return InputState.Start;
-            if (Input.GetMouseButton(MouseButton))
+
+            if (Input.GetMouseButton(MouseButton) && !PauseManager.IsPause)
                 return InputState.Draw;
-            if (Input.GetMouseButtonUp(MouseButton))
+
+            if (Input.GetMouseButtonUp(MouseButton) && !PauseManager.IsPause)
                 return InputState.End;
 
             return InputState.None;
