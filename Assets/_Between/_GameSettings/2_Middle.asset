@@ -57,7 +57,7 @@ MonoBehaviour:
   MavkaSingleProjectileCastTime: 1
   SeveralProjectilesCastWeight: 5
   SingleProjectileCastWeight: 3
-  MeleeDetectionRadius: 10
+  MeleeDetectionRadius: 5
   MeleeCooldownBase: 3
   MeleeCooldownShift: 1
   EnemyHealthUIEnabled: 1

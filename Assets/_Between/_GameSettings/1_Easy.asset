@@ -12,23 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6790d3f8a713f847a14535d547a234f, type: 3}
   m_Name: 1_Easy
   m_EditorClassIdentifier: 
-  ManaMaxValue: 200
-  ManaRecoveryPerSec: 20
+  PlayerHealth: 1000
+  ManaMaxValue: 500
+  ManaRecoveryPerSec: 40
   ManaRecoveryDelay: 1
   EnableRemoveManaLog: 0
   ManaBottleValue: 50
   ProjectileDrawType: 0
-  ProjectileMinLenght: 20
-  ProjectileMaxLenght: 1000
-  ProjectileManaCoefficient: 0.05
-  ProjectilePowerValue: 1.1
-  ProjectileBaseDamageValue: 2
+  ProjectileMinLenght: 0.05
+  ProjectileMaxLenght: 0.7
+  ProjectileManaCoefficient: 70
+  ProjectilePowerValue: 10
+  ProjectileBaseDamageValue: 8
   ProjectileMinSize: 1
   ProjectileMaxSize: 3
-  ShieldTrackerMinLenght: 20
-  ShieldTrackerMaxLenght: 350
+  ShieldTrackerMinLenght: 0
+  ShieldTrackerMaxLenght: 1
   ShieldTrackerForceEndAngle: 90
-  ShieldManaCoefficient: 0.07
+  ShieldManaCoefficient: 60
   MeteorRainMinLenght: 0.1
   MeteorsLinesDelay: 0.5
   MeteorsLinesCount: 3

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6790d3f8a713f847a14535d547a234f, type: 3}
   m_Name: 3_Hard
   m_EditorClassIdentifier: 
-  PlayerHealth: 100
-  ManaMaxValue: 200
-  ManaRecoveryPerSec: 20
+  PlayerHealth: 50
+  ManaMaxValue: 150
+  ManaRecoveryPerSec: 15
   ManaRecoveryDelay: 1
   EnableRemoveManaLog: 0
   ManaBottleValue: 70
@@ -22,8 +22,8 @@ MonoBehaviour:
   ProjectileMinLenght: 0.05
   ProjectileMaxLenght: 0.7
   ProjectileManaCoefficient: 80
-  ProjectilePowerValue: 1.2
-  ProjectileBaseDamageValue: 4
+  ProjectilePowerValue: 1.1
+  ProjectileBaseDamageValue: 3
   ProjectileMinSize: 0.3
   ProjectileMaxSize: 4
   ShieldTrackerMinLenght: 0
