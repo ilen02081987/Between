@@ -25,13 +25,18 @@ namespace Between.Sounds
         private void ChangeVolume()
         {
             if (_source == null)
+            {
+                Volume.OnChanged -= ChangeVolume;
                 Destroy(this);
+                return;
+            }
 
             _source.volume = Volume.Value * _defaultVolume;
         }
 
         public void Dispose()
         {
+            Volume.OnChanged -= ChangeVolume;
             BaseSpell.NotEnoughMana += PlayNoEnoughSound;
             BaseSpell.NotRecognizeSpell += PlayNoRecognizeSound;
         }
