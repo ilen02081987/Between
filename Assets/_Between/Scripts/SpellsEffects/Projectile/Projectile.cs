@@ -29,7 +29,7 @@ namespace Between.SpellsEffects.Projectile
 
         private Rigidbody _rigidbody;
         private Vector3 _direction;
-        private bool _hasCollide = false;
+        private Collider _lastHitObject;
 
         public void Launch(Vector3 direction)
         {
@@ -52,13 +52,10 @@ namespace Between.SpellsEffects.Projectile
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!_hasCollide)
-                TryApplyDamage(other);
-        }
+            if (other == _lastHitObject)
+                return;
 
-        private void OnTriggerExit(Collider other)
-        {
-            _hasCollide = false;
+            TryApplyDamage(other);
         }
 
         private void TryApplyDamage(Collider collider)
@@ -67,7 +64,7 @@ namespace Between.SpellsEffects.Projectile
             {
                 if (damagable.Team != _team || _friendlyFire)
                 {
-                    _hasCollide = true;
+                    _lastHitObject = collider;
 
                     ApplyDamage(damagable);
                     TakeImpactDamage();

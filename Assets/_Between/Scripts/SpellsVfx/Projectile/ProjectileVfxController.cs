@@ -20,7 +20,7 @@ namespace Between.SpellsEffects.Projectile
             UpdateOffset();
             CreateMuzzle();
 
-            _projectile.OnHit += PerformOnHit;
+            _projectile.OnDestroyed += PerformOnHit;
         }
 
         private void UpdateOffset()
@@ -71,9 +71,9 @@ namespace Between.SpellsEffects.Projectile
             }
         }
 
-        private void PerformOnHit(Collider collider)
+        private void PerformOnHit()
         {
-            _projectile.OnHit -= PerformOnHit;
+            _projectile.OnDestroyed -= PerformOnHit;
 
             if (!collided)
             {
@@ -96,11 +96,9 @@ namespace Between.SpellsEffects.Projectile
                     }
                 }
 
-                Vector3 contactPoint = FindContactPoint(collider);
-
                 if (hitPrefab != null)
                 {
-                    var hitVFX = Instantiate(hitPrefab, contactPoint, Quaternion.identity) as GameObject;
+                    var hitVFX = Instantiate(hitPrefab, transform.position, Quaternion.identity) as GameObject;
 
                     var ps = hitVFX.GetComponent<ParticleSystem>();
                     if (ps == null)
@@ -116,16 +114,6 @@ namespace Between.SpellsEffects.Projectile
 
                 Destroy(gameObject);
             }
-        }
-
-        private Vector3 FindContactPoint(Collider collider)
-        {
-            MeshCollider meshCollider = collider as MeshCollider;
-
-            if (meshCollider != null && !meshCollider.convex)
-                return transform.position;
-            else
-                return collider.ClosestPoint(transform.position);
         }
     }
 }
