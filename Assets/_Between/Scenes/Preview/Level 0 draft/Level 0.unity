@@ -4752,6 +4752,10 @@ PrefabInstance:
       value: "\u0415 - \u043F\u043E\u0434\u043D\u044F\u0442\u044C"
       objectReference: {fileID: 0}
     - target: {fileID: 3580855514142289913, guid: 9dda4c75f596a834aa260881054fa2e5, type: 3}
+      propertyPath: _keyBoss
+      value: 
+      objectReference: {fileID: 136795036}
+    - target: {fileID: 3580855514142289913, guid: 9dda4c75f596a834aa260881054fa2e5, type: 3}
       propertyPath: _lockableObject
       value: 
       objectReference: {fileID: 4302784879332399516}
@@ -14745,7 +14749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 520856196292041528, guid: 1ed27bb16006c38428c6472808b30ee5, type: 3}
       propertyPath: _loots.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 520856196292041528, guid: 1ed27bb16006c38428c6472808b30ee5, type: 3}
       propertyPath: _loots.Array.data[0]
@@ -14754,7 +14758,7 @@ PrefabInstance:
     - target: {fileID: 520856196292041528, guid: 1ed27bb16006c38428c6472808b30ee5, type: 3}
       propertyPath: _loots.Array.data[1]
       value: 
-      objectReference: {fileID: 136795036}
+      objectReference: {fileID: 0}
     - target: {fileID: 1037346206862799163, guid: 1ed27bb16006c38428c6472808b30ee5, type: 3}
       propertyPath: m_RootOrder
       value: 2
