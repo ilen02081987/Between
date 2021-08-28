@@ -10,7 +10,7 @@ namespace Between.Enemies.Mavka
 {
     public class SeveralProjectilesCastState : BaseCastState
     {
-        private readonly Vector3[] _spawnPoints;
+        private readonly Transform[] _spawnPoints;
         private readonly Transform _target;
         private readonly float _castTime;
         private readonly float _castDelay;
@@ -21,11 +21,7 @@ namespace Between.Enemies.Mavka
             float castTime, float castDelay, bool singleCast , params Transform[] spawnPoints) : base(stateMachine, animator, weight)
         {
             _projectileSpawner = new ProjectileSpawner("MavkaSeveralProjectile");
-            
-            _spawnPoints = new Vector3[spawnPoints.Length];
-            for (int i = 0; i < spawnPoints.Length; i++)
-                _spawnPoints[i] = spawnPoints[i].position;
-
+            _spawnPoints = spawnPoints;
             _target = target;
             _castTime = castTime;
             _castDelay = castDelay;
@@ -58,10 +54,13 @@ namespace Between.Enemies.Mavka
 
         private void CreateSpellPainter(int spawnPointIndex, float afterDrawDelay)
         {
+            if (_target == null || _spawnPoints[0] == null)
+                return;
+
             var spellPainter = new SpellPainter(
                 "MavkaSeveralProjectiles",
                 PAINTER_NAME,
-                _spawnPoints[spawnPointIndex], _castTime, afterDrawDelay);
+                _spawnPoints[spawnPointIndex].position, _castTime, afterDrawDelay);
 
             spellPainter.Complete += () => CompletePaintSpell(spawnPointIndex);
             spellPainter.StartDraw();
@@ -73,8 +72,8 @@ namespace Between.Enemies.Mavka
                 return;
 
             _projectileSpawner.Spawn(
-                _spawnPoints[spawnPointIndex], 
-                (_target.position - _spawnPoints[spawnPointIndex]).normalized);
+                _spawnPoints[spawnPointIndex].position, 
+                (_target.position - _spawnPoints[spawnPointIndex].position).normalized);
 
             if (isCurrentState && spawnPointIndex == _spawnPoints.Length - 1)
             {
