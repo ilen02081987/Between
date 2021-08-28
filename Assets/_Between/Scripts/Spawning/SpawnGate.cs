@@ -22,6 +22,9 @@ namespace Between.Spawning
         {
             foreach (SpawnPoint point in _spawnPoints)
             {
+                if (point == null)
+                    continue;
+
                 var spawnedObject = point.Spawn();
                 TryAddEnemy(spawnedObject);
             }
@@ -30,7 +33,8 @@ namespace Between.Spawning
         public void Destroy()
         {
             foreach (SpawnPoint point in _spawnPoints)
-                Destroy(point.gameObject);
+                if (point != null)
+                    Destroy(point.gameObject);
 
             Destroy(gameObject);
         }

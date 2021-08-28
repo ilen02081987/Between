@@ -8,9 +8,7 @@ namespace Between.Saving
 {
     public class SavableObject : MonoBehaviour
     {
-        public int Id => _id;
-
-        [SerializeField] private int _id;
+        public int Id;
 
 #if UNITY_EDITOR
         [MenuItem("SaveSystem/Generate objects ids")]
@@ -20,7 +18,7 @@ namespace Between.Saving
 
             for (int i = 0; i < savableObjects.Length; i++)
             {
-                savableObjects[i]._id = i;
+                savableObjects[i].Id = i;
                 EditorUtility.SetDirty(savableObjects[i]);
             }
 

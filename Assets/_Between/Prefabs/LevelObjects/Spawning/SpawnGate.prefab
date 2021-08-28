@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4037268347198849557}
   - component: {fileID: 4821540136946476740}
   - component: {fileID: 9146711243519944520}
-  - component: {fileID: 3317123449589031471}
   m_Layer: 0
   m_Name: SpawnGate
   m_TagString: Not colliding
@@ -124,15 +123,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnPoints: []
   _fightBorders: {fileID: 0}
---- !u!114 &3317123449589031471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1104552471834822757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09f8216225dc5d24fa1dafdb727fe259, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

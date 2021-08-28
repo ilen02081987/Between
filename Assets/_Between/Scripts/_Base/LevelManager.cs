@@ -83,9 +83,9 @@ namespace Between
             if (DataManager.Instance.HasData)
             {
                 var existingsObjects = DataManager.Instance.SavedData.ExistingGameObjects;
-                var savableObjects = FindObjectsOfType<SavableObject>(true);
+                var sceneSavableObjects = FindObjectsOfType<SavableObject>(true);
 
-                foreach (SavableObject savableObject in savableObjects)
+                foreach (SavableObject savableObject in sceneSavableObjects)
                 {
                     if (!existingsObjects.Contains(savableObject.Id))
                         RemoveGameObject(savableObject.gameObject);

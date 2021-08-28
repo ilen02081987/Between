@@ -1,3 +1,5 @@
+using Between.Enemies;
+using Between.Saving;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,13 +23,21 @@ namespace Between.Spawning
             if (gameObject.scene.buildIndex != LevelManager.Instance.SceneIndex)
                 MoveToLevelScene(gameObject);
 
+            ApplySavableId(gameObject);
+
             return gameObject;
         }
 
-        private static void MoveToLevelScene(GameObject gameObject)
+        private void MoveToLevelScene(GameObject gameObject)
         {
             var rootObjects = SceneManager.GetSceneByBuildIndex(LevelManager.Instance.SceneIndex).GetRootGameObjects();
             gameObject.transform.parent = rootObjects[0].transform;
+        }
+
+        private void ApplySavableId(GameObject to)
+        {
+            if (to.TryGetComponent<SavableObject>(out var savable))
+                savable.Id = GetComponent<SavableObject>().Id;
         }
     }
 }

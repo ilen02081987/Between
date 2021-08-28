@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: 7252645726439572625}
   - component: {fileID: 6317459691286721336}
   - component: {fileID: 9015700855542197271}
+  - component: {fileID: 6704693960262463584}
   m_Layer: 0
   m_Name: EnemySpawnPoint
   m_TagString: Untagged
@@ -285,7 +286,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnedObject: {fileID: 5636273630288186732, guid: a56b46cd2bf0af84e8c94bc59e4ceb11, type: 3}
   _atPoint: {fileID: 5096752177225017626}
-  _parent: {fileID: 0}
+--- !u!114 &6704693960262463584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4927899218366443177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09f8216225dc5d24fa1dafdb727fe259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 0
 --- !u!1 &7423234195785095782
 GameObject:
   m_ObjectHideFlags: 0
