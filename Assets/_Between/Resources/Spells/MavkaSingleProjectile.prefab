@@ -61,8 +61,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa9aa641146bee04587a3a1b5bffe1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 60
-  _impactDamage: 3
+  _health: 10
+  _impactDamage: 6
   _team: 1
   _damage:
     Value: 20
@@ -197,6 +197,7 @@ MonoBehaviour:
   _projectile: {fileID: 4235813989683737362}
   _launchClip: {fileID: 8300000, guid: c7b6e5271370ae94dacddd3addf506b3, type: 3}
   _hitClip: {fileID: 8300000, guid: 849f4dce21aa71a4e99d44604ba10f51, type: 3}
+  _hitClipVolume: 1
 --- !u!1001 &7226522612418649561
 PrefabInstance:
   m_ObjectHideFlags: 0
