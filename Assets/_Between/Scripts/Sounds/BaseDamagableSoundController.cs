@@ -3,9 +3,9 @@ using Between.Enemies;
 
 namespace Between.Sounds
 {
-    public class BaseEnemySoundsController : BaseSoundsController
+    public class BaseDamagableSoundController : BaseSoundsController
     {
-        [SerializeField] private BaseEnemy _enemy;
+        [SerializeField] private BaseDamagableObject _enemy;
         [SerializeField] private AudioClip _death;
 
         private void Start()
