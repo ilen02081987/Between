@@ -38,18 +38,18 @@ namespace Between.Enemies.Mavka
             float delay = _castDelay;
             bool singleCast = _singleCast;
 
+            if (_spawnPoints[0] == null)
+                yield break;
+
+            animator.StartWiz();
+
             for (int i = 0; i < _spawnPoints.Length; i++)
             {
-                if (_spawnPoints[i] == null)
-                    yield break;
-
                 int index = i;
                 CreateSpellPainter(index, singleCast ? (_spawnPoints.Length - i - 1) * delay : 0f);
 
                 yield return new WaitForSeconds(delay);
             }
-
-            animator.StartWiz();
         }
 
         private void CreateSpellPainter(int spawnPointIndex, float afterDrawDelay)
