@@ -46,7 +46,7 @@ MonoBehaviour:
   - 0.8
   EnableProbabilitiesLog: 1
   RangeDetectionRadius: 20
-  RangeCooldownBase: 2.5
+  RangeCooldownBase: 2
   RangeCooldownShift: 0.5
   SpellPictureCompressCoefficient: 2
   SeveralProjectilesCastTime: 3
@@ -55,8 +55,8 @@ MonoBehaviour:
   SeveralProjectilesSphereCastRadius: 1
   MavkaShieldsCooldownTime: 3
   MavkaSingleProjectileCastTime: 1
-  SeveralProjectilesCastWeight: 5
-  SingleProjectileCastWeight: 3
+  SeveralProjectilesCastWeight: 3
+  SingleProjectileCastWeight: 2
   MeleeDetectionRadius: 5
   MeleeCooldownBase: 3
   MeleeCooldownShift: 1
@@ -73,9 +73,9 @@ MonoBehaviour:
     SeveralProjectilesSphereCastRadius: 1
     ShieldsCooldownTime: 2.8
     SingleProjectileCastTime: 1
-    SeveralProjectilesCastWeight: 3
+    SeveralProjectilesCastWeight: 2
     SingleProjectileCastWeight: 2
-    SkeletonsCallCastWeight: 1
-    SkeletonsCastDelay: 1.5
-    SkeletonsCastTime: 1.5
+    SkeletonsCallCastWeight: 3
+    SkeletonsCastDelay: 1
+    SkeletonsCastTime: 0.5
     SkeletonsSingleCast: 1
