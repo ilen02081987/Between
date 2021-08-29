@@ -23,7 +23,7 @@ MonoBehaviour:
   ProjectileMaxLenght: 0.7
   ProjectileManaCoefficient: 80
   ProjectilePowerValue: 1.1
-  ProjectileBaseDamageValue: 3
+  ProjectileBaseDamageValue: 2
   ProjectileMinSize: 0.3
   ProjectileMaxSize: 4
   ShieldTrackerMinLenght: 0
@@ -40,8 +40,8 @@ MonoBehaviour:
   HealingSpellMaxHeal: 40
   CircleCompressionRatio: 2.25
   DecideBorder:
-  - 0.9
-  - 0.9
+  - 0.8
+  - 0.8
   - 0.8
   - 0.8
   EnableProbabilitiesLog: 1
