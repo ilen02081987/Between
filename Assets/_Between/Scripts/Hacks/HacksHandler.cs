@@ -53,7 +53,7 @@ namespace Between.Hacks
 
             if (Player.Instance.Controller.Immortal)
             {
-                _middleSettings.InitSettings();
+                _middleSettings.Init();
                 Player.Instance.Controller.Immortal = false;
 
                 GameObject hackShieldZone = GameObject.Find("HackShieldZone");
@@ -61,7 +61,7 @@ namespace Between.Hacks
             }
             else
             {
-                _hackSettings.InitSettings();
+                _hackSettings.Init();
                 Player.Instance.Controller.Immortal = true;
 
                 GameObject hackShieldZone = GameObject.Find("HackShieldZone");

@@ -14,12 +14,12 @@ namespace Between.UI.Menu
         protected override void Init()
         {
             if (_isDefault && GameSettings.Instance == null)
-                _settings.InitSettings();
+                _settings.Init();
         }
 
         protected override void PerformOnClick()
         {
-            _settings.InitSettings();
+            _settings.Init();
         }
     }
 }

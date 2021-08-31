@@ -80,7 +80,7 @@ namespace Between
         [Header("Lich")]
         public LichSettings Lich;
 
-        public void InitSettings()
+        public void Init()
         {
             Instance = this;
             InitEmptySettings();
