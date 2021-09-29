@@ -322,12 +322,12 @@ GameObject:
   - component: {fileID: 1246365378}
   - component: {fileID: 1246365377}
   m_Layer: 0
-  m_Name: Settings
+  m_Name: Settings (without selection)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1246365377
 MonoBehaviour:
   m_ObjectHideFlags: 0
